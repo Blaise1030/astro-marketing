@@ -2,12 +2,15 @@
 const { data, id, Content } = Astro.props;
 ---
 
-<section class="section" id={id}>
-  <h2>{data.heading}</h2>
-  <Content />
-  <div class="grid">
+<section class="mx-auto max-w-5xl px-8 py-16" id={id}>
+  <h2 class="mb-6 text-3xl font-bold tracking-tight">{data.heading}</h2>
+  <div class="prose mb-6 max-w-none dark:prose-invert"><Content /></div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
     {data.items.map((i) => (
-      <div class="card"><h3>{i.title}</h3><p>{i.description}</p></div>
+      <div class="rounded-xl border border-neutral-400/30 p-5">
+        <h3 class="mb-2 text-lg font-semibold">{i.title}</h3>
+        <p>{i.description}</p>
+      </div>
     ))}
   </div>
 </section>
