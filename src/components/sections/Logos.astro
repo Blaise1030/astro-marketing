@@ -2,12 +2,12 @@
 const { data, id, Content } = Astro.props;
 ---
 
-<section class="section center" id={id}>
-  {data.heading && <h2>{data.heading}</h2>}
-  <Content />
-  <div class="grid">
+<section class="mx-auto max-w-5xl px-8 py-16 text-center" id={id}>
+  {data.heading && <h2 class="mb-6 text-3xl font-bold tracking-tight">{data.heading}</h2>}
+  <div class="prose mx-auto mb-6 dark:prose-invert"><Content /></div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6 text-neutral-600 dark:text-neutral-400">
     {data.items.map((l) => (
-      <div>{l.url ? <a href={l.url}>{l.name}</a> : l.name}</div>
+      <div>{l.url ? <a class="hover:underline" href={l.url}>{l.name}</a> : l.name}</div>
     ))}
   </div>
 </section>

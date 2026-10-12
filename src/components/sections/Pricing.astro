@@ -3,16 +3,18 @@ import { href } from "../../lib/href";
 const { data, id, Content } = Astro.props;
 ---
 
-<section class="section" id={id}>
-  <h2>{data.heading}</h2>
-  <Content />
-  <div class="grid">
+<section class="mx-auto max-w-5xl px-8 py-16" id={id}>
+  <h2 class="mb-6 text-3xl font-bold tracking-tight">{data.heading}</h2>
+  <div class="prose mb-6 max-w-none dark:prose-invert"><Content /></div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
     {data.plans.map((p) => (
-      <div class:list={["card", { highlighted: p.highlighted }]}>
-        <h3>{p.name}</h3>
-        <p><strong>{p.price}</strong> {p.period}</p>
-        <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
-        <a class="button" href={href(p.cta.href)}>{p.cta.label}</a>
+      <div class:list={["flex flex-col rounded-xl border p-5", p.highlighted ? "border-current" : "border-neutral-400/30"]}>
+        <h3 class="text-lg font-semibold">{p.name}</h3>
+        <p class="mt-2"><strong class="text-3xl font-bold">{p.price}</strong> {p.period}</p>
+        <ul class="my-4 flex-1 list-disc space-y-1 pl-5">{p.features.map((f) => <li>{f}</li>)}</ul>
+        <a class="inline-block rounded-lg border border-current px-5 py-2.5 text-center font-semibold" href={href(p.cta.href)}>
+          {p.cta.label}
+        </a>
       </div>
     ))}
   </div>
