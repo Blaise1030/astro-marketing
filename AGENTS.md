@@ -28,6 +28,16 @@ Static Astro site. All copy and structure live in content files; components only
 - New page: add `src/content/pages/<slug>.json` and a route in `src/pages/`.
 - Keep the dev server (`npm run dev`) running as-is; it is managed externally. Edits hot-reload in the live preview — just save the files and stop. Do **not** run `npm run build` (or `astro build`) after ordinary content/component edits; a full build is only for deploy or when the user explicitly asks to verify the production build.
 
+## Skills
+
+Project skills live in `.agents/skills/` (mirrored in `.claude/skills/`) and are tracked in `skills-lock.json`; refresh them with `npx skills update`. Where a skill disagrees with this guide (SSR adapters, running builds, `tailwind.config.js`), this guide wins.
+
+- `astro` — components, pages, content collections.
+- `tailwind-design-system` — Tailwind v4 tokens and reusable component patterns.
+- `seo` — meta tags, structured data, sitemaps.
+- `performance`, `core-web-vitals` — page weight, LCP, INP, CLS.
+- `accessibility` — WCAG 2.2.
+
 ## Deployment
 
 Push-and-live on Cloudflare Pages. `.github/workflows/deploy.yml` runs `npm ci && npm run build` and deploys `dist/` on every push to `main`, and deploys a preview of every pull request branch (published as a GitHub deployment + sticky PR comment, see `README.md`); `wrangler.toml` names the Pages project (`pages_build_output_dir = ./dist`). Needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets. Keep the site fully static (no SSR adapter) and keep the build output in `dist/`.
