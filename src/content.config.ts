@@ -14,4 +14,6 @@ export const collections = {
   sections: collection("sections"),
   blog: collection("blog"),
   helpDocs: collection("helpDocs"),
+  blogCategories: collection("blogCategories"),
+  helpCategories: collection("helpCategories"),
 };

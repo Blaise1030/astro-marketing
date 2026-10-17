@@ -1,6 +1,7 @@
 ---
 title: Welcome to the blog
 description: News, ideas, and updates from the Acme team.
+category: news
 pubDate: "2026-10-11"
 tags: [news]
 ---

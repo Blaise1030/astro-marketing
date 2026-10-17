@@ -1,6 +1,7 @@
 ---
 title: Check WhatsApp Business eligibility and policy rules
 description: Learn who can use WhatsApp Business API, the rules Meta applies and what to do if your business is restricted.
+category: guides
 pubDate: "2026-10-13"
 tags:
   - WhatsApp

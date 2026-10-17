@@ -24,7 +24,7 @@ test('describe identifies dates, image controls, references and section variants
 });
 test('validate uses live schemas and returns defaults and precise issue paths', () => {
   const schemas = createCollectionSchemas({z});
-  for (const [collection,fields] of [['blog',post],['blog',{...post,pubDate:'2026-02-30'}],['blog',{...post,coverImage:'./cover.png'}],['helpDocs',{title:'Guide',description:'Help',section:'Setup',order:1}],['helpDocs',{title:'Guide',description:'Help',section:'Setup',order:'1'}]]) {
+  for (const [collection,fields] of [['blog',post],['blog',{...post,pubDate:'2026-02-30'}],['blog',{...post,coverImage:'./cover.png'}],['helpDocs',{title:'Guide',description:'Help',category:'Setup',order:1}],['helpDocs',{title:'Guide',description:'Help',category:'Setup',order:'1'}]]) {
     const expected=schemas[collection].safeParse(fields);
     const actual=helper({op:'validate',collection,fields});
     assert.equal(actual.valid,expected.success);
@@ -95,7 +95,7 @@ test('Astro builds and helper validation agree for valid and invalid Blog and He
     for(const [collection,fields,field] of [
       ['blog',{...post,pubDate:'2026-02-30'},'pubDate'],
       ['blog',{...post,coverImage:'https://example.com/cover.png'},'coverAlt'],
-      ['helpDocs',{title:'Guide',description:'Help',section:'Setup',order:'wrong'},'order'],
+      ['helpDocs',{title:'Guide',description:'Help',category:'Setup',order:'wrong'},'order'],
     ]) {
       const path=join(dir,'src/content',collection,'en','invalid.md');
       writeFileSync(path,'---\n'+Object.entries(fields).map(([key,value])=>`${key}: ${JSON.stringify(value)}`).join('\n')+'\n---\nBody');

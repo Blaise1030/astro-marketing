@@ -2,19 +2,21 @@
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/href";
+import { category as resolveCategory } from "../../lib/categories";
 
 export async function getStaticPaths() {
   return (await getCollection("helpDocs")).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const category = await resolveCategory("helpCategories", entry.data.category, `helpDocs/${entry.id}`);
 ---
 <Base title={entry.data.title} description={entry.data.description}>
   <article class="mx-auto max-w-5xl px-8 py-12">
-    <a class="text-sm hover:underline" href={href("/help/")}>Back to Help</a>
-    <h1 class="mt-4 text-4xl font-bold tracking-tight">{entry.data.title}</h1>
-    <p class="mt-2 text-lg text-neutral-600 dark:text-neutral-400">{entry.data.description}</p>
-    <p class="mt-2 text-sm text-neutral-500">{entry.data.section}</p>
-    <div class="prose mt-8 max-w-3xl dark:prose-invert prose-img:h-auto prose-img:max-w-full"><Content /></div>
+    <a class="text-label text-accent hover:underline" href={href("/help/")}>Back to Help</a>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight">{entry.data.title}</h1>
+    <p class="mt-2 text-lg text-secondary dark:text-neutral-400">{entry.data.description}</p>
+    <p class="mt-3"><a class="rounded-full bg-surface px-3 py-1 text-caption text-secondary hover:text-accent dark:bg-neutral-900 dark:text-neutral-400" href={href(`/help/#${category.id}`)}>{category.data.title}</a></p>
+    <div class="prose mt-8 max-w-3xl dark:prose-invert prose-a:text-accent prose-img:h-auto prose-img:max-w-full"><Content /></div>
   </article>
 </Base>

@@ -3,16 +3,29 @@ import { href } from "../../lib/href";
 const { data, id, Content } = Astro.props;
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16" id={id}>
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">{data.heading}</h2>
-  <div class="prose mb-6 max-w-none dark:prose-invert"><Content /></div>
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
+<section class="mx-auto max-w-5xl px-8 py-lg" id={id}>
+  <h2 class="mb-md text-h2 tracking-tight">{data.heading}</h2>
+  <div class="prose mb-md max-w-none dark:prose-invert prose-a:text-accent"><Content /></div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-md">
     {data.plans.map((p) => (
-      <div class:list={["flex flex-col rounded-xl border p-5", p.highlighted ? "border-current" : "border-neutral-400/30"]}>
+      <div
+        class:list={[
+          "flex flex-col rounded-lg border p-5",
+          p.highlighted ? "border-accent ring-1 ring-accent" : "border-tertiary dark:border-neutral-800",
+        ]}
+      >
         <h3 class="text-lg font-semibold">{p.name}</h3>
-        <p class="mt-2"><strong class="text-3xl font-bold">{p.price}</strong> {p.period}</p>
-        <ul class="my-4 flex-1 list-disc space-y-1 pl-5">{p.features.map((f) => <li>{f}</li>)}</ul>
-        <a class="inline-block rounded-lg border border-current px-5 py-2.5 text-center font-semibold" href={href(p.cta.href)}>
+        <p class="mt-2 text-secondary dark:text-neutral-400"><strong class="text-3xl font-semibold text-primary dark:text-neutral-100">{p.price}</strong> {p.period}</p>
+        <ul class="my-4 flex-1 list-disc space-y-1 pl-5 text-body-sm">{p.features.map((f) => <li>{f}</li>)}</ul>
+        <a
+          class:list={[
+            "inline-block rounded-md px-4 py-2 text-center text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            p.highlighted
+              ? "bg-accent text-white hover:bg-accent/90"
+              : "border border-tertiary bg-neutral text-primary hover:bg-surface dark:border-neutral-700 dark:bg-transparent dark:text-neutral-100 dark:hover:bg-neutral-900",
+          ]}
+          href={href(p.cta.href)}
+        >
           {p.cta.label}
         </a>
       </div>

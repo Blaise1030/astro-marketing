@@ -4,18 +4,21 @@ const { data, id, Content } = Astro.props;
 ---
 
 <section class="mx-auto max-w-5xl px-8 py-24 text-center" id={id}>
-  <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">{data.headline}</h1>
-  {data.subheadline && <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">{data.subheadline}</p>}
-  <p class="mt-8 flex flex-wrap justify-center gap-4">
+  <h1 class="text-4xl font-semibold tracking-tight sm:text-h1">{data.headline}</h1>
+  {data.subheadline && <p class="mx-auto mt-6 max-w-2xl text-lg text-secondary dark:text-neutral-400">{data.subheadline}</p>}
+  <p class="mt-8 flex flex-wrap justify-center gap-sm">
     <a
-      class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
+      class="inline-block rounded-md bg-accent px-4 py-2 text-label text-white hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       href={href(data.cta.href)}>{data.cta.label}</a
     >
     {data.secondaryCta && (
-      <a class="inline-block rounded-lg border border-current px-5 py-2.5 font-semibold" href={href(data.secondaryCta.href)}>
+      <a
+        class="inline-block rounded-md border border-tertiary bg-neutral px-4 py-2 text-label text-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:border-neutral-700 dark:bg-transparent dark:text-neutral-100 dark:hover:bg-neutral-900"
+        href={href(data.secondaryCta.href)}
+      >
         {data.secondaryCta.label}
       </a>
     )}
   </p>
-  <div class="prose mx-auto mt-8 dark:prose-invert"><Content /></div>
+  <div class="prose mx-auto mt-8 dark:prose-invert prose-a:text-accent"><Content /></div>
 </section>
