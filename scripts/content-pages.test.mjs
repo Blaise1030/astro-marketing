@@ -27,9 +27,6 @@ test("list reports the collection loaders and content kinds", () => {
   const result = spawnSync(process.execPath, ["scripts/workbench-content.mjs"], { cwd: root, input: '{"op":"list"}', encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(JSON.parse(result.stdout).collections, [
-    { name: "site", loader: { base: "./src/content", pattern: "site.json" }, kind: "json", singleton: "site" },
-    { name: "pages", loader: { base: "./src/content/pages", pattern: "*.json" }, kind: "json" },
-    { name: "sections", loader: { base: "./src/content/sections", pattern: "*.mdx" }, kind: "mdx" },
     { name: "blog", loader: { base: "./src/content/blog/en", pattern: "*.md" }, kind: "markdown" },
     { name: "helpDocs", loader: { base: "./src/content/helpDocs/en", pattern: "*.md" }, kind: "markdown" },
     { name: "blogCategories", loader: { base: "./src/content/blogCategories/en", pattern: "*.md" }, kind: "markdown" },
@@ -44,10 +41,11 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
   assert.match(html(root, "help/getting-started"), /<h2[^>]*>.*First steps/);
   assert.match(html(root, ""), /href="\/blog\/"[^>]*>Blog/);
   assert.match(html(root, ""), /href="\/help\/"[^>]*>Help/);
+  for (const id of ["hero", "logos", "features", "testimonials", "pricing", "faq", "cta"]) assert.match(html(root, ""), new RegExp(`id="${id}"`));
 });
 
 // Fixtures vary filenames and dates/orders to catch sorting by filesystem order.
-test("base-prefixed routes sort entries and render non-home pages while reserving Blog and Help", () => fixture((dir) => {
+test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });
   writeFileSync(join(dir, "src/content/blog/en/a-new.md"), '---\ntitle: Newest article\ndescription: New article\npubDate: "2026-10-11"\n---\nNew **body**');
   writeFileSync(join(dir, "src/content/blog/en/z-old.md"), '---\ntitle: Oldest article\ndescription: Old article\npubDate: "2020-01-01"\n---\nOld body');
@@ -56,8 +54,6 @@ test("base-prefixed routes sort entries and render non-home pages while reservin
   for (const [slug, title, category, order] of [["a-last", "Last guide", "setup", 9], ["z-first", "First guide", "setup", 1], ["b-tie", "Alpha guide", "setup", 9], ["c-other", "Other guide", "reference", 1]]) {
     writeFileSync(join(dir, `src/content/helpDocs/en/${slug}.md`), `---\ntitle: ${title}\ndescription: Guide\ncategory: ${category}\norder: ${order}\n---\nGuide body`);
   }
-  writeFileSync(join(dir, "src/content/pages/about.json"), JSON.stringify({ title: "About Acme", description: "About", sections: ["hero"] }));
-  for (const slug of ["blog", "help"]) writeFileSync(join(dir, `src/content/pages/${slug}.json`), JSON.stringify({ title: "Reserved page", description: "Reserved", sections: [] }));
   build(dir);
   const blog = html(dir, "blog");
   assert.ok(blog.indexOf("Newest article") < blog.indexOf("Oldest article"));
@@ -69,9 +65,6 @@ test("base-prefixed routes sort entries and render non-home pages while reservin
   assert.ok(help.indexOf("Reference") < help.indexOf("Other guide"));
   assert.match(help, /href="\/preview\/example\/help\/z-first\/"/);
   assert.match(html(dir, "blog/a-new"), /<strong>body<\/strong>/);
-  assert.match(html(dir, "about"), /<title>About Acme<\/title>/);
-  assert.match(html(dir, "about"), /id="hero"/);
-  assert.doesNotMatch(blog + help, /Reserved page/);
 }));
 
 test("empty collections retain useful Blog and Help indexes", () => fixture((dir) => {
@@ -103,11 +96,4 @@ test("a post reports a category reference that has no category entry", () => fix
   const result = spawnSync(process.execPath, [join(root, "node_modules/astro/bin/astro.mjs"), "build"], { cwd: dir, encoding: "utf8" });
   assert.notEqual(result.status, 0);
   assert.match(result.stdout + result.stderr, /blog\/stray references missing category "missing-category"/);
-}));
-
-test("a non-home page reports its missing section by page and section id", () => fixture((dir) => {
-  writeFileSync(join(dir, "src/content/pages/broken.json"), JSON.stringify({ title: "Broken", description: "Broken", sections: ["missing-section"] }));
-  const result = spawnSync(process.execPath, [join(root, "node_modules/astro/bin/astro.mjs"), "build"], { cwd: dir, encoding: "utf8" });
-  assert.notEqual(result.status, 0);
-  assert.match(result.stdout + result.stderr, /pages\/broken.json references missing section "missing-section"/);
 }));

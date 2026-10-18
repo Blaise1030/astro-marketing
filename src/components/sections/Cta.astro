@@ -1,13 +1,11 @@
 ---
 import { href } from "../../lib/href";
-const { data, id, Content } = Astro.props;
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-lg text-center" id={id}>
-  <h2 class="mb-md text-h2 tracking-tight">{data.heading}</h2>
-  <div class="prose mx-auto mb-md dark:prose-invert prose-a:text-accent"><Content /></div>
+<section class="mx-auto max-w-5xl px-8 py-lg text-center" id="cta">
+  <h2 class="mb-md text-h2 tracking-tight">Ready to launch?</h2>
   <a
     class="inline-block rounded-md bg-accent px-4 py-2 text-label text-white hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-    href={href(data.cta.href)}>{data.cta.label}</a
+    href={href("#pricing")}>Get started today</a
   >
 </section>
