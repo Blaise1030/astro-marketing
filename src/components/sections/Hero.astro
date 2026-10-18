@@ -3,16 +3,19 @@ import { href } from "../../lib/href";
 ---
 
 <section class="mx-auto max-w-5xl px-8 py-24 text-center" id="hero">
-  <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Launch your story, not your backlog</h1>
-  <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+  <h1 class="text-4xl font-semibold tracking-tight sm:text-h1">Launch your story, not your backlog</h1>
+  <p class="mx-auto mt-6 max-w-2xl text-lg text-secondary dark:text-neutral-400">
     Acme turns a rough idea into a polished marketing site in minutes.
   </p>
-  <p class="mt-8 flex flex-wrap justify-center gap-4">
+  <p class="mt-8 flex flex-wrap justify-center gap-sm">
     <a
-      class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
+      class="inline-block rounded-md bg-accent px-4 py-2 text-label text-white hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       href={href("#pricing")}>Get started</a
     >
-    <a class="inline-block rounded-lg border border-current px-5 py-2.5 font-semibold" href={href("#features")}>See features</a>
+    <a
+      class="inline-block rounded-md border border-tertiary bg-neutral px-4 py-2 text-label text-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:border-neutral-700 dark:bg-transparent dark:text-neutral-100 dark:hover:bg-neutral-900"
+      href={href("#features")}>See features</a
+    >
   </p>
-  <p class="mt-8 text-neutral-600 dark:text-neutral-400">Trusted by makers who would rather be shipping.</p>
+  <p class="mt-8 text-secondary dark:text-neutral-400">Trusted by makers who would rather be shipping.</p>
 </section>

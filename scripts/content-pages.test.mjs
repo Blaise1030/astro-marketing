@@ -29,6 +29,8 @@ test("list reports the collection loaders and content kinds", () => {
   assert.deepEqual(JSON.parse(result.stdout).collections, [
     { name: "blog", loader: { base: "./src/content/blog/en", pattern: "*.md" }, kind: "markdown" },
     { name: "helpDocs", loader: { base: "./src/content/helpDocs/en", pattern: "*.md" }, kind: "markdown" },
+    { name: "blogCategories", loader: { base: "./src/content/blogCategories/en", pattern: "*.md" }, kind: "markdown" },
+    { name: "helpCategories", loader: { base: "./src/content/helpCategories/en", pattern: "*.md" }, kind: "markdown" },
   ].map(collection => ({...collection, supportedForEditing: true})));
 });
 
@@ -47,8 +49,10 @@ test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });
   writeFileSync(join(dir, "src/content/blog/en/a-new.md"), '---\ntitle: Newest article\ndescription: New article\npubDate: "2026-10-11"\n---\nNew **body**');
   writeFileSync(join(dir, "src/content/blog/en/z-old.md"), '---\ntitle: Oldest article\ndescription: Old article\npubDate: "2020-01-01"\n---\nOld body');
-  for (const [slug, title, section, order] of [["a-last", "Last guide", "Setup", 9], ["z-first", "First guide", "Setup", 1], ["b-tie", "Alpha guide", "Setup", 9], ["c-other", "Other guide", "Reference", 1]]) {
-    writeFileSync(join(dir, `src/content/helpDocs/en/${slug}.md`), `---\ntitle: ${title}\ndescription: Guide\nsection: ${section}\norder: ${order}\n---\nGuide body`);
+  writeFileSync(join(dir, "src/content/helpCategories/en/setup.md"), "---\ntitle: Setup\norder: 1\n---\n");
+  writeFileSync(join(dir, "src/content/helpCategories/en/reference.md"), "---\ntitle: Reference\norder: 2\n---\n");
+  for (const [slug, title, category, order] of [["a-last", "Last guide", "setup", 9], ["z-first", "First guide", "setup", 1], ["b-tie", "Alpha guide", "setup", 9], ["c-other", "Other guide", "reference", 1]]) {
+    writeFileSync(join(dir, `src/content/helpDocs/en/${slug}.md`), `---\ntitle: ${title}\ndescription: Guide\ncategory: ${category}\norder: ${order}\n---\nGuide body`);
   }
   build(dir);
   const blog = html(dir, "blog");
@@ -83,6 +87,13 @@ test("shared schemas validate article metadata and provide array defaults", asyn
   assert.equal(schemas.blog.safeParse({ ...post, coverImage: "./cover.png" }).success, false);
   assert.equal(schemas.blog.safeParse({ ...post, coverImage: "./cover.png", coverAlt: " " }).success, false);
   assert.equal(schemas.blog.safeParse({ ...post, coverImage: "./cover.png", coverAlt: "A mountain" }).success, true);
-  assert.equal(schemas.helpDocs.safeParse({ title: "Guide", description: "Description", section: "Setup", order: 1 }).success, true);
-  assert.equal(schemas.helpDocs.safeParse({ title: "Guide", description: "Description", section: "Setup", order: "1" }).success, false);
+  assert.equal(schemas.helpDocs.safeParse({ title: "Guide", description: "Description", category: "Setup", order: 1 }).success, true);
+  assert.equal(schemas.helpDocs.safeParse({ title: "Guide", description: "Description", category: "Setup", order: "1" }).success, false);
 });
+
+test("a post reports a category reference that has no category entry", () => fixture((dir) => {
+  writeFileSync(join(dir, "src/content/blog/en/stray.md"), '---\ntitle: Stray\ndescription: Stray\ncategory: missing-category\npubDate: "2026-10-11"\n---\nBody');
+  const result = spawnSync(process.execPath, [join(root, "node_modules/astro/bin/astro.mjs"), "build"], { cwd: dir, encoding: "utf8" });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stdout + result.stderr, /blog\/stray references missing category "missing-category"/);
+}));

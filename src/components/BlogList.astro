@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { href } from "../lib/href";
+interface Props {
+  posts: { post: CollectionEntry<"blog">; category?: CollectionEntry<"blogCategories"> }[];
+  categories: CollectionEntry<"blogCategories">[];
+  active?: string;
+}
+const { posts, categories, active } = Astro.props;
+const chip = "rounded-full border px-3 py-1 text-body-sm";
+const chipIdle = "border-tertiary text-secondary hover:bg-surface dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-900";
+const chipActive = "border-accent bg-accent text-neutral";
+---
+{categories.length > 0 && (
+  <nav aria-label="Blog categories" class="mb-8">
+    <ul class="flex flex-wrap gap-2">
+      <li><a class:list={[chip, active ? chipIdle : chipActive]} aria-current={active ? undefined : "page"} href={href("/blog/")}>All</a></li>
+      {categories.map((category) => (
+        <li><a class:list={[chip, active === category.id ? chipActive : chipIdle]} aria-current={active === category.id ? "page" : undefined} href={href(`/blog/category/${category.id}/`)}>{category.data.title}</a></li>
+      ))}
+    </ul>
+  </nav>
+)}
+{posts.length === 0 ? <p class="text-secondary dark:text-neutral-400">{active ? "No posts in this category yet." : "No blog posts yet. Check back soon for news and stories."}</p> : (
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-md">{posts.map(({ post, category }) => (
+    <article class="rounded-lg border border-tertiary p-5 hover:bg-surface dark:border-neutral-800 dark:hover:bg-neutral-900">
+      {category && <a class="text-caption font-medium uppercase tracking-wide text-accent hover:underline" href={href(`/blog/category/${category.id}/`)}>{category.data.title}</a>}
+      <h2 class="mt-1 text-lg font-semibold"><a class="hover:text-accent" href={href(`/blog/${post.id}/`)}>{post.data.title}</a></h2>
+      <time class="mt-1 block text-caption text-secondary dark:text-neutral-400" datetime={post.data.pubDate}>{post.data.pubDate}</time>
+      <p class="mt-3 text-body-sm text-secondary dark:text-neutral-400">{post.data.description}</p>
+    </article>
+  ))}</div>
+)}

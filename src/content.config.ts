@@ -11,4 +11,6 @@ const collection = (name: keyof typeof collectionRegistry) => defineCollection({
 export const collections = {
   blog: collection("blog"),
   helpDocs: collection("helpDocs"),
+  blogCategories: collection("blogCategories"),
+  helpCategories: collection("helpCategories"),
 };

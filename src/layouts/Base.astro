@@ -18,19 +18,19 @@ const base = import.meta.env.BASE_URL;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-    <header class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
-      <a class="font-bold" href={base}>{site.name}</a>
-      <nav class="flex gap-4">
-        {site.nav.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
+  <body class="bg-neutral font-sans text-body-md text-primary antialiased dark:bg-neutral-950 dark:text-neutral-100">
+    <header class="flex flex-wrap items-center justify-between gap-sm border-b border-tertiary px-8 py-sm dark:border-neutral-800">
+      <a class="font-semibold" href={base}>{site.name}</a>
+      <nav class="flex gap-sm text-label text-secondary dark:text-neutral-400">
+        {site.nav.map((l) => <a class="hover:text-accent" href={href(l.href)}>{l.label}</a>)}
       </nav>
     </header>
     <main><slot /></main>
-    <footer class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
+    <footer class="flex flex-wrap items-center justify-between gap-sm border-t border-tertiary px-8 py-sm text-body-sm text-secondary dark:border-neutral-800 dark:text-neutral-400">
       <p>{site.footer.text}</p>
-      <nav class="flex gap-4">
-        {site.footer.links.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
-        {site.socials.map((s) => <a class="hover:underline" href={s.href} rel="noopener">{s.label}</a>)}
+      <nav class="flex gap-sm">
+        {site.footer.links.map((l) => <a class="hover:text-accent" href={href(l.href)}>{l.label}</a>)}
+        {site.socials.map((s) => <a class="hover:text-accent" href={s.href} rel="noopener">{s.label}</a>)}
       </nav>
     </footer>
   </body>

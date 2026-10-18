@@ -2,21 +2,88 @@
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/href";
+import { category as resolveCategory } from "../../lib/categories";
 import { Image } from "astro:assets";
 export async function getStaticPaths() {
   return (await getCollection("blog")).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const category = entry.data.category === undefined ? undefined : await resolveCategory("blogCategories", entry.data.category, `blog/${entry.id}`);
+
+const date = new Date(`${entry.data.pubDate}T00:00:00Z`).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
+const words = (entry.body ?? "").replace(/\]\([^)]*\)/g, "]").match(/[\p{L}\p{N}'’]+/gu) ?? [];
+const readMinutes = Math.max(1, Math.round(words.length / 230));
+
+const others = (await getCollection("blog")).filter((post) => post.id !== entry.id);
+const picked = entry.data.relatedPosts.map((id) => others.find((post) => post.id === id)).filter((post) => post !== undefined);
+const related = (picked.length > 0 ? picked : others.sort((a, b) => b.data.pubDate.localeCompare(a.data.pubDate))).slice(0, 5);
+
+const shareLinks = [
+  { label: "WhatsApp", template: "https://api.whatsapp.com/send?text={url}" },
+  { label: "Facebook", template: "https://www.facebook.com/sharer/sharer.php?u={url}" },
+  { label: "LinkedIn", template: "https://www.linkedin.com/sharing/share-offsite/?url={url}" },
+  { label: "X", template: "https://twitter.com/intent/tweet?url={url}" },
+];
 ---
 <Base title={entry.data.title} description={entry.data.description}>
-  <article class="mx-auto max-w-5xl px-8 py-12">
-    <a class="text-sm hover:underline" href={href("/blog/")}>Back to Blog</a>
-    <h1 class="mt-4 text-4xl font-bold tracking-tight">{entry.data.title}</h1>
-    <p class="mt-2 text-lg text-neutral-600 dark:text-neutral-400">{entry.data.description}</p>
-    <time class="mt-2 block text-sm text-neutral-500" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
-    {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
-    {entry.data.tags.length > 0 && <p class="mt-4 text-sm text-neutral-500">{entry.data.tags.join(", ")}</p>}
-    <div class="prose mt-8 max-w-3xl dark:prose-invert prose-img:h-auto prose-img:max-w-full"><Content /></div>
-  </article>
+  <div class="mx-auto grid max-w-6xl gap-12 px-8 py-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <div>
+      <nav aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1 text-body-sm text-secondary dark:text-neutral-400">
+          <li><a class="text-accent hover:underline" href={href("/blog/")}>Blog</a></li>
+          <li aria-hidden="true">&gt;</li>
+          {category && <li><a class="text-accent hover:underline" href={href(`/blog/category/${category.id}/`)}>{category.data.title}</a></li>}
+          {category && <li aria-hidden="true">&gt;</li>}
+          <li aria-current="page" class="text-primary dark:text-neutral-100">{entry.data.title}</li>
+        </ol>
+      </nav>
+      <h1 class="mt-4 text-4xl font-semibold tracking-tight">{entry.data.title}</h1>
+      <article>
+        <header class="mt-4 flex flex-wrap items-center gap-x-2 text-body-sm text-secondary dark:text-neutral-400">
+          {entry.data.author && <span class="text-label text-primary dark:text-neutral-100">{entry.data.author}</span>}
+          {entry.data.author && <span aria-hidden="true">·</span>}
+          <time datetime={entry.data.pubDate}>{date}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readMinutes} min read</span>
+        </header>
+        {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-lg" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
+        <div class="prose mt-8 max-w-none dark:prose-invert prose-a:text-accent prose-img:h-auto prose-img:max-w-full"><Content /></div>
+        {entry.data.tags.length > 0 && (
+          <ul class="mt-8 flex flex-wrap gap-2">
+            {entry.data.tags.map((tag) => <li class="rounded-full bg-surface px-3 py-1 text-caption text-secondary dark:bg-neutral-900 dark:text-neutral-400">{tag}</li>)}
+          </ul>
+        )}
+      </article>
+      <nav aria-label="Share this article" class="mt-10 border-t border-tertiary pt-6 dark:border-neutral-800">
+        <p class="text-label">Share this article</p>
+        <ul class="mt-3 flex flex-wrap gap-3">
+          {shareLinks.map((link) => (
+            <li><a class="rounded-md border border-tertiary px-3 py-1 text-body-sm hover:bg-surface dark:border-neutral-700 dark:hover:bg-neutral-900" data-share={link.template} target="_blank" rel="noopener noreferrer">{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+    {related.length > 0 && (
+      <aside class="lg:sticky lg:top-8 lg:self-start">
+        <h2 class="text-lg font-semibold">Related articles</h2>
+        <ul class="mt-4 space-y-4">
+          {related.map((post) => (
+            <li>
+              <a class="group block" href={href(`/blog/${post.id}/`)}>
+                <h3 class="text-label group-hover:text-accent">{post.data.title}</h3>
+                <p class="mt-1 text-body-sm text-secondary dark:text-neutral-400">{post.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </div>
 </Base>
+<script>
+  const url = encodeURIComponent(location.href);
+  document.querySelectorAll<HTMLAnchorElement>("a[data-share]").forEach((link) => {
+    link.href = link.dataset.share!.replace("{url}", url);
+  });
+</script>

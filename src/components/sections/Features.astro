@@ -6,14 +6,14 @@ const features = [
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16" id="features">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Everything you need to launch</h2>
-  <p class="mb-6">Three reasons teams pick Acme.</p>
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
+<section class="mx-auto max-w-5xl px-8 py-lg" id="features">
+  <h2 class="mb-md text-h2 tracking-tight">Everything you need to launch</h2>
+  <p class="mb-md">Three reasons teams pick Acme.</p>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-md">
     {features.map((f) => (
-      <div class="rounded-xl border border-neutral-400/30 p-5">
+      <div class="rounded-lg border border-tertiary p-5 dark:border-neutral-800">
         <h3 class="mb-2 text-lg font-semibold">{f.title}</h3>
-        <p>{f.description}</p>
+        <p class="text-body-sm text-secondary dark:text-neutral-400">{f.description}</p>
       </div>
     ))}
   </div>
