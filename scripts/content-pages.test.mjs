@@ -36,8 +36,8 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
 test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs", "blogCategories", "helpDocsCategories"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });
   writeFileSync(join(dir, "src/content/blogCategories/en/news.json"), '{"title":"News"}');
-  writeFileSync(join(dir, "src/content/helpDocsCategories/en/setup.json"), '{"title":"Setup","order":2}');
-  writeFileSync(join(dir, "src/content/helpDocsCategories/en/reference.json"), '{"title":"Reference","order":1}');
+  writeFileSync(join(dir, "src/content/helpDocsCategories/en/setup.md"), '---\ntitle: Setup\norder: 2\n---\n');
+  writeFileSync(join(dir, "src/content/helpDocsCategories/en/reference.md"), '---\ntitle: Reference\norder: 1\n---\n');
   writeFileSync(join(dir, "src/content/blog/en/a-new.md"), '---\ntitle: Newest article\ndescription: New article\npubDate: "2026-10-11"\ncategories: [news]\n---\nNew **body**');
   writeFileSync(join(dir, "src/content/blog/en/z-old.md"), '---\ntitle: Oldest article\ndescription: Old article\npubDate: "2020-01-01"\n---\nOld body');
   for (const [slug, title, category, order] of [["a-last", "Last guide", "setup", 9], ["z-first", "First guide", "setup", 1], ["b-tie", "Alpha guide", "setup", 9], ["c-other", "Other guide", "reference", 1]]) {

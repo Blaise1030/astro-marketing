@@ -11,7 +11,7 @@ const blogCategories = defineCollection({
 });
 
 const helpDocsCategories = defineCollection({
-  loader: orsoGlob({ base: "./src/content/helpDocsCategories/en", pattern: "*.json" }),
+  loader: orsoGlob({ base: "./src/content/helpDocsCategories/en", pattern: "*.md" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

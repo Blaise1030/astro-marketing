@@ -24,7 +24,7 @@ test("astro sync writes the orso content manifest", () => {
     assert.deepEqual(manifest.collections.map(({ name }) => name), ["blogCategories", "helpDocsCategories", "blog", "helpDocs"]);
     const byName = Object.fromEntries(manifest.collections.map((collection) => [collection.name, collection]));
     assert.deepEqual(byName.blogCategories.loader, { base: "src/content/blogCategories/en", pattern: "*.json" });
-    assert.deepEqual(byName.helpDocsCategories.loader, { base: "src/content/helpDocsCategories/en", pattern: "*.json" });
+    assert.deepEqual(byName.helpDocsCategories.loader, { base: "src/content/helpDocsCategories/en", pattern: "*.md" });
     assert.deepEqual(byName.blog.loader, { base: "src/content/blog/en", pattern: "*.md" });
     assert.deepEqual(byName.helpDocs.loader, { base: "src/content/helpDocs/en", pattern: "*.md" });
     for (const collection of manifest.collections) assert.equal(collection.supportedForEditing, true, collection.reason);
