@@ -4,7 +4,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 
 ## Content model
 
-- `src/content.config.ts` wires the collections defined in `src/content-schemas.mjs`:
+- `src/content.config.ts` defines the collections and their schemas inline; each loader uses `orsoGlob` from `orso-astro`, and the `orso()` integration is registered in `astro.config.mjs`:
   - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `tags[]`, `relatedPosts[]`.
   - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `section`, `order`.
 
@@ -29,16 +29,10 @@ Static Astro site. The landing page, navigation and footer are written directly 
 - `DESIGN.md` is the design source of truth. When you change styles, update both `DESIGN.md` and the `@theme` block in `src/styles/global.css` (create it if missing).
 - Keep the dev server (`npm run dev`) running as-is; it is managed externally. Edits hot-reload in the live preview — just save the files and stop. Do **not** run `npm run build` (or `astro build`) after ordinary content/component edits; a full build is only for deploy or when the user explicitly asks to verify the production build.
 
-## Skills
+## Checking your work
 
-Project skills live in `.agents/skills/` (mirrored in `.claude/skills/`) and are tracked in `skills-lock.json`; refresh them with `npx skills update`. Where a skill disagrees with this guide (SSR adapters, running builds, `tailwind.config.js`), this guide wins.
-
-- `astro` — components, pages, content collections.
-- `tailwind-design-system` — Tailwind v4 tokens and reusable component patterns.
-- `seo` — meta tags, structured data, sitemaps.
-- `performance`, `core-web-vitals` — page weight, LCP, INP, CLS.
-- `accessibility` — WCAG 2.2.
+In a orso agent session, check the live preview after editing with `"$ORSO_HOOK_EXE" ctl preview-status` (it prints JSON; `devserver` is `starting`, `ready`, or `crashed`). Edits hot-reload; do not build. If it is `crashed`, run `"$ORSO_HOOK_EXE" ctl restart-preview` once, then tell the user in plain words what happened.
 
 ## Deployment
 
-Push-and-live on Cloudflare Pages. `.github/workflows/deploy.yml` runs `npm ci && npm run build` and deploys `dist/` on every push to `main`, and deploys a preview of every pull request branch (published as a GitHub deployment + sticky PR comment, see `README.md`); `wrangler.toml` names the Pages project (`pages_build_output_dir = ./dist`). Needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets. Keep the site fully static (no SSR adapter) and keep the build output in `dist/`.
+Push-and-live on Cloudflare Workers (static assets). `.github/workflows/deploy.yml` runs `npm ci && npm run build` and deploys `dist/` on every push to `main`, and uploads a preview of every pull request branch at a stable per-branch `workers.dev` URL (published as a GitHub deployment + sticky PR comment, see `README.md`); `wrangler.toml` names the Worker and points `[assets]` at `./dist`. Needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets. Keep the site fully static (no SSR adapter) and keep the build output in `dist/`.
