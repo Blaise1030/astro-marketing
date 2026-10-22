@@ -1,6 +1,6 @@
 /** Site-wide name, navigation and footer, rendered by `layouts/Base.astro`. */
 export const site = {
-  name: "Acme",
+  name: "Workbench",
   description: "Ship your product story faster with Acme.",
   nav: [
     { label: "Features", href: "#features" },
