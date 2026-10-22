@@ -20,9 +20,10 @@ const sections = categories.filter((category) => (docsByCategory.get(category.id
 <Base title="Help" description="Guides and answers to help you get started.">
   <section class="mx-auto max-w-5xl px-8 py-12">
     <h1 class="mb-8 text-4xl font-bold tracking-tight">Help</h1>
+    {categories.length > 0 && <p class="mb-8 text-sm"><a class="hover:underline" href={href("/help/categories/")}>Browse all categories</a></p>}
     {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((category) => (
-      <section class="mb-10">
-        <h2 class="mb-4 text-2xl font-semibold">{category.data.title}</h2>
+      <section class="mb-10" id={category.data.slug}>
+        <h2 class="mb-4 text-2xl font-semibold"><a class="hover:underline" href={href(`/help/categories/${category.data.slug}/`)}>{category.data.title}</a></h2>
         <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{docsByCategory.get(category.id)!.map((doc) => (
           <article class="rounded-xl border border-neutral-400/30 p-5">
             <h3 class="text-lg font-semibold"><a class="hover:underline" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h3>

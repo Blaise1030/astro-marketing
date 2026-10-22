@@ -15,7 +15,7 @@ const category = await getEntry("helpDocsCategories", entry.data.category);
     <a class="text-sm hover:underline" href={href("/help/")}>Back to Help</a>
     <h1 class="mt-4 text-4xl font-bold tracking-tight">{entry.data.title}</h1>
     <p class="mt-2 text-lg text-neutral-600 dark:text-neutral-400">{entry.data.description}</p>
-    {category && <p class="mt-2 text-sm text-neutral-500">{category.data.title}</p>}
+    {category && <p class="mt-2 text-sm text-neutral-500"><a class="hover:underline" href={href(`/help/categories/${category.data.slug}/`)}>{category.data.title}</a></p>}
     <div class="prose mt-8 max-w-3xl dark:prose-invert prose-img:h-auto prose-img:max-w-full"><Content /></div>
   </article>
 </Base>

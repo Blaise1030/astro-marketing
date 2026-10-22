@@ -5,8 +5,8 @@ Static Astro site. The landing page, navigation and footer are written directly 
 ## Content model
 
 - `src/content.config.ts` defines the collections and their schemas inline; each loader uses `orsoGlob` from `orso-astro`, and the `orso()` integration is registered in `astro.config.mjs`:
-  - `blogCategories` ← `src/content/blogCategories/en/*.json`: `title`, optional `description`.
-  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, optional `description`, `order`.
+  - `blogCategories` ← `src/content/blogCategories/en/*.json`: `title`, `slug`, optional `description`.
+  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, `slug`, optional `description`, `order`.
   - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `relatedPosts[]`.
   - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `category` (ref to `helpDocsCategories`), `order`.
 

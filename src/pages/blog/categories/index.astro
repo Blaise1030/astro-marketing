@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/href";
+
+const categories = (await getCollection("blogCategories")).sort(
+  (a, b) => a.data.title.localeCompare(b.data.title) || a.data.slug.localeCompare(b.data.slug),
+);
+---
+<Base title="Blog categories" description="Browse posts by category.">
+  <section class="mx-auto max-w-5xl px-8 py-12">
+    <a class="text-sm hover:underline" href={href("/blog/")}>Back to Blog</a>
+    <h1 class="mt-4 mb-8 text-4xl font-bold tracking-tight">Blog categories</h1>
+    {categories.length === 0 ? <p>No blog categories yet.</p> : (
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{categories.map((category) => (
+        <article class="rounded-xl border border-neutral-400/30 p-5">
+          <h2 class="text-lg font-semibold"><a class="hover:underline" href={href(`/blog/categories/${category.data.slug}/`)}>{category.data.title}</a></h2>
+          {category.data.description && <p class="mt-2">{category.data.description}</p>}
+        </article>
+      ))}</div>
+    )}
+  </section>
+</Base>

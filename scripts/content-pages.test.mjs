@@ -35,9 +35,9 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
 // Fixtures vary filenames and dates/orders to catch sorting by filesystem order.
 test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs", "blogCategories", "helpDocsCategories"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });
-  writeFileSync(join(dir, "src/content/blogCategories/en/news.json"), '{"title":"News"}');
-  writeFileSync(join(dir, "src/content/helpDocsCategories/en/setup.md"), '---\ntitle: Setup\norder: 2\n---\n');
-  writeFileSync(join(dir, "src/content/helpDocsCategories/en/reference.md"), '---\ntitle: Reference\norder: 1\n---\n');
+  writeFileSync(join(dir, "src/content/blogCategories/en/news.json"), '{"title":"News","slug":"news"}');
+  writeFileSync(join(dir, "src/content/helpDocsCategories/en/setup.md"), '---\ntitle: Setup\nslug: setup\norder: 2\n---\n');
+  writeFileSync(join(dir, "src/content/helpDocsCategories/en/reference.md"), '---\ntitle: Reference\nslug: reference\norder: 1\n---\n');
   writeFileSync(join(dir, "src/content/blog/en/a-new.md"), '---\ntitle: Newest article\ndescription: New article\npubDate: "2026-10-11"\ncategories: [news]\n---\nNew **body**');
   writeFileSync(join(dir, "src/content/blog/en/z-old.md"), '---\ntitle: Oldest article\ndescription: Old article\npubDate: "2020-01-01"\n---\nOld body');
   for (const [slug, title, category, order] of [["a-last", "Last guide", "setup", 9], ["z-first", "First guide", "setup", 1], ["b-tie", "Alpha guide", "setup", 9], ["c-other", "Other guide", "reference", 1]]) {
@@ -56,6 +56,10 @@ test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   assert.match(help, /href="\/preview\/example\/help\/z-first\/"/);
   assert.match(html(dir, "blog/a-new"), /<strong>body<\/strong>/);
   assert.match(html(dir, "blog/a-new"), /News/);
+  assert.match(html(dir, "help/categories"), /Reference/);
+  assert.match(html(dir, "help/categories/setup"), /First guide/);
+  assert.match(html(dir, "blog/categories"), /News/);
+  assert.match(html(dir, "blog/categories/news"), /Newest article/);
 }));
 
 test("empty collections retain useful Blog and Help indexes", () => fixture((dir) => {

@@ -2,10 +2,13 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { orsoGlob } from "orso-astro";
 
+const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use a lowercase slug like getting-started");
+
 const blogCategories = defineCollection({
   loader: orsoGlob({ base: "./src/content/blogCategories/en", pattern: "*.json" }),
   schema: z.object({
     title: z.string(),
+    slug,
     description: z.string().optional(),
   }),
 });
@@ -14,6 +17,7 @@ const helpDocsCategories = defineCollection({
   loader: orsoGlob({ base: "./src/content/helpDocsCategories/en", pattern: "*.md" }),
   schema: z.object({
     title: z.string(),
+    slug,
     description: z.string().optional(),
     order: z.number().default(0),
   }),

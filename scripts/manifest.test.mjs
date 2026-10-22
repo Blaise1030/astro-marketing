@@ -34,6 +34,8 @@ test("astro sync writes the orso content manifest", () => {
     assert.equal(byName.blog.fields.properties.categories.items.collection, "blogCategories");
     assert.equal(byName.helpDocs.fields.properties.category.type, "reference");
     assert.equal(byName.helpDocs.fields.properties.category.collection, "helpDocsCategories");
+    assert.equal(byName.blogCategories.fields.properties.slug.type, "string");
+    assert.equal(byName.helpDocsCategories.fields.properties.slug.type, "string");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
