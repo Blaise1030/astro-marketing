@@ -5,7 +5,7 @@ import { orsoGlob } from "orso-astro";
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use a lowercase slug like getting-started");
 
 const blogCategories = defineCollection({
-  loader: orsoGlob({ base: "./src/content/blogCategories/en", pattern: "*.json" }),
+  loader: orsoGlob({ base: "./src/content/blogCategories/en", pattern: "*.md" }),
   schema: z.object({
     title: z.string(),
     slug,

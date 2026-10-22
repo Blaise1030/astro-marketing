@@ -35,7 +35,7 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
 // Fixtures vary filenames and dates/orders to catch sorting by filesystem order.
 test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs", "blogCategories", "helpDocsCategories"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });
-  writeFileSync(join(dir, "src/content/blogCategories/en/news.json"), '{"title":"News","slug":"news"}');
+  writeFileSync(join(dir, "src/content/blogCategories/en/news.md"), '---\ntitle: News\nslug: news\n---\n');
   writeFileSync(join(dir, "src/content/helpDocsCategories/en/setup.md"), '---\ntitle: Setup\nslug: setup\norder: 2\n---\n');
   writeFileSync(join(dir, "src/content/helpDocsCategories/en/reference.md"), '---\ntitle: Reference\nslug: reference\norder: 1\n---\n');
   writeFileSync(join(dir, "src/content/blog/en/a-new.md"), '---\ntitle: Newest article\ndescription: New article\npubDate: "2026-10-11"\ncategories: [news]\n---\nNew **body**');
