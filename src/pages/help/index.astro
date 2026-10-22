@@ -2,16 +2,28 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/href";
-const docs = (await getCollection("helpDocs")).sort((a, b) => a.data.section.localeCompare(b.data.section) || a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
-const sections = [...new Set(docs.map((doc) => doc.data.section))];
+
+const docs = await getCollection("helpDocs");
+const categories = (await getCollection("helpDocsCategories")).sort(
+  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id),
+);
+const docsByCategory = new Map(categories.map((category) => [category.id, [] as typeof docs]));
+for (const doc of docs) {
+  const list = docsByCategory.get(doc.data.category);
+  if (list) list.push(doc);
+}
+for (const list of docsByCategory.values()) {
+  list.sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id));
+}
+const sections = categories.filter((category) => (docsByCategory.get(category.id)?.length ?? 0) > 0);
 ---
 <Base title="Help" description="Guides and answers to help you get started.">
   <section class="mx-auto max-w-5xl px-8 py-12">
     <h1 class="mb-8 text-4xl font-bold tracking-tight">Help</h1>
-    {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((section) => (
+    {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((category) => (
       <section class="mb-10">
-        <h2 class="mb-4 text-2xl font-semibold">{section}</h2>
-        <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{docs.filter((doc) => doc.data.section === section).map((doc) => (
+        <h2 class="mb-4 text-2xl font-semibold">{category.data.title}</h2>
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{docsByCategory.get(category.id)!.map((doc) => (
           <article class="rounded-xl border border-neutral-400/30 p-5">
             <h3 class="text-lg font-semibold"><a class="hover:underline" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h3>
             <p class="mt-2">{doc.data.description}</p>

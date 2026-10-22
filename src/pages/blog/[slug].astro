@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntries, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/href";
 import { Image } from "astro:assets";
@@ -8,6 +8,9 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const categories = (await getEntries(entry.data.categories.map((id) => ({ collection: "blogCategories" as const, id }))))
+  .filter((category): category is NonNullable<typeof category> => category != null)
+  .map((category) => category.data.title);
 ---
 <Base title={entry.data.title} description={entry.data.description}>
   <article class="mx-auto max-w-5xl px-8 py-12">
@@ -16,7 +19,7 @@ const { Content } = await render(entry);
     <p class="mt-2 text-lg text-neutral-600 dark:text-neutral-400">{entry.data.description}</p>
     <time class="mt-2 block text-sm text-neutral-500" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
     {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
-    {entry.data.tags.length > 0 && <p class="mt-4 text-sm text-neutral-500">{entry.data.tags.join(", ")}</p>}
+    {categories.length > 0 && <p class="mt-4 text-sm text-neutral-500">{categories.join(", ")}</p>}
     <div class="prose mt-8 max-w-3xl dark:prose-invert prose-img:h-auto prose-img:max-w-full"><Content /></div>
   </article>
 </Base>

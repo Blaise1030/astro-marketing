@@ -5,8 +5,10 @@ Static Astro site. The landing page, navigation and footer are written directly 
 ## Content model
 
 - `src/content.config.ts` defines the collections and their schemas inline; each loader uses `orsoGlob` from `orso-astro`, and the `orso()` integration is registered in `astro.config.mjs`:
-  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `tags[]`, `relatedPosts[]`.
-  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `section`, `order`.
+  - `blogCategories` ← `src/content/blogCategories/en/*.json`: `title`, optional `description`.
+  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.json`: `title`, optional `description`, `order`.
+  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `relatedPosts[]`.
+  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `category` (ref to `helpDocsCategories`), `order`.
 
 ## File map
 
@@ -25,6 +27,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 - New landing-page section: add a component in `src/components/sections/` and render it in `src/pages/index.astro`.
 - New page: add an `.astro` route in `src/pages/` wrapped in `Base`.
 - Blog posts and help docs: add or edit Markdown under `src/content/blog/en/` and `src/content/helpDocs/en/`.
+- Blog and help categories: add or edit JSON under `src/content/blogCategories/en/` and `src/content/helpDocsCategories/en/`.
 - Styling: use Tailwind utility classes in components (with `dark:` variants for dark mode). Wrap rendered Markdown bodies in `prose dark:prose-invert`. Avoid `<style>` blocks.
 - `DESIGN.md` is the design source of truth. When you change styles, update both `DESIGN.md` and the `@theme` block in `src/styles/global.css` (create it if missing).
 - Keep the dev server (`npm run dev`) running as-is; it is managed externally. Edits hot-reload in the live preview — just save the files and stop. Do **not** run `npm run build` (or `astro build`) after ordinary content/component edits; a full build is only for deploy or when the user explicitly asks to verify the production build.
