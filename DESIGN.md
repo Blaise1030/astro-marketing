@@ -24,7 +24,7 @@ typography:
     fontSize: 2.25rem
     fontWeight: 600
     lineHeight: 1.15
-  body-md:
+  body:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 400
@@ -74,7 +74,7 @@ The system sans-serif stack throughout. Headings sit at weight 600, not 700: lar
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is centred with 6rem–8rem of top space; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border.
+Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is centred with 6rem–8rem of top space; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
 
 ## Elevation & Depth
 

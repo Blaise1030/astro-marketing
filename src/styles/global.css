@@ -10,8 +10,8 @@
  * single muted fjord blue accent. Calm, natural, low-contrast — Scandinavian.
  */
 @theme {
-  /* Fonts */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Fonts — must mirror the fontFamily stack in DESIGN.md */
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
 
   /* Colours */
   --color-primary: #1f1d1a;
