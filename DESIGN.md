@@ -85,7 +85,7 @@ Geist (variable, self-hosted via `@fontsource-variable/geist`) throughout, with 
 
 ## Layout
 
-A 85rem container with 1.5rem/2rem side padding. The header is fixed: transparent with white text over the navy hero, then a blurred solid bar once scrolled (a small inline script sets `data-solid`); other pages use a solid header. Sections are separated by hairline rules and alternate between canvas, `muted` and `inverse` bands. Section padding is 4rem mobile / 7rem desktop. Comparison is a ruled table that stacks on mobile; the workflow is three rule-topped items; the FAQ is a two-column accordion.
+A 85rem container with 1.5rem/2rem side padding. The header is fixed: transparent with white text over the navy hero, then a blurred solid bar (no bottom border) once scrolled (a small inline script sets `data-solid`); other pages use a solid header. Sections are separated by hairline rules and alternate between canvas, `muted` and `inverse` bands. Section padding is 4rem mobile / 7rem desktop. Comparison is a ruled table that stacks on mobile; the workflow is three rule-topped items; the FAQ is a two-column accordion.
 
 ## Elevation & Depth
 
