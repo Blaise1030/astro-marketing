@@ -9,6 +9,9 @@ colors:
   neutral: "#ffffff"
   actionTop: "#4b4b4b"
   actionEdge: "#080808"
+  sectionInk: "#0a0a0a"
+  sectionPanel: "#171717"
+  sectionLine: "#303030"
 typography:
   h1:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -47,19 +50,19 @@ A clean, neutral marketing site: generous whitespace, a single dark accent and a
 
 ## Colors
 
-`primary` is the charcoal base of the main call to action. `actionTop` is its lighter top surface and `actionEdge` is the darker ledge below it. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
+`primary` is the charcoal base of the main call to action. `actionTop` is its lighter top surface and `actionEdge` is the darker ledge below it. `sectionInk`, `sectionPanel`, and `sectionLine` define the near-black product-story sections. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
 
 ## Typography
 
-The site uses the system sans-serif stack throughout. Headings are bold with tight tracking. The hero `h1` is responsive: 2.25rem (36px) on mobile and 3.75rem from the `sm` breakpoint up, and the `h1` token records the larger size; landing-page section `h2` headings are a fixed 1.875rem at every width. Body copy is regular weight at 1rem, and buttons and labels are semibold.
+The site uses the system sans-serif stack throughout. The hero `h1` is bold and responsive: 2.25rem (36px) on mobile and 3.75rem from the `sm` breakpoint up. The dark product-story sections use lighter-weight display headings that grow from 3rem to 4.5rem, with the second line in muted grey. Other section headings remain bold at 1.875rem. Body copy is regular weight at 1rem, and buttons and labels are semibold.
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding. The landing page moves from the product promise through CMS features, the three-step workflow, product fit, FAQ, and a closing call to action. Sections are separated by 4rem of vertical space, and card grids wrap automatically with a 1.5rem gap.
+The landing page moves from a centred product promise into a full-width dark story, then back to light sections for product fit, FAQ, and the closing call to action. The dark story contains two distinct layouts: a two-column pair of product illustrations for CMS editing and live preview, followed by an open three-column capability grid without card boxes. Inner content is centred up to 72rem wide with 2rem side padding, and both layouts collapse at smaller widths.
 
 ## Elevation & Depth
 
-Cards and FAQ items stay flat with thin, low-contrast borders. Buttons look raised through a four-pixel lower edge and a soft ambient shadow. On press, they move down three pixels and the edge becomes one pixel high. The raised and pressed shadows are recorded in the CSS theme.
+The product illustrations sit in softly bordered dark panels with subtle depth; the capability grid has no boxes. Comparison and FAQ items stay flat with thin, low-contrast borders. Buttons look raised through a four-pixel lower edge and a soft ambient shadow. On press, they move down three pixels and the edge becomes one pixel high. The raised and pressed shadows are recorded in the CSS theme.
 
 ## Shapes
 
@@ -67,11 +70,11 @@ Hero actions are separate buttons with 0.75rem corners and space between them. T
 
 ## Components
 
-The hero has a charcoal primary action and a lighter secondary action. Both have a subtle vertical gradient, a distinct lower edge, and a pressed state. The closing action repeats the primary treatment. Links retain visible keyboard focus, and reduced-motion settings remove movement. The `@theme` block in `src/styles/global.css` records the action colours, shadows, and neutral tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
+The hero has a charcoal primary action and a lighter secondary action. Both have a subtle vertical gradient, a distinct lower edge, and a pressed state. The closing action repeats the primary treatment. Links retain visible keyboard focus, and reduced-motion settings remove movement. The dark CMS and preview illustrations use simple HTML shapes as explanatory visuals; they are hidden from assistive technology, with their purpose stated in the nearby headings and copy. The workflow uses unboxed icon-and-text items. Product fit and FAQ retain bordered boxes.
 
 ## Do's and Don'ts
 
-Do keep calls to action visually consistent and keep text readable in light and dark modes. Use the raised treatment for actions, while content cards remain flat. Update this file and the CSS theme together when adding visual tokens.
+Do keep calls to action visually consistent and keep text readable in light and dark modes. Use the raised treatment for actions, while content cards remain flat. Treat illustrative UI as a visual explanation, not a screenshot or proof of a feature not present in the product. Update this file and the CSS theme together when adding visual tokens.
 
 ## Voice & Tone
 
