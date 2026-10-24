@@ -9,9 +9,9 @@
   --color-brand-muted: light-dark(oklch(48% 0.03 275), oklch(72% 0.02 275));
   --color-brand-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
   --color-brand-accent: light-dark(oklch(52% 0.22 268), oklch(76% 0.13 268));
-  --color-action-top: oklch(60% 0.2 268);
-  --color-action-bottom: oklch(52% 0.22 268);
-  --color-action-edge: oklch(44% 0.2 268);
+  --color-action-top: oklch(68% 0.17 262);
+  --color-action-bottom: oklch(60% 0.19 263);
+  --color-action-edge: oklch(54% 0.19 263);
   --color-section-ink: light-dark(oklch(98.8% 0.006 275), oklch(14% 0.03 275));
   --color-section-panel: light-dark(oklch(100% 0 0), oklch(18% 0.035 275));
   --color-section-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));

@@ -9,8 +9,8 @@ colors:
   neutral: "oklch(98.8% 0.006 275)"
   inverse: "oklch(16% 0.05 270)"
   accent: "oklch(52% 0.22 268)"
-  actionTop: "oklch(60% 0.2 268)"
-  actionEdge: "oklch(44% 0.2 268)"
+  actionTop: "oklch(68% 0.17 262)"
+  actionEdge: "oklch(54% 0.19 263)"
   sectionInk: "oklch(98.8% 0.006 275)"
   sectionPanel: "oklch(100% 0 0)"
   sectionLine: "oklch(91% 0.016 275)"
@@ -49,6 +49,8 @@ rounded:
   md: 0.375rem
   lg: 0.5rem
   panel: 0.75rem
+  button: 0.75rem
+  buttonLg: 1rem
   full: 9999px
 spacing:
   sm: 1rem
@@ -96,7 +98,7 @@ The reusable library lives in `src/components/ui/`; section components compose i
 - `Container` — max-width wrapper with responsive padding.
 - `Section` — full-width band; props `id`, `tone` (`default | muted | inverse`), `rule`; wraps content in `Container` with section padding.
 - `SectionHeader` — `///` label, heading (default slot), description, `align`, `tone`, `level`, and an `actions` slot.
-- `Button` — `variant` (`primary | secondary | inverse`) and `size` (`sm | md`); compact gradient buttons, 98% press scale, visible focus.
+- `Button` — `variant` (`primary | secondary | inverse`) and `size` (`sm | md`); compact gradient buttons with large radii (`rounded-xl` sm, `rounded-2xl` md), 98% press scale, visible focus.
 - `Badge` — small pill label, `tone` default or inverse.
 - `RuleItem` — rule-topped item with optional index, title and description.
 - `Panel` — bordered surface.
