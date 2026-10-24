@@ -18,7 +18,6 @@
   --color-secondary-top: light-dark(#ffffff, #262626);
   --color-secondary-edge: light-dark(#aeb6c4, #050505);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-editorial: Georgia, "Times New Roman", serif;
   --text-display: clamp(2.75rem, 6vw, 5rem);
   --text-display--line-height: 1.04;
   --text-display--letter-spacing: -0.035em;

@@ -7,7 +7,7 @@ const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.locale
 <Base title="Orso Blog" description="Product notes and practical guides for maintaining an Astro site with Orso.">
   <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
     <p class="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">Notes from Orso</p>
-    <h1 class="mb-6 font-editorial text-5xl tracking-tight sm:text-7xl">Blog</h1>
+    <h1 class="mb-6 font-semibold text-5xl tracking-tight sm:text-7xl">Blog</h1>
     <p class="mb-12 max-w-2xl text-lg leading-relaxed text-brand-muted">Product notes and practical guides for keeping your Astro site current.</p>
     {posts.length === 0 ? <p>No blog posts yet. Check back soon for news and stories.</p> : (
       <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{posts.map((post) => (
