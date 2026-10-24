@@ -68,6 +68,27 @@ In dark mode `primary`, `secondary` and `neutral` flip to warm charcoal (`#14131
 
 Never use pure black or pure white. Warmth is what separates this palette from a default grey interface.
 
+## Referenced tokens — Notion
+
+Imported for reference from [`designmd.co/d/notion`](https://www.designmd.co/d/notion) (retrieved 24 Oct 2026). These are Notion's brand values, published as a `DESIGN.md` for agents. **They are not part of the active theme and must not be used in components** — the palette above is the source of truth. Keep this table for two reasons: it documents where the frontmatter convention came from, and it is the model to copy if we ever add multi-state colour roles (`primary` / `primary-pressed` / `on-primary`).
+
+| Token | Hex | Role |
+| --- | --- | --- |
+| primary | `#5645d4` | Brand purple |
+| primary-pressed | `#4534b3` | Pressed state |
+| primary-deep | `#3a2a99` | Deep state |
+| on-primary | `#ffffff` | Text on primary |
+| brand-navy | `#0a1530` | Hero band |
+| brand-navy-deep | `#070f24` | Hero band, deep |
+| brand-navy-mid | `#1a2a52` | Hero band, mid |
+| link-blue | `#0075de` | Link |
+| link-blue-pressed | `#005bab` | Link, pressed |
+| brand-orange | `#dd5b00` | Accent |
+| brand-orange-deep | `#793400` | Accent, deep |
+| brand-pink | `#ff64c8` | Accent |
+
+Their type is the same system stack we use, so there is nothing to reconcile there; their spacing scale is not published in the token table. Nothing else transfers: the pastel feature cards, navy hero band and multi-accent palette are Notion's identity, not ours.
+
 ## Typography
 
 The system sans-serif stack throughout. Headings sit at weight 600, not 700: large, quiet and tight (`-0.03em` on the hero, `-0.025em` on section headings). The hero `h1` is responsive — `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, with a 1.03 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` at 1.65 line height for airiness, and buttons, navigation and labels use `text-label` at weight 500. Section eyebrows are 0.75rem, uppercase, wide-tracked and `secondary`.
@@ -90,8 +111,14 @@ Primary buttons are solid `primary` with `neutral` text; secondary buttons are o
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use the accent for buttons or backgrounds, don't use pure black or pure white, and don't reach for raw palette values like `neutral-600` when a token exists.
+Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use the accent for buttons or backgrounds, don't use pure black or pure white, and don't reach for raw palette values like `neutral-600` when a token exists. Don't use the Notion reference tokens in components — they are documentation, not theme.
 
 ## Voice & Tone
 
 Plain, friendly and benefit-led, with short sentences and no jargon. Headlines state ownership and cost plainly ("A free studio for your site. And the agent you already pay for.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges, and never about CI or deploy pipelines. Say "free and open source", never "all rights reserved", and always close on ownership: your repo, your site, no lock-in.
+
+## References
+
+- **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co). Any agent that reads a `DESIGN.md` from that catalogue can read this one.
+- **Token set** — [Notion](https://www.designmd.co/d/notion), imported as a reference palette only; see *Referenced tokens — Notion* above.
+- **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.
