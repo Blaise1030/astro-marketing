@@ -34,7 +34,7 @@ const linkClass = "inline-flex min-h-9 items-center transition-opacity hover:opa
         <div class="flex items-center justify-self-end gap-x-4 text-sm">
           <a class={`${linkClass} hidden sm:inline-flex`} href={href(site.actions.link.href)}>{site.actions.link.label}</a>
           <Button href={site.actions.cta.href} size="sm">{site.actions.cta.label}</Button>
-          <details class="group -ml-2 sm:hidden">
+          <details class="group -mr-2.5 -ml-2 sm:hidden">
             <summary class="flex size-10 cursor-pointer list-none items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent [&::-webkit-details-marker]:hidden" aria-label="Menu">
               <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path class="group-open:hidden" d="M3 6h14M3 14h14" /><path class="hidden group-open:block" d="M5 5l10 10M15 5L5 15" /></svg>
             </summary>
