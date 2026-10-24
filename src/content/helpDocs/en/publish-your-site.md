@@ -1,7 +1,7 @@
 ---
 title: Publish your site
 description: Push your changes live to Cloudflare Workers.
-section: Publishing
+section: publishing
 order: 2
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Write a blog post
 description: Add a post with a title, cover image and tags.
-section: Content
+section: content
 order: 1
 ---
 

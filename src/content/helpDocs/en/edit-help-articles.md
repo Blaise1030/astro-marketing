@@ -1,8 +1,8 @@
 ---
 title: Edit help articles
 description: Organise help articles into categories and subcategories.
-section: Content
-subcategory: Help center
+section: content
+subcategory: help-center
 order: 2
 ---
 

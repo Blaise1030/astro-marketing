@@ -22,17 +22,36 @@ const blog = defineCollection({
   }).meta({ editor: { knownRefinement: true } }),
 });
 
+const helpCategories = defineCollection({
+  loader: orsoGlob({ base: "./src/content/helpCategories/en", pattern: "*.md" }),
+  schema: z.object({
+    title: z.string(),
+    /** One-line blurb shown on the Help home card and the category page. */
+    description: z.string(),
+    order: z.number(),
+  }),
+});
+
+const helpSubcategories = defineCollection({
+  loader: orsoGlob({ base: "./src/content/helpSubcategories/en", pattern: "*.md" }),
+  schema: z.object({
+    title: z.string(),
+    category: z.string().meta({ editor: { type: "reference", collection: "helpCategories" } }),
+    order: z.number(),
+  }),
+});
+
 const helpDocs = defineCollection({
   loader: orsoGlob({ base: "./src/content/helpDocs/en", pattern: "*.md" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     /** Top-level help category, shown as a card on the Help home. */
-    section: z.string(),
+    section: z.string().meta({ editor: { type: "reference", collection: "helpCategories" } }),
     /** Optional group inside the category. */
-    subcategory: z.string().optional(),
+    subcategory: z.string().meta({ editor: { type: "reference", collection: "helpSubcategories" } }).optional(),
     order: z.number(),
   }),
 });
 
-export const collections = { blog, helpDocs };
+export const collections = { blog, helpCategories, helpSubcategories, helpDocs };

@@ -1,44 +1,55 @@
 import type { CollectionEntry } from "astro:content";
-import { slugify } from "./blog";
 
 export type Doc = CollectionEntry<"helpDocs">;
+export type CategoryEntry = CollectionEntry<"helpCategories">;
+export type SubcategoryEntry = CollectionEntry<"helpSubcategories">;
 
-export { slugify };
+const byOrder = (a: { data: { order: number; title: string } }, b: { data: { order: number; title: string } }) =>
+  a.data.order - b.data.order || a.data.title.localeCompare(b.data.title);
 
-/** One-line blurbs shown on the Help home cards; categories without one show their doc count. */
-export const categoryBlurbs: Record<string, string> = {
-  "Getting started": "Open a project, edit content, preview a change, and share it.",
+/** Docs in reading order: category, then subcategory, then doc order (previous/next navigation follows this). */
+export const sortDocs = (docs: Doc[], categories: CategoryEntry[], subcategories: SubcategoryEntry[]) => {
+  const categoryRank = new Map([...categories].sort(byOrder).map((c, i) => [c.id, i]));
+  const subRank = new Map([...subcategories].sort(byOrder).map((s, i) => [s.id, i]));
+  return [...docs].sort(
+    (a, b) =>
+      (categoryRank.get(a.data.section) ?? 0) - (categoryRank.get(b.data.section) ?? 0) ||
+      (a.data.subcategory ? subRank.get(a.data.subcategory) ?? 0 : -1) - (b.data.subcategory ? subRank.get(b.data.subcategory) ?? 0 : -1) ||
+      byOrder(a, b),
+  );
 };
 
-export const sortDocs = (docs: Doc[]) =>
-  [...docs].sort(
-    (a, b) =>
-      a.data.section.localeCompare(b.data.section) ||
-      (a.data.subcategory ?? "").localeCompare(b.data.subcategory ?? "") ||
-      a.data.order - b.data.order ||
-      a.data.title.localeCompare(b.data.title),
-  );
-
-export const sectionsOf = (docs: Doc[]) => [...new Set(docs.map((doc) => doc.data.section))].sort();
-
 export interface Category {
-  name: string;
+  /** Entry id, also the URL slug. */
   slug: string;
+  name: string;
+  description: string;
   docs: Doc[];
   /** Docs with no subcategory, in order. */
   loose: Doc[];
-  subcategories: { name: string; docs: Doc[] }[];
+  subcategories: { slug: string; name: string; docs: Doc[] }[];
 }
 
-export const buildCategories = (docs: Doc[]): Category[] =>
-  sectionsOf(docs).map((name) => {
-    const inCategory = sortDocs(docs).filter((doc) => doc.data.section === name);
-    const subNames = [...new Set(inCategory.flatMap((doc) => (doc.data.subcategory ? [doc.data.subcategory] : [])))];
+export const buildCategories = (docs: Doc[], categories: CategoryEntry[], subcategories: SubcategoryEntry[]): Category[] => {
+  const sorted = sortDocs(docs, categories, subcategories);
+  return [...categories].sort(byOrder).map((category) => {
+    const inCategory = sorted.filter((doc) => doc.data.section === category.id);
     return {
-      name,
-      slug: slugify(name),
+      slug: category.id,
+      name: category.data.title,
+      description: category.data.description,
       docs: inCategory,
       loose: inCategory.filter((doc) => !doc.data.subcategory),
-      subcategories: subNames.map((sub) => ({ name: sub, docs: inCategory.filter((doc) => doc.data.subcategory === sub) })),
+      subcategories: subcategories
+        .filter((sub) => sub.data.category === category.id)
+        .sort(byOrder)
+        .map((sub) => ({ slug: sub.id, name: sub.data.title, docs: inCategory.filter((doc) => doc.data.subcategory === sub.id) }))
+        .filter((sub) => sub.docs.length > 0),
     };
-  });
+  }).filter((category) => category.docs.length > 0);
+};
+
+export const loadHelp = async (getCollection: typeof import("astro:content").getCollection) => {
+  const [docs, categories, subcategories] = await Promise.all([getCollection("helpDocs"), getCollection("helpCategories"), getCollection("helpSubcategories")]);
+  return { docs: sortDocs(docs, categories, subcategories), categories: buildCategories(docs, categories, subcategories), subcategories };
+};

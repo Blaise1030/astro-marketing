@@ -1,7 +1,7 @@
 ---
 title: Share a preview link
 description: Send teammates a link to review your change without publishing it.
-section: Publishing
+section: publishing
 order: 1
 ---
 

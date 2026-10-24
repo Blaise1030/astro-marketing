@@ -1,7 +1,7 @@
 ---
 title: Preview a change before you publish
 description: See an edit in the live preview and fix it before it goes public.
-section: Getting started
+section: getting-started
 order: 2
 ---
 

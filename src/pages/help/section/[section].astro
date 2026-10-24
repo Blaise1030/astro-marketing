@@ -2,19 +2,19 @@
 import { getCollection } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import { href } from "../../../lib/href";
-import { buildCategories, categoryBlurbs } from "../../../lib/help";
+import { loadHelp } from "../../../lib/help";
 export async function getStaticPaths() {
-  const categories = buildCategories(await getCollection("helpDocs"));
+  const { categories } = await loadHelp(getCollection);
   return categories.map((category) => ({ params: { section: category.slug }, props: { category } }));
 }
 const { category } = Astro.props;
 const linkClass = "transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
-<Base title={`${category.name} · Orso Help`} description={categoryBlurbs[category.name] ?? `Orso help guides: ${category.name}.`}>
+<Base title={`${category.name} · Orso Help`} description={category.description}>
   <section class="mx-auto max-w-4xl px-6 py-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
     <a class="text-xs text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href("/help/")}>← Help Center</a>
     <h1 class="mt-8 font-semibold text-4xl tracking-tight text-balance sm:text-5xl">{category.name}</h1>
-    {categoryBlurbs[category.name] && <p class="mt-4 text-lg leading-relaxed text-brand-muted">{categoryBlurbs[category.name]}</p>}
+    <p class="mt-4 text-lg leading-relaxed text-brand-muted">{category.description}</p>
     {category.loose.length > 0 && (
       <ul class="mt-10 divide-y divide-section-line border-y border-section-line">{category.loose.map((doc) => (
         <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>

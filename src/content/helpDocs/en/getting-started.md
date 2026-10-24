@@ -1,7 +1,7 @@
 ---
 title: Getting started with Orso
 description: Open an Astro site, edit content, preview a change, and share it.
-section: Getting started
+section: getting-started
 order: 1
 ---
 
