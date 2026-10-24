@@ -2,32 +2,16 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import BlogCard from "../../components/BlogCard.astro";
-import { categoryOf, sortPosts } from "../../lib/blog";
+import BlogFilters from "../../components/BlogFilters.astro";
+import { categoriesOf, sortPosts } from "../../lib/blog";
 const posts = sortPosts(await getCollection("blog"));
-const categories = [...new Set(posts.map(categoryOf))].sort();
-const filterClass = "border-b border-transparent pb-0.5 text-xs font-medium text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent aria-pressed:border-brand-foreground aria-pressed:text-brand-foreground";
 ---
 <Base title="Orso Blog" description="Product notes and practical guides for maintaining an Astro site with Orso.">
   <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <div class="mb-12 flex flex-wrap items-center gap-x-10 gap-y-4" role="group" aria-label="Filter posts by category">
-      <h1 class="text-xs font-semibold">/// All posts</h1>
-      <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <button type="button" data-filter="all" aria-pressed="true" class={filterClass}>All</button>
-        {categories.map((category) => <button type="button" data-filter={category} aria-pressed="false" class={filterClass}>{category}</button>)}
-      </div>
-    </div>
+    <h1 class="sr-only">Blog</h1>
+    <BlogFilters categories={categoriesOf(posts)} />
     {posts.length === 0 ? <p>No blog posts yet. Check back soon for news and stories.</p> : (
-      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => (
-        <BlogCard post={post} />
-      ))}</div>
+      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <BlogCard post={post} />)}</div>
     )}
   </section>
-  <script>
-    const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
-    const cards = document.querySelectorAll<HTMLElement>("[data-category]");
-    buttons.forEach((button) => button.addEventListener("click", () => {
-      buttons.forEach((other) => other.setAttribute("aria-pressed", String(other === button)));
-      cards.forEach((card) => { card.hidden = button.dataset.filter !== "all" && card.dataset.category !== button.dataset.filter; });
-    }));
-  </script>
 </Base>

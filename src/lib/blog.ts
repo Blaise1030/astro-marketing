@@ -9,3 +9,7 @@ export const formatDate = (value: string) =>
 
 export const sortPosts = (posts: Post[]) =>
   [...posts].sort((a, b) => b.data.pubDate.localeCompare(a.data.pubDate) || a.id.localeCompare(b.id));
+
+export const slugify = (value: string) => value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+export const categoriesOf = (posts: Post[]) => [...new Set(posts.map(categoryOf))].sort();
