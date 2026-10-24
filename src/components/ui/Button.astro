@@ -15,7 +15,7 @@ const { href: destination, variant = "primary", size = "md" } = Astro.props;
   href={href(destination)}
   class:list={[
     "inline-flex touch-manipulation items-center justify-center gap-2 whitespace-nowrap border font-medium transition duration-200 ease-out hover:brightness-95 active:scale-[0.98] active:duration-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent motion-reduce:scale-none! motion-reduce:transition-none!",
-    size === "sm" ? "h-9 rounded-xl px-3.5 text-xs" : "h-11 rounded-2xl px-5 text-sm",
+    size === "sm" ? "h-9 rounded-xl px-3.5 text-sm" : "h-11 rounded-2xl px-5 text-sm",
     variant === "primary" && "border-action-edge bg-linear-to-b from-action-top to-action-bottom text-white shadow-action-raised active:shadow-action-pressed",
     variant === "secondary" && "border-section-line bg-linear-to-b from-secondary-top to-material text-brand-foreground shadow-action-secondary",
     variant === "inverse" && "border-white/20 bg-white/5 text-inverse-foreground hover:bg-white/10 hover:brightness-100",
