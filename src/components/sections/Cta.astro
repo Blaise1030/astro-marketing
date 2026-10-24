@@ -2,12 +2,16 @@
 import Button from "../Button.astro";
 ---
 
-<section class="relative isolate overflow-hidden border-t border-section-line" id="cta">
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-radial-[ellipse_at_bottom] from-action-bottom/15 via-section-ink/0 to-section-ink/0"></div>
-  <div class="mx-auto max-w-6xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
-    <p class="text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">Make your next update</p>
-    <h2 class="mx-auto mt-7 max-w-3xl text-display font-semibold text-balance [font-optical-sizing:auto]">Keep your<br /><span class="text-brand-accent">site moving.</span></h2>
-    <p class="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-brand-muted">Edit the content yourself. Ask for help with everything else. See each change before it goes live.</p>
-    <div class="mt-10 pb-2"><Button href="#workflow">See the workflow <span aria-hidden="true">↗</span></Button></div>
+<section class="border-t border-section-line" id="cta">
+  <div aria-hidden="true" class="frame-hatch h-3 border-b border-section-line"></div>
+  <div class="mx-auto grid max-w-6xl gap-8 px-6 py-section sm:px-8 sm:py-section-wide lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.08em] text-brand-accent">05 / Your next chapter</p>
+      <h2 class="mt-5 text-display font-medium text-balance">Keep your<br /><span class="text-brand-accent">site moving.</span></h2>
+    </div>
+    <div>
+      <p class="max-w-xl leading-relaxed text-brand-muted">Edit the content yourself. Ask for help with everything else. See each change before it goes live.</p>
+      <div class="mt-6 pb-2"><Button href="#workflow">See the workflow <span aria-hidden="true">↗</span></Button></div>
+    </div>
   </div>
 </section>

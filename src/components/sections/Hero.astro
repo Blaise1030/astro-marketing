@@ -3,19 +3,37 @@ import Button from "../Button.astro";
 import ProductPreview from "../ProductPreview.astro";
 ---
 
-<section class="relative isolate overflow-hidden" id="hero">
-  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-96 max-w-5xl bg-radial-[ellipse_at_top] from-action-bottom/15 via-section-ink/0 to-section-ink/0"></div>
-  <div class="mx-auto max-w-6xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
-    <p class="inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-action-bottom/10 px-4 py-2 text-xs font-medium tracking-[0.02em] text-brand-accent"><span aria-hidden="true" class="size-1.5 rounded-full bg-brand-accent"></span>The workspace for your Astro site</p>
-    <h1 class="mx-auto mt-7 max-w-5xl text-display font-semibold text-balance [font-optical-sizing:auto]">Your Astro site.<br /><span class="text-brand-accent">Easy to keep current.</span></h1>
-    <p class="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-brand-muted sm:text-xl">
-      Edit posts and help articles in a friendly CMS that updates your Markdown files. Ask an agent for bigger site changes, preview the result, then share or publish.
-    </p>
-    <div class="mt-10 flex flex-wrap justify-center gap-4 pb-2">
-      <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
-      <Button href="#content" variant="secondary">Explore the CMS</Button>
-    </div>
-    <p class="mt-6 text-sm text-brand-muted">Markdown content. Live preview. Your GitHub workflow.</p>
-    <ProductPreview />
+<section id="hero">
+  <div aria-hidden="true" class="frame-hatch h-3 border-y border-section-line"></div>
+  <div class="px-6 py-10 sm:px-8 sm:py-14">
+    <p class="font-mono text-xs tracking-wide text-brand-accent">ORSO / THE ASTRO WORKSPACE</p>
+    <h1 class="mt-5 max-w-4xl text-display font-semibold text-balance">Your Astro site,<br /><span class="text-brand-accent">easy to keep current.</span></h1>
+    <p class="mt-5 max-w-3xl font-mono text-sm leading-relaxed text-brand-muted sm:text-base">A Markdown CMS and a site agent. Edit the content, shape the site, and preview every change in one workspace.</p>
   </div>
+
+  <div class="grid border-t border-section-line lg:grid-cols-2">
+    <article class="grid grid-cols-[4.5rem_minmax(0,1fr)] border-b border-section-line sm:grid-cols-[7rem_minmax(0,1fr)] lg:border-b-0 lg:border-r">
+      <div aria-hidden="true" class="blueprint-grid flex items-center justify-center border-r border-section-line">
+        <svg class="size-9 text-brand-accent sm:size-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6h17l8 8v28H12zM29 6v9h8M18 23h13M18 29h13M18 35h8" /></svg>
+      </div>
+      <div class="p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Content CMS</h2><span class="font-mono text-xs text-brand-muted">01 / CONTENT</span></div>
+        <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">A friendly editor for the Markdown files in your Astro collections. Your content stays with your code.</p>
+        <div class="mt-5 pb-1"><Button href="#content">Explore the CMS <span aria-hidden="true">↗</span></Button></div>
+      </div>
+    </article>
+    <article class="grid grid-cols-[4.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)]">
+      <div aria-hidden="true" class="blueprint-grid flex items-center justify-center border-r border-section-line">
+        <svg class="size-9 text-brand-accent sm:size-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m24 6 4.5 13.5L42 24l-13.5 4.5L24 42l-4.5-13.5L6 24l13.5-4.5L24 6Z" /></svg>
+      </div>
+      <div class="p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Site agent</h2><span class="font-mono text-xs text-brand-muted">02 / CODE</span></div>
+        <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">Ask for bigger changes to copy, components, and styles. See the result before sharing or publishing.</p>
+        <div class="mt-5 pb-1"><Button href="#workflow" variant="secondary">See the workflow <span aria-hidden="true">↗</span></Button></div>
+      </div>
+    </article>
+  </div>
+
+  <div aria-hidden="true" class="frame-hatch h-4 border-y border-section-line"></div>
+  <div class="bg-section-panel/30 p-3 sm:p-5"><ProductPreview /></div>
 </section>

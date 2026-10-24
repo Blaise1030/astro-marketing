@@ -14,17 +14,27 @@
   --color-material: #101216;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-editorial: Georgia, "Times New Roman", serif;
-  --text-display: clamp(2.75rem, 6.5vw, 5rem);
-  --text-display--line-height: 1.04;
-  --text-display--letter-spacing: -0.045em;
-  --radius-panel: 1.75rem;
-  --spacing-section: 5rem;
-  --spacing-section-wide: 8rem;
-  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 7%), 0 24px 64px rgb(0 0 0 / 28%);
+  --text-display: clamp(2.25rem, 4.5vw, 3.5rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.035em;
+  --radius-panel: 0.5rem;
+  --spacing-section: 3rem;
+  --spacing-section-wide: 5rem;
+  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 5%), 0 8px 24px rgb(0 0 0 / 16%);
   --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 4px 0 var(--color-action-edge), 0 8px 20px rgb(0 0 0 / 24%);
   --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
   --shadow-action-secondary: 0 4px 0 #050505, 0 8px 16px rgb(0 0 0 / 24%);
   --shadow-action-secondary-pressed: 0 1px 0 #050505, 0 3px 6px rgb(0 0 0 / 20%);
+}
+
+@utility frame-hatch {
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 3px, var(--color-section-line) 3px, var(--color-section-line) 4px);
+}
+
+@utility blueprint-grid {
+  background-color: color-mix(in srgb, var(--color-action-bottom) 30%, var(--color-section-ink));
+  background-image: linear-gradient(rgb(138 175 255 / 10%) 1px, transparent 1px), linear-gradient(90deg, rgb(138 175 255 / 10%) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
 @utility surface-glass {
