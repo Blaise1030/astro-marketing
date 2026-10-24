@@ -4,12 +4,20 @@ name: Orso
 description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
   primary: "#245ee0"
-  secondary: "#a6a9b0"
-  tertiary: "#2b2e36"
-  neutral: "#0a0a0a"
-  accent: "#8aafff"
+  secondary: "#5d6471"
+  tertiary: "#d7dbe3"
+  neutral: "#f9fafb"
+  accent: "#1748b6"
   actionTop: "#396fed"
   actionEdge: "#1748b6"
+  sectionInk: "#f9fafb"
+  sectionPanel: "#ffffff"
+  sectionLine: "#d7dbe3"
+  material: "#f0f2f6"
+darkColors:
+  foreground: "#f5f5f5"
+  secondary: "#a6a9b0"
+  accent: "#8aafff"
   sectionInk: "#0a0a0a"
   sectionPanel: "#15171c"
   sectionLine: "#2b2e36"
@@ -49,11 +57,27 @@ spacing:
 
 ## Overview
 
-A near-black marketing site with cobalt blue actions, precise system typography, and a compact bordered layout inspired by the current https://zed.dev/ page. A two-column introduction presents Orso's CMS and site agent above a large workspace illustration. Numbered sections and thin grid lines organize the page. The interaction feedback and accessibility preferences from the apple-design pass remain in place.
+A site that follows the visitor's system light or dark preference, with cobalt blue actions, precise system typography, and a compact bordered layout inspired by the current https://zed.dev/ page. A two-column introduction presents Orso's CMS and site agent above a large workspace illustration. Numbered sections and thin grid lines organize the page. The interaction feedback and accessibility preferences from the apple-design pass remain in place.
 
 ## Colors
 
-`primary` is the cobalt blue base of the main call to action, sampled from the supplied reference. `actionTop` is a slightly darker blue than the image's brightest edge so white button text remains readable; `actionEdge` is the deeper blue ledge below it. `accent` is a brighter blue for readable small labels, icons, links, and focus indicators on dark surfaces. `secondary` is the muted grey for supporting copy; `tertiary` and `sectionLine` define subtle borders. `neutral` and `sectionInk` are the near-black canvas; `sectionPanel` is the slightly lifted surface for cards and illustrative UI. These values are mirrored in the `@theme` block of `src/styles/global.css`.
+`primary`, `actionTop`, and `actionEdge` retain the supplied cobalt blue in both themes. White text stays on primary buttons. Other palette tokens use CSS `light-dark()` and inherit the root `color-scheme: light dark`; the page responds immediately to system preference changes without a script, reload, or forced theme class.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Foreground | #181b22 | #f5f5f5 |
+| Body copy | #454b57 | #d4d4d4 |
+| Muted copy | #5d6471 | #a6a9b0 |
+| Blue accent / focus | #1748b6 | #8aafff |
+| Page canvas | #f9fafb | #0a0a0a |
+| Panel | #ffffff | #15171c |
+| Border | #d7dbe3 | #2b2e36 |
+| Material | #f0f2f6 | #101216 |
+| UI fill | #e8ebf1 | #22252c |
+| Secondary button top | #ffffff | #262626 |
+| Secondary button edge | #aeb6c4 | #050505 |
+
+The palette and theme-aware shadows are defined together in `src/styles/global.css`. Secondary actions use a neutral surface with foreground text. Editor illustrations follow the page theme; the small website previews retain their own light canvas as separate illustrative sites. Blog and Help article bodies use regular prose in light mode and `dark:prose-invert` in dark mode.
 
 ## Typography
 
@@ -81,15 +105,15 @@ Buttons and standalone panels use 0.5rem corners. Contiguous capability and comp
 
 `Button.astro` owns the raised primary and secondary link treatments. Blue is used for primary actions, hero emphasis, icons, labels, and text links. Navigation, buttons, and FAQ summaries retain visible focus.
 
-`Hero.astro` presents the CMS and agent as two equal parts of one product; the panels link to existing content and workflow sections. `ProductPreview.astro` fills the framed showcase area. It is a decorative HTML illustration with a visible caption, not a functioning editor or screenshot. Other product illustrations are also hidden from assistive technology, with their purpose stated in nearby headings. FAQ uses native details elements with a rotating plus indicator and blue open state.
+`Hero.astro` presents the CMS and agent as two equal parts of one product; the centred hero actions link to existing content and workflow sections. `ProductPreview.astro` fills the framed showcase area. It is a decorative HTML illustration with a visible caption, not a functioning editor or screenshot. Other product illustrations are also hidden from assistive technology, with their purpose stated in nearby headings. FAQ uses native details elements with a rotating plus indicator and blue open state.
 
 ## User preferences
 
-Reduced-motion settings remove button translation and scaling and stop FAQ icon rotation; color and open-state feedback remain. The `surface-glass` utility uses a near-solid graphite material with 24px backdrop blur. Reduced-transparency settings replace it with a solid surface and remove the blur. Increased-contrast settings use the solid surface with a defined outline. No animation blocks navigation or content interaction.
+Reduced-motion settings remove button translation and scaling and stop FAQ icon rotation; color and open-state feedback remain. The `surface-glass` utility uses a near-solid theme-aware material with 24px backdrop blur. Reduced-transparency settings replace it with a solid surface and remove the blur. Increased-contrast settings use the solid surface with a defined outline. No animation blocks navigation or content interaction.
 
 ## Do's and Don'ts
 
-Do keep calls to action visually consistent and text readable against the dark canvas. Reserve solid cobalt for actions and use the brighter accent for small blue text. Use the raised treatment for actions, while content cards remain flat. Treat illustrative UI as a visual explanation, not a screenshot or proof of a feature not present in the product. Update this file and the CSS theme together when adding visual tokens.
+Do keep calls to action visually consistent and text readable in both themes. Reserve solid cobalt for actions; use dark blue accents on light surfaces and brighter blue accents on dark surfaces. Use the raised treatment for actions, while content cards remain flat. Treat illustrative UI as a visual explanation, not a screenshot or proof of a feature not present in the product. Update this file and the CSS theme together when adding visual tokens.
 
 ## Voice & Tone
 

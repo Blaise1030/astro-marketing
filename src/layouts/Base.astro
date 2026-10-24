@@ -12,20 +12,20 @@ const { title, description, framed = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<html lang="en" class="dark scheme-dark scroll-pt-44 sm:scroll-pt-28">
+<html lang="en" class="scheme-light-dark scroll-pt-44 sm:scroll-pt-28">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="flex min-h-screen flex-col bg-section-ink text-neutral-100 antialiased selection:bg-action-bottom selection:text-white">
+  <body class="flex min-h-screen flex-col bg-section-ink text-brand-foreground antialiased selection:bg-action-bottom selection:text-white">
     <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-action-bottom focus:px-4 focus:py-3 focus:text-white" href="#main">Skip to content</a>
     <header class="surface-glass sticky top-0 z-40 shadow-[0_12px_24px_-24px_rgb(0_0_0/70%)]">
       <div class:list={["mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-4 sm:px-8 sm:py-5", framed && "border-x border-section-line"]}>
         <a class="text-2xl font-semibold tracking-tight focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={base}>{site.name}<span class="text-brand-accent">.</span></a>
-        <nav aria-label="Main navigation" class="flex w-full flex-wrap items-center gap-x-4 text-xs font-medium tracking-[0.01em] text-neutral-300 sm:w-auto sm:gap-x-6 sm:text-sm">
-          {site.nav.map((l) => <a class="inline-flex min-h-11 items-center transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+        <nav aria-label="Main navigation" class="flex w-full flex-wrap items-center gap-x-4 text-xs font-medium tracking-[0.01em] text-brand-copy sm:w-auto sm:gap-x-6 sm:text-sm">
+          {site.nav.map((l) => <a class="inline-flex min-h-11 items-center transition-colors hover:text-brand-foreground focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
         </nav>
       </div>
     </header>
@@ -35,8 +35,8 @@ const base = import.meta.env.BASE_URL;
         <p>{site.footer.text}</p>
         <p class="hidden sm:block">Your content. Your code. Your site.</p>
         <nav aria-label="Footer navigation" class="flex flex-wrap gap-x-6 gap-y-3">
-          {site.footer.links.map((l) => <a class="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
-          {site.socials.map((s) => <a class="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={s.href} rel="noopener">{s.label}</a>)}
+          {site.footer.links.map((l) => <a class="hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+          {site.socials.map((s) => <a class="hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={s.href} rel="noopener">{s.label}</a>)}
         </nav>
       </div>
     </footer>

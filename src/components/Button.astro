@@ -12,9 +12,9 @@ const { href: destination, variant = "primary" } = Astro.props;
 <a
   href={href(destination)}
   class:list={[
-    "inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-semibold text-white transition-[translate,scale,box-shadow,filter] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-95 active:translate-y-[3px] active:scale-[0.98] active:duration-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent motion-reduce:translate-none! motion-reduce:scale-none! motion-reduce:transition-none! motion-reduce:duration-0!",
+    "inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-semibold transition-[translate,scale,box-shadow,filter] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-95 active:translate-y-[3px] active:scale-[0.98] active:duration-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent motion-reduce:translate-none! motion-reduce:scale-none! motion-reduce:transition-none! motion-reduce:duration-0!",
     variant === "primary"
-      ? "border-action-edge bg-linear-to-b from-action-top to-action-bottom shadow-action-raised active:shadow-action-pressed"
-      : "border-neutral-700 bg-linear-to-b from-neutral-800 to-section-panel shadow-action-secondary active:shadow-action-secondary-pressed",
+      ? "border-action-edge bg-linear-to-b from-action-top to-action-bottom text-white shadow-action-raised active:shadow-action-pressed"
+      : "border-section-line bg-linear-to-b from-secondary-top to-section-panel text-brand-foreground shadow-action-secondary active:shadow-action-secondary-pressed",
   ]}
 ><slot /></a>

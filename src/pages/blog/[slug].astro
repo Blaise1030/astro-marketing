@@ -17,6 +17,6 @@ const { Content } = await render(entry);
     <time class="mt-2 block text-sm text-brand-muted" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
     {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
     {entry.data.tags.length > 0 && <p class="mt-4 text-sm text-brand-muted">{entry.data.tags.join(", ")}</p>}
-    <div class="prose prose-invert mt-10 max-w-3xl break-words dark:prose-invert prose-headings:font-medium prose-headings:tracking-tight prose-a:text-brand-accent prose-a:decoration-brand-accent/40 prose-a:underline-offset-4 prose-pre:border prose-pre:border-section-line prose-pre:bg-section-panel prose-img:h-auto prose-img:max-w-full"><Content /></div>
+    <div class="prose mt-10 max-w-3xl break-words dark:prose-invert prose-headings:font-medium prose-headings:tracking-tight prose-a:text-brand-accent prose-a:decoration-brand-accent/40 prose-a:underline-offset-4 prose-pre:border prose-pre:border-section-line prose-pre:bg-section-panel prose-pre:text-brand-foreground prose-img:h-auto prose-img:max-w-full"><Content /></div>
   </article>
 </Base>

@@ -2,16 +2,21 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-muted: #a6a9b0;
-  --color-brand-line: #2b2e36;
-  --color-brand-accent: #8aafff;
+  --color-brand-foreground: light-dark(#181b22, #f5f5f5);
+  --color-brand-copy: light-dark(#454b57, #d4d4d4);
+  --color-brand-muted: light-dark(#5d6471, #a6a9b0);
+  --color-brand-line: light-dark(#d7dbe3, #2b2e36);
+  --color-brand-accent: light-dark(#1748b6, #8aafff);
   --color-action-top: #396fed;
   --color-action-bottom: #245ee0;
   --color-action-edge: #1748b6;
-  --color-section-ink: #0a0a0a;
-  --color-section-panel: #15171c;
-  --color-section-line: #2b2e36;
-  --color-material: #101216;
+  --color-section-ink: light-dark(#f9fafb, #0a0a0a);
+  --color-section-panel: light-dark(#ffffff, #15171c);
+  --color-section-line: light-dark(#d7dbe3, #2b2e36);
+  --color-material: light-dark(#f0f2f6, #101216);
+  --color-ui-fill: light-dark(#e8ebf1, #22252c);
+  --color-secondary-top: light-dark(#ffffff, #262626);
+  --color-secondary-edge: light-dark(#aeb6c4, #050505);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-editorial: Georgia, "Times New Roman", serif;
   --text-display: clamp(2.25rem, 4.5vw, 3.5rem);
@@ -22,11 +27,11 @@
   --spacing-section-wide: 5rem;
   --spacing-hero: 4rem;
   --spacing-hero-wide: 6rem;
-  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 5%), 0 8px 24px rgb(0 0 0 / 16%);
+  --shadow-panel: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 5%)), 0 8px 24px light-dark(rgb(24 27 34 / 8%), rgb(0 0 0 / 16%));
   --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 4px 0 var(--color-action-edge), 0 8px 20px rgb(0 0 0 / 24%);
   --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
-  --shadow-action-secondary: 0 4px 0 #050505, 0 8px 16px rgb(0 0 0 / 24%);
-  --shadow-action-secondary-pressed: 0 1px 0 #050505, 0 3px 6px rgb(0 0 0 / 20%);
+  --shadow-action-secondary: 0 4px 0 var(--color-secondary-edge), 0 8px 16px light-dark(rgb(24 27 34 / 10%), rgb(0 0 0 / 24%));
+  --shadow-action-secondary-pressed: 0 1px 0 var(--color-secondary-edge), 0 3px 6px light-dark(rgb(24 27 34 / 8%), rgb(0 0 0 / 20%));
 }
 
 @utility frame-hatch {
@@ -51,6 +56,6 @@
   @media (prefers-contrast: more) {
     background-color: var(--color-material);
     backdrop-filter: none;
-    outline: 1px solid #a6a9b0;
+    outline: 1px solid var(--color-brand-foreground);
   }
 }
