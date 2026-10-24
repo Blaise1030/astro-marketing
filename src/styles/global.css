@@ -1,2 +1,73 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/*
+ * Design tokens — the source of truth is DESIGN.md. Keep the two in sync.
+ * Utilities are generated from these names: bg-primary, text-secondary,
+ * border-tertiary, text-h1, rounded-xl, p-md, py-lg, and so on.
+ *
+ * Palette: warm paper and soft ink rather than pure white and black, with a
+ * single muted fjord blue accent. Calm, natural, low-contrast — Scandinavian.
+ */
+@theme {
+  /* Fonts — must mirror the fontFamily stack in DESIGN.md */
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+
+  /* Colours */
+  --color-primary: #1f1d1a;
+  --color-secondary: #6b665e;
+  --color-tertiary: #d9d3c7;
+  --color-neutral: #faf7f2;
+  --color-accent: #3a5a78;
+
+  /* Type scale */
+  --text-h1-sm: 3rem;
+  --text-h1-sm--line-height: 1.03;
+  --text-h1-sm--letter-spacing: -0.03em;
+  --text-h1-sm--font-weight: 600;
+
+  --text-h1: 4.5rem;
+  --text-h1--line-height: 1.03;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2--font-weight: 600;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.5;
+  --text-label--font-weight: 500;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --spacing-sm: 1rem;
+  --spacing-md: 1.75rem;
+  --spacing-lg: 5.5rem;
+  /*
+   * Named spacing values also answer max-w-* lookups, so max-w-sm/md/lg would
+   * resolve to 1rem/1.75rem/5.5rem. Use numeric widths (max-w-96) or the other
+   * container sizes (max-w-xl and up) in components.
+   */
+}
+
+/* The page surface and text flip with the visitor's system setting. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #ede9e1;
+    --color-secondary: #a39d93;
+    --color-neutral: #141311;
+    --color-accent: #8aa8c4;
+  }
+}

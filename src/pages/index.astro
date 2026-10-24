@@ -3,18 +3,21 @@ import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
 import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
-import Logos from "../components/sections/Logos.astro";
-import Pricing from "../components/sections/Pricing.astro";
-import Testimonials from "../components/sections/Testimonials.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import ProductShot from "../components/sections/ProductShot.astro";
+import Stack from "../components/sections/Stack.astro";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Acme — Ship your product story faster" description="Acme helps small teams launch a beautiful marketing site in minutes.">
+<Base
+  title="Orso — A free studio for your site, with the agent you already pay for"
+  description="Orso is a free, open-source studio for Astro sites that runs on Claude, Cursor or Codex. Edit content, preview every change, publish to GitHub Pages — no lock-in."
+>
   <Hero />
-  <Logos />
+  <ProductShot />
+  <Stack />
+  <HowItWorks />
   <Features />
-  <Testimonials />
-  <Pricing />
   <Faq />
   <Cta />
 </Base>

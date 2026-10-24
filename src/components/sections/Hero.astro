@@ -1,18 +1,49 @@
 ---
 import { href } from "../../lib/href";
+
+const proof = [
+  "Runs on your machine",
+  "Astro-native",
+  "Publishes to GitHub Pages",
+  "Zero new subscriptions",
+  "No lock-in",
+];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-24 text-center" id="hero">
-  <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Orso, your site, ready to share</h1>
-  <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
-    Acme turns a rough idea into a polished marketing site in minutes.
+<section class="mx-auto max-w-5xl px-8 pt-24 pb-12 text-center sm:pt-32" id="hero">
+  <p class="mb-8 inline-flex items-center gap-2 rounded-full border border-tertiary/40 px-3 py-1 text-label text-secondary">
+    <span class="size-1.5 rounded-full bg-accent"></span>
+    Free &amp; open source
   </p>
-  <p class="mt-8 flex flex-wrap justify-center gap-4">
+  <h1 class="mx-auto max-w-4xl text-h1-sm sm:text-h1">
+    Your site. Your repo.<br class="hidden sm:block" /> Your agent.
+  </h1>
+  <p class="mx-auto mt-md max-w-2xl text-lg text-secondary">
+    Orso is a free, open-source studio for Astro sites. Edit content in a real UI, let Claude, Cursor or Codex make
+    the change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
+  </p>
+  <p class="mt-12 flex flex-wrap justify-center gap-3">
     <a
-      class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
-      href={href("#pricing")}>Get started</a
+      class="inline-block rounded-lg bg-primary px-5 py-3 text-label text-neutral transition-colors hover:bg-primary/80"
+      href={href("#how-it-works")}>Start building</a
     >
-    <a class="inline-block rounded-lg border border-current px-5 py-2.5 font-semibold" href={href("#features")}>See features</a>
+    <a
+      class="inline-block rounded-lg border border-tertiary/60 px-5 py-3 text-label transition-colors hover:border-primary"
+      href={href("#features")}>See what it does</a
+    >
   </p>
-  <p class="mt-8 text-neutral-600 dark:text-neutral-400">Trusted by makers who would rather be shipping.</p>
+  <ul class="mt-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-label text-secondary">
+    {
+      proof.map((item, i) => (
+        <li class="flex items-center gap-2">
+          {i > 0 && (
+            <span aria-hidden="true" class="text-tertiary">
+              ·
+            </span>
+          )}
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
 </section>

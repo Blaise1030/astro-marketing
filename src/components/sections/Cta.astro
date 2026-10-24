@@ -2,10 +2,21 @@
 import { href } from "../../lib/href";
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16 text-center" id="cta">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Ready to launch?</h2>
-  <a
-    class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
-    href={href("#pricing")}>Get started today</a
-  >
+<section class="mx-auto max-w-5xl px-8 pt-4 pb-20" id="cta">
+  <div class="rounded-2xl border border-tertiary/30 bg-primary/[0.03] px-6 py-14 text-center">
+    <h2 class="text-h2">Free, open, and yours — all the way down.</h2>
+    <p class="mx-auto mt-3 max-w-xl text-secondary">
+      Bring the agent you already pay for. Keep the site you already own.
+    </p>
+    <p class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        class="inline-block rounded-lg bg-primary px-5 py-3 text-label text-neutral transition-colors hover:bg-primary/80"
+        href={href("#how-it-works")}>Start building</a
+      >
+      <a
+        class="inline-block rounded-lg border border-tertiary/60 px-5 py-3 text-label transition-colors hover:border-primary"
+        href="https://github.com/Blaise1030/cms">Read the code</a
+      >
+    </p>
+  </div>
 </section>

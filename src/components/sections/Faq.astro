@@ -1,18 +1,58 @@
 ---
 const faqs = [
-  { question: "Can I change the design?", answer: "Yes. The landing page is plain Astro components styled with Tailwind." },
-  { question: "Where can I host it?", answer: "Anywhere that serves static files, including Cloudflare Pages." },
+  {
+    question: "How is this free?",
+    answer:
+      "The studio is open source and free to use, forever — read it, fork it, self-host it. A paid tier will only ever cover the part that needs a server: shared editing for teammates who don't want to run anything locally. The app itself does not go behind a paywall.",
+  },
+  {
+    question: "Do I need to know how to code?",
+    answer:
+      "No. You describe what you want and the agent does the editing, or fill in a form for copy. If you do code, it's a plain Astro and Tailwind project you can open in any editor.",
+  },
+  {
+    question: "Which AI agent do I need?",
+    answer:
+      "Claude, Cursor or Codex. If you already pay for one of them, you already have everything Orso needs.",
+  },
+  {
+    question: "Can non-technical teammates edit?",
+    answer:
+      "Yes. Copy, posts and help articles have their own forms, and every change is previewed before it goes live. Bigger changes go through the agent, with the developer in the loop.",
+  },
+  {
+    question: "Is there lock-in?",
+    answer:
+      "None. Your site is Markdown in a Git repo you own, the output is static, and the source of the tool is public. Nothing here stops working if Orso disappears.",
+  },
+  {
+    question: "Where does my site live?",
+    answer:
+      "In a Git repository you own. Publishing from the app sends it to GitHub Pages — or any static host, since the output is plain static files.",
+  },
+  {
+    question: "Can I undo something?",
+    answer:
+      "Yes. Every save is a checkpoint, and History restores any earlier version in one click.",
+  },
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16" id="faq">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Frequently asked questions</h2>
-  <div class="space-y-4">
-    {faqs.map((i) => (
-      <details class="rounded-xl border border-neutral-400/30 p-5">
-        <summary class="cursor-pointer font-semibold">{i.question}</summary>
-        <p class="mt-3">{i.answer}</p>
-      </details>
-    ))}
+<section class="mx-auto max-w-5xl px-8 py-lg" id="faq">
+  <h2 class="text-h2">Frequently asked questions</h2>
+  <div class="mt-8 space-y-3">
+    {
+      faqs.map((faq) => (
+        <details class="group rounded-xl border border-tertiary/30 p-md transition-colors open:border-tertiary/60">
+          <summary class="cursor-pointer list-none font-semibold marker:hidden">
+            <span class="flex items-center justify-between gap-4">
+              {faq.question}
+              <span class="text-tertiary transition-transform group-open:rotate-45">+</span>
+            </span>
+          </summary>
+          <p class="mt-3 text-secondary">{faq.answer}</p>
+        </details>
+      ))
+    }
   </div>
 </section>
