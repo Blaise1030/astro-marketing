@@ -7,7 +7,7 @@ colors:
   secondary: "#6b665e"
   tertiary: "#d9d3c7"
   neutral: "#faf7f2"
-  accent: "#5c6f55"
+  accent: "#3a5a78"
 typography:
   h1-sm:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -49,7 +49,7 @@ spacing:
 
 ## Overview
 
-Warm, quiet and uncluttered: the page is a sheet of warm paper, not a white screen. Soft near-black ink, one muted sage accent, hairline borders and a lot of air. Scandinavian in the functional sense — natural materials, restrained colour, nothing decorative competing with the copy or the product sketch. The calm is the point.
+Warm, quiet and uncluttered: the page is a sheet of warm paper, not a white screen. Soft near-black ink, one muted fjord blue accent, hairline borders and a lot of air. Scandinavian in the functional sense — natural materials, restrained colour, nothing decorative competing with the copy or the product sketch. The calm is the point.
 
 ## Tokens
 
@@ -62,9 +62,9 @@ Warm, quiet and uncluttered: the page is a sheet of warm paper, not a white scre
 
 ## Colors
 
-`primary` is a warm near-black (`#1f1d1a`) and fills the main call-to-action; `secondary` is a warm mid grey for supporting copy; `tertiary` is warm sand, used at low opacity for hairline borders and at higher opacity for placeholder shapes; `neutral` is warm paper (`#faf7f2`), the page surface. `accent` is a single muted sage, used only for small signals — the hero badge dot, step numbers, the send button in the product sketch. Never use it for large fills.
+`primary` is a warm near-black (`#1f1d1a`) and fills the main call-to-action; `secondary` is a warm mid grey for supporting copy; `tertiary` is warm sand, used at low opacity for hairline borders and at higher opacity for placeholder shapes; `neutral` is warm paper (`#faf7f2`), the page surface. `accent` is a single muted fjord blue, used only for small signals — the hero badge dot, step numbers, the send button in the product sketch. Never use it for large fills.
 
-In dark mode `primary`, `secondary` and `neutral` flip to warm charcoal (`#141311`) with ink at `#ede9e1` through a `prefers-color-scheme` override, so a component written with tokens needs no `dark:` colour classes. `tertiary` stays put, the accent lightens to `#8fa886` for legibility, and surfaces that need a slight lift use `bg-primary/[0.03]`.
+In dark mode `primary`, `secondary` and `neutral` flip to warm charcoal (`#141311`) with ink at `#ede9e1` through a `prefers-color-scheme` override, so a component written with tokens needs no `dark:` colour classes. `tertiary` stays put, the accent lightens to `#8aa8c4` for legibility, and surfaces that need a slight lift use `bg-primary/[0.03]`.
 
 Never use pure black or pure white. Warmth is what separates this palette from a default grey interface.
 

@@ -7,7 +7,7 @@
  * border-tertiary, text-h1, rounded-xl, p-md, py-lg, and so on.
  *
  * Palette: warm paper and soft ink rather than pure white and black, with a
- * single muted sage accent. Calm, natural, low-contrast — Scandinavian.
+ * single muted fjord blue accent. Calm, natural, low-contrast — Scandinavian.
  */
 @theme {
   /* Fonts */
@@ -18,7 +18,7 @@
   --color-secondary: #6b665e;
   --color-tertiary: #d9d3c7;
   --color-neutral: #faf7f2;
-  --color-accent: #5c6f55;
+  --color-accent: #3a5a78;
 
   /* Type scale */
   --text-h1-sm: 3rem;
@@ -68,6 +68,6 @@
     --color-primary: #ede9e1;
     --color-secondary: #a39d93;
     --color-neutral: #141311;
-    --color-accent: #8fa886;
+    --color-accent: #8aa8c4;
   }
 }
