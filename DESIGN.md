@@ -1,30 +1,46 @@
 ---
 version: alpha
-name: Acme
-description: Ship your product story faster with Acme.
+name: Orso
+description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
-  primary: "#171717"
-  secondary: "#525252"
-  tertiary: "#a3a3a3"
-  neutral: "#ffffff"
+  primary: "oklch(52% 0.22 268)"
+  secondary: "#5d6471"
+  tertiary: "#d7dbe3"
+  neutral: "oklch(98.8% 0.006 275)"
+  inverse: "oklch(16% 0.05 270)"
+  accent: "oklch(52% 0.22 268)"
+  actionTop: "oklch(68% 0.17 262)"
+  actionEdge: "oklch(54% 0.19 263)"
+  sectionInk: "oklch(98.8% 0.006 275)"
+  sectionPanel: "oklch(100% 0 0)"
+  sectionLine: "oklch(91% 0.016 275)"
+  material: "oklch(97.2% 0.01 275)"
+darkColors:
+  foreground: "oklch(96% 0.01 275)"
+  secondary: "oklch(72% 0.02 275)"
+  accent: "oklch(76% 0.13 268)"
+  sectionInk: "oklch(14% 0.03 275)"
+  sectionPanel: "oklch(18% 0.035 275)"
+  sectionLine: "oklch(28% 0.03 275)"
+  material: "oklch(16.5% 0.035 275)"
 typography:
   h1:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 3.75rem
-    fontWeight: 700
-    lineHeight: 1
+    fontFamily: "Geist Variable, -apple-system, sans-serif"
+    fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)"
+    fontWeight: 400
+    lineHeight: 1.05
   h2:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 1.875rem
-    fontWeight: 700
-    lineHeight: 1.2
+    fontFamily: "Geist Variable, system-ui, sans-serif"
+    fontSize: 3rem
+    fontWeight: 400
+    lineHeight: 1.12
   body-md:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 600
     lineHeight: 1.5
@@ -32,45 +48,73 @@ rounded:
   sm: 0.25rem
   md: 0.375rem
   lg: 0.5rem
+  panel: 0.75rem
+  button: 0.75rem
+  buttonLg: 1rem
   full: 9999px
 spacing:
   sm: 1rem
   md: 1.5rem
   lg: 4rem
+  sectionWide: 7rem
 ---
 
 ## Overview
 
-A clean, neutral marketing site: generous whitespace, a single dark accent and a light or dark scheme that follows the visitor's system setting. It reads as confident and unfussy so the copy does the work.
+A calm, structured product page in the style of Navy by Lexington Themes: a cool indigo-tinted canvas, one vivid indigo accent, a deep navy hero and closing band, light-weight headings, and hairline rules instead of heavy cards. It follows system light and dark preferences automatically.
 
 ## Colors
 
-`primary` is near-black and fills the main call-to-action button; `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
+Neutrals carry a faint violet-blue tint (hue 275). `primary`/`actionTop`/`actionEdge` are the single indigo accent used for actions; `inverse` (deep navy) is constant in both themes and used for the hero and closing bands. Palette tokens use CSS `light-dark()` in `src/styles/global.css`.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Foreground | oklch(20% .04 275) | oklch(96% .01 275) |
+| Body copy | oklch(34% .035 275) | oklch(86% .015 275) |
+| Muted copy | oklch(48% .03 275) | oklch(72% .02 275) |
+| Accent text | oklch(52% .22 268) | oklch(76% .13 268) |
+| Canvas | oklch(98.8% .006 275) | oklch(14% .03 275) |
+| Panel | white | oklch(18% .035 275) |
+| Border | oklch(91% .016 275) | oklch(28% .03 275) |
+| Material (muted band) | oklch(97.2% .01 275) | oklch(16.5% .035 275) |
+| Navy (inverse) | oklch(16% .05 270) | same |
 
 ## Typography
 
-The site uses the system sans-serif stack throughout. Headings are bold with tight tracking. The hero `h1` is responsive: 2.25rem (36px) on mobile and 3.75rem from the `sm` breakpoint up, and the `h1` token records the larger size; landing-page section `h2` headings are a fixed 1.875rem at every width. Body copy is regular weight at 1rem, and buttons and labels are semibold.
+Geist (variable, self-hosted via `@fontsource-variable/geist`) throughout, with Geist Mono for code and system sans-serif as the fallback. Headings are normal weight (400) with tight tracking and `text-balance`: h1 uses the `display` token, section headings run 1.875rem to 3rem. Section labels are 0.75rem, medium, in sentence case (no all-caps), prefixed with a `///` marker. Only the logo wordmark is uppercase. Card and item titles are 1rem medium. Body is small and relaxed. No serif or italic type.
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding. Sections are separated by 4rem of vertical space, and card grids wrap automatically with a 1.5rem gap.
+A 85rem container with 1.5rem/2rem side padding. The header is fixed: transparent with white text over the navy hero, then a blurred solid bar (no bottom border) once scrolled (a small inline script sets `data-solid`); other pages use a solid header. Sections are separated by hairline rules and alternate between canvas, `muted` and `inverse` bands. Section padding is 4rem mobile / 7rem desktop. Comparison is a ruled table that stacks on mobile; the workflow is three rule-topped items; the FAQ is a two-column accordion.
 
 ## Elevation & Depth
 
-The design is flat: there are no shadows. Depth comes from thin, low-contrast borders around cards and FAQ items.
-
-## Shapes
-
-Buttons use 0.5rem corners and cards use slightly rounder 0.75rem corners; borders are 1px. No pill shapes are used today; `full` is there for future badges and avatars.
+Almost flat. Panels use a 0.75rem radius and a thin border; only the hero product window carries a soft wide shadow. The hero and closing band use a faint indigo glow (`hero-glow`) at the bottom edge.
 
 ## Components
 
-Primary buttons are solid `primary` with white text, secondary buttons are outlined with the current text colour, and both are padded 1.25rem by 0.625rem. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, testimonials, pricing plans and FAQ items.
+The reusable library lives in `src/components/ui/`; section components compose it.
+
+- `Container` — max-width wrapper with responsive padding.
+- `Section` — full-width band; props `id`, `tone` (`default | muted | inverse`), `rule`; wraps content in `Container` with section padding.
+- `SectionHeader` — `///` label, heading (default slot), description, `align`, `tone`, `level`, and an `actions` slot.
+- `Button` — `variant` (`primary | secondary | inverse`) and `size` (`sm | md`); compact gradient buttons with large radii (`rounded-xl` sm, `rounded-2xl` md), 98% press scale, visible focus.
+- `Badge` — small pill label, `tone` default or inverse.
+- `RuleItem` — rule-topped item with optional index, title and description.
+- `Panel` — bordered surface.
+- `Accordion` — native `details` list from `{question, answer}` items.
+- `HelpSearch` — Pagefind UI themed in `global.css` with site tokens: panel-colored input with `radius-panel`, accent focus ring, hairline-divided results, accent-tinted `mark` highlights (not yellow).
+
+`ProductPreview.astro` is a decorative illustration of the workspace, not a screenshot or proof of a feature. New sections should be built from these components; add a new one to `ui/` when a pattern repeats.
+
+## User preferences
+
+Reduced motion removes press scaling and the header and icon transitions. Reduced transparency makes the scrolled header solid. No animation blocks interaction.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section and use utility classes with `dark:` variants for every colour. Don't add shadows, extra accent colours or custom font files without updating this file first.
+Reserve indigo for actions and small accents. Prefer rules and whitespace to boxed cards. Keep headings light. Treat illustrative UI as illustration. Update this file and `@theme` together when adding visual tokens.
 
 ## Voice & Tone
 
-Plain, friendly and benefit-led, with short sentences and no jargon. Headlines promise an outcome ("Launch your story, not your backlog") and buttons use direct verbs such as "Get started".
+Direct, precise and professional: state what the product does in plain terms, with no whimsy or figurative language. Explain that the CMS updates Markdown in configured Astro content collections and that an agent handles broader site changes. Do not imply every repository is CMS-editable or claim customer proof, pricing, or a public download that has not been verified. Buttons describe the action they take.

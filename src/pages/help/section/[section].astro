@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/href";
+import { loadHelp } from "../../../lib/help";
+export async function getStaticPaths() {
+  const { categories } = await loadHelp(getCollection);
+  return categories.map((category) => ({ params: { section: category.slug }, props: { category } }));
+}
+const { category } = Astro.props;
+const linkClass = "transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
+---
+<Base title={`${category.name} · Orso Help`} description={category.description}>
+  <section class="mx-auto max-w-4xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
+    <a class="text-xs text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href("/help/")}>← Help Center</a>
+    <h1 class="mt-8 font-semibold text-4xl tracking-tight text-balance sm:text-5xl">{category.name}</h1>
+    <p class="mt-4 text-lg leading-relaxed text-brand-muted">{category.description}</p>
+    {category.loose.length > 0 && (
+      <ul class="mt-10 divide-y divide-section-line border-y border-section-line">{category.loose.map((doc) => (
+        <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
+      ))}</ul>
+    )}
+    {category.subcategories.map((sub) => (
+      <section class="mt-12">
+        <h2 class="text-xs font-medium uppercase tracking-wide text-brand-muted">{sub.name}</h2>
+        <ul class="mt-4 divide-y divide-section-line border-y border-section-line">{sub.docs.map((doc) => (
+          <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
+        ))}</ul>
+      </section>
+    ))}
+  </section>
+</Base>

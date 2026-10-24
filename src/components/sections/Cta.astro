@@ -1,11 +1,12 @@
 ---
-import { href } from "../../lib/href";
+import Button from "../ui/Button.astro";
+import Section from "../ui/Section.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16 text-center" id="cta">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Ready to launch?</h2>
-  <a
-    class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
-    href={href("#pricing")}>Get started today</a
-  >
-</section>
+<Section id="cta" tone="inverse" class="hero-glow">
+  <SectionHeader tone="inverse" label="Get started" description="Edit content, make larger changes with an agent, and publish from one workspace.">
+    Keep your Astro site<br /><span class="text-inverse-foreground/60">up to date.</span>
+    <Fragment slot="actions"><Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button></Fragment>
+  </SectionHeader>
+</Section>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  /** Optional marker shown above the title, e.g. "01". */
+  index?: string;
+  /** Heading level for the title; pick the one that fits the page outline. */
+  as?: "h3" | "h4";
+}
+const { title, description, index, as: Title = "h3" } = Astro.props;
+---
+
+<article class="border-t border-section-line pt-6">
+  {index && <p class="text-xs font-medium text-brand-accent">{index}</p>}
+  <Title class:list={["text-base font-medium text-brand-foreground", index && "mt-3"]}>{title}</Title>
+  {description && <p class="mt-2 max-w-sm text-sm leading-relaxed text-brand-muted">{description}</p>}
+  <slot />
+</article>

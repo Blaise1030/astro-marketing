@@ -1,0 +1,20 @@
+---
+import RuleItem from "../ui/RuleItem.astro";
+import Section from "../ui/Section.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+const steps = [
+  { title: "Make a change", description: "Edit content directly, or ask the agent to handle changes to the rest of your site." },
+  { title: "Review in preview", description: "Check the result in a live local preview and refine it before anything goes out." },
+  { title: "Share and publish", description: "Share a preview, then publish through your GitHub workflow once deployment is configured." },
+];
+---
+
+<Section id="workflow" tone="muted" rule>
+  <SectionHeader label="How it works" description="Content, code, preview, and publishing happen in one place instead of across separate tools.">
+    One workflow,<br /><span class="text-brand-muted">start to finish.</span>
+  </SectionHeader>
+  <div class="mt-12 grid gap-8 sm:mt-16 md:grid-cols-3 md:gap-10">
+    {steps.map((step, index) => <RuleItem index={`0${index + 1}`} title={step.title} description={step.description} />)}
+  </div>
+  <p class="mt-12 border-t border-section-line pt-6 text-sm text-brand-muted">Every change is checkpointed. Inspect earlier work and restore it from history.</p>
+</Section>

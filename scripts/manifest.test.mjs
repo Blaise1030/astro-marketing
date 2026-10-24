@@ -21,7 +21,7 @@ test("astro sync writes the orso content manifest", () => {
     assert.ok(existsSync(path), `missing ${path}\n${result.stdout}${result.stderr}`);
     const manifest = JSON.parse(readFileSync(path, "utf8"));
     assert.equal(manifest.version, 1);
-    assert.deepEqual(manifest.collections.map(({ name }) => name), ["blog", "helpDocs"]);
+    assert.deepEqual(manifest.collections.map(({ name }) => name), ["blog", "helpCategories", "helpSubcategories", "helpDocs"]);
     const byName = Object.fromEntries(manifest.collections.map((collection) => [collection.name, collection]));
     assert.deepEqual(byName.blog.loader, { base: "src/content/blog/en", pattern: "*.md" });
     assert.deepEqual(byName.helpDocs.loader, { base: "src/content/helpDocs/en", pattern: "*.md" });
