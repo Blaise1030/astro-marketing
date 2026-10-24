@@ -1,0 +1,38 @@
+---
+const steps = [
+  {
+    title: "Say what you want",
+    body: "Ask the agent for a page, a section, or a rewrite. It edits the real files in your project — code, copy and styles included.",
+  },
+  {
+    title: "Preview the change",
+    body: "Every edit lands in its own change with a live preview, so you can try ideas without touching the live site.",
+  },
+  {
+    title: "Publish when it's right",
+    body: "Publish a change and it goes live. Every earlier version stays in History, ready to restore.",
+  },
+];
+---
+
+<section class="mx-auto max-w-5xl px-8 py-16 sm:py-24" id="how-it-works">
+  <div class="max-w-2xl">
+    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Three steps, no code</h2>
+    <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+      From a rough idea to a live site, without leaving the app.
+    </p>
+  </div>
+  <ol class="mt-10 grid gap-6 md:grid-cols-3">
+    {
+      steps.map((step, i) => (
+        <li class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+          <span class="flex size-8 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+            {i + 1}
+          </span>
+          <h3 class="mt-4 text-lg font-semibold">{step.title}</h3>
+          <p class="mt-2 text-neutral-600 dark:text-neutral-400">{step.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

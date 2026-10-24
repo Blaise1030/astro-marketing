@@ -12,7 +12,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 
 - `src/site.ts` — site name, header `nav`, footer text/links and socials.
 - `src/pages/index.astro` — the landing page: renders the section components in order.
-- `src/components/sections/*.astro` — one component per landing-page section (`Hero`, `Logos`, `Features`, `Testimonials`, `Pricing`, `Faq`, `Cta`). Each holds its own copy; its root `<section id>` is the anchor used by nav links (`#features`, `#pricing`, …).
+- `src/components/sections/*.astro` — one component per landing-page section (`Hero`, `ProductShot`, `Stack`, `HowItWorks`, `Features`, `Faq`, `Cta`). Each holds its own copy; its root `<section id>` is the anchor used by nav links (`#how-it-works`, `#features`, …).
 - `src/pages/blog/`, `src/pages/help/` — index and article routes for the collections.
 - `src/layouts/Base.astro` — header and footer (from `src/site.ts`); imports `src/styles/global.css`.
 - `src/styles/global.css` — Tailwind CSS v4 entry (`@import "tailwindcss"` plus the typography plugin). Theme tokens go in an `@theme` block here; there is no `tailwind.config.js`.

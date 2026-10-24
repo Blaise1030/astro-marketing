@@ -2,10 +2,15 @@
 import { href } from "../../lib/href";
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16 text-center" id="cta">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Ready to launch?</h2>
-  <a
-    class="inline-block rounded-lg border border-neutral-900 bg-neutral-900 px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900"
-    href={href("#pricing")}>Get started today</a
-  >
+<section class="mx-auto max-w-5xl px-8 pt-4 pb-20" id="cta">
+  <div class="rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-14 text-center dark:border-neutral-800 dark:bg-neutral-900">
+    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to see it take shape?</h2>
+    <p class="mx-auto mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">
+      Describe your first change and watch Orso build it.
+    </p>
+    <a
+      class="mt-8 inline-block rounded-lg bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+      href={href("#how-it-works")}>See how it works</a
+    >
+  </div>
 </section>

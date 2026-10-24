@@ -3,18 +3,21 @@ import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
 import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
-import Logos from "../components/sections/Logos.astro";
-import Pricing from "../components/sections/Pricing.astro";
-import Testimonials from "../components/sections/Testimonials.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import ProductShot from "../components/sections/ProductShot.astro";
+import Stack from "../components/sections/Stack.astro";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Acme — Ship your product story faster" description="Acme helps small teams launch a beautiful marketing site in minutes.">
+<Base
+  title="Orso — Describe your site. Orso builds it."
+  description="Orso is a site builder with a coding agent inside: describe a change, preview it, and publish when it's right."
+>
   <Hero />
-  <Logos />
+  <ProductShot />
+  <Stack />
+  <HowItWorks />
   <Features />
-  <Testimonials />
-  <Pricing />
   <Faq />
   <Cta />
 </Base>

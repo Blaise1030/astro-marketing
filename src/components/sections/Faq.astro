@@ -1,18 +1,48 @@
 ---
 const faqs = [
-  { question: "Can I change the design?", answer: "Yes. The landing page is plain Astro components styled with Tailwind." },
-  { question: "Where can I host it?", answer: "Anywhere that serves static files, including Cloudflare Pages." },
+  {
+    question: "Do I need to know how to code?",
+    answer:
+      "No. You describe what you want and the agent does the editing. If you do code, the project is plain Astro and Tailwind, so you can open it in any editor.",
+  },
+  {
+    question: "What is a change?",
+    answer:
+      "A change is a draft of your site. Edits in a change stay separate from the live site until you publish them, so you can try ideas without breaking anything.",
+  },
+  {
+    question: "Where does my site live?",
+    answer:
+      "In a Git repository you own. When a change is ready, publish it from the app and it becomes the live site.",
+  },
+  {
+    question: "Can I edit content without the agent?",
+    answer:
+      "Yes. Blog posts and help articles have friendly forms in the Content panel. The agent is there when you want bigger changes.",
+  },
+  {
+    question: "Can I undo something?",
+    answer:
+      "Yes. Every save is a checkpoint, and History lets you restore any earlier version in one click.",
+  },
 ];
 ---
 
 <section class="mx-auto max-w-5xl px-8 py-16" id="faq">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Frequently asked questions</h2>
-  <div class="space-y-4">
-    {faqs.map((i) => (
-      <details class="rounded-xl border border-neutral-400/30 p-5">
-        <summary class="cursor-pointer font-semibold">{i.question}</summary>
-        <p class="mt-3">{i.answer}</p>
-      </details>
-    ))}
+  <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Frequently asked questions</h2>
+  <div class="mt-8 space-y-3">
+    {
+      faqs.map((faq) => (
+        <details class="group rounded-xl border border-neutral-200 p-5 transition-colors open:border-neutral-300 dark:border-neutral-800 dark:open:border-neutral-700">
+          <summary class="cursor-pointer list-none font-semibold marker:hidden">
+            <span class="flex items-center justify-between gap-4">
+              {faq.question}
+              <span class="text-neutral-400 transition-transform group-open:rotate-45 dark:text-neutral-500">+</span>
+            </span>
+          </summary>
+          <p class="mt-3 text-neutral-600 dark:text-neutral-400">{faq.answer}</p>
+        </details>
+      ))
+    }
   </div>
 </section>
