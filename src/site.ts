@@ -8,8 +8,12 @@ export const site = {
     { label: "Why Orso", href: "#why-orso" },
     { label: "FAQ", href: "#faq" },
     { label: "Blog", href: "/blog/" },
-    { label: "Help", href: "/help/" },
   ],
+  /** Right side of the header: a quiet link and the primary action. */
+  actions: {
+    link: { label: "Help", href: "/help/" },
+    cta: { label: "See how it works", href: "#workflow" },
+  },
   footer: {
     text: "© 2026 Orso",
     links: [{ label: "How it works", href: "#workflow" }],
