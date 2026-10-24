@@ -1,7 +1,7 @@
 /** Site-wide name, navigation and footer, rendered by `layouts/Base.astro`. */
 export const site = {
   name: "Orso",
-  description: "Orso is a site builder with a coding agent inside: describe a change, preview it, and publish when it's right.",
+  description: "Orso is a free, open-source studio for Astro sites that runs on the coding agent you already have. Edit content, preview every change, publish to GitHub Pages — no lock-in.",
   nav: [
     { label: "How it works", href: "#how-it-works" },
     { label: "Features", href: "#features" },
@@ -10,7 +10,7 @@ export const site = {
     { label: "Help", href: "/help/" },
   ],
   footer: {
-    text: "© 2026 Orso. All rights reserved.",
+    text: "© 2026 Orso. Free and open source.",
     links: [
       { label: "Privacy", href: "#" },
       { label: "Terms", href: "#" },
@@ -18,6 +18,6 @@ export const site = {
   },
   socials: [
     { label: "X", href: "https://x.com" },
-    { label: "GitHub", href: "https://github.com" },
+    { label: "GitHub", href: "https://github.com/Blaise1030/cms" },
   ],
 };

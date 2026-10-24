@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Orso
-description: Describe your site. Orso builds it.
+description: A free studio for your site, and the agent you already pay for.
 colors:
   primary: "#171717"
   secondary: "#525252"
@@ -84,7 +84,7 @@ Buttons use 0.5rem corners, cards 0.75rem, the product sketch and the closing pa
 
 ## Components
 
-Primary buttons are solid `primary` with `neutral` text; secondary buttons are outlined with a hairline border that darkens on hover. Both are padded 1.25rem by 0.75rem at `text-label`. Cards are bordered boxes with `p-md` padding, reused for steps, features and FAQ items. FAQ items are native `<details>` with a plus that rotates when open. The hero product sketch is a bordered window (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles.
+Primary buttons are solid `primary` with `neutral` text; secondary buttons are outlined with a hairline border that darkens on hover. Both are padded 1.25rem by 0.75rem at `text-label`. Cards are bordered boxes with `p-md` padding, reused for steps, features and FAQ items. FAQ items are native `<details>` with a plus that rotates when open. The hero product sketch is a bordered window (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
 
 ## Do's and Don'ts
 
@@ -92,4 +92,4 @@ Do keep one solid call-to-action per section, use the semantic colour tokens so 
 
 ## Voice & Tone
 
-Plain, friendly and benefit-led, with short sentences and no jargon. Headlines promise an outcome ("Describe your site. Orso builds it.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges.
+Plain, friendly and benefit-led, with short sentences and no jargon. Headlines state ownership and cost plainly ("A free studio for your site. And the agent you already pay for.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges, and never about CI or deploy pipelines. Say "free and open source", never "all rights reserved", and always close on ownership: your repo, your site, no lock-in.

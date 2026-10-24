@@ -1,18 +1,37 @@
 ---
-const stack = ["Astro", "Tailwind CSS", "Markdown", "GitHub", "Static hosting"];
+const keep = ["Your AI agent", "Astro", "Markdown", "Git + GitHub", "GitHub Pages"];
+const drop = ["AI site builders", "Hosted CMS", "Per-seat page builders"];
 ---
 
 <section class="mx-auto max-w-5xl px-8 py-14" id="stack">
   <p class="text-center text-xs font-semibold uppercase tracking-widest text-secondary">
-    Built on tools that outlast trends
+    One app instead of three subscriptions
   </p>
-  <div class="mt-md grid grid-cols-2 gap-3 sm:grid-cols-5">
-    {
-      stack.map((name) => (
-        <div class="rounded-lg border border-tertiary/30 px-4 py-3 text-center text-label text-secondary">
-          {name}
-        </div>
-      ))
-    }
+  <p class="mx-auto mt-3 max-w-xl text-center text-lg text-secondary">
+    Bring the agent you already pay for. Drop the rest of the stack.
+  </p>
+  <div class="mt-md grid gap-md sm:grid-cols-2">
+    <div class="rounded-xl border border-tertiary/30 p-md">
+      <p class="text-label text-secondary">You already have</p>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {
+          keep.map((name) => (
+            <li class="rounded-lg border border-tertiary/30 px-3 py-1.5 text-label">{name}</li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="rounded-xl border border-tertiary/30 p-md">
+      <p class="text-label text-secondary">You stop paying for</p>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {
+          drop.map((name) => (
+            <li class="rounded-lg border border-tertiary/30 px-3 py-1.5 text-label text-tertiary line-through">
+              {name}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
