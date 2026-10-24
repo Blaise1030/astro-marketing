@@ -3,12 +3,12 @@ version: alpha
 name: Orso
 description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
-  primary: "#171717"
+  primary: "#245ee0"
   secondary: "#525252"
   tertiary: "#a3a3a3"
   neutral: "#ffffff"
-  actionTop: "#4b4b4b"
-  actionEdge: "#080808"
+  actionTop: "#396fed"
+  actionEdge: "#1748b6"
   sectionInk: "#0a0a0a"
   sectionPanel: "#171717"
   sectionLine: "#303030"
@@ -46,11 +46,11 @@ spacing:
 
 ## Overview
 
-A clean, neutral marketing site: generous whitespace, a single dark accent and a light or dark scheme that follows the visitor's system setting. It reads as confident and unfussy so the copy does the work.
+A clean, neutral marketing site: generous whitespace, a cobalt blue accent and a light or dark scheme that follows the visitor's system setting. It reads as confident and unfussy so the copy does the work.
 
 ## Colors
 
-`primary` is the charcoal base of the main call to action. `actionTop` is its lighter top surface and `actionEdge` is the darker ledge below it. `sectionInk`, `sectionPanel`, and `sectionLine` define the near-black product-story sections. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
+`primary` is the cobalt blue base of the main call to action, sampled from the supplied reference. `actionTop` is a slightly darker blue than the image's brightest edge so white button text remains readable; `actionEdge` is the deeper blue ledge below it. `sectionInk`, `sectionPanel`, and `sectionLine` define the near-black product-story sections. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
 
 ## Typography
 
@@ -70,7 +70,7 @@ Hero actions are separate buttons with 0.75rem corners and space between them. T
 
 ## Components
 
-The hero has a charcoal primary action and a lighter secondary action. Both have a subtle vertical gradient, a distinct lower edge, and a pressed state. The closing action repeats the primary treatment. Links retain visible keyboard focus, and reduced-motion settings remove movement. The dark CMS and preview illustrations use simple HTML shapes as explanatory visuals; they are hidden from assistive technology, with their purpose stated in the nearby headings and copy. The workflow uses unboxed icon-and-text items. Product fit and FAQ retain bordered boxes.
+The hero has a cobalt blue primary action and a lighter secondary action. Both have a subtle vertical gradient, a distinct lower edge, and a pressed state. The closing action repeats the primary treatment. Blue also marks the preview illustration's action and the workflow icons. Links retain visible keyboard focus, and reduced-motion settings remove movement. The dark CMS and preview illustrations use simple HTML shapes as explanatory visuals; they are hidden from assistive technology, with their purpose stated in the nearby headings and copy. The workflow uses unboxed icon-and-text items. Product fit and FAQ retain bordered boxes.
 
 ## Do's and Don'ts
 
