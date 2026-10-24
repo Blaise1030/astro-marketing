@@ -11,7 +11,7 @@ const { post } = Astro.props as { post: Post };
         ? <Image class="h-full w-full object-cover" src={post.data.coverImage} alt={post.data.coverAlt!} widths={[400, 800]} sizes="(min-width: 1024px) 24rem, 50vw" />
         : <div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div>}
     </div>
-    <div class="mt-5 flex items-baseline justify-between text-xs font-medium uppercase tracking-wide text-brand-muted">
+    <div class="mt-5 flex items-baseline justify-between text-xs font-medium text-brand-muted">
       <span>{categoryOf(post)}</span>
       <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>
     </div>

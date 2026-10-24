@@ -79,7 +79,7 @@ Neutrals carry a faint violet-blue tint (hue 275). `primary`/`actionTop`/`action
 
 ## Typography
 
-Geist (variable, self-hosted via `@fontsource-variable/geist`) throughout, with Geist Mono for code and system sans-serif as the fallback. Headings are normal weight (400) with tight tracking and `text-balance`: h1 uses the `display` token, section headings run 1.875rem to 3rem. Section labels are 0.75rem, medium, uppercase, prefixed with a `///` marker. Card and item titles are 1rem medium. Body is small and relaxed. No serif or italic type.
+Geist (variable, self-hosted via `@fontsource-variable/geist`) throughout, with Geist Mono for code and system sans-serif as the fallback. Headings are normal weight (400) with tight tracking and `text-balance`: h1 uses the `display` token, section headings run 1.875rem to 3rem. Section labels are 0.75rem, medium, in sentence case (no all-caps), prefixed with a `///` marker. Only the logo wordmark is uppercase. Card and item titles are 1rem medium. Body is small and relaxed. No serif or italic type.
 
 ## Layout
 

@@ -16,7 +16,7 @@ const inverse = tone === "inverse";
 
 <div class:list={["flex flex-col", align === "center" ? "items-center text-center" : "items-start", className]}>
   {label && (
-    <p class:list={["flex items-center gap-2 text-xs font-medium uppercase tracking-wider", inverse ? "text-inverse-foreground/60" : "text-brand-muted"]}>
+    <p class:list={["flex items-center gap-2 text-xs font-medium", inverse ? "text-inverse-foreground/60" : "text-brand-muted"]}>
       <span aria-hidden="true" class:list={["tracking-normal", inverse ? "text-action-top" : "text-brand-accent"]}>///</span>{label}
     </p>
   )}

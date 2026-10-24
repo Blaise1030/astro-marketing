@@ -7,7 +7,7 @@ const sections = [...new Set(docs.map((doc) => doc.data.section))];
 ---
 <Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing with Orso.">
   <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <p class="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">A little guidance</p>
+    <p class="mb-6 text-xs font-medium text-brand-accent">A little guidance</p>
     <h1 class="mb-6 font-semibold text-5xl tracking-tight sm:text-7xl">Help</h1>
     <p class="mb-12 max-w-2xl text-lg leading-relaxed text-brand-muted">Get comfortable with content editing, previewing changes, and publishing your site.</p>
     {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((section) => (
