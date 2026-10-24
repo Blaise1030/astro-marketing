@@ -25,22 +25,22 @@ darkColors:
   material: "oklch(16.5% 0.035 275)"
 typography:
   h1:
-    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontFamily: "Geist Variable, -apple-system, sans-serif"
     fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)"
     fontWeight: 400
     lineHeight: 1.05
   h2:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: 3rem
     fontWeight: 400
     lineHeight: 1.12
   body-md:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 600
     lineHeight: 1.5
@@ -79,7 +79,7 @@ Neutrals carry a faint violet-blue tint (hue 275). `primary`/`actionTop`/`action
 
 ## Typography
 
-System sans-serif throughout (swap in Switzer if licensed). Headings are normal weight (400) with tight tracking and `text-balance`: h1 uses the `display` token, section headings run 1.875rem to 3rem. Section labels are 0.75rem, medium, uppercase, prefixed with a `///` marker. Card and item titles are 1rem medium. Body is small and relaxed. No serif or italic type.
+Geist (variable, self-hosted via `@fontsource-variable/geist`) throughout, with Geist Mono for code and system sans-serif as the fallback. Headings are normal weight (400) with tight tracking and `text-balance`: h1 uses the `display` token, section headings run 1.875rem to 3rem. Section labels are 0.75rem, medium, uppercase, prefixed with a `///` marker. Card and item titles are 1rem medium. Body is small and relaxed. No serif or italic type.
 
 ## Layout
 
