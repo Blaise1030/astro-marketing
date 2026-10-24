@@ -12,8 +12,10 @@ export const site = {
   /** Right side of the header: a quiet link and the primary action. */
   actions: {
     link: { label: "Help", href: "/help/" },
-    cta: { label: "See how it works", href: "#workflow" },
+    cta: { label: "Download", href: "/download/" },
   },
+  /** Set `url` to the app installer; the download page shows a "coming soon" note while it is empty. */
+  download: { url: "", platform: "macOS" },
   footer: {
     text: "© 2026 Orso",
     links: [{ label: "How it works", href: "#workflow" }],

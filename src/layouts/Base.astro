@@ -16,7 +16,7 @@ const base = import.meta.env.BASE_URL;
 const linkClass = "inline-flex min-h-11 items-center transition-opacity hover:opacity-70 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
 
-<html lang="en" class="scheme-light-dark scroll-pt-44 sm:scroll-pt-20">
+<html lang="en" class="scheme-light-dark scroll-pt-20">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,18 +26,26 @@ const linkClass = "inline-flex min-h-11 items-center transition-opacity hover:op
   <body class="flex min-h-screen flex-col bg-section-ink text-brand-foreground antialiased selection:bg-action-bottom selection:text-white">
     <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-action-bottom focus:px-4 focus:py-3 focus:text-white" href="#main">Skip to content</a>
     <header id="site-header" data-overlay={overlay ? "" : undefined} class="site-header fixed inset-x-0 top-0 z-40">
-      <Container class="grid grid-cols-[1fr_auto] items-center gap-x-8 gap-y-1 py-2.5 sm:grid-cols-[1fr_auto_1fr]">
+      <Container class="grid grid-cols-[1fr_auto] items-center gap-x-8 sm:grid-cols-[1fr_auto_1fr]">
         <a class="justify-self-start text-xl font-semibold uppercase leading-none tracking-tight focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={base}>{site.name}</a>
-        <nav aria-label="Main navigation" class="order-last col-span-2 flex flex-wrap items-center justify-center gap-x-5 text-sm sm:order-none sm:col-span-1 sm:gap-x-6">
+        <nav aria-label="Main navigation" class="hidden items-center justify-center gap-x-6 text-sm sm:flex">
           {site.nav.map((l) => <a class={linkClass} href={href(l.href)}>{l.label}</a>)}
         </nav>
-        <div class="flex items-center justify-self-end gap-x-5 text-sm">
-          <a class={linkClass} href={href(site.actions.link.href)}>{site.actions.link.label}</a>
+        <div class="flex items-center justify-self-end gap-x-4 py-2.5 text-sm">
+          <a class={`${linkClass} hidden sm:inline-flex`} href={href(site.actions.link.href)}>{site.actions.link.label}</a>
           <Button href={site.actions.cta.href} size="sm">{site.actions.cta.label}</Button>
+          <details class="group sm:hidden">
+            <summary class="flex size-11 cursor-pointer list-none items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent [&::-webkit-details-marker]:hidden" aria-label="Menu">
+              <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path class="group-open:hidden" d="M3 6h14M3 14h14" /><path class="hidden group-open:block" d="M5 5l10 10M15 5L5 15" /></svg>
+            </summary>
+            <nav aria-label="Mobile navigation" class="absolute inset-x-0 top-full flex flex-col border-b border-section-line bg-section-ink px-6 pb-4 text-brand-foreground">
+              {[...site.nav, site.actions.link].map((l) => <a class={`${linkClass} border-b border-section-line last:border-0`} href={href(l.href)}>{l.label}</a>)}
+            </nav>
+          </details>
         </div>
       </Container>
     </header>
-    <main id="main" class:list={["flex-1", !overlay && "pt-24 sm:pt-16"]}><slot /></main>
+    <main id="main" class:list={["flex-1", !overlay && "pt-16"]}><slot /></main>
     <footer class="border-t border-section-line">
       <Container class="flex flex-wrap items-center justify-between gap-6 py-8 text-sm text-brand-muted">
         <p>{site.footer.text}</p>
