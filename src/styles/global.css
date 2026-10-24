@@ -2,20 +2,43 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-muted: #a3a3a3;
-  --color-brand-line: #303030;
+  --color-brand-muted: #a6a9b0;
+  --color-brand-line: #2b2e36;
   --color-brand-accent: #8aafff;
   --color-action-top: #396fed;
   --color-action-bottom: #245ee0;
   --color-action-edge: #1748b6;
   --color-section-ink: #0a0a0a;
-  --color-section-panel: #171717;
-  --color-section-line: #303030;
+  --color-section-panel: #15171c;
+  --color-section-line: #2b2e36;
+  --color-material: #101216;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-editorial: Georgia, "Times New Roman", serif;
+  --text-display: clamp(2.75rem, 6.5vw, 5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.045em;
+  --radius-panel: 1.75rem;
   --spacing-section: 5rem;
   --spacing-section-wide: 8rem;
-  --shadow-action-raised: 0 4px 0 var(--color-action-edge), 0 8px 16px rgb(0 0 0 / 18%);
+  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 7%), 0 24px 64px rgb(0 0 0 / 28%);
+  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 4px 0 var(--color-action-edge), 0 8px 20px rgb(0 0 0 / 24%);
   --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
   --shadow-action-secondary: 0 4px 0 #050505, 0 8px 16px rgb(0 0 0 / 24%);
   --shadow-action-secondary-pressed: 0 1px 0 #050505, 0 3px 6px rgb(0 0 0 / 20%);
+}
+
+@utility surface-glass {
+  background-color: color-mix(in srgb, var(--color-material) 88%, transparent);
+  backdrop-filter: blur(24px) saturate(140%);
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--color-material);
+    backdrop-filter: none;
+  }
+
+  @media (prefers-contrast: more) {
+    background-color: var(--color-material);
+    backdrop-filter: none;
+    outline: 1px solid #a6a9b0;
+  }
 }

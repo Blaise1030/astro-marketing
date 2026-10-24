@@ -4,25 +4,26 @@ name: Orso
 description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
   primary: "#245ee0"
-  secondary: "#a3a3a3"
-  tertiary: "#303030"
+  secondary: "#a6a9b0"
+  tertiary: "#2b2e36"
   neutral: "#0a0a0a"
   accent: "#8aafff"
   actionTop: "#396fed"
   actionEdge: "#1748b6"
   sectionInk: "#0a0a0a"
-  sectionPanel: "#171717"
-  sectionLine: "#303030"
+  sectionPanel: "#15171c"
+  sectionLine: "#2b2e36"
+  material: "#101216"
 typography:
   h1:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: 6rem
-    fontWeight: 400
-    lineHeight: 1.05
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "clamp(2.75rem, 6.5vw, 5rem)"
+    fontWeight: 600
+    lineHeight: 1.04
   h2:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 3.75rem
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 1.08
   body-md:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -48,7 +49,7 @@ spacing:
 
 ## Overview
 
-A continuous near-black marketing site with generous whitespace, editorial headlines, quiet product panels, and cobalt blue actions. Inspired by the structure and restraint of Resend's marketing page, with Orso's own blue identity. The shared dark shell applies to the landing page, Blog, Help, and articles regardless of system color preference.
+A continuous near-black marketing site with generous whitespace, precise system typography, graphite product surfaces, and cobalt blue actions. The landing page applies the apple-design skill's principles of clarity, spatial consistency, materials, and immediate feedback. A prominent workspace illustration connects the content files to the rendered site. The shared dark shell applies to the landing page, Blog, Help, and articles regardless of system color preference.
 
 ## Colors
 
@@ -56,23 +57,27 @@ A continuous near-black marketing site with generous whitespace, editorial headl
 
 ## Typography
 
-The hero and closing headlines use the `font-editorial` system serif stack: Georgia, Times New Roman, serif. The hero grows from 3rem on mobile to 6rem on desktop; the closing headline grows from 3rem to 4.5rem. Product section headings use the system sans-serif stack at regular weight, 2.25rem on mobile through 3.75rem on desktop, with tight tracking and optional muted second lines. FAQ headings top out at 3rem. Body copy is 1rem with generous line height; introductory copy is 1.125rem. Eyebrows are 0.75rem, uppercase and widely tracked. Buttons are 0.875rem semibold.
+The landing page uses the platform system sans-serif stack, beginning with -apple-system and BlinkMacSystemFont. Hero and closing headlines use the shared `display` size: clamp(2.75rem, 6.5vw, 5rem), semibold weight, 1.04 line height, and -0.045em tracking. Optical sizing follows the font. Product headings are semibold, 2.25rem on mobile through 3.75rem on desktop, with -0.035em tracking and optional muted second lines. FAQ headings top out at 3rem. Body copy is 1rem with generous line height; introductory copy grows to 1.25rem in the hero. Small labels use positive tracking. Blog and Help retain serif article titles via `font-editorial` as a reading-focused treatment. Buttons are 0.875rem semibold.
 
 ## Layout
 
-All sections, header, and footer share a centred 72rem container. Side padding is 1.5rem on mobile and 2rem from the small breakpoint. Sections use the shared `section` spacing token (5rem vertical padding), growing to `section-wide` (8rem) on larger screens. Thin full-width dividers establish the page rhythm. A centred hero leads to paired CMS and preview illustrations, an open three-column capability grid, three comparison cards, a two-column FAQ, and a centred closing action. Grids collapse on mobile. The header navigation wraps with visible spacing; the footer follows the same alignment. Blog and Help use the same containers and dark panel treatment. Markdown is always rendered with inverted typography.
+All sections, header, and footer share a centred 72rem container. Side padding is 1.5rem on mobile and 2rem from the small breakpoint. Sections use the shared `section` spacing token (5rem vertical padding), growing to `section-wide` (8rem) on larger screens. Thin full-width dividers establish the page rhythm. The centred hero includes a 64rem workspace illustration showing content and preview in one frame. It leads to paired CMS and preview illustrations, an open three-column capability grid, three comparison cards, a two-column FAQ, and a centred closing action. Grids collapse on mobile. The sticky header is a translucent functional layer with a soft shadow rather than a hard divider; navigation wraps with 44px touch targets. The footer follows the same alignment. Blog and Help use the same containers and dark panel treatment. Markdown is always rendered with inverted typography.
 
 ## Elevation & Depth
 
-Product illustrations sit in softly bordered dark panels with subtle depth; the capability grid has no boxes. Comparison cards and FAQ rows stay flat with thin, low-contrast borders. Restrained blue radial lighting supports the hero and closing action. Buttons look raised through a four-pixel lower edge and a soft ambient shadow. On press, they move down three pixels and the edge becomes one pixel high. Secondary buttons use a neutral dark lower edge. The raised and pressed shadows are recorded in the CSS theme.
+Product illustrations sit in graphite panels with a faint inset highlight and soft ambient shadow. The capability grid has no outer boxes; blue icon tiles group each capability. Comparison cards and FAQ rows stay flat with subtle borders. Restrained blue radial lighting supports the hero and closing action. Buttons look raised through a four-pixel lower edge and a soft ambient shadow. On press, they move down three pixels, scale to 98%, and the edge becomes one pixel high; feedback begins through the native active state with a 75ms response. Hover and release use a restrained 200ms ease-out. Secondary buttons use a neutral dark lower edge. The raised and pressed shadows are recorded in the CSS theme. There are no automatic or looping animations.
 
 ## Shapes
 
-Actions are separate buttons with 0.75rem corners and space between them. Cards and product frames use 1rem corners and 1px borders. Pill shapes are reserved for illustrative status badges and small preview controls. FAQ rows use straight dividers.
+Actions are separate buttons with 0.75rem corners and space between them. Main product surfaces and comparison cards use the shared `panel` radius of 1.75rem; nested UI surfaces use smaller radii to preserve hierarchy. Pill shapes are reserved for the hero label and illustrative status badges. FAQ rows use straight dividers.
 
 ## Components
 
-`Button.astro` owns the shared raised link treatment. The primary variant is cobalt blue; the secondary variant is neutral charcoal. Both have a subtle vertical gradient, a lower edge, and a pressed state. Blue also marks the preview illustration's action, workflow icons, eyebrows, and text links. Navigation, buttons, and FAQ summaries have visible keyboard focus, and reduced-motion settings remove movement. The CMS and preview illustrations use simple HTML shapes; they are hidden from assistive technology, with their purpose stated in nearby headings and copy. The workflow uses unboxed icon-and-text items. Comparisons use three separate cards. FAQ uses native details elements with a rotating plus indicator and blue open state.
+`Button.astro` owns the shared raised link treatment. The primary variant is cobalt blue; the secondary variant is neutral charcoal. Blue also marks key headline text, preview actions, workflow icons, labels, and text links. Navigation, buttons, and FAQ summaries have visible keyboard focus. `ProductPreview.astro` is a decorative HTML workflow illustration with a visible caption, not a functioning editor or a screenshot. The other CMS and preview illustrations are also hidden from assistive technology, with their purpose stated in nearby headings and copy. FAQ uses native details elements with a rotating plus indicator and blue open state.
+
+## User preferences
+
+Reduced-motion settings remove button translation and scaling and stop FAQ icon rotation; color and open-state feedback remain. The `surface-glass` utility uses a near-solid graphite material with 24px backdrop blur. Reduced-transparency settings replace it with a solid surface and remove the blur. Increased-contrast settings use the solid surface with a defined outline. No animation blocks navigation or content interaction.
 
 ## Do's and Don'ts
 

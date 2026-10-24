@@ -11,7 +11,7 @@ const { title, description } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<html lang="en" class="dark scheme-dark scroll-pt-8">
+<html lang="en" class="dark scheme-dark scroll-pt-44 sm:scroll-pt-28">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,11 +20,11 @@ const base = import.meta.env.BASE_URL;
   </head>
   <body class="flex min-h-screen flex-col bg-section-ink text-neutral-100 antialiased selection:bg-action-bottom selection:text-white">
     <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-action-bottom focus:px-4 focus:py-3 focus:text-white" href="#main">Skip to content</a>
-    <header class="border-b border-section-line/70">
-      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-5 px-6 py-6 sm:px-8">
+    <header class="surface-glass sticky top-0 z-40 shadow-[0_12px_24px_-24px_rgb(0_0_0/70%)]">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-4 sm:px-8 sm:py-5">
         <a class="text-2xl font-semibold tracking-tight focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={base}>{site.name}<span class="text-brand-accent">.</span></a>
-        <nav aria-label="Main navigation" class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-brand-muted sm:gap-x-7">
-          {site.nav.map((l) => <a class="py-1 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+        <nav aria-label="Main navigation" class="flex w-full flex-wrap items-center gap-x-4 text-xs font-medium tracking-[0.01em] text-neutral-300 sm:w-auto sm:gap-x-6 sm:text-sm">
+          {site.nav.map((l) => <a class="inline-flex min-h-11 items-center transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
         </nav>
       </div>
     </header>

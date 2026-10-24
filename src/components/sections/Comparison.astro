@@ -20,16 +20,16 @@ const choices = [
 
 <section class="border-t border-section-line" id="why-orso">
   <div class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <p class="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">Where Orso fits</p>
-    <h2 class="max-w-3xl text-4xl font-normal leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-6xl">Built for the site<br /><span class="text-brand-muted">you keep in GitHub.</span></h2>
+    <p class="mb-6 text-xs font-semibold uppercase tracking-[0.12em] text-brand-accent">Where Orso fits</p>
+    <h2 class="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-balance sm:text-5xl lg:text-6xl">Built for the site<br /><span class="text-brand-muted">you keep in GitHub.</span></h2>
     <p class="mt-7 max-w-2xl text-lg leading-relaxed text-brand-muted">
       Orso is for teams that have an Astro site and want a friendlier way to keep it current. The CMS updates the Markdown files in your configured content collections. The agent helps with changes beyond content. Your site stays in your repository and follows your deployment workflow.
     </p>
     <div class="mt-14 grid gap-5 sm:mt-16 lg:grid-cols-3">
       {choices.map((choice) => (
-        <article class="flex flex-col rounded-2xl border border-section-line bg-linear-to-b from-section-panel/60 to-section-ink p-6 sm:p-7">
-          <h3 class="text-xl font-medium tracking-tight">{choice.name}</h3>
-          <p class="mt-7 text-xs font-medium uppercase tracking-[0.16em] text-brand-accent">Choose Orso when</p>
+        <article class="flex flex-col rounded-panel border border-section-line bg-linear-to-b from-section-panel to-material p-6 sm:p-7">
+          <h3 class="text-xl font-semibold tracking-tight">{choice.name}</h3>
+          <p class="mt-7 text-xs font-medium uppercase tracking-[0.12em] text-brand-accent">Choose Orso when</p>
           <p class="mt-3 flex-1 leading-relaxed text-neutral-300">{choice.orso}</p>
           <p class="mt-6 border-t border-section-line pt-6 text-sm leading-relaxed text-brand-muted">{choice.other}</p>
         </article>
