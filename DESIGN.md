@@ -58,7 +58,7 @@ spacing:
 
 ## Overview
 
-A calm product-led landing page with a centred promise, blue editorial accents, one primary workspace showcase, and a clear story from editing to publishing. The composition uses generous whitespace, soft surfaces, and restrained borders. It follows system light and dark preferences automatically and retains the raised cobalt blue action treatment. The layout prioritizes the product and avoids repeating the same UI illustration across multiple sections.
+A calm product-led landing page with a centred promise, blue editorial accents, one primary workspace showcase, and a clear story from editing to publishing. The composition uses generous whitespace, soft surfaces, and restrained borders. It follows system light and dark preferences automatically and keeps cobalt blue actions. The layout prioritizes the product and avoids repeating the same UI illustration across multiple sections.
 
 ## Colors
 
@@ -82,7 +82,7 @@ The palette and theme-aware shadows are defined together in `src/styles/global.c
 
 ## Typography
 
-System sans-serif is the base for navigation, body copy, and section headings. The hero uses the shared `display` token: clamp(2.75rem, 6vw, 5rem), 1.04 line height, and -0.035em tracking. Its first line is semibold sans-serif; the blue second line uses Georgia in regular italic. This editorial accent repeats selectively in the ownership and closing headings. Section headings are semibold and grow from 1.875rem to 3rem. Small eyebrows are 0.75rem, semibold, with 0.12em tracking. Monospace appears only inside illustrative files and code. Supporting copy uses relaxed line height; buttons remain 0.875rem semibold.
+System sans-serif is the base for navigation, body copy, and section headings. The hero uses the shared `display` token: clamp(2.75rem, 6vw, 5rem), 1.04 line height, and -0.035em tracking. Its first line is foreground and the second line is the blue accent, both semibold sans-serif; the same accent treatment repeats in the closing heading. No serif or italic type is used. Section headings are semibold and grow from 1.875rem to 3rem. Small eyebrows are 0.75rem, semibold, with 0.12em tracking. Monospace appears only inside illustrative files and code. Supporting copy uses relaxed line height; buttons remain 0.875rem semibold.
 
 ## Layout
 
@@ -96,7 +96,7 @@ Two benefit cards explain the Markdown CMS and site agent through small, distinc
 
 One large product surface anchors the hero with a faint inset highlight and a soft, wide shadow. A quiet radial blue wash sits behind it. Smaller benefit and comparison cards use thin borders with no heavy shadows. A tinted workflow background provides section rhythm without a full border grid. Main surfaces use a 1.25rem radius; the closing panel uses 1.75rem.
 
-Raised buttons retain their four-pixel lower edge, three-pixel press movement, 98% press scale, and native active feedback with a 75ms response. Hover and release use a 200ms ease-out. Secondary buttons use a neutral theme-aware edge. Reduced-motion settings remove spatial movement. There are no automatic or looping animations.
+Buttons use a flat fill with a hairline shadow, a 98% press scale, and native active feedback with a 75ms response. Hover and release use a 200ms ease-out. Secondary buttons use a neutral theme-aware edge. Reduced-motion settings remove spatial movement. There are no automatic or looping animations.
 
 ## Shapes
 
@@ -104,7 +104,7 @@ Primary and secondary actions use 0.5rem corners. Product, benefit, and comparis
 
 ## Components
 
-`Button.astro` owns the raised primary and secondary link treatments. The hero and closing card share the primary action label, linking to the workflow. The secondary hero action links directly to the CMS benefits. All navigation and actions retain visible keyboard focus.
+`Button.astro` owns the primary and secondary link treatments. The hero and closing card share the primary action label, linking to the workflow. The secondary hero action links directly to the CMS benefits. All navigation and actions retain visible keyboard focus.
 
 `ProductPreview.astro` is a decorative HTML illustration with a visible caption. It shows a more complete workspace: project sidebar, structured content fields, an editor body, a website preview, and file status. It is not a functioning editor or screenshot. Desktop shows the editing and preview panes together; mobile shows the preview pane.
 
@@ -116,8 +116,8 @@ Reduced-motion settings remove button translation and scaling and stop FAQ icon 
 
 ## Do's and Don'ts
 
-Do keep calls to action visually consistent and text readable in both themes. Reserve solid cobalt for actions; use dark blue accents on light surfaces and brighter blue accents on dark surfaces. Use the raised treatment for actions, while content cards remain flat. Treat illustrative UI as a visual explanation, not a screenshot or proof of a feature not present in the product. Update this file and the CSS theme together when adding visual tokens.
+Do keep calls to action visually consistent and text readable in both themes. Reserve solid cobalt for actions; use dark blue accents on light surfaces and brighter blue accents on dark surfaces. Keep actions flat with a hairline shadow, and content cards flat with thin borders. Treat illustrative UI as a visual explanation, not a screenshot or proof of a feature not present in the product. Update this file and the CSS theme together when adding visual tokens.
 
 ## Voice & Tone
 
-Plain, friendly and benefit-led, with short sentences and no jargon. Lead with the practical outcome of keeping an Astro site current. Explain that the CMS updates Markdown files in configured Astro content collections and that an agent handles broader site changes. Do not imply that every repository is CMS-editable or claim customer proof, pricing, or a public download that has not been verified. Buttons describe the action they take.
+Direct, precise and professional: state what the product does in plain terms, with no whimsy or figurative language. Lead with the practical outcome of keeping an Astro site current. Explain that the CMS updates Markdown files in configured Astro content collections and that an agent handles broader site changes. Do not imply that every repository is CMS-editable or claim customer proof, pricing, or a public download that has not been verified. Buttons describe the action they take.

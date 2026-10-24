@@ -28,10 +28,10 @@
   --spacing-hero: 4rem;
   --spacing-hero-wide: 6rem;
   --shadow-panel: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 5%)), 0 24px 80px -24px light-dark(rgb(37 62 110 / 20%), rgb(0 0 0 / 65%));
-  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 4px 0 var(--color-action-edge), 0 8px 20px rgb(0 0 0 / 24%);
-  --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
-  --shadow-action-secondary: 0 4px 0 var(--color-secondary-edge), 0 8px 16px light-dark(rgb(24 27 34 / 10%), rgb(0 0 0 / 24%));
-  --shadow-action-secondary-pressed: 0 1px 0 var(--color-secondary-edge), 0 3px 6px light-dark(rgb(24 27 34 / 8%), rgb(0 0 0 / 20%));
+  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 1px 2px rgb(23 72 182 / 40%), 0 4px 12px -2px rgb(36 94 224 / 30%);
+  --shadow-action-pressed: 0 1px 1px rgb(23 72 182 / 40%);
+  --shadow-action-secondary: 0 1px 2px light-dark(rgb(24 27 34 / 10%), rgb(0 0 0 / 40%));
+  --shadow-action-secondary-pressed: 0 0 0 light-dark(rgb(24 27 34 / 0%), rgb(0 0 0 / 0%));
 }
 
 @utility hero-ambience {
