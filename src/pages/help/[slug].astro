@@ -18,7 +18,7 @@ const { Content } = await render(entry);
 const linkClass = "transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
 <Base title={entry.data.title} description={entry.data.description}>
-  <article class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide" data-pagefind-body>
+  <article class="mx-auto max-w-6xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-body>
     <a class={`text-xs text-brand-muted ${linkClass}`} href={href("/help/")}>← Help Center</a>
     <p class="mt-8 text-xs font-medium uppercase tracking-wide text-brand-muted"><a class={linkClass} href={href(`/help/section/${entry.data.section}/`)}>{category?.name}</a>{subcategory && <span> / {subcategory.name}</span>}</p>
     <h1 class="mt-4 max-w-3xl font-medium text-4xl leading-tight tracking-tight text-balance sm:text-5xl">{entry.data.title}</h1>
