@@ -82,3 +82,54 @@
   --pagefind-ui-border-radius: 12px;
   --pagefind-ui-font: var(--font-sans);
 }
+
+.help-search .pagefind-ui__search-input {
+  height: 3.25rem;
+  padding-left: 3rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-brand-foreground);
+  background-color: var(--color-section-panel);
+  border: 1px solid var(--color-section-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-action-secondary);
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+.help-search .pagefind-ui__search-input::placeholder { color: var(--color-brand-muted); opacity: 1; font-weight: 400; }
+.help-search .pagefind-ui__search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+}
+.help-search .pagefind-ui__form::before { background-color: var(--color-brand-muted); opacity: 1; }
+.help-search .pagefind-ui__search-clear {
+  color: var(--color-brand-muted);
+  background: transparent;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+.help-search .pagefind-ui__search-clear:hover { color: var(--color-brand-foreground); background: var(--color-ui-fill); }
+.help-search .pagefind-ui__message { font-size: 0.875rem; font-weight: 500; color: var(--color-brand-muted); }
+.help-search .pagefind-ui__result { border-top: 1px solid var(--color-section-line); padding: 1.25rem 0; }
+.help-search .pagefind-ui__result:last-child { border-bottom: 1px solid var(--color-section-line); }
+.help-search .pagefind-ui__result-title { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; }
+.help-search .pagefind-ui__result-link { color: var(--color-brand-foreground); text-decoration: none; transition: color 150ms ease-out; }
+.help-search .pagefind-ui__result-link:hover { color: var(--color-brand-accent); text-decoration: none; }
+.help-search .pagefind-ui__result-excerpt { color: var(--color-brand-muted); font-size: 0.9375rem; line-height: 1.6; }
+.help-search .pagefind-ui__result-nested { color: var(--color-brand-copy); }
+.help-search .pagefind-ui__result-nested .pagefind-ui__result-link { font-size: 0.9375rem; font-weight: 500; }
+.help-search .pagefind-ui__result-inner > .pagefind-ui__result-title + .pagefind-ui__result-excerpt { margin-top: 0.25rem; }
+.help-search mark {
+  color: inherit;
+  background-color: color-mix(in srgb, var(--color-brand-accent) 22%, transparent);
+  border-radius: 0.2em;
+  padding: 0 0.1em;
+}
+.help-search .pagefind-ui__button {
+  color: var(--color-brand-foreground);
+  background: var(--color-section-panel);
+  border: 1px solid var(--color-section-line);
+  border-radius: var(--radius-panel);
+  font-weight: 500;
+}
+.help-search .pagefind-ui__button:hover { border-color: var(--color-brand-accent); }

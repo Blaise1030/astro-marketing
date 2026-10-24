@@ -103,6 +103,7 @@ The reusable library lives in `src/components/ui/`; section components compose i
 - `RuleItem` — rule-topped item with optional index, title and description.
 - `Panel` — bordered surface.
 - `Accordion` — native `details` list from `{question, answer}` items.
+- `HelpSearch` — Pagefind UI themed in `global.css` with site tokens: panel-colored input with `radius-panel`, accent focus ring, hairline-divided results, accent-tinted `mark` highlights (not yellow).
 
 `ProductPreview.astro` is a decorative illustration of the workspace, not a screenshot or proof of a feature. New sections should be built from these components; add a new one to `ui/` when a pattern repeats.
 
