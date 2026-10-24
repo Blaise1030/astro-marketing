@@ -3,30 +3,28 @@ import { href } from "../../lib/href";
 ---
 
 <section class="mx-auto max-w-5xl px-8 pt-20 pb-10 text-center sm:pt-28" id="hero">
-  <p
-    class="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-sm text-neutral-600 dark:border-neutral-800 dark:text-neutral-400"
-  >
+  <p class="mb-6 inline-flex items-center gap-2 rounded-full border border-tertiary/40 px-3 py-1 text-label text-secondary">
     <span class="size-1.5 rounded-full bg-accent"></span>
     A site builder with an agent inside
   </p>
-  <h1 class="mx-auto max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
+  <h1 class="mx-auto max-w-4xl text-h1-sm sm:text-h1">
     Describe your site.<br class="hidden sm:block" /> Orso builds it.
   </h1>
-  <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+  <p class="mx-auto mt-md max-w-2xl text-lg text-secondary">
     Ask for a new page, a new section, or a different headline in plain words. Preview every change, refine it
     with the agent, and publish when it feels right.
   </p>
   <p class="mt-10 flex flex-wrap justify-center gap-3">
     <a
-      class="inline-block rounded-lg bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+      class="inline-block rounded-lg bg-primary px-5 py-3 text-label text-neutral transition-colors hover:bg-primary/80"
       href={href("#how-it-works")}>Start building</a
     >
     <a
-      class="inline-block rounded-lg border border-neutral-300 px-5 py-3 text-sm font-semibold transition-colors hover:border-neutral-900 dark:border-neutral-700 dark:hover:border-neutral-100"
+      class="inline-block rounded-lg border border-tertiary/60 px-5 py-3 text-label transition-colors hover:border-primary"
       href={href("#features")}>See what it does</a
     >
   </p>
-  <p class="mt-8 text-sm text-neutral-500 dark:text-neutral-400">
+  <p class="mt-8 text-label text-secondary">
     Runs on your computer. Your files, your history, your site.
   </p>
 </section>

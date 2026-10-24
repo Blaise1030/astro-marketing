@@ -15,22 +15,22 @@ const steps = [
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16 sm:py-24" id="how-it-works">
+<section class="mx-auto max-w-5xl px-8 py-lg sm:py-24" id="how-it-works">
   <div class="max-w-2xl">
-    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Three steps, no code</h2>
-    <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+    <h2 class="text-h2">Three steps, no code</h2>
+    <p class="mt-3 text-lg text-secondary">
       From a rough idea to a live site, without leaving the app.
     </p>
   </div>
-  <ol class="mt-10 grid gap-6 md:grid-cols-3">
+  <ol class="mt-10 grid gap-md md:grid-cols-3">
     {
       steps.map((step, i) => (
-        <li class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
-          <span class="flex size-8 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+        <li class="rounded-xl border border-tertiary/30 p-md">
+          <span class="flex size-8 items-center justify-center rounded-full bg-accent/10 text-label text-accent">
             {i + 1}
           </span>
           <h3 class="mt-4 text-lg font-semibold">{step.title}</h3>
-          <p class="mt-2 text-neutral-600 dark:text-neutral-400">{step.body}</p>
+          <p class="mt-2 text-secondary">{step.body}</p>
         </li>
       ))
     }

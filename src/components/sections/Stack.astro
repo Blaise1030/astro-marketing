@@ -3,13 +3,13 @@ const stack = ["Astro", "Tailwind CSS", "Markdown", "GitHub", "Static hosting"];
 ---
 
 <section class="mx-auto max-w-5xl px-8 py-14" id="stack">
-  <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+  <p class="text-center text-xs font-semibold uppercase tracking-widest text-secondary">
     Built on tools that outlast trends
   </p>
-  <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-5">
+  <div class="mt-md grid grid-cols-2 gap-3 sm:grid-cols-5">
     {
       stack.map((name) => (
-        <div class="rounded-lg border border-neutral-200/80 px-4 py-3 text-center text-sm font-medium text-neutral-700 dark:border-neutral-800 dark:text-neutral-300">
+        <div class="rounded-lg border border-tertiary/30 px-4 py-3 text-center text-label text-secondary">
           {name}
         </div>
       ))
