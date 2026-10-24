@@ -1,16 +1,16 @@
 ---
 const steps = [
-  { title: "Make your change", description: "Edit the content yourself, or ask the agent to help with the rest of your site." },
-  { title: "See it come together", description: "Review the result in a live local preview. Adjust the details until they feel right." },
-  { title: "Share. Then publish.", description: "Share a preview and publish through your GitHub workflow when deployment is configured." },
+  { title: "Make a change", description: "Edit content directly, or ask the agent to handle changes to the rest of your site." },
+  { title: "Review in preview", description: "Check the result in a live local preview and refine it before anything goes out." },
+  { title: "Share and publish", description: "Share a preview, then publish through your GitHub workflow once deployment is configured." },
 ];
 ---
 
 <section id="workflow" class="bg-material/45">
   <div class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
     <div class="grid gap-6 lg:grid-cols-2 lg:items-end">
-      <div><p class="text-xs font-semibold uppercase tracking-[0.12em] text-brand-accent">A simpler rhythm</p><h2 class="mt-4 text-3xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">One update.<br /><span class="text-brand-muted">All the way through.</span></h2></div>
-      <p class="max-w-md leading-relaxed text-brand-muted lg:ml-auto">Content, code, preview, and publishing belong in the same conversation. Orso keeps them together.</p>
+      <div><p class="text-xs font-semibold uppercase tracking-[0.12em] text-brand-accent">How it works</p><h2 class="mt-4 text-3xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">One workflow,<br /><span class="text-brand-muted">start to finish.</span></h2></div>
+      <p class="max-w-md leading-relaxed text-brand-muted lg:ml-auto">Content, code, preview, and publishing happen in one place instead of across separate tools.</p>
     </div>
     <div class="mt-12 grid gap-8 md:grid-cols-3 md:gap-10">
       {steps.map((step, index) => (
@@ -21,6 +21,6 @@ const steps = [
         </article>
       ))}
     </div>
-    <p class="mt-10 text-sm text-brand-muted">Need to revisit something? Inspect earlier work and restore a checkpoint from history.</p>
+    <p class="mt-10 text-sm text-brand-muted">Every change is checkpointed. Inspect earlier work and restore it from history.</p>
   </div>
 </section>
