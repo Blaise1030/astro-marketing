@@ -8,8 +8,14 @@ import { href } from "../../lib/href";
   <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
     Edit posts and help articles in a friendly CMS that updates your Markdown files. Ask an agent for bigger site changes, preview the result, then share or publish.
   </p>
-  <p class="mt-8 flex flex-wrap justify-center gap-4">
-    <a class="inline-block rounded-lg border border-brand-ink bg-brand-ink px-5 py-2.5 font-semibold text-white dark:border-white dark:bg-white dark:text-neutral-900" href={href("#workflow")}>See how Orso works</a>
-    <a class="inline-block rounded-lg border border-current px-5 py-2.5 font-semibold" href={href("#content")}>Explore the CMS</a>
-  </p>
+  <div class="mt-8 inline-flex flex-col overflow-hidden rounded-2xl border border-brand-blue-border bg-linear-to-b from-brand-blue-top to-brand-blue-bottom text-white shadow-action sm:flex-row">
+    <a class="flex min-h-13 items-center justify-center gap-2.5 px-6 py-3 text-base font-semibold transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white" href={href("#workflow")}>
+      <svg aria-hidden="true" class="size-5 shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m8 16-4 4 1-5-3-3 5-1 2-5 3 3" /><path d="M12 15c3.5-1.4 6.8-4.7 8-11-6.3 1.2-9.6 4.5-11 8l3 3Z" /><circle cx="15.5" cy="8.5" r="1" /></svg>
+      See how Orso works
+    </a>
+    <a class="flex min-h-13 items-center justify-center gap-2.5 border-t border-white/60 px-6 py-3 text-base font-semibold transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white sm:border-l sm:border-t-0" href={href("#content")}>
+      <svg aria-hidden="true" class="size-5 shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" /><path d="M14 3v5h5M9 13h6M9 17h6" /></svg>
+      Explore the CMS
+    </a>
+  </div>
 </section>

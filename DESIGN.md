@@ -3,10 +3,12 @@ version: alpha
 name: Orso
 description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
-  primary: "#171717"
+  primary: "#1d57e8"
   secondary: "#525252"
   tertiary: "#a3a3a3"
   neutral: "#ffffff"
+  actionTop: "#5b8cf6"
+  actionBorder: "#7fa5f7"
 typography:
   h1:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -45,7 +47,7 @@ A clean, neutral marketing site: generous whitespace, a single dark accent and a
 
 ## Colors
 
-`primary` is near-black and fills the main call-to-action button; `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
+`primary` is the deeper blue at the bottom of the call-to-action gradient. `actionTop` is its lighter top stop and `actionBorder` defines its edge. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
 
 ## Typography
 
@@ -57,19 +59,19 @@ Content sits in a centred column up to 64rem wide with 2rem side padding. The la
 
 ## Elevation & Depth
 
-The design is flat: there are no shadows. Depth comes from thin, low-contrast borders around cards and FAQ items.
+Cards and FAQ items stay flat with thin, low-contrast borders. Calls to action have a small blue-tinted shadow, recorded as `--shadow-action` in the CSS theme.
 
 ## Shapes
 
-Buttons use 0.5rem corners and cards use slightly rounder 0.75rem corners; borders are 1px. No pill shapes are used today; `full` is there for future badges and avatars.
+The paired hero actions share one 1rem rounded outline, with a thin divider between them. The closing call to action has the same radius. Cards use 0.75rem corners and 1px borders. No pill shapes are used today; `full` is there for future badges and avatars.
 
 ## Components
 
-Primary buttons use the `--color-brand-ink` theme token with white text, secondary buttons are outlined with the current text colour, and both are padded 1.25rem by 0.625rem. The `@theme` block in `src/styles/global.css` also records the muted and border colour tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
+The hero actions form one joined blue gradient control with white line icons and labels. The closing action repeats the gradient as a single button. Links retain visible keyboard focus. The `@theme` block in `src/styles/global.css` records the action colours, shadow, and neutral tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section and use utility classes with `dark:` variants for every colour. Don't add shadows, extra accent colours or custom font files without updating this file first.
+Do keep calls to action visually consistent and keep text readable in light and dark modes. Use the blue gradient only for primary actions. Update this file and the CSS theme together when adding visual tokens.
 
 ## Voice & Tone
 

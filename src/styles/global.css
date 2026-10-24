@@ -2,7 +2,10 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-ink: #171717;
   --color-brand-muted: #525252;
   --color-brand-line: #a3a3a3;
+  --color-brand-blue-top: #5b8cf6;
+  --color-brand-blue-bottom: #1d57e8;
+  --color-brand-blue-border: #7fa5f7;
+  --shadow-action: 0 2px 4px rgb(19 57 133 / 25%);
 }
