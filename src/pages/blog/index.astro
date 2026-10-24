@@ -4,7 +4,7 @@ import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/href";
 const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.localeCompare(a.data.pubDate) || a.id.localeCompare(b.id));
 ---
-<Base title="Blog" description="News and stories from our team.">
+<Base title="Orso Blog" description="Product notes and practical guides for maintaining an Astro site with Orso.">
   <section class="mx-auto max-w-5xl px-8 py-12">
     <h1 class="mb-8 text-4xl font-bold tracking-tight">Blog</h1>
     {posts.length === 0 ? <p>No blog posts yet. Check back soon for news and stories.</p> : (

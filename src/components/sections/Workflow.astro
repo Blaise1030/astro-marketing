@@ -1,0 +1,34 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Open your site",
+    description: "Start with the Astro marketing template or open a site from GitHub. Orso works with the project on your computer.",
+  },
+  {
+    number: "02",
+    title: "Make your change",
+    description: "Edit a blog post or help article in Content. For layout, design, or code changes, describe what you need to the agent.",
+  },
+  {
+    number: "03",
+    title: "See it, then share it",
+    description: "Watch the local preview update, review the result, and share a preview or publish your change through GitHub.",
+  },
+];
+---
+
+<section class="mx-auto max-w-5xl px-8 py-16" id="workflow">
+  <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400">How Orso works</p>
+  <h2 class="mb-4 text-3xl font-bold tracking-tight">From an idea to an updated site</h2>
+  <p class="mb-8 max-w-2xl text-neutral-600 dark:text-neutral-400">One workspace for everyday edits and bigger changes.</p>
+  <ol class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
+    {steps.map((step) => (
+      <li class="rounded-xl border border-neutral-400/30 p-5">
+        <span class="text-sm font-semibold text-neutral-500 dark:text-neutral-400">{step.number}</span>
+        <h3 class="mb-2 mt-4 text-lg font-semibold">{step.title}</h3>
+        <p class="text-neutral-600 dark:text-neutral-400">{step.description}</p>
+      </li>
+    ))}
+  </ol>
+</section>

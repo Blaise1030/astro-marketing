@@ -1,7 +1,7 @@
 ---
 version: alpha
-name: Acme
-description: Ship your product story faster with Acme.
+name: Orso
+description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
   primary: "#171717"
   secondary: "#525252"
@@ -53,7 +53,7 @@ The site uses the system sans-serif stack throughout. Headings are bold with tig
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding. Sections are separated by 4rem of vertical space, and card grids wrap automatically with a 1.5rem gap.
+Content sits in a centred column up to 64rem wide with 2rem side padding. The landing page moves from the product promise through CMS features, the three-step workflow, product fit, FAQ, and a closing call to action. Sections are separated by 4rem of vertical space, and card grids wrap automatically with a 1.5rem gap.
 
 ## Elevation & Depth
 
@@ -65,7 +65,7 @@ Buttons use 0.5rem corners and cards use slightly rounder 0.75rem corners; borde
 
 ## Components
 
-Primary buttons are solid `primary` with white text, secondary buttons are outlined with the current text colour, and both are padded 1.25rem by 0.625rem. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, testimonials, pricing plans and FAQ items.
+Primary buttons use the `--color-brand-ink` theme token with white text, secondary buttons are outlined with the current text colour, and both are padded 1.25rem by 0.625rem. The `@theme` block in `src/styles/global.css` also records the muted and border colour tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
 
 ## Do's and Don'ts
 
@@ -73,4 +73,4 @@ Do keep one solid call-to-action per section and use utility classes with `dark:
 
 ## Voice & Tone
 
-Plain, friendly and benefit-led, with short sentences and no jargon. Headlines promise an outcome ("Launch your story, not your backlog") and buttons use direct verbs such as "Get started".
+Plain, friendly and benefit-led, with short sentences and no jargon. Lead with the practical outcome of keeping an Astro site current. Explain that the CMS updates Markdown files in configured Astro content collections and that an agent handles broader site changes. Do not imply that every repository is CMS-editable or claim customer proof, pricing, or a public download that has not been verified. Buttons describe the action they take.

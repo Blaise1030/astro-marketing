@@ -1,19 +1,29 @@
 ---
 const features = [
-  { title: "Fast by default", description: "Static pages that load instantly on any device." },
-  { title: "Easy to edit", description: "Change copy in plain files; the layout takes care of itself." },
-  { title: "Ready to deploy", description: "Build once and publish anywhere static sites are hosted." },
+  {
+    title: "Edit Markdown without opening an editor",
+    description: "Write and update entries in Astro content collections through a CMS. Orso saves the changes to your site's Markdown files, including their structured fields.",
+  },
+  {
+    title: "Make changes beyond content",
+    description: "Ask a coding agent to change copy, layout, design, or site code. Review its work in the same place you edit content.",
+  },
+  {
+    title: "Preview before publishing",
+    description: "See the site update locally. Share a preview for feedback or publish a GitHub-backed change when it is ready.",
+  },
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16" id="features">
-  <h2 class="mb-6 text-3xl font-bold tracking-tight">Everything you need to launch</h2>
-  <p class="mb-6">Three reasons teams pick Acme.</p>
+<section class="mx-auto max-w-5xl px-8 py-16" id="content">
+  <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400">Content, code, and preview</p>
+  <h2 class="mb-4 text-3xl font-bold tracking-tight">A CMS that works with your site's files</h2>
+  <p class="mb-8 max-w-2xl text-neutral-600 dark:text-neutral-400">Your content lives in your Astro project. Orso makes the everyday edits approachable and gives you help when the change goes further.</p>
   <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
-    {features.map((f) => (
+    {features.map((feature) => (
       <div class="rounded-xl border border-neutral-400/30 p-5">
-        <h3 class="mb-2 text-lg font-semibold">{f.title}</h3>
-        <p>{f.description}</p>
+        <h3 class="mb-2 text-lg font-semibold">{feature.title}</h3>
+        <p class="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
       </div>
     ))}
   </div>

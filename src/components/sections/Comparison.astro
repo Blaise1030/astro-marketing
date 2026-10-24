@@ -1,0 +1,39 @@
+---
+const choices = [
+  {
+    name: "WordPress",
+    orso: "Your site is already built with Astro, and you want to edit its Markdown content without moving it into WordPress.",
+    other: "Choose WordPress for its extensive plugin ecosystem and traditional publishing tools.",
+  },
+  {
+    name: "Wix, Framer, or Webflow",
+    orso: "You want a friendly editing workflow while keeping your existing site and deployment outside a visual website platform.",
+    other: "Choose a visual builder when you want to design and host the whole site there.",
+  },
+  {
+    name: "Builder.io",
+    orso: "You want a focused local workspace and a CMS that writes directly to your Astro content files.",
+    other: "Choose Builder.io for a broader visual content and development platform.",
+  },
+];
+---
+
+<section class="mx-auto max-w-5xl px-8 py-16" id="why-orso">
+  <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400">Where Orso fits</p>
+  <h2 class="mb-4 text-3xl font-bold tracking-tight">Built for the site you keep in GitHub</h2>
+  <p class="max-w-3xl text-neutral-600 dark:text-neutral-400">
+    Orso is for teams that have an Astro site and want a friendlier way to keep it current. The CMS updates the Markdown files in your configured content collections. The agent helps with changes beyond content. Your site stays in your repository and follows your deployment workflow.
+  </p>
+  <div class="mt-8 rounded-xl border border-neutral-400/30 p-5">
+    <h3 class="text-lg font-semibold">How to choose</h3>
+    <ul class="mt-4 space-y-5">
+      {choices.map((choice) => (
+        <li>
+          <strong>{choice.name}</strong>
+          <p class="mt-1 text-neutral-600 dark:text-neutral-400"><span class="font-semibold">Choose Orso when:</span> {choice.orso}</p>
+          <p class="mt-1 text-neutral-600 dark:text-neutral-400">{choice.other}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
