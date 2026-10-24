@@ -4,8 +4,11 @@
 @theme {
   --color-brand-muted: #525252;
   --color-brand-line: #a3a3a3;
-  --color-brand-blue-top: #5b8cf6;
-  --color-brand-blue-bottom: #1d57e8;
-  --color-brand-blue-border: #7fa5f7;
-  --shadow-action: 0 2px 4px rgb(19 57 133 / 25%);
+  --color-action-top: #4b4b4b;
+  --color-action-bottom: #171717;
+  --color-action-edge: #080808;
+  --shadow-action-raised: 0 4px 0 var(--color-action-edge), 0 8px 16px rgb(0 0 0 / 18%);
+  --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
+  --shadow-action-secondary: 0 4px 0 #a3a3a3, 0 8px 16px rgb(0 0 0 / 12%);
+  --shadow-action-secondary-pressed: 0 1px 0 #a3a3a3, 0 3px 6px rgb(0 0 0 / 10%);
 }

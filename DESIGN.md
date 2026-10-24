@@ -3,12 +3,12 @@ version: alpha
 name: Orso
 description: Keep your Astro site current with a Markdown CMS, an AI agent, and live preview.
 colors:
-  primary: "#1d57e8"
+  primary: "#171717"
   secondary: "#525252"
   tertiary: "#a3a3a3"
   neutral: "#ffffff"
-  actionTop: "#5b8cf6"
-  actionBorder: "#7fa5f7"
+  actionTop: "#4b4b4b"
+  actionEdge: "#080808"
 typography:
   h1:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -47,7 +47,7 @@ A clean, neutral marketing site: generous whitespace, a single dark accent and a
 
 ## Colors
 
-`primary` is the deeper blue at the bottom of the call-to-action gradient. `actionTop` is its lighter top stop and `actionBorder` defines its edge. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
+`primary` is the charcoal base of the main call to action. `actionTop` is its lighter top surface and `actionEdge` is the darker ledge below it. These values are mirrored in the `@theme` block of `src/styles/global.css`. `secondary` is a mid grey for supporting copy; `tertiary` is a light grey used for soft card borders; `neutral` is the white page background (it inverts to near-black in dark mode).
 
 ## Typography
 
@@ -59,19 +59,19 @@ Content sits in a centred column up to 64rem wide with 2rem side padding. The la
 
 ## Elevation & Depth
 
-Cards and FAQ items stay flat with thin, low-contrast borders. Calls to action have a small blue-tinted shadow, recorded as `--shadow-action` in the CSS theme.
+Cards and FAQ items stay flat with thin, low-contrast borders. Buttons look raised through a four-pixel lower edge and a soft ambient shadow. On press, they move down three pixels and the edge becomes one pixel high. The raised and pressed shadows are recorded in the CSS theme.
 
 ## Shapes
 
-The paired hero actions share one 1rem rounded outline, with a thin divider between them. The closing call to action has the same radius. Cards use 0.75rem corners and 1px borders. No pill shapes are used today; `full` is there for future badges and avatars.
+Hero actions are separate buttons with 0.75rem corners and space between them. The closing call to action has the same radius. Cards use 0.75rem corners and 1px borders. No pill shapes are used today; `full` is there for future badges and avatars.
 
 ## Components
 
-The hero actions form one joined blue gradient control with white line icons and labels. The closing action repeats the gradient as a single button. Links retain visible keyboard focus. The `@theme` block in `src/styles/global.css` records the action colours, shadow, and neutral tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
+The hero has a charcoal primary action and a lighter secondary action. Both have a subtle vertical gradient, a distinct lower edge, and a pressed state. The closing action repeats the primary treatment. Links retain visible keyboard focus, and reduced-motion settings remove movement. The `@theme` block in `src/styles/global.css` records the action colours, shadows, and neutral tokens. Cards are bordered boxes with 1.25rem padding and the same shape is reused for features, workflow steps, product fit and FAQ items.
 
 ## Do's and Don'ts
 
-Do keep calls to action visually consistent and keep text readable in light and dark modes. Use the blue gradient only for primary actions. Update this file and the CSS theme together when adding visual tokens.
+Do keep calls to action visually consistent and keep text readable in light and dark modes. Use the raised treatment for actions, while content cards remain flat. Update this file and the CSS theme together when adding visual tokens.
 
 ## Voice & Tone
 
