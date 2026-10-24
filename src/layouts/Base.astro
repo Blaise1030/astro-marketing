@@ -20,7 +20,7 @@ const base = import.meta.env.BASE_URL;
   </head>
   <body class="bg-neutral font-sans text-primary antialiased">
     <header class="border-b border-tertiary/30">
-      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-5">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-6">
         <a class="text-lg font-bold tracking-tight" href={base}>{site.name}</a>
         <nav class="flex flex-wrap items-center gap-4 text-label text-secondary sm:gap-md">
           {site.nav.map((l) => (
@@ -31,7 +31,7 @@ const base = import.meta.env.BASE_URL;
     </header>
     <main><slot /></main>
     <footer class="border-t border-tertiary/30">
-      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-8 text-label text-secondary">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-10 text-label text-secondary">
         <p>{site.footer.text}</p>
         <nav class="flex flex-wrap gap-md">
           {site.footer.links.map((l) => (

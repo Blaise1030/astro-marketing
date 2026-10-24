@@ -3,53 +3,53 @@ version: alpha
 name: Orso
 description: A free studio for your site, and the agent you already pay for.
 colors:
-  primary: "#171717"
-  secondary: "#525252"
-  tertiary: "#a3a3a3"
-  neutral: "#ffffff"
-  accent: "#2563eb"
+  primary: "#1f1d1a"
+  secondary: "#6b665e"
+  tertiary: "#d9d3c7"
+  neutral: "#faf7f2"
+  accent: "#5c6f55"
 typography:
   h1-sm:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 3rem
-    fontWeight: 700
-    lineHeight: 1.05
+    fontWeight: 600
+    lineHeight: 1.03
   h1:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 4.5rem
-    fontWeight: 700
-    lineHeight: 1.05
+    fontWeight: 600
+    lineHeight: 1.03
   h2:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 2.25rem
-    fontWeight: 700
-    lineHeight: 1.2
+    fontWeight: 600
+    lineHeight: 1.15
   body-md:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 1rem
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.65
   label:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.875rem
-    fontWeight: 600
+    fontWeight: 500
     lineHeight: 1.5
 rounded:
   sm: 0.25rem
-  md: 0.375rem
-  lg: 0.5rem
-  xl: 0.75rem
-  2xl: 1rem
+  md: 0.5rem
+  lg: 0.625rem
+  xl: 0.875rem
+  2xl: 1.25rem
   full: 9999px
 spacing:
   sm: 1rem
-  md: 1.5rem
-  lg: 4rem
+  md: 1.75rem
+  lg: 5.5rem
 ---
 
 ## Overview
 
-The site mirrors the product: a quiet, light interface where the work is the star. Near-black type on white, one restrained blue accent, thin borders and generous whitespace. No decoration competes with the copy or the product sketch.
+Warm, quiet and uncluttered: the page is a sheet of warm paper, not a white screen. Soft near-black ink, one muted sage accent, hairline borders and a lot of air. Scandinavian in the functional sense — natural materials, restrained colour, nothing decorative competing with the copy or the product sketch. The calm is the point.
 
 ## Tokens
 
@@ -62,25 +62,27 @@ The site mirrors the product: a quiet, light interface where the work is the sta
 
 ## Colors
 
-`primary` is near-black and fills the main call-to-action; `secondary` is a mid grey for supporting copy; `tertiary` is a mid-light grey used at low opacity for hairline borders and at higher opacity for placeholder shapes; `neutral` is the white page background. `accent` is a single blue, used only for small signals — the hero badge dot, step numbers, the send button in the product sketch. Never use it for large fills.
+`primary` is a warm near-black (`#1f1d1a`) and fills the main call-to-action; `secondary` is a warm mid grey for supporting copy; `tertiary` is warm sand, used at low opacity for hairline borders and at higher opacity for placeholder shapes; `neutral` is warm paper (`#faf7f2`), the page surface. `accent` is a single muted sage, used only for small signals — the hero badge dot, step numbers, the send button in the product sketch. Never use it for large fills.
 
-In dark mode `primary`, `secondary` and `neutral` flip together (near-white text on a near-black page) through a `prefers-color-scheme` override, so a component written with tokens needs no `dark:` colour classes. `tertiary` and `accent` stay put; surfaces that need a slight lift use `bg-primary/[0.03]`.
+In dark mode `primary`, `secondary` and `neutral` flip to warm charcoal (`#141311`) with ink at `#ede9e1` through a `prefers-color-scheme` override, so a component written with tokens needs no `dark:` colour classes. `tertiary` stays put, the accent lightens to `#8fa886` for legibility, and surfaces that need a slight lift use `bg-primary/[0.03]`.
+
+Never use pure black or pure white. Warmth is what separates this palette from a default grey interface.
 
 ## Typography
 
-The system sans-serif stack throughout. The hero `h1` is responsive: `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, at weight 700 with tight tracking and a 1.05 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` (regular 1rem), and buttons, navigation and labels use `text-label` (semibold 0.875rem). Section eyebrows are 0.75rem, uppercase, wide-tracked and `secondary`.
+The system sans-serif stack throughout. Headings sit at weight 600, not 700: large, quiet and tight (`-0.03em` on the hero, `-0.025em` on section headings). The hero `h1` is responsive — `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, with a 1.03 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` at 1.65 line height for airiness, and buttons, navigation and labels use `text-label` at weight 500. Section eyebrows are 0.75rem, uppercase, wide-tracked and `secondary`.
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is centred with 5rem–7rem of top space; other sections are separated by 4rem of vertical space. Card grids wrap automatically with a 1.5rem gap (three columns on desktop where the content allows).
+Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is centred with 6rem–8rem of top space; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border.
 
 ## Elevation & Depth
 
-The design is flat: no shadows and no gradients. Depth comes from hairline borders (`tertiary` at 30% opacity) and a barely-there surface fill (`primary` at 3–4%) behind the product sketch and the closing call-to-action.
+The design is flat: no shadows and no gradients. Depth comes from warm hairline borders (`tertiary` at 30% opacity) and a barely-there ink wash (`primary` at 3–4%) behind the product sketch and the closing call-to-action.
 
 ## Shapes
 
-Buttons use 0.5rem corners, cards 0.75rem, the product sketch and the closing panel 1rem. Borders are 1px. Pills are reserved for the hero badge; avatars and dots use `full`.
+Buttons use 0.625rem corners, cards 0.875rem, the product sketch and the closing panel 1.25rem. Borders are 1px. Pills are reserved for the hero badge; avatars and dots use `full`.
 
 ## Components
 
@@ -88,7 +90,7 @@ Primary buttons are solid `primary` with `neutral` text; secondary buttons are o
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use the accent for buttons or backgrounds, and don't reach for raw palette values like `neutral-600` when a token exists.
+Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use the accent for buttons or backgrounds, don't use pure black or pure white, and don't reach for raw palette values like `neutral-600` when a token exists.
 
 ## Voice & Tone
 
