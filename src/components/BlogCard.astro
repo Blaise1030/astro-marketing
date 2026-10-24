@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import { href } from "../lib/href";
+import { categoryOf, formatDate, type Post } from "../lib/blog";
+const { post } = Astro.props as { post: Post };
+---
+<article class="group" data-category={categoryOf(post)}>
+  <a class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/blog/${post.id}/`)}>
+    <div class="aspect-[3/2] overflow-hidden bg-ui-fill">
+      {post.data.coverImage
+        ? <Image class="h-full w-full object-cover" src={post.data.coverImage} alt={post.data.coverAlt!} widths={[400, 800]} sizes="(min-width: 1024px) 24rem, 50vw" />
+        : <div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div>}
+    </div>
+    <div class="mt-5 flex items-baseline justify-between text-xs font-medium uppercase tracking-wide text-brand-muted">
+      <span>{categoryOf(post)}</span>
+      <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>
+    </div>
+    <h2 class="mt-4 text-xl font-medium tracking-tight text-balance transition-colors group-hover:text-brand-accent">{post.data.title}</h2>
+    <p class="mt-3 leading-relaxed text-brand-muted">{post.data.description}</p>
+  </a>
+</article>
