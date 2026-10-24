@@ -1,17 +1,24 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import HelpCard from "../../components/HelpCard.astro";
-import HelpFilters from "../../components/HelpFilters.astro";
-import { sectionsOf, sortDocs } from "../../lib/help";
-const docs = sortDocs(await getCollection("helpDocs"));
+import HelpSearch from "../../components/HelpSearch.astro";
+import { href } from "../../lib/href";
+import { buildCategories, categoryBlurbs } from "../../lib/help";
+const categories = buildCategories(await getCollection("helpDocs"));
 ---
 <Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing with Orso.">
   <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <h1 class="sr-only">Help</h1>
-    <HelpFilters sections={sectionsOf(docs)} />
-    {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : (
-      <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{docs.map((doc) => <HelpCard doc={doc} />)}</div>
+    <div class="mx-auto max-w-2xl text-center">
+      <h1 class="font-semibold text-4xl tracking-tight text-balance sm:text-5xl">Orso Help Center</h1>
+      <div class="mt-8"><HelpSearch /></div>
+    </div>
+    {categories.length === 0 ? <p class="mt-16 text-center">No help docs yet. Check back soon for guides and answers.</p> : (
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{categories.map((category) => (
+        <a class="group rounded-2xl border border-section-line bg-section-panel p-6 transition-colors hover:border-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/help/section/${category.slug}/`)}>
+          <h2 class="text-base font-semibold tracking-tight transition-colors group-hover:text-brand-accent">{category.name}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-brand-muted">{categoryBlurbs[category.name] ?? `${category.docs.length} ${category.docs.length === 1 ? "article" : "articles"}`}</p>
+        </a>
+      ))}</div>
     )}
   </section>
 </Base>

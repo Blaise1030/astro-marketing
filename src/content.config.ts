@@ -27,7 +27,10 @@ const helpDocs = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    /** Top-level help category, shown as a card on the Help home. */
     section: z.string(),
+    /** Optional group inside the category. */
+    subcategory: z.string().optional(),
     order: z.number(),
   }),
 });

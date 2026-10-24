@@ -69,3 +69,16 @@
 @utility hero-glow {
   background-image: radial-gradient(ellipse 60% 50% at 50% 100%, oklch(52% 0.22 268 / 35%), transparent 70%);
 }
+
+/* Pagefind UI, themed with the site tokens. */
+.help-search {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--color-brand-accent);
+  --pagefind-ui-text: var(--color-brand-foreground);
+  --pagefind-ui-background: var(--color-section-panel);
+  --pagefind-ui-border: var(--color-section-line);
+  --pagefind-ui-tag: var(--color-ui-fill);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-font: var(--font-sans);
+}

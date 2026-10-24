@@ -1,23 +1,32 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../../layouts/Base.astro";
-import HelpCard from "../../../components/HelpCard.astro";
-import HelpFilters from "../../../components/HelpFilters.astro";
-import { sectionsOf, slugify, sortDocs } from "../../../lib/help";
+import { href } from "../../../lib/href";
+import { buildCategories, categoryBlurbs } from "../../../lib/help";
 export async function getStaticPaths() {
-  const docs = sortDocs(await getCollection("helpDocs"));
-  const sections = sectionsOf(docs);
-  return sections.map((section) => ({
-    params: { section: slugify(section) },
-    props: { section, sections, docs: docs.filter((doc) => doc.data.section === section) },
-  }));
+  const categories = buildCategories(await getCollection("helpDocs"));
+  return categories.map((category) => ({ params: { section: category.slug }, props: { category } }));
 }
-const { section, sections, docs } = Astro.props;
+const { category } = Astro.props;
+const linkClass = "transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
-<Base title={`${section} · Orso Help`} description={`Orso help guides: ${section}.`}>
-  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <h1 class="sr-only">{section}</h1>
-    <HelpFilters sections={sections} active={section} />
-    <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{docs.map((doc) => <HelpCard doc={doc} />)}</div>
+<Base title={`${category.name} · Orso Help`} description={categoryBlurbs[category.name] ?? `Orso help guides: ${category.name}.`}>
+  <section class="mx-auto max-w-4xl px-6 py-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
+    <a class="text-xs text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href("/help/")}>← Help Center</a>
+    <h1 class="mt-8 font-semibold text-4xl tracking-tight text-balance sm:text-5xl">{category.name}</h1>
+    {categoryBlurbs[category.name] && <p class="mt-4 text-lg leading-relaxed text-brand-muted">{categoryBlurbs[category.name]}</p>}
+    {category.loose.length > 0 && (
+      <ul class="mt-10 divide-y divide-section-line border-y border-section-line">{category.loose.map((doc) => (
+        <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
+      ))}</ul>
+    )}
+    {category.subcategories.map((sub) => (
+      <section class="mt-12">
+        <h2 class="text-xs font-medium uppercase tracking-wide text-brand-muted">{sub.name}</h2>
+        <ul class="mt-4 divide-y divide-section-line border-y border-section-line">{sub.docs.map((doc) => (
+          <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
+        ))}</ul>
+      </section>
+    ))}
   </section>
 </Base>
