@@ -1,41 +1,21 @@
 ---
 import Button from "../Button.astro";
 import ProductPreview from "../ProductPreview.astro";
+const details = ["Your Markdown files", "Live preview", "Your GitHub workflow"];
 ---
 
-<section id="hero">
-  <div aria-hidden="true" class="frame-hatch h-3 border-y border-section-line"></div>
-  <div class="px-6 py-hero text-center sm:px-8 sm:py-hero-wide">
-    <p class="font-mono text-xs tracking-wide text-brand-accent">ORSO / THE ASTRO WORKSPACE</p>
-    <h1 class="mx-auto mt-5 max-w-4xl text-display font-semibold text-balance">Your Astro site,<br /><span class="text-brand-accent">easy to keep current.</span></h1>
-    <p class="mx-auto mt-5 max-w-2xl font-mono text-sm leading-relaxed text-brand-muted sm:text-base">A Markdown CMS and a site agent. Edit the content, shape the site, and preview every change in one workspace.</p>
+<section class="hero-ambience overflow-hidden" id="hero">
+  <div class="mx-auto max-w-6xl px-6 pb-12 pt-16 text-center sm:px-8 sm:pb-20 sm:pt-24">
+    <p class="inline-flex items-center gap-2 rounded-full border border-section-line bg-section-panel px-3.5 py-1.5 text-xs font-medium text-brand-copy"><span aria-hidden="true" class="size-1.5 rounded-full bg-action-bottom"></span>A little more freedom for your Astro site</p>
+    <h1 class="mx-auto mt-7 max-w-5xl text-display font-semibold text-balance">Your Astro site.<br /><span class="font-editorial font-normal italic text-brand-accent">Easy to keep current.</span></h1>
+    <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-brand-muted sm:text-lg">A friendly Markdown CMS. An agent for the bigger changes. One place to edit, preview, and publish the site you own.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4 pb-1">
-      <Button href="#content">Explore the CMS <span aria-hidden="true">↗</span></Button>
-      <Button href="#workflow" variant="secondary">See the workflow <span aria-hidden="true">↗</span></Button>
+      <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
+      <Button href="#content" variant="secondary">Explore the CMS</Button>
     </div>
+    <ul class="mt-7 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-brand-muted">
+      {details.map((detail) => <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="size-3.5 text-brand-accent" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 8 3 3 7-7" /></svg>{detail}</li>)}
+    </ul>
+    <div class="mt-12 sm:mt-16"><ProductPreview /></div>
   </div>
-
-  <div class="grid border-t border-section-line lg:grid-cols-2">
-    <article class="grid grid-cols-[4.5rem_minmax(0,1fr)] border-b border-section-line sm:grid-cols-[7rem_minmax(0,1fr)] lg:border-b-0 lg:border-r">
-      <div aria-hidden="true" class="blueprint-grid flex items-center justify-center border-r border-section-line">
-        <svg class="size-9 text-brand-accent sm:size-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6h17l8 8v28H12zM29 6v9h8M18 23h13M18 29h13M18 35h8" /></svg>
-      </div>
-      <div class="p-5 sm:p-6">
-        <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Content CMS</h2><span class="font-mono text-xs text-brand-muted">01 / CONTENT</span></div>
-        <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">A friendly editor for the Markdown files in your Astro collections. Your content stays with your code.</p>
-      </div>
-    </article>
-    <article class="grid grid-cols-[4.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)]">
-      <div aria-hidden="true" class="blueprint-grid flex items-center justify-center border-r border-section-line">
-        <svg class="size-9 text-brand-accent sm:size-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m24 6 4.5 13.5L42 24l-13.5 4.5L24 42l-4.5-13.5L6 24l13.5-4.5L24 6Z" /></svg>
-      </div>
-      <div class="p-5 sm:p-6">
-        <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Site agent</h2><span class="font-mono text-xs text-brand-muted">02 / CODE</span></div>
-        <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">Ask for bigger changes to copy, components, and styles. See the result before sharing or publishing.</p>
-      </div>
-    </article>
-  </div>
-
-  <div aria-hidden="true" class="frame-hatch h-4 border-y border-section-line"></div>
-  <div class="bg-section-panel/30 p-3 sm:p-5"><ProductPreview /></div>
 </section>

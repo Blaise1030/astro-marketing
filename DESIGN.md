@@ -6,11 +6,11 @@ colors:
   primary: "#245ee0"
   secondary: "#5d6471"
   tertiary: "#d7dbe3"
-  neutral: "#f9fafb"
+  neutral: "#fcfcfd"
   accent: "#1748b6"
   actionTop: "#396fed"
   actionEdge: "#1748b6"
-  sectionInk: "#f9fafb"
+  sectionInk: "#fcfcfd"
   sectionPanel: "#ffffff"
   sectionLine: "#d7dbe3"
   material: "#f0f2f6"
@@ -18,20 +18,20 @@ darkColors:
   foreground: "#f5f5f5"
   secondary: "#a6a9b0"
   accent: "#8aafff"
-  sectionInk: "#0a0a0a"
+  sectionInk: "#0b0d12"
   sectionPanel: "#15171c"
   sectionLine: "#2b2e36"
   material: "#101216"
 typography:
   h1:
     fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)"
+    fontSize: "clamp(2.75rem, 6vw, 5rem)"
     fontWeight: 600
-    lineHeight: 1.08
+    lineHeight: 1.04
   h2:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
     fontSize: 3rem
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1.12
   body-md:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -47,17 +47,18 @@ rounded:
   sm: 0.25rem
   md: 0.375rem
   lg: 0.5rem
+  panel: 1.25rem
   full: 9999px
 spacing:
   sm: 1rem
   md: 1.5rem
-  lg: 3rem
-  sectionWide: 5rem
+  lg: 4rem
+  sectionWide: 6.5rem
 ---
 
 ## Overview
 
-A site that follows the visitor's system light or dark preference, with cobalt blue actions, precise system typography, and a compact bordered layout inspired by the current https://zed.dev/ page. A two-column introduction presents Orso's CMS and site agent above a large workspace illustration. Numbered sections and thin grid lines organize the page. The interaction feedback and accessibility preferences from the apple-design pass remain in place.
+A calm product-led landing page with a centred promise, blue editorial accents, one primary workspace showcase, and a clear story from editing to publishing. The composition uses generous whitespace, soft surfaces, and restrained borders. It follows system light and dark preferences automatically and retains the raised cobalt blue action treatment. The layout prioritizes the product and avoids repeating the same UI illustration across multiple sections.
 
 ## Colors
 
@@ -69,7 +70,7 @@ A site that follows the visitor's system light or dark preference, with cobalt b
 | Body copy | #454b57 | #d4d4d4 |
 | Muted copy | #5d6471 | #a6a9b0 |
 | Blue accent / focus | #1748b6 | #8aafff |
-| Page canvas | #f9fafb | #0a0a0a |
+| Page canvas | #fcfcfd | #0b0d12 |
 | Panel | #ffffff | #15171c |
 | Border | #d7dbe3 | #2b2e36 |
 | Material | #f0f2f6 | #101216 |
@@ -81,31 +82,33 @@ The palette and theme-aware shadows are defined together in `src/styles/global.c
 
 ## Typography
 
-The landing page uses the platform system sans-serif stack, beginning with -apple-system and BlinkMacSystemFont. Hero and closing headlines use the shared `display` size: clamp(2.25rem, 4.5vw, 3.5rem), 1.08 line height, and -0.035em tracking. The hero is semibold; the closing headline and section headings use medium weight. Product headings grow from 1.875rem to 3rem with 1.12 line height. Body copy is 1rem; compact product introductions are 0.875rem. The hero description, section numbers, labels, and illustration caption use monospace typography. Blog and Help retain serif article titles via `font-editorial`. Buttons are 0.875rem semibold.
+System sans-serif is the base for navigation, body copy, and section headings. The hero uses the shared `display` token: clamp(2.75rem, 6vw, 5rem), 1.04 line height, and -0.035em tracking. Its first line is semibold sans-serif; the blue second line uses Georgia in regular italic. This editorial accent repeats selectively in the ownership and closing headings. Section headings are semibold and grow from 1.875rem to 3rem. Small eyebrows are 0.75rem, semibold, with 0.12em tracking. Monospace appears only inside illustrative files and code. Supporting copy uses relaxed line height; buttons remain 0.875rem semibold.
 
 ## Layout
 
-The landing page is a centred 72rem frame with vertical borders that continue through the header, main content, and footer. `Base` exposes an optional `framed` prop for this treatment; Blog and Help keep their existing layout. Interior padding is 1.5rem on mobile and 2rem at larger widths. Section spacing is 3rem on mobile and 5rem on larger screens.
+The landing page uses full-width backgrounds with 72rem interior containers and 1.5rem/2rem responsive side padding. It no longer uses the full-page vertical frame, numbered section rails, blueprint icon columns, or hatch strips. Section padding is 4rem on mobile and 6.5rem on larger screens.
 
-The hero centres its label, heading, supporting text, and primary/secondary action row. Its `hero` spacing token provides 4rem vertical padding on mobile, growing to the `hero-wide` token at 6rem. Two equal CMS and site-agent panels with square blue icon rails follow the hero introduction. A diagonal hatch strip separates them from the full-width workspace illustration. CMS and preview details follow in paired panels. Desktop section introductions pair headings on the left with descriptions on the right. The capability and comparison sections use contiguous grids with shared borders. FAQ keeps its two-column layout, and the closing action pairs a left-aligned heading with supporting copy and a blue button. All multi-column layouts stack on mobile.
+The centred hero has one heading, concise supporting copy, primary and secondary actions, and three small benefit labels. Its product illustration is the main visual, up to 64rem wide. The editor and sidebar are shown on desktop; mobile presents a compact preview with the workspace toolbar and file status.
 
-The sticky translucent header retains 44px navigation targets. Numbered monospace labels provide wayfinding, while decorative blueprint grids and hatch strips are hidden from assistive technology.
+Two benefit cards explain the Markdown CMS and site agent through small, distinct illustrations. A softly tinted workflow section reduces the journey to three steps: make a change, review a preview, then share/publish. An ownership section retains comparisons with WordPress, visual builders, and Builder.io. A two-column FAQ and a centred closing card complete the page. Grids stack on mobile. The sticky header and footer keep the same inner alignment. Blog and Help retain their current page structure and share the theme tokens.
 
 ## Elevation & Depth
 
-The layout emphasizes crisp shared borders and subtle graphite surfaces. Product illustrations use a faint inset highlight and a restrained shadow. Main panels use the shared 0.5rem radius; contiguous feature and comparison grids have square edges. Blueprint grids appear only behind the hero's blue icons; diagonal hatch strips mark major transitions. Ambient hero and closing glows have been removed in favor of the architectural frame.
+One large product surface anchors the hero with a faint inset highlight and a soft, wide shadow. A quiet radial blue wash sits behind it. Smaller benefit and comparison cards use thin borders with no heavy shadows. A tinted workflow background provides section rhythm without a full border grid. Main surfaces use a 1.25rem radius; the closing panel uses 1.75rem.
 
-Raised buttons retain their four-pixel lower edge, three-pixel press movement, 98% press scale, and instant native active feedback with a 75ms response. Hover and release use a 200ms ease-out. Secondary buttons use a neutral dark lower edge. Reduced-motion settings remove spatial movement. There are no automatic or looping animations.
+Raised buttons retain their four-pixel lower edge, three-pixel press movement, 98% press scale, and native active feedback with a 75ms response. Hover and release use a 200ms ease-out. Secondary buttons use a neutral theme-aware edge. Reduced-motion settings remove spatial movement. There are no automatic or looping animations.
 
 ## Shapes
 
-Buttons and standalone panels use 0.5rem corners. Contiguous capability and comparison grids use shared straight borders. Hero icon rails are square and align with their neighboring content panels. Small illustrative status badges can use rounded corners. FAQ uses straight row dividers.
+Primary and secondary actions use 0.5rem corners. Product, benefit, and comparison surfaces use the shared `panel` radius of 1.25rem; nested UI uses smaller radii. Circular step indicators and a small pill-shaped hero label provide restrained accents. FAQ rows retain simple straight dividers.
 
 ## Components
 
-`Button.astro` owns the raised primary and secondary link treatments. Blue is used for primary actions, hero emphasis, icons, labels, and text links. Navigation, buttons, and FAQ summaries retain visible focus.
+`Button.astro` owns the raised primary and secondary link treatments. The hero and closing card share the primary action label, linking to the workflow. The secondary hero action links directly to the CMS benefits. All navigation and actions retain visible keyboard focus.
 
-`Hero.astro` presents the CMS and agent as two equal parts of one product; the centred hero actions link to existing content and workflow sections. `ProductPreview.astro` fills the framed showcase area. It is a decorative HTML illustration with a visible caption, not a functioning editor or screenshot. Other product illustrations are also hidden from assistive technology, with their purpose stated in nearby headings. FAQ uses native details elements with a rotating plus indicator and blue open state.
+`ProductPreview.astro` is a decorative HTML illustration with a visible caption. It shows a more complete workspace: project sidebar, structured content fields, an editor body, a website preview, and file status. It is not a functioning editor or screenshot. Desktop shows the editing and preview panes together; mobile shows the preview pane.
+
+`Features.astro` has two benefit cards. Its Markdown excerpt and agent conversation are illustrative, hidden from assistive technology, and described by nearby headings and copy. They do not present a real session or customer proof. `Workflow.astro` explains three steps and mentions history separately. `Comparison.astro` keeps the original competitor choices in readable cards. FAQ remains native details elements with keyboard operation and visible open state.
 
 ## User preferences
 

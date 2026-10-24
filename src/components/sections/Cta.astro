@@ -2,16 +2,11 @@
 import Button from "../Button.astro";
 ---
 
-<section class="border-t border-section-line" id="cta">
-  <div aria-hidden="true" class="frame-hatch h-3 border-b border-section-line"></div>
-  <div class="mx-auto grid max-w-6xl gap-8 px-6 py-section sm:px-8 sm:py-section-wide lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
-    <div>
-      <p class="font-mono text-xs uppercase tracking-[0.08em] text-brand-accent">05 / Your next chapter</p>
-      <h2 class="mt-5 text-display font-medium text-balance">Keep your<br /><span class="text-brand-accent">site moving.</span></h2>
-    </div>
-    <div>
-      <p class="max-w-xl leading-relaxed text-brand-muted">Edit the content yourself. Ask for help with everything else. See each change before it goes live.</p>
-      <div class="mt-6 pb-2"><Button href="#workflow">See the workflow <span aria-hidden="true">↗</span></Button></div>
-    </div>
+<section id="cta" class="mx-auto max-w-6xl px-6 pb-section pt-4 sm:px-8 sm:pb-section-wide">
+  <div class="hero-ambience rounded-[1.75rem] border border-section-line bg-section-panel px-6 py-14 text-center sm:px-10 sm:py-20">
+    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-brand-accent">Your next chapter starts with an update</p>
+    <h2 class="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">Keep your site<br /><span class="font-editorial font-normal italic text-brand-accent">moving forward.</span></h2>
+    <p class="mx-auto mt-5 max-w-lg leading-relaxed text-brand-muted">A new post. A better headline. That change you've been meaning to make. Give it a little room to happen.</p>
+    <div class="mt-8 pb-1"><Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button></div>
   </div>
 </section>
