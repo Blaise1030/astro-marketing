@@ -5,10 +5,14 @@ import ProductPreview from "../ProductPreview.astro";
 
 <section id="hero">
   <div aria-hidden="true" class="frame-hatch h-3 border-y border-section-line"></div>
-  <div class="px-6 py-10 sm:px-8 sm:py-14">
+  <div class="px-6 py-hero text-center sm:px-8 sm:py-hero-wide">
     <p class="font-mono text-xs tracking-wide text-brand-accent">ORSO / THE ASTRO WORKSPACE</p>
-    <h1 class="mt-5 max-w-4xl text-display font-semibold text-balance">Your Astro site,<br /><span class="text-brand-accent">easy to keep current.</span></h1>
-    <p class="mt-5 max-w-3xl font-mono text-sm leading-relaxed text-brand-muted sm:text-base">A Markdown CMS and a site agent. Edit the content, shape the site, and preview every change in one workspace.</p>
+    <h1 class="mx-auto mt-5 max-w-4xl text-display font-semibold text-balance">Your Astro site,<br /><span class="text-brand-accent">easy to keep current.</span></h1>
+    <p class="mx-auto mt-5 max-w-2xl font-mono text-sm leading-relaxed text-brand-muted sm:text-base">A Markdown CMS and a site agent. Edit the content, shape the site, and preview every change in one workspace.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4 pb-1">
+      <Button href="#content">Explore the CMS <span aria-hidden="true">↗</span></Button>
+      <Button href="#workflow" variant="secondary">See the workflow <span aria-hidden="true">↗</span></Button>
+    </div>
   </div>
 
   <div class="grid border-t border-section-line lg:grid-cols-2">
@@ -19,7 +23,6 @@ import ProductPreview from "../ProductPreview.astro";
       <div class="p-5 sm:p-6">
         <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Content CMS</h2><span class="font-mono text-xs text-brand-muted">01 / CONTENT</span></div>
         <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">A friendly editor for the Markdown files in your Astro collections. Your content stays with your code.</p>
-        <div class="mt-5 pb-1"><Button href="#content">Explore the CMS <span aria-hidden="true">↗</span></Button></div>
       </div>
     </article>
     <article class="grid grid-cols-[4.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)]">
@@ -29,7 +32,6 @@ import ProductPreview from "../ProductPreview.astro";
       <div class="p-5 sm:p-6">
         <div class="flex flex-wrap items-center justify-between gap-3"><h2 class="text-xl font-medium tracking-tight">Site agent</h2><span class="font-mono text-xs text-brand-muted">02 / CODE</span></div>
         <p class="mt-3 max-w-sm text-sm leading-relaxed text-brand-muted">Ask for bigger changes to copy, components, and styles. See the result before sharing or publishing.</p>
-        <div class="mt-5 pb-1"><Button href="#workflow" variant="secondary">See the workflow <span aria-hidden="true">↗</span></Button></div>
       </div>
     </article>
   </div>

@@ -20,6 +20,8 @@
   --radius-panel: 0.5rem;
   --spacing-section: 3rem;
   --spacing-section-wide: 5rem;
+  --spacing-hero: 4rem;
+  --spacing-hero-wide: 6rem;
   --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 5%), 0 8px 24px rgb(0 0 0 / 16%);
   --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 4px 0 var(--color-action-edge), 0 8px 20px rgb(0 0 0 / 24%);
   --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
