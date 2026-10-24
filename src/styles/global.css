@@ -2,63 +2,61 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-foreground: light-dark(#181b22, #f5f5f5);
-  --color-brand-copy: light-dark(#454b57, #d4d4d4);
-  --color-brand-muted: light-dark(#5d6471, #a6a9b0);
-  --color-brand-line: light-dark(#d7dbe3, #2b2e36);
-  --color-brand-accent: light-dark(#1748b6, #8aafff);
-  --color-action-top: #396fed;
-  --color-action-bottom: #245ee0;
-  --color-action-edge: #1748b6;
-  --color-section-ink: light-dark(#fcfcfd, #0b0d12);
-  --color-section-panel: light-dark(#ffffff, #15171c);
-  --color-section-line: light-dark(#d7dbe3, #2b2e36);
-  --color-material: light-dark(#f0f2f6, #101216);
-  --color-ui-fill: light-dark(#e8ebf1, #22252c);
-  --color-secondary-top: light-dark(#ffffff, #262626);
-  --color-secondary-edge: light-dark(#aeb6c4, #050505);
+  --color-brand-foreground: light-dark(oklch(20% 0.04 275), oklch(96% 0.01 275));
+  --color-brand-copy: light-dark(oklch(34% 0.035 275), oklch(86% 0.015 275));
+  --color-brand-muted: light-dark(oklch(48% 0.03 275), oklch(72% 0.02 275));
+  --color-brand-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
+  --color-brand-accent: light-dark(oklch(52% 0.22 268), oklch(76% 0.13 268));
+  --color-action-top: oklch(60% 0.2 268);
+  --color-action-bottom: oklch(52% 0.22 268);
+  --color-action-edge: oklch(44% 0.2 268);
+  --color-section-ink: light-dark(oklch(98.8% 0.006 275), oklch(14% 0.03 275));
+  --color-section-panel: light-dark(oklch(100% 0 0), oklch(18% 0.035 275));
+  --color-section-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
+  --color-material: light-dark(oklch(97.2% 0.01 275), oklch(16.5% 0.035 275));
+  --color-ui-fill: light-dark(oklch(95% 0.02 275), oklch(24% 0.035 275));
+  --color-secondary-top: light-dark(oklch(100% 0 0), oklch(26% 0.04 275));
+  --color-inverse: oklch(16% 0.05 270);
+  --color-inverse-highlight: oklch(30% 0.06 270);
+  --color-inverse-foreground: oklch(100% 0 0);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --text-display: clamp(2.75rem, 6vw, 5rem);
-  --text-display--line-height: 1.04;
+  --text-display: clamp(2.5rem, 5.5vw, 4.5rem);
+  --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.035em;
-  --radius-panel: 1.25rem;
+  --radius-panel: 0.75rem;
   --spacing-section: 4rem;
-  --spacing-section-wide: 6.5rem;
-  --spacing-hero: 4rem;
-  --spacing-hero-wide: 6rem;
-  --shadow-panel: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 5%)), 0 24px 80px -24px light-dark(rgb(37 62 110 / 20%), rgb(0 0 0 / 65%));
-  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 22%), 0 1px 2px rgb(23 72 182 / 40%), 0 4px 12px -2px rgb(36 94 224 / 30%);
-  --shadow-action-pressed: 0 1px 1px rgb(23 72 182 / 40%);
-  --shadow-action-secondary: 0 1px 2px light-dark(rgb(24 27 34 / 10%), rgb(0 0 0 / 40%));
-  --shadow-action-secondary-pressed: 0 0 0 light-dark(rgb(24 27 34 / 0%), rgb(0 0 0 / 0%));
+  --spacing-section-wide: 7rem;
+  --shadow-panel: 0 1px 2px light-dark(rgb(24 27 60 / 6%), rgb(0 0 0 / 40%)), 0 32px 80px -24px light-dark(rgb(24 27 60 / 28%), rgb(0 0 0 / 70%));
+  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 2px rgb(20 20 60 / 35%);
+  --shadow-action-pressed: inset 0 1px 2px rgb(20 20 60 / 30%);
+  --shadow-action-secondary: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 6%)), 0 1px 2px light-dark(rgb(24 27 60 / 10%), rgb(0 0 0 / 40%));
 }
 
-@utility hero-ambience {
-  background-image: radial-gradient(ellipse at 50% 80%, light-dark(rgb(36 94 224 / 9%), rgb(36 94 224 / 13%)), transparent 65%);
-}
+/* Site header: solid by default; transparent over a navy hero until scrolled (`data-overlay` without `data-solid`). */
+@utility site-header {
+  color: var(--color-brand-foreground);
+  background-color: color-mix(in srgb, var(--color-section-ink) 90%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--color-section-line);
+  transition: background-color 300ms ease-out, color 300ms ease-out, border-color 300ms ease-out;
 
-@utility frame-hatch {
-  background-image: repeating-linear-gradient(135deg, transparent, transparent 3px, var(--color-section-line) 3px, var(--color-section-line) 4px);
-}
-
-@utility blueprint-grid {
-  background-color: color-mix(in srgb, var(--color-action-bottom) 30%, var(--color-section-ink));
-  background-image: linear-gradient(rgb(138 175 255 / 10%) 1px, transparent 1px), linear-gradient(90deg, rgb(138 175 255 / 10%) 1px, transparent 1px);
-  background-size: 12px 12px;
-}
-
-@utility surface-glass {
-  background-color: color-mix(in srgb, var(--color-material) 88%, transparent);
-  backdrop-filter: blur(24px) saturate(140%);
+  &[data-overlay]:not([data-solid]) {
+    color: var(--color-inverse-foreground);
+    background-color: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
 
   @media (prefers-reduced-transparency: reduce) {
-    background-color: var(--color-material);
+    background-color: var(--color-section-ink);
     backdrop-filter: none;
   }
 
-  @media (prefers-contrast: more) {
-    background-color: var(--color-material);
-    backdrop-filter: none;
-    outline: 1px solid var(--color-brand-foreground);
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
+}
+
+@utility hero-glow {
+  background-image: radial-gradient(ellipse 60% 50% at 50% 100%, oklch(52% 0.22 268 / 35%), transparent 70%);
 }

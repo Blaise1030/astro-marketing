@@ -1,0 +1,10 @@
+---
+interface Props {
+  tone?: "default" | "inverse";
+}
+const { tone = "default" } = Astro.props;
+---
+
+<p class:list={["inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium", tone === "inverse" ? "border-white/15 bg-white/5 text-inverse-foreground/80" : "border-section-line bg-section-panel text-brand-copy"]}>
+  <span aria-hidden="true" class:list={["size-1.5 rounded-full", tone === "inverse" ? "bg-action-top" : "bg-action-bottom"]}></span><slot />
+</p>

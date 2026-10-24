@@ -1,21 +1,25 @@
 ---
-import Button from "../Button.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 import ProductPreview from "../ProductPreview.astro";
 const details = ["Content stays in your repository", "Live preview", "Publishes via GitHub"];
 ---
 
-<section class="hero-ambience overflow-hidden" id="hero">
-  <div class="mx-auto max-w-6xl px-6 pb-12 pt-16 text-center sm:px-8 sm:pb-20 sm:pt-24">
-    <p class="inline-flex items-center gap-2 rounded-full border border-section-line bg-section-panel px-3.5 py-1.5 text-xs font-medium text-brand-copy"><span aria-hidden="true" class="size-1.5 rounded-full bg-action-bottom"></span>Markdown CMS and site agent for Astro</p>
-    <h1 class="mx-auto mt-7 max-w-5xl text-display font-semibold text-balance">Your Astro site.<br /><span class="text-brand-accent">Easy to keep current.</span></h1>
-    <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-brand-muted sm:text-lg">Edit Markdown content, hand larger changes to an agent, review them in a live preview, and publish through your existing GitHub workflow.</p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4 pb-1">
-      <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
-      <Button href="#content" variant="secondary">Explore the CMS</Button>
-    </div>
-    <ul class="mt-7 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-brand-muted">
-      {details.map((detail) => <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="size-3.5 text-brand-accent" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 8 3 3 7-7" /></svg>{detail}</li>)}
+<section id="hero" class="hero-glow overflow-hidden bg-inverse text-inverse-foreground">
+  <Container class="pb-16 pt-36 sm:pb-24 sm:pt-44">
+    <Badge tone="inverse">Markdown CMS and site agent for Astro</Badge>
+    <SectionHeader level="h1" tone="inverse" description="Edit Markdown content, hand larger changes to an agent, review them in a live preview, and publish through your existing GitHub workflow." class="mt-6 [&_h1]:max-w-3xl [&_h1]:text-display">
+      Your Astro site.<br /><span class="text-inverse-foreground/60">Easy to keep current.</span>
+      <Fragment slot="actions">
+        <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
+        <Button href="#content" variant="inverse">Explore the CMS</Button>
+      </Fragment>
+    </SectionHeader>
+    <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs text-inverse-foreground/60">
+      {details.map((detail) => <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="size-3.5 text-action-top" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 8 3 3 7-7" /></svg>{detail}</li>)}
     </ul>
-    <div class="mt-12 sm:mt-16"><ProductPreview /></div>
-  </div>
+    <div class="mt-14 sm:mt-20"><ProductPreview /></div>
+  </Container>
 </section>

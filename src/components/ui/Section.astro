@@ -1,0 +1,26 @@
+---
+import Container from "./Container.astro";
+
+interface Props {
+  id?: string;
+  /** `default` page canvas, `muted` tinted band, `inverse` deep navy band. */
+  tone?: "default" | "muted" | "inverse";
+  /** Draw a hairline rule along the top edge. */
+  rule?: boolean;
+  class?: string;
+}
+const { id, tone = "default", rule = false, class: className } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    tone === "default" && "bg-section-ink",
+    tone === "muted" && "bg-material",
+    tone === "inverse" && "bg-inverse text-inverse-foreground",
+    rule && "border-t border-section-line",
+    className,
+  ]}
+>
+  <Container class="py-section sm:py-section-wide"><slot /></Container>
+</section>

@@ -1,4 +1,7 @@
 ---
+import Accordion from "../ui/Accordion.astro";
+import Section from "../ui/Section.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 const faqs = [
   { question: "Does Orso store my content in a separate CMS database?", answer: "No. For configured Astro content collections, Orso edits the Markdown files in your site project." },
   { question: "Can I change more than blog posts?", answer: "Yes. The Content tab edits supported collections, and the agent can help change the site's copy, components, styles, and code." },
@@ -7,23 +10,11 @@ const faqs = [
 ];
 ---
 
-<section class="mx-auto max-w-6xl" id="faq">
-  <div class="mx-auto grid max-w-6xl gap-12 px-6 py-section sm:px-8 sm:py-section-wide lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-    <div>
-      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-brand-accent">FAQ</p>
-      <h2 class="text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl">Frequently<br /><span class="text-brand-muted">asked questions.</span></h2>
-      <p class="mt-7 max-w-sm leading-relaxed text-brand-muted">How content, code, and publishing work in Orso.</p>
-    </div>
-    <div class="border-t border-section-line">
-      {faqs.map((item) => (
-        <details class="group border-b border-section-line py-5">
-          <summary class="flex min-h-11 touch-manipulation cursor-pointer list-none items-start justify-between gap-6 rounded-sm font-medium leading-relaxed transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent group-open:text-brand-accent [&::-webkit-details-marker]:hidden">
-            {item.question}
-            <svg aria-hidden="true" class="mt-1 size-5 shrink-0 transition-transform duration-200 ease-out group-open:rotate-45 motion-reduce:transition-none motion-reduce:group-open:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14" /></svg>
-          </summary>
-          <p class="mt-4 pr-8 leading-relaxed text-brand-muted">{item.answer}</p>
-        </details>
-      ))}
-    </div>
+<Section id="faq" tone="muted" rule>
+  <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+    <SectionHeader label="FAQ" description="How content, code, and publishing work in Orso.">
+      Frequently<br /><span class="text-brand-muted">asked questions.</span>
+    </SectionHeader>
+    <Accordion items={faqs} />
   </div>
-</section>
+</Section>
