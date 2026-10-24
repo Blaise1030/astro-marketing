@@ -1,6 +1,6 @@
 # Orso design consistency proposal
 
-Status: proposed; awaiting selection of the overall page treatment.
+Status: approved by the user on 2026-10-24; apply the recommended dark treatment.
 
 ## Reference and findings
 

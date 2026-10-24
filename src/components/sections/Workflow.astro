@@ -33,20 +33,20 @@ const capabilities = [
 ];
 ---
 
-<section class="bg-section-ink text-white" id="workflow">
-  <div class="mx-auto max-w-6xl border-t border-section-line px-8 py-24 sm:py-32">
-    <p class="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">One connected workflow</p>
-    <h2 class="max-w-5xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+<section class="border-t border-section-line bg-section-ink text-neutral-100" id="workflow">
+  <div class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <p class="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">One connected workflow</p>
+    <h2 class="max-w-4xl text-4xl font-normal leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-6xl">
       From the first edit<br />
-      <span class="text-neutral-400">to the live site.</span>
+      <span class="text-brand-muted">to the live site.</span>
     </h2>
-    <p class="mt-8 max-w-3xl text-lg leading-relaxed text-neutral-400">Content, agent work, preview, and publishing stay connected to the same project.</p>
+    <p class="mt-7 max-w-2xl text-lg leading-relaxed text-brand-muted">Content, agent work, preview, and publishing stay connected to the same project.</p>
     <div class="mt-16 grid gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
       {capabilities.map((capability) => (
         <article>
-          <svg aria-hidden="true" class="size-7 text-action-top" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d={capability.icon} /></svg>
-          <h3 class="mt-7 text-xl font-semibold tracking-tight">{capability.title}</h3>
-          <p class="mt-3 max-w-sm leading-relaxed text-neutral-400">{capability.description}</p>
+          <svg aria-hidden="true" class="size-7 text-brand-accent" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d={capability.icon} /></svg>
+          <h3 class="mt-6 text-xl font-medium tracking-tight">{capability.title}</h3>
+          <p class="mt-3 max-w-sm leading-relaxed text-brand-muted">{capability.description}</p>
         </article>
       ))}
     </div>

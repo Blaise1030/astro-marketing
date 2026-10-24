@@ -11,27 +11,33 @@ const { title, description } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<html lang="en" class="scheme-light-dark">
+<html lang="en" class="dark scheme-dark scroll-pt-8">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-    <header class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
-      <a class="font-bold" href={base}>{site.name}</a>
-      <nav class="flex gap-4">
-        {site.nav.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
-      </nav>
+  <body class="flex min-h-screen flex-col bg-section-ink text-neutral-100 antialiased selection:bg-action-bottom selection:text-white">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-action-bottom focus:px-4 focus:py-3 focus:text-white" href="#main">Skip to content</a>
+    <header class="border-b border-section-line/70">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-5 px-6 py-6 sm:px-8">
+        <a class="text-2xl font-semibold tracking-tight focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={base}>{site.name}<span class="text-brand-accent">.</span></a>
+        <nav aria-label="Main navigation" class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-brand-muted sm:gap-x-7">
+          {site.nav.map((l) => <a class="py-1 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+        </nav>
+      </div>
     </header>
-    <main><slot /></main>
-    <footer class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
-      <p>{site.footer.text}</p>
-      <nav class="flex gap-4">
-        {site.footer.links.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
-        {site.socials.map((s) => <a class="hover:underline" href={s.href} rel="noopener">{s.label}</a>)}
-      </nav>
+    <main id="main" class="flex-1"><slot /></main>
+    <footer class="border-t border-section-line">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-10 text-sm text-brand-muted sm:px-8">
+        <p>{site.footer.text}</p>
+        <p class="hidden sm:block">Your content. Your code. Your site.</p>
+        <nav aria-label="Footer navigation" class="flex flex-wrap gap-x-6 gap-y-3">
+          {site.footer.links.map((l) => <a class="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+          {site.socials.map((s) => <a class="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={s.href} rel="noopener">{s.label}</a>)}
+        </nav>
+      </div>
     </footer>
   </body>
 </html>

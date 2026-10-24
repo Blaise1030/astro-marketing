@@ -1,9 +1,13 @@
 ---
-import { href } from "../../lib/href";
+import Button from "../Button.astro";
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-16 text-center" id="cta">
-  <h2 class="mb-4 text-3xl font-bold tracking-tight">Keep your site moving.</h2>
-  <p class="mx-auto mb-8 max-w-2xl text-neutral-600 dark:text-neutral-400">Edit the content yourself. Ask for help with everything else. See each change before it goes live.</p>
-  <a class="inline-flex min-h-12 items-center justify-center rounded-xl border border-action-edge bg-linear-to-b from-action-top to-action-bottom px-6 py-3 font-semibold text-white shadow-action-raised transition-[transform,box-shadow,filter] duration-150 hover:-translate-y-0.5 hover:brightness-95 active:translate-y-[3px] active:shadow-action-pressed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-action-bottom motion-reduce:transform-none motion-reduce:transition-none dark:focus-visible:outline-white" href={href("#workflow")}>See the workflow</a>
+<section class="relative isolate overflow-hidden border-t border-section-line" id="cta">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-radial-[ellipse_at_bottom] from-action-bottom/15 via-section-ink/0 to-section-ink/0"></div>
+  <div class="mx-auto max-w-6xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
+    <p class="text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">Make your next update</p>
+    <h2 class="mx-auto mt-8 max-w-3xl font-editorial text-5xl leading-[1.05] tracking-tight text-balance sm:text-7xl">Keep your<br />site moving.</h2>
+    <p class="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-brand-muted">Edit the content yourself. Ask for help with everything else. See each change before it goes live.</p>
+    <div class="mt-10 pb-2"><Button href="#workflow">See the workflow <span aria-hidden="true">↗</span></Button></div>
+  </div>
 </section>

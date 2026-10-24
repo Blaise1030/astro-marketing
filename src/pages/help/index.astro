@@ -6,15 +6,17 @@ const docs = (await getCollection("helpDocs")).sort((a, b) => a.data.section.loc
 const sections = [...new Set(docs.map((doc) => doc.data.section))];
 ---
 <Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing with Orso.">
-  <section class="mx-auto max-w-5xl px-8 py-12">
-    <h1 class="mb-8 text-4xl font-bold tracking-tight">Help</h1>
+  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <p class="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">A little guidance</p>
+    <h1 class="mb-6 font-editorial text-5xl tracking-tight sm:text-7xl">Help</h1>
+    <p class="mb-12 max-w-2xl text-lg leading-relaxed text-brand-muted">Get comfortable with content editing, previewing changes, and publishing your site.</p>
     {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((section) => (
-      <section class="mb-10">
-        <h2 class="mb-4 text-2xl font-semibold">{section}</h2>
+      <section class="mb-14">
+        <h2 class="mb-6 text-2xl font-medium">{section}</h2>
         <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{docs.filter((doc) => doc.data.section === section).map((doc) => (
-          <article class="rounded-xl border border-neutral-400/30 p-5">
-            <h3 class="text-lg font-semibold"><a class="hover:underline" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h3>
-            <p class="mt-2">{doc.data.description}</p>
+          <article class="rounded-2xl border border-section-line bg-section-panel/40 p-6">
+            <h3 class="text-lg font-semibold"><a class="transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h3>
+            <p class="mt-2 leading-relaxed text-brand-muted">{doc.data.description}</p>
           </article>
         ))}</div>
       </section>

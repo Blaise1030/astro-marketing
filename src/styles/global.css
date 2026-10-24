@@ -2,16 +2,20 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-muted: #525252;
-  --color-brand-line: #a3a3a3;
+  --color-brand-muted: #a3a3a3;
+  --color-brand-line: #303030;
+  --color-brand-accent: #8aafff;
   --color-action-top: #396fed;
   --color-action-bottom: #245ee0;
   --color-action-edge: #1748b6;
   --color-section-ink: #0a0a0a;
   --color-section-panel: #171717;
   --color-section-line: #303030;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --spacing-section: 5rem;
+  --spacing-section-wide: 8rem;
   --shadow-action-raised: 0 4px 0 var(--color-action-edge), 0 8px 16px rgb(0 0 0 / 18%);
   --shadow-action-pressed: 0 1px 0 var(--color-action-edge), 0 3px 6px rgb(0 0 0 / 15%);
-  --shadow-action-secondary: 0 4px 0 #a3a3a3, 0 8px 16px rgb(0 0 0 / 12%);
-  --shadow-action-secondary-pressed: 0 1px 0 #a3a3a3, 0 3px 6px rgb(0 0 0 / 10%);
+  --shadow-action-secondary: 0 4px 0 #050505, 0 8px 16px rgb(0 0 0 / 24%);
+  --shadow-action-secondary-pressed: 0 1px 0 #050505, 0 3px 6px rgb(0 0 0 / 20%);
 }

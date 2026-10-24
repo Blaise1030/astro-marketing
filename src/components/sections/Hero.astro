@@ -1,15 +1,19 @@
 ---
-import { href } from "../../lib/href";
+import Button from "../Button.astro";
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-24 text-center" id="hero">
-  <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400">The workspace for your Astro site</p>
-  <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Your Astro site, easy to keep current.</h1>
-  <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
-    Edit posts and help articles in a friendly CMS that updates your Markdown files. Ask an agent for bigger site changes, preview the result, then share or publish.
-  </p>
-  <p class="mt-8 flex flex-wrap justify-center gap-5 pb-3">
-    <a class="inline-flex min-h-12 items-center justify-center rounded-xl border border-action-edge bg-linear-to-b from-action-top to-action-bottom px-6 py-3 font-semibold text-white shadow-action-raised transition-[transform,box-shadow,filter] duration-150 hover:-translate-y-0.5 hover:brightness-95 active:translate-y-[3px] active:shadow-action-pressed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-action-bottom motion-reduce:transform-none motion-reduce:transition-none dark:focus-visible:outline-white" href={href("#workflow")}>See how Orso works</a>
-    <a class="inline-flex min-h-12 items-center justify-center rounded-xl border border-neutral-300 bg-linear-to-b from-white to-neutral-100 px-6 py-3 font-semibold text-neutral-900 shadow-action-secondary transition-[transform,box-shadow,filter] duration-150 hover:-translate-y-0.5 hover:brightness-105 active:translate-y-[3px] active:shadow-action-secondary-pressed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 motion-reduce:transform-none motion-reduce:transition-none dark:border-neutral-600 dark:from-neutral-700 dark:to-neutral-800 dark:text-white dark:shadow-action-raised dark:active:shadow-action-pressed dark:focus-visible:outline-white" href={href("#content")}>Explore the CMS</a>
-  </p>
+<section class="relative isolate overflow-hidden" id="hero">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-96 max-w-5xl bg-radial-[ellipse_at_top] from-action-bottom/15 via-section-ink/0 to-section-ink/0"></div>
+  <div class="mx-auto max-w-6xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
+    <p class="text-xs font-medium uppercase tracking-[0.2em] text-brand-accent">The workspace for your Astro site</p>
+    <h1 class="mx-auto mt-8 max-w-4xl font-editorial text-5xl leading-[1.05] tracking-tight text-balance sm:text-7xl lg:text-8xl">Your Astro site,<br />easy to keep current.</h1>
+    <p class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-brand-muted">
+      Edit posts and help articles in a friendly CMS that updates your Markdown files. Ask an agent for bigger site changes, preview the result, then share or publish.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4 pb-2">
+      <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
+      <Button href="#content" variant="secondary">Explore the CMS</Button>
+    </div>
+    <p class="mt-7 text-sm text-brand-muted">Markdown content. Live preview. Your GitHub workflow.</p>
+  </div>
 </section>
