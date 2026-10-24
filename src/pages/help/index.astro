@@ -14,7 +14,7 @@ const { categories } = await loadHelp(getCollection);
       <div class="mt-8"><HelpSearch /></div>
     </div>
     {categories.length === 0 ? <p class="mt-16 text-center">No help docs yet. Check back soon for guides and answers.</p> : (
-      <div class="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{categories.map((category) => (
+      <div class="mt-12 grid gap-x-8 gap-y-8 sm:mt-16 sm:gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{categories.map((category) => (
         <article class="group">
           <a class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/help/section/${category.slug}/`)}>
             <div class="aspect-[3/2] overflow-hidden bg-ui-fill"><div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div></div>
