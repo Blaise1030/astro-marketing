@@ -6,19 +6,28 @@
  * Utilities are generated from these names: bg-primary, text-secondary,
  * border-tertiary, text-h1, rounded-xl, p-md, py-lg, and so on.
  *
- * Palette: warm paper and soft ink rather than pure white and black, with a
- * single muted fjord blue accent. Calm, natural, low-contrast — Scandinavian.
+ * Palette adopted from Notion's published token set (designmd.co/d/notion):
+ * white surfaces, near-black ink, brand purple for actions, link blue for
+ * links, and a deep navy hero band. Roles are kept explicit — brand fills
+ * buttons, primary is ink, accent is links and small signals.
  */
 @theme {
   /* Fonts — must mirror the fontFamily stack in DESIGN.md */
   --font-sans: ui-sans-serif, system-ui, sans-serif;
 
   /* Colours */
-  --color-primary: #1f1d1a;
-  --color-secondary: #6b665e;
-  --color-tertiary: #d9d3c7;
-  --color-neutral: #faf7f2;
-  --color-accent: #3a5a78;
+  --color-primary: #191919;
+  --color-secondary: #6b6b6b;
+  --color-tertiary: #e6e6e4;
+  --color-neutral: #ffffff;
+  --color-brand: #5645d4;
+  --color-brand-pressed: #4534b3;
+  --color-brand-ink: #5645d4;
+  --color-on-brand: #ffffff;
+  --color-accent: #0075de;
+  --color-navy: #0a1530;
+  --color-navy-deep: #070f24;
+  --color-navy-mid: #1a2a52;
 
   /* Type scale */
   --text-h1-sm: 3rem;
@@ -65,9 +74,11 @@
 /* The page surface and text flip with the visitor's system setting. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #ede9e1;
-    --color-secondary: #a39d93;
-    --color-neutral: #141311;
-    --color-accent: #8aa8c4;
+    --color-primary: #f5f5f4;
+    --color-secondary: #a1a1a0;
+    --color-neutral: #191919;
+    --color-accent: #4a9eff;
+    --color-brand-ink: #a99df5;
+    --color-tertiary: #333331;
   }
 }

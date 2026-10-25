@@ -3,11 +3,17 @@ version: alpha
 name: Orso
 description: A free studio for your site, and the agent you already pay for.
 colors:
-  primary: "#1f1d1a"
-  secondary: "#6b665e"
-  tertiary: "#d9d3c7"
-  neutral: "#faf7f2"
-  accent: "#3a5a78"
+  primary: "#191919"
+  secondary: "#6b6b6b"
+  tertiary: "#e6e6e4"
+  neutral: "#ffffff"
+  brand: "#5645d4"
+  brand-pressed: "#4534b3"
+  on-brand: "#ffffff"
+  accent: "#0075de"
+  navy: "#0a1530"
+  navy-deep: "#070f24"
+  navy-mid: "#1a2a52"
 typography:
   h1-sm:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
@@ -49,45 +55,30 @@ spacing:
 
 ## Overview
 
-Warm, quiet and uncluttered: the page is a sheet of warm paper, not a white screen. Soft near-black ink, one muted fjord blue accent, hairline borders and a lot of air. Scandinavian in the functional sense — natural materials, restrained colour, nothing decorative competing with the copy or the product sketch. The calm is the point.
+Clean, confident and product-first, following Notion's published token set. White surfaces, near-black ink, a single brand purple for every action, link blue for links, and one deep navy band carrying the hero. Flat and bordered rather than shadowed: the product sketch and the closing panel are the only tinted surfaces. Nothing decorative competes with the copy.
 
 ## Tokens
 
 `src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. The mapping:
 
-- Colours → `bg-primary`, `text-primary`, `text-secondary`, `border-tertiary/30`, `bg-neutral`, `text-accent`.
+- Colours → `bg-primary`, `text-secondary`, `border-tertiary/30`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-accent`.
 - Type → `text-h1-sm`, `text-h1`, `text-h2`, `text-body`, `text-label` (each carries its line height, tracking and weight).
 - Radius → `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`.
 - Spacing → `p-sm`, `gap-md`, `py-lg` (and the other margin, padding and gap utilities).
 
 ## Colors
 
-`primary` is a warm near-black (`#1f1d1a`) and fills the main call-to-action; `secondary` is a warm mid grey for supporting copy; `tertiary` is warm sand, used at low opacity for hairline borders and at higher opacity for placeholder shapes; `neutral` is warm paper (`#faf7f2`), the page surface. `accent` is a single muted fjord blue, used only for small signals — the hero badge dot, step numbers, the send button in the product sketch. Never use it for large fills.
+Roles are explicit, which is the point of adopting this set:
 
-In dark mode `primary`, `secondary` and `neutral` flip to warm charcoal (`#141311`) with ink at `#ede9e1` through a `prefers-color-scheme` override, so a component written with tokens needs no `dark:` colour classes. `tertiary` stays put, the accent lightens to `#8aa8c4` for legibility, and surfaces that need a slight lift use `bg-primary/[0.03]`.
+- `primary` (`#191919`) is ink — all headings and body copy. Never use `#000000`.
+- `secondary` (`#6b6b6b`) is supporting copy.
+- `tertiary` (`#e6e6e4`) is the hairline colour, used at 30% for borders and higher for placeholder shapes.
+- `neutral` (`#ffffff`) is the page surface.
+- `brand` (`#5645d4`) fills primary buttons and nothing else large. `brand-pressed` (`#4534b3`) is its hover state, and `on-brand` (`#ffffff`) is the text that sits on it. Always use this trio together — never `text-neutral` on a brand fill.
+- `accent` (`#0075de`) is link blue, used for links and the small live-preview dot.
+- `navy` (`#0a1530`) is the hero band, with `navy-deep` and `navy-mid` available for depth inside it.
 
-Never use pure black or pure white. Warmth is what separates this palette from a default grey interface.
-
-## Referenced tokens — Notion
-
-Imported for reference from [`designmd.co/d/notion`](https://www.designmd.co/d/notion) (retrieved 24 Oct 2026). These are Notion's brand values, published as a `DESIGN.md` for agents. **They are not part of the active theme and must not be used in components** — the palette above is the source of truth. Keep this table for two reasons: it documents where the frontmatter convention came from, and it is the model to copy if we ever add multi-state colour roles (`primary` / `primary-pressed` / `on-primary`).
-
-| Token | Hex | Role |
-| --- | --- | --- |
-| primary | `#5645d4` | Brand purple |
-| primary-pressed | `#4534b3` | Pressed state |
-| primary-deep | `#3a2a99` | Deep state |
-| on-primary | `#ffffff` | Text on primary |
-| brand-navy | `#0a1530` | Hero band |
-| brand-navy-deep | `#070f24` | Hero band, deep |
-| brand-navy-mid | `#1a2a52` | Hero band, mid |
-| link-blue | `#0075de` | Link |
-| link-blue-pressed | `#005bab` | Link, pressed |
-| brand-orange | `#dd5b00` | Accent |
-| brand-orange-deep | `#793400` | Accent, deep |
-| brand-pink | `#ff64c8` | Accent |
-
-Their type is the same system stack we use, so there is nothing to reconcile there; their spacing scale is not published in the token table. Nothing else transfers: the pastel feature cards, navy hero band and multi-accent palette are Notion's identity, not ours.
+In dark mode `primary`, `secondary`, `neutral` and `tertiary` flip to a dark surface (`#191919`) with ink at `#f5f5f4`, and `accent` lightens to `#4a9eff`. `brand`, `brand-pressed` and the navy band stay put — they are brand constants.
 
 ## Typography
 
@@ -95,11 +86,11 @@ The system sans-serif stack throughout. Headings sit at weight 600, not 700: lar
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is centred with 6rem–8rem of top space; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
+Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is a full-bleed navy band with 6rem–8rem of top space and 4rem below; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
 
 ## Elevation & Depth
 
-The design is flat: no shadows and no gradients. Depth comes from warm hairline borders (`tertiary` at 30% opacity) and a barely-there ink wash (`primary` at 3–4%) behind the product sketch and the closing call-to-action.
+The design is flat: no shadows and no gradients. Depth comes from hairline borders (`tertiary` at 30% opacity), a 3% ink wash behind the product sketch, and a 4% brand wash with a brand-tinted border behind the closing panel. The navy hero band is the one large filled surface.
 
 ## Shapes
 
@@ -107,18 +98,18 @@ Buttons use 0.625rem corners, cards 0.875rem, the product sketch and the closing
 
 ## Components
 
-Primary buttons are solid `primary` with `neutral` text; secondary buttons are outlined with a hairline border that darkens on hover. Both are padded 1.25rem by 0.75rem at `text-label`. Cards are bordered boxes with `p-md` padding, reused for steps, features and FAQ items. FAQ items are native `<details>` with a plus that rotates when open. The hero product sketch is a bordered window (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
+Primary buttons are solid `brand` with `on-brand` text, darkening to `brand-pressed` on hover; secondary buttons are outlined with a hairline border that darkens on hover. Both are padded 1.25rem by 0.75rem at `text-label`. Cards are bordered boxes with `p-md` padding, reused for steps, features and FAQ items. FAQ items are native `<details>` with a plus that rotates when open. The hero product sketch is a bordered window (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use the accent for buttons or backgrounds, don't use pure black or pure white, and don't reach for raw palette values like `neutral-600` when a token exists. Don't use the Notion reference tokens in components — they are documentation, not theme.
+Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `accent` for buttons, don't use `#000000` or a second purple, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`.
 
 ## Voice & Tone
 
-Plain, friendly and benefit-led, with short sentences and no jargon. Headlines state ownership and cost plainly ("A free studio for your site. And the agent you already pay for.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges, and never about CI or deploy pipelines. Say "free and open source", never "all rights reserved", and always close on ownership: your repo, your site, no lock-in.
+Plain, friendly and benefit-led, with short sentences and no jargon. Headlines state ownership and cost plainly ("Your site. Your repo. Your agent.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges, and never about CI or deploy pipelines. Say "free and open source", never "all rights reserved", and always close on ownership: your repo, your site, no lock-in.
 
 ## References
 
 - **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co). Any agent that reads a `DESIGN.md` from that catalogue can read this one.
-- **Token set** — [Notion](https://www.designmd.co/d/notion), imported as a reference palette only; see *Referenced tokens — Notion* above.
+- **Token set** — adopted from [Notion](https://www.designmd.co/d/notion) (retrieved 24 Oct 2026): colours, role naming (`brand` / `brand-pressed` / `on-brand`) and the navy hero band. The typography, spacing and component rules are ours.
 - **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.
