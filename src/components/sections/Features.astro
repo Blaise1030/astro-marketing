@@ -1,4 +1,6 @@
 ---
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 const features = [
   {
     title: "Bring your own agent",
@@ -36,17 +38,19 @@ const features = [
 <section class="mx-auto max-w-5xl px-8 py-lg" id="features">
   <div class="max-w-2xl">
     <h2 class="text-h2">One studio, the whole loop</h2>
-    <p class="mt-3 text-lg text-secondary">
+    <p class="mt-3 text-lg text-muted-foreground">
       Built so nobody on the team needs a terminal — and nothing is locked in.
     </p>
   </div>
   <div class="mt-10 grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-md">
     {
       features.map((feature) => (
-        <div class="rounded-xl border border-tertiary/30 p-md">
-          <h3 class="text-lg font-semibold">{feature.title}</h3>
-          <p class="mt-2 text-secondary">{feature.description}</p>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>{feature.title}</CardTitle>
+            <CardDescription>{feature.description}</CardDescription>
+          </CardHeader>
+        </Card>
       ))
     }
   </div>

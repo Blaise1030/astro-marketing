@@ -18,11 +18,11 @@ So we wrote it down. The design now lives in `DESIGN.md` and in the Tailwind the
 
 Every colour, size, radius and spacing decision now has a name:
 
-- Colours: `primary`, `secondary`, `tertiary`, `neutral`, `accent`
+- Colours: `ink`, `muted-ink`, `tertiary`, `neutral`, `brand`, `link`
 - Type: `text-h1`, `text-h2`, `text-body`, `text-label`
 - Radius and spacing tokens, too.
 
-Components now use the generated utilities — `bg-primary`, `text-secondary`, `rounded-lg`, `p-md` — instead of raw values. Change a token once and the change ripples across the whole site.
+Components now use the generated utilities — `bg-brand`, `text-muted-foreground`, `rounded-lg`, `p-md` — instead of raw values. The UI primitives come from shadcn/ui and are mapped onto the same tokens, so change a token once and the change ripples across the whole site.
 
 ## Dark mode, handled
 

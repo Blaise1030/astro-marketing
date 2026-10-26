@@ -1,4 +1,6 @@
 ---
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 const steps = [
   {
     title: "Ask, or just edit",
@@ -18,19 +20,23 @@ const steps = [
 <section class="mx-auto max-w-5xl px-8 py-lg" id="how-it-works">
   <div class="max-w-2xl">
     <h2 class="text-h2">From a plain-English request to a live site</h2>
-    <p class="mt-3 text-lg text-secondary">
+    <p class="mt-3 text-lg text-muted-foreground">
       Three steps. No terminal, and no build pipeline to babysit.
     </p>
   </div>
   <ol class="mt-10 grid gap-md md:grid-cols-3">
     {
       steps.map((step, i) => (
-        <li class="rounded-xl border border-tertiary/30 p-md">
-          <span class="flex size-8 items-center justify-center rounded-full bg-brand/10 text-label text-brand-ink">
-            {i + 1}
-          </span>
-          <h3 class="mt-4 text-lg font-semibold">{step.title}</h3>
-          <p class="mt-2 text-secondary">{step.body}</p>
+        <li>
+          <Card>
+            <span class="flex size-8 items-center justify-center rounded-full bg-brand/10 text-label text-brand-ink">
+              {i + 1}
+            </span>
+            <CardHeader className="mt-4">
+              <CardTitle>{step.title}</CardTitle>
+              <CardDescription>{step.body}</CardDescription>
+            </CardHeader>
+          </Card>
         </li>
       ))
     }

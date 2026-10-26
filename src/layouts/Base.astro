@@ -18,27 +18,27 @@ const base = import.meta.env.BASE_URL;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-neutral font-sans text-primary antialiased">
+  <body class="bg-background font-sans text-foreground antialiased">
     <header class="border-b border-tertiary/30">
       <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-6">
         <a class="text-lg font-bold tracking-tight" href={base}>{site.name}</a>
-        <nav class="flex flex-wrap items-center gap-4 text-label text-secondary sm:gap-md">
+        <nav class="flex flex-wrap items-center gap-4 text-label text-muted-foreground sm:gap-md">
           {site.nav.map((l) => (
-            <a class="transition-colors hover:text-primary" href={href(l.href)}>{l.label}</a>
+            <a class="transition-colors hover:text-foreground" href={href(l.href)}>{l.label}</a>
           ))}
         </nav>
       </div>
     </header>
     <main><slot /></main>
     <footer class="border-t border-tertiary/30">
-      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-10 text-label text-secondary">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-10 text-label text-muted-foreground">
         <p>{site.footer.text}</p>
         <nav class="flex flex-wrap gap-md">
           {site.footer.links.map((l) => (
-            <a class="transition-colors hover:text-primary" href={href(l.href)}>{l.label}</a>
+            <a class="transition-colors hover:text-foreground" href={href(l.href)}>{l.label}</a>
           ))}
           {site.socials.map((s) => (
-            <a class="transition-colors hover:text-primary" href={s.href} rel="noopener">{s.label}</a>
+            <a class="transition-colors hover:text-foreground" href={s.href} rel="noopener">{s.label}</a>
           ))}
         </nav>
       </div>

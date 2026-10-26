@@ -1,5 +1,7 @@
 ---
-import { href } from "../../lib/href";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { href } from "@/lib/href";
 
 const proof = [
   "Runs on your machine",
@@ -12,10 +14,13 @@ const proof = [
 
 <section class="bg-navy text-white" id="hero">
   <div class="mx-auto max-w-5xl px-8 pt-24 pb-16 text-center sm:pt-32">
-    <p class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-label text-white/70">
-      <span class="size-1.5 rounded-full bg-accent"></span>
+    <Badge
+      variant="outline"
+      className="mb-8 rounded-full border-white/20 px-3 py-1 text-white/70"
+    >
+      <span class="size-1.5 rounded-full bg-link"></span>
       Free &amp; open source
-    </p>
+    </Badge>
     <h1 class="mx-auto max-w-4xl text-h1-sm sm:text-h1">
       Your site. Your repo.<br class="hidden sm:block" /> Your agent.
     </h1>
@@ -24,12 +29,9 @@ const proof = [
       the change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
     </p>
     <p class="mt-12 flex flex-wrap justify-center gap-3">
+      <a class={buttonVariants({ size: "cta" })} href={href("#how-it-works")}>Start building</a>
       <a
-        class="inline-block rounded-lg bg-brand px-5 py-3 text-label text-on-brand transition-colors hover:bg-brand-pressed"
-        href={href("#how-it-works")}>Start building</a
-      >
-      <a
-        class="inline-block rounded-lg border border-white/25 px-5 py-3 text-label transition-colors hover:border-white"
+        class={buttonVariants({ variant: "inverse", size: "cta" })}
         href={href("#features")}>See what it does</a
       >
     </p>

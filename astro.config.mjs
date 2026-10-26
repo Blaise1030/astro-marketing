@@ -1,4 +1,5 @@
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { orso } from "orso-astro";
@@ -9,7 +10,7 @@ const proxyPort = Number(process.env.ORSO_PROXY_PORT || process.env.WORKBENCH_PR
 
 export default defineConfig({
   base,
-  integrations: [mdx(), orso()],
+  integrations: [mdx(), react(), orso()],
   vite: {
     plugins: [tailwindcss()],
     server: {

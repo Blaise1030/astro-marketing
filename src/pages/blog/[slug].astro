@@ -13,7 +13,7 @@ const { Content } = await render(entry);
   <article class="mx-auto max-w-5xl px-8 py-12">
     <a class="text-label hover:underline" href={href("/blog/")}>Back to Blog</a>
     <h1 class="mt-4 text-h2">{entry.data.title}</h1>
-    <p class="mt-2 text-lg text-secondary">{entry.data.description}</p>
+    <p class="mt-2 text-lg text-muted-foreground">{entry.data.description}</p>
     <time class="mt-2 block text-label text-tertiary" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
     {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
     {entry.data.tags.length > 0 && <p class="mt-4 text-label text-tertiary">{entry.data.tags.join(", ")}</p>}

@@ -3,14 +3,16 @@ version: alpha
 name: Orso
 description: A free studio for your site, and the agent you already pay for.
 colors:
-  primary: "#191919"
-  secondary: "#6b6b6b"
+  ink: "#191919"
+  muted-ink: "#6b6b6b"
   tertiary: "#e6e6e4"
   neutral: "#ffffff"
   brand: "#5645d4"
   brand-pressed: "#4534b3"
+  brand-ink: "#5645d4"
   on-brand: "#ffffff"
-  accent: "#0075de"
+  link: "#0075de"
+  danger: "#c0392b"
   navy: "#0a1530"
   navy-deep: "#070f24"
   navy-mid: "#1a2a52"
@@ -59,30 +61,34 @@ Clean, confident and product-first, following Notion's published token set. Whit
 
 ## Tokens
 
-`src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. The mapping:
+`src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same values, so the palette and the component library can never drift apart. The mapping:
 
-- Colours → `bg-primary`, `text-secondary`, `border-tertiary/30`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-accent`.
+- Palette → `bg-ink`, `text-muted-ink`, `border-tertiary/30`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-link`.
+- shadcn/ui → `bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `border-border`, `bg-card`, `ring-ring`.
 - Type → `text-h1-sm`, `text-h1`, `text-h2`, `text-body`, `text-label` (each carries its line height, tracking and weight).
 - Radius → `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`.
 - Spacing → `p-sm`, `gap-md`, `py-lg` (and the other margin, padding and gap utilities).
+
+In shadcn/ui vocabulary `primary` is the brand action colour, `foreground` is ink, and `secondary` / `muted` / `accent` are quiet `tertiary` surfaces. That is why the palette token for text is called `ink`, not `primary`.
 
 ## Colors
 
 Roles are explicit, which is the point of adopting this set:
 
-- `primary` (`#191919`) is ink — all headings and body copy. Never use `#000000`.
-- `secondary` (`#6b6b6b`) is supporting copy.
-- `tertiary` (`#e6e6e4`) is the hairline colour, used at 30% for borders and higher for placeholder shapes.
-- `neutral` (`#ffffff`) is the page surface.
-- `brand` (`#5645d4`) fills primary buttons and nothing else large. `brand-pressed` (`#4534b3`) is its hover state, and `on-brand` (`#ffffff`) is the text that sits on it. Always use this trio together — never `text-neutral` on a brand fill.
-- `accent` (`#0075de`) is link blue, used for links and the small live-preview dot.
+- `ink` (`#191919`) is all headings and body copy. Never use `#000000`.
+- `muted-ink` (`#6b6b6b`) is supporting copy.
+- `tertiary` (`#e6e6e4`) is the hairline colour, used at 30% for borders and higher for placeholder shapes. It also backs shadcn/ui's quiet surfaces (`secondary`, `muted`, `accent`).
+- `neutral` (`#ffffff`) is the page surface (`background`, `card`, `popover`).
+- `brand` (`#5645d4`) fills primary buttons and nothing else large; in shadcn/ui it is `primary`. `brand-pressed` (`#4534b3`) is its hover state, `brand-ink` is the accessible brand colour for small text, and `on-brand` (`#ffffff`) is the text that sits on it. Always use this trio together — never `text-neutral` on a brand fill.
+- `link` (`#0075de`) is link blue, used for links and the small live-preview dot.
+- `danger` (`#c0392b`) exists only for shadcn/ui's `destructive` and invalid form states; the marketing site has no destructive actions.
 - `navy` (`#0a1530`) is the hero band, with `navy-deep` and `navy-mid` available for depth inside it.
 
-In dark mode `primary`, `secondary`, `neutral` and `tertiary` flip to a dark surface (`#191919`) with ink at `#f5f5f4`, and `accent` lightens to `#4a9eff`. `brand`, `brand-pressed` and the navy band stay put — they are brand constants.
+In dark mode `ink`, `muted-ink`, `neutral` and `tertiary` flip to a dark surface (`#191919`) with ink at `#f5f5f4`, while `link` lightens to `#4a9eff`, `danger` to `#ff8a80`, and `brand-ink` to `#a99df5` so small brand text stays legible. `brand` and `brand-pressed` and the navy band stay put — they are brand constants. Dark mode follows the visitor's system setting (a `prefers-color-scheme` media query), not a `.dark` class.
 
 ## Typography
 
-The system sans-serif stack throughout. Headings sit at weight 600, not 700: large, quiet and tight (`-0.03em` on the hero, `-0.025em` on section headings). The hero `h1` is responsive — `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, with a 1.03 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` at 1.65 line height for airiness, and buttons, navigation and labels use `text-label` at weight 500. Section eyebrows are 0.75rem, uppercase, wide-tracked and `secondary`.
+The system sans-serif stack throughout. Headings sit at weight 600, not 700: large, quiet and tight (`-0.03em` on the hero, `-0.025em` on section headings). The hero `h1` is responsive — `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, with a 1.03 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` at 1.65 line height for airiness, and buttons, navigation and labels use `text-label` at weight 500. Section eyebrows are 0.75rem, uppercase, wide-tracked and `text-muted-foreground`.
 
 ## Layout
 
@@ -98,11 +104,19 @@ Buttons use 0.625rem corners, cards 0.875rem, the product sketch and the closing
 
 ## Components
 
-Primary buttons are solid `brand` with `on-brand` text, darkening to `brand-pressed` on hover; secondary buttons are outlined with a hairline border that darkens on hover. Both are padded 1.25rem by 0.75rem at `text-label`. Cards are bordered boxes with `p-md` padding, reused for steps, features and FAQ items. FAQ items are native `<details>` with a plus that rotates when open. The hero product sketch is a bordered window (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
+The UI primitives are shadcn/ui components (Base UI flavour) in `src/components/ui`, restyled here rather than at each call site. Landing-page sections compose them:
+
+- **Button** — `default` is solid `brand` with `on-brand` text and `brand-pressed` hover; `outline` is a hairline that darkens on hover, and `inverse` does the same in white on the navy band. The landing page uses the `cta` size: 1.25rem by 0.75rem padding at `text-label`. No shadows, no press translation.
+- **Card** — a flat bordered box, `rounded-xl`, `border-tertiary/30` and `p-md` padding, used for steps, features, stack panels and the closing panel.
+- **Badge** — `outline` chips for the stack lists, and the hero's `rounded-full` status pill.
+- **Accordion** — Base UI; each FAQ item is its own bordered card, several can be open at once, and the plus rotates 45° when open.
+- **Links** — anchors that act as buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free.
+
+The hero product sketch is bespoke bordered markup (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `accent` for buttons, don't use `#000000` or a second purple, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`.
+Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second purple, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and restyle it once in `src/components/ui` to these tokens rather than layering one-off classes at every usage.
 
 ## Voice & Tone
 
@@ -112,4 +126,5 @@ Plain, friendly and benefit-led, with short sentences and no jargon. Headlines s
 
 - **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co). Any agent that reads a `DESIGN.md` from that catalogue can read this one.
 - **Token set** — adopted from [Notion](https://www.designmd.co/d/notion) (retrieved 24 Oct 2026): colours, role naming (`brand` / `brand-pressed` / `on-brand`) and the navy hero band. The typography, spacing and component rules are ours.
+- **Components** — [shadcn/ui for Astro](https://ui.shadcn.com/docs/installation/astro), Base UI flavour. Primitives live in `src/components/ui`, configuration in `components.json`, and the semantic mapping in `src/styles/global.css`.
 - **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.
