@@ -37,6 +37,8 @@ Static Astro site. The landing page, navigation and footer are written directly 
 
 In a orso agent session, check the live preview after editing with `"$ORSO_HOOK_EXE" ctl preview-status` (it prints JSON; `devserver` is `starting`, `ready`, or `crashed`). Edits often hot-reload; do not build. If it is `crashed`, run `"$ORSO_HOOK_EXE" ctl restart-preview` once, then tell the user in plain words what happened.
 
+After installing dependencies or adding shadcn components while the preview is running, Vite can keep serving stale optimized deps (`504 Outdated Optimize Dep`), which makes React islands silently fail to hydrate. If an island stops responding, remove `node_modules/.vite` and run `restart-preview` once, then reload.
+
 After adding or renaming content (or when the Content sidebar looks stale), run `"$ORSO_HOOK_EXE" ctl refresh-content` so the app reloads **collections** and entry lists, then `"$ORSO_HOOK_EXE" ctl refresh-preview` so the preview page remounts. Cursor has no turn-end hook — call both before saying you are done; other agents also get this refresh when the turn ends.
 
 ## Deployment
