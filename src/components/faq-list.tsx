@@ -17,13 +17,9 @@ export interface Faq {
  */
 export function FaqList({ faqs }: { faqs: Faq[] }) {
   return (
-    <Accordion multiple keepMounted className="mt-8 space-y-3">
+    <Accordion multiple keepMounted className="mt-8">
       {faqs.map((faq, index) => (
-        <AccordionItem
-          key={faq.question}
-          value={`faq-${index}`}
-          className="rounded-xl border border-tertiary/30 transition-colors data-open:border-tertiary/60"
-        >
+        <AccordionItem key={faq.question} value={`faq-${index}`}>
           <AccordionTrigger>{faq.question}</AccordionTrigger>
           <AccordionContent>
             <p>{faq.answer}</p>

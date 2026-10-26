@@ -11,7 +11,7 @@ const sections = [...new Set(docs.map((doc) => doc.data.section))];
   <section class="mx-auto max-w-5xl px-8 py-12">
     <h1 class="mb-8 text-h2">Help</h1>
     {docs.length === 0 ? (
-      <Empty className="border border-tertiary/30">
+      <Empty>
         <EmptyHeader>
           <EmptyTitle>No help docs yet</EmptyTitle>
           <EmptyDescription>Check back soon for guides and answers.</EmptyDescription>

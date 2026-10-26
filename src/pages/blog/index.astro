@@ -10,7 +10,7 @@ const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.locale
   <section class="mx-auto max-w-5xl px-8 py-12">
     <h1 class="mb-8 text-h2">Blog</h1>
     {posts.length === 0 ? (
-      <Empty className="border border-tertiary/30">
+      <Empty>
         <EmptyHeader>
           <EmptyTitle>No blog posts yet</EmptyTitle>
           <EmptyDescription>Check back soon for news and stories.</EmptyDescription>

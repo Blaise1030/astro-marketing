@@ -92,34 +92,34 @@ The system sans-serif stack throughout. Headings sit at weight 600, not 700: lar
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is a full-bleed navy band with 6rem–8rem of top space and 4rem below; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and 1.75rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
+Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is a full-bleed navy band with 6rem–8rem of top space and 4rem below; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and shadcn's default 1rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
 
 ## Elevation & Depth
 
-The design is flat: no shadows and no gradients. Depth comes from hairline borders (`tertiary` at 30% opacity), a 3% ink wash behind the product sketch, and a 4% brand wash with a brand-tinted border behind the closing panel. The navy hero band is the one large filled surface.
+The design is flat: no gradients and no drop shadows. Depth comes from hairline borders (`tertiary` at 30% opacity) and shadcn's default 1px foreground ring on cards. The product sketch keeps its 3% ink wash, and the closing panel is a default card. The navy hero band is the one large filled surface.
 
 ## Shapes
 
-Buttons use 0.625rem corners, cards 0.875rem, the product sketch and the closing panel 1.25rem. Borders are 1px. Pills are reserved for the hero badge; avatars and dots use `full`.
+Buttons use 0.625rem corners (`rounded-lg`), cards 0.875rem (`rounded-xl`), and the product sketch follows the card radius. Borders are 1px, plus the default card ring. Pills are reserved for badges; dots use `full`.
 
 ## Components
 
-The UI is built from shadcn/ui components (Base UI flavour) in `src/components/ui`, restyled here rather than at each call site. Landing-page sections and content routes compose them:
+The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
 
-- **Button** — `default` is solid `brand` with `on-brand` text and `brand-pressed` hover; `outline` is a hairline that darkens on hover, and `inverse` does the same in white on the navy band. The landing page uses the `cta` size: 1.25rem by 0.75rem padding at `text-label`; header and footer links use the text-only `nav` variant. No shadows, no press translation.
-- **Card** — a flat bordered box, `rounded-xl`, `border-tertiary/30` and `p-md` padding, used for steps, features, stack panels, blog/help tiles and the closing panel.
-- **Badge** — `outline` chips for the stack lists, blog tags, article section labels and the hero's `rounded-full` status pill.
-- **Accordion** — Base UI; each FAQ item is its own bordered card, several can be open at once, and the plus rotates 45° when open.
-- **Separator** — the hairline rules under the header and above the footer.
+- **Button** — the stock `default`, `outline` and `link` variants and sizes. Header, footer and article links are plain anchors, because a navigation link is not a button.
+- **Card** — the stock card with its ring, `--card-spacing` and default type scale, used for steps, features, stack panels, blog/help tiles and the closing panel.
+- **Badge** — the stock pill, in `secondary` for the hero status and `outline` for stack chips, tags and article section labels.
+- **Accordion** — the stock Base UI accordion: chevrons, `border-b` dividers and several items open at once.
+- **Separator** — the rules under the header and above the footer.
 - **Empty** — the “no posts / no help docs yet” states.
-- **Skeleton** and **Bubble** — the hero product sketch: `Card` window chrome and a `Skeleton` preview, with the conversation in `Bubble`s.
-- **Links** — anchors that act as buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose` typography.
+- **Skeleton** and **Bubble** — the hero product sketch: a `Card` window, a `Skeleton` preview and the conversation in `Bubble`s.
+- **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose` typography.
 
-The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list. Structural HTML (sections, headings, paragraphs, lists, the article wrapper) stays semantic rather than being wrapped in components.
+The hero closes with a single line of proof points separated by dots. The stack block pairs two cards — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list. Structural HTML (sections, headings, paragraphs, lists, the article wrapper) stays semantic rather than being wrapped in components.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second purple, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and restyle it once in `src/components/ui` to these tokens rather than layering one-off classes at every usage.
+Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second purple, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 

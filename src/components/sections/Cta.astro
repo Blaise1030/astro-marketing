@@ -1,19 +1,20 @@
 ---
 import { buttonVariants } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { href } from "@/lib/href";
 ---
 
 <section class="mx-auto max-w-5xl px-8 pt-4 pb-20" id="cta">
-  <Card className="rounded-2xl border-brand/15 bg-brand/[0.04] px-6 py-14 text-center">
-    <h2 class="text-h2">Free, open, and yours — all the way down.</h2>
-    <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
-      Bring the agent you already pay for. Keep the site you already own.
-    </p>
-    <p class="mt-8 flex flex-wrap justify-center gap-3">
-      <a class={buttonVariants({ size: "cta" })} href={href("#how-it-works")}>Start building</a>
-      <a class={buttonVariants({ variant: "outline", size: "cta" })} href="https://github.com/Blaise1030/cms"
-        >Read the code</a
-      >    </p>
+  <Card className="text-center">
+    <CardHeader>
+      <h2 class="text-h2">Free, open, and yours — all the way down.</h2>
+      <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
+        Bring the agent you already pay for. Keep the site you already own.
+      </p>
+      <p class="mt-8 flex flex-wrap justify-center gap-3">
+        <a class={buttonVariants()} href={href("#how-it-works")}>Start building</a>
+        <a class={buttonVariants({ variant: "outline" })} href="https://github.com/Blaise1030/cms">Read the code</a>
+      </p>
+    </CardHeader>
   </Card>
 </section>

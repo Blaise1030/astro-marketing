@@ -14,10 +14,7 @@ const proof = [
 
 <section class="bg-navy text-white" id="hero">
   <div class="mx-auto max-w-5xl px-8 pt-24 pb-16 text-center sm:pt-32">
-    <Badge
-      variant="outline"
-      className="mb-8 rounded-full border-white/20 px-3 py-1 text-white/70"
-    >
+    <Badge variant="secondary" className="mb-8">
       <span class="size-1.5 rounded-full bg-link"></span>
       Free &amp; open source
     </Badge>
@@ -29,11 +26,8 @@ const proof = [
       the change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
     </p>
     <p class="mt-12 flex flex-wrap justify-center gap-3">
-      <a class={buttonVariants({ size: "cta" })} href={href("#how-it-works")}>Start building</a>
-      <a
-        class={buttonVariants({ variant: "inverse", size: "cta" })}
-        href={href("#features")}>See what it does</a
-      >
+      <a class={buttonVariants()} href={href("#how-it-works")}>Start building</a>
+      <a class={buttonVariants({ variant: "outline" })} href={href("#features")}>See what it does</a>
     </p>
     <ul class="mt-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-label text-white/60">
       {
