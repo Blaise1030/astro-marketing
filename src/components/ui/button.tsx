@@ -22,6 +22,8 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20",
         link: "text-link underline-offset-4 hover:underline",
+        // Plain text navigation links in the header and footer.
+        nav: "text-muted-foreground hover:text-foreground",
       },
       size: {
         default:
@@ -31,6 +33,8 @@ const buttonVariants = cva(
         lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         // The landing page's call-to-action buttons: 14px label, 1.25rem × 0.75rem.
         cta: "h-auto gap-2 px-5 py-3 text-sm leading-normal",
+        // Text-only links: no box, no padding, just the label.
+        nav: "h-auto gap-0 p-0 text-sm leading-normal",
         icon: "size-8",
         "icon-xs":
           "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",

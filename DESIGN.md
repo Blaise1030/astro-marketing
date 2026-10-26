@@ -104,15 +104,18 @@ Buttons use 0.625rem corners, cards 0.875rem, the product sketch and the closing
 
 ## Components
 
-The UI primitives are shadcn/ui components (Base UI flavour) in `src/components/ui`, restyled here rather than at each call site. Landing-page sections compose them:
+The UI is built from shadcn/ui components (Base UI flavour) in `src/components/ui`, restyled here rather than at each call site. Landing-page sections and content routes compose them:
 
-- **Button** — `default` is solid `brand` with `on-brand` text and `brand-pressed` hover; `outline` is a hairline that darkens on hover, and `inverse` does the same in white on the navy band. The landing page uses the `cta` size: 1.25rem by 0.75rem padding at `text-label`. No shadows, no press translation.
-- **Card** — a flat bordered box, `rounded-xl`, `border-tertiary/30` and `p-md` padding, used for steps, features, stack panels and the closing panel.
-- **Badge** — `outline` chips for the stack lists, and the hero's `rounded-full` status pill.
+- **Button** — `default` is solid `brand` with `on-brand` text and `brand-pressed` hover; `outline` is a hairline that darkens on hover, and `inverse` does the same in white on the navy band. The landing page uses the `cta` size: 1.25rem by 0.75rem padding at `text-label`; header and footer links use the text-only `nav` variant. No shadows, no press translation.
+- **Card** — a flat bordered box, `rounded-xl`, `border-tertiary/30` and `p-md` padding, used for steps, features, stack panels, blog/help tiles and the closing panel.
+- **Badge** — `outline` chips for the stack lists, blog tags, article section labels and the hero's `rounded-full` status pill.
 - **Accordion** — Base UI; each FAQ item is its own bordered card, several can be open at once, and the plus rotates 45° when open.
-- **Links** — anchors that act as buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free.
+- **Separator** — the hairline rules under the header and above the footer.
+- **Empty** — the “no posts / no help docs yet” states.
+- **Skeleton** and **Bubble** — the hero product sketch: `Card` window chrome and a `Skeleton` preview, with the conversation in `Bubble`s.
+- **Links** — anchors that act as buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose` typography.
 
-The hero product sketch is bespoke bordered markup (rail, preview, chat) built from `tertiary` opacities and two short chat bubbles. The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list.
+The hero closes with a single line of proof points separated by dots. The stack block pairs two bordered panels — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list. Structural HTML (sections, headings, paragraphs, lists, the article wrapper) stays semantic rather than being wrapped in components.
 
 ## Do's and Don'ts
 

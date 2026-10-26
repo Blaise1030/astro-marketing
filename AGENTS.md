@@ -13,7 +13,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 - `src/site.ts` — site name, header `nav`, footer text/links and socials.
 - `src/pages/index.astro` — the landing page: renders the section components in order.
 - `src/components/sections/*.astro` — one component per landing-page section (`Hero`, `ProductShot`, `Stack`, `HowItWorks`, `Features`, `Faq`, `Cta`). Each holds its own copy; its root `<section id>` is the anchor used by nav links (`#how-it-works`, `#features`, …).
-- `src/components/ui/*` — shadcn/ui primitives (Base UI + React), restyled to the Orso tokens. `src/components/faq-list.tsx` composes the FAQ accordion into one island; `src/lib/utils.ts` re-exports `cn`.
+- `src/components/ui/*` — shadcn/ui primitives (Base UI + React), restyled to the Orso tokens. `src/components/faq-list.tsx` composes the FAQ accordion into one island, `src/components/product-shot.tsx` builds the hero mock from Card/Skeleton/Badge/Bubble, and `src/lib/utils.ts` re-exports `cn`.
 - `components.json`, `tsconfig.json` — shadcn/ui configuration and the `@/*` → `src/*` import alias. The React integration is registered in `astro.config.mjs`.
 - `src/pages/blog/`, `src/pages/help/` — index and article routes for the collections.
 - `src/layouts/Base.astro` — header and footer (from `src/site.ts`); imports `src/styles/global.css`.
