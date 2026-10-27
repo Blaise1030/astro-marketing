@@ -1,5 +1,12 @@
 ---
-const tools = ["Astro", "shadcn/ui", "GitHub", "Coding agents"];
+import { toolLogos } from "@/lib/tool-logos";
+
+const tools = [
+  { name: "Astro", logo: toolLogos.astro },
+  { name: "shadcn/ui", logo: toolLogos.shadcnui },
+  { name: "GitHub", logo: toolLogos.github },
+  { name: "Coding agents", logo: toolLogos.terminal },
+];
 ---
 
 <section class="pb-4 pt-10 sm:pt-14" aria-label="Works with">
@@ -10,9 +17,20 @@ const tools = ["Astro", "shadcn/ui", "GitHub", "Coding agents"];
     <div class="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-4">
       {
         tools.map((tool) => (
-          <div class="flex h-20 items-center justify-center gap-3 bg-ground px-4">
-            <span class="size-3.5 shrink-0 rounded-full bg-hairline-strong" aria-hidden="true"></span>
-            <span class="text-sm font-medium tracking-tight text-muted-ink">{tool}</span>
+          <div class="group flex h-20 items-center justify-center gap-3 bg-ground px-4">
+            <svg
+              class="size-6 shrink-0 text-muted-ink transition-colors group-hover:text-ink"
+              viewBox="0 0 24 24"
+              fill={tool.logo.style === "fill" ? "currentColor" : "none"}
+              stroke={tool.logo.style === "stroke" ? "currentColor" : undefined}
+              stroke-width={tool.logo.style === "stroke" ? "2" : undefined}
+              stroke-linecap={tool.logo.style === "stroke" ? "round" : undefined}
+              stroke-linejoin={tool.logo.style === "stroke" ? "round" : undefined}
+              aria-hidden="true"
+            >
+              <path d={tool.logo.path} />
+            </svg>
+            <span class="text-sm font-medium tracking-tight text-muted-ink">{tool.name}</span>
           </div>
         ))
       }
