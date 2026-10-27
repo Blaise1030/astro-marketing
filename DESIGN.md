@@ -2,22 +2,39 @@
 version: beta
 name: Orso
 description: A free studio for your site, running on the agent you already pay for.
-colors:
-  ground: "#080808"
-  panel: "#0c0c0c"
-  raised: "#121212"
-  ink: "#f5f5f5"
-  muted-ink: "#9a9a9a"
-  faint: "#7a7a7a"
-  hairline: "#232323"
-  hairline-strong: "#383838"
-  live: "#86e7b0"
-  brand: "#2f6cec"
-  brand-pressed: "#1f5cd8"
-  on-brand: "#ffffff"
-  link: "#f5f5f5"
-  danger: "#ff6467"
-  focus-ring: "#7d9df0"
+themes:
+  dark:
+    ground: "#080808"
+    panel: "#0c0c0c"
+    raised: "#121212"
+    ink: "#f5f5f5"
+    muted-ink: "#9a9a9a"
+    faint: "#7a7a7a"
+    hairline: "#232323"
+    hairline-strong: "#383838"
+    live: "#86e7b0"
+    brand: "#2f6cec"
+    brand-pressed: "#1f5cd8"
+    on-brand: "#ffffff"
+    link: "#f5f5f5"
+    danger: "#ff6467"
+    focus-ring: "#7d9df0"
+  light:
+    ground: "#f7f7f5"
+    panel: "#ffffff"
+    raised: "#eeedeb"
+    ink: "#0b0b0b"
+    muted-ink: "#565656"
+    faint: "#6e6e6e"
+    hairline: "#e2e1dd"
+    hairline-strong: "#c8c7c2"
+    live: "#0f7a45"
+    brand: "#2f6cec"
+    brand-pressed: "#1f5cd8"
+    on-brand: "#ffffff"
+    link: "#0b0b0b"
+    danger: "#d92d20"
+    focus-ring: "#1f5cd8"
 typography:
   h1:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
@@ -69,13 +86,25 @@ A dark, editorial ledger. White ink on one near-black ground, hairline rules ins
 
 The direction is adapted from Lexington's Buio theme: near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
 
-The site is **dark only**. `<html class="dark">` is permanent; there is no light theme and no theme toggle. `color-scheme: dark` is set on the root so form controls and scrollbars match.
+The site ships in **two themes**. Dark is the signature ledger: near-black ground, white ink. Light is the same ledger in daylight: off-white ground, near-black ink, the same hairlines, the same blue, and the same dotted horizons drawn in dark ink. Neither is a filter of the other — each palette is tuned on its own, so the light theme keeps contrast without looking like an inverted screenshot.
+
+## Themes
+
+The theme is a class on `<html>`: `.dark` for the ledger, no class for daylight. The server renders `.dark` as the default, so a reader with JavaScript disabled keeps the signature dark page. An inline script in `src/layouts/Base.astro` then resolves the theme before first paint — a stored choice in `localStorage` (`orso-theme`, `light` or `dark`) wins, otherwise the OS `prefers-color-scheme` decides — and removes or keeps the class accordingly, then sets `color-scheme` and the `theme-color` meta so scrollbars and browser chrome match. The header toggle flips the class, writes the choice back, swaps its sun/moon icon and updates its label. It is the only JavaScript the layout ships.
+
+Tokens are runtime custom properties, not build-time constants:
+
+- `--palette-*` holds every colour, defined in `:root` (light) and overridden in `.dark`.
+- `--wash`, `--wash-strong`, `--glow`, `--glow-soft`, `--mark`, `--dot`, `--dot-soft`, `--horizon-*` and `--btn-lift` hold the decorative surfaces that would otherwise be literal white — they flip with the theme, and utilities such as `bg-wash`, `bg-glow`, `text-mark`, `.wash-top`, `.halo`, `.dot-field` and `.btn-gloss` read them.
+- `@theme inline` maps both vocabularies straight onto those variables, so `bg-ground`, `text-ink`, `bg-primary` and every shadcn/ui primitive follow `.dark` at runtime. Never point a `--color-*` at another `--color-*`: `@theme inline` inlines the value, and the chain breaks the moment the class flips.
+
+Because `.dark` lives on `<html>`, every token inherits from the root element.
 
 ## Tokens
 
-`src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same values, so the palette and the component library cannot drift apart. The mapping:
+`src/styles/global.css` holds this file's values in `:root` / `.dark` and in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same variables, so the palette and the component library cannot drift apart. The mapping:
 
-- Palette → `bg-ground`, `bg-panel`, `bg-raised`, `text-ink`, `text-muted-ink`, `text-faint`, `border-hairline`, `border-hairline-strong`, `bg-live`, `bg-brand`, `text-on-brand`, `text-link`.
+- Palette → `bg-ground`, `bg-panel`, `bg-raised`, `text-ink`, `text-muted-ink`, `text-faint`, `border-hairline`, `border-hairline-strong`, `bg-live`, `bg-brand`, `text-on-brand`, `text-link`, plus `bg-wash`, `bg-wash-strong`, `bg-glow` and `text-mark` for theme-aware decorative fills.
 - shadcn/ui → `bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `border-border`, `bg-card`, `ring-ring`, `bg-muted`, `bg-secondary`.
 - Type → `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-label`, `text-eyebrow` (each carries its line height, tracking and weight), and `font-mono` for machine labels.
 - Radius → `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`.
@@ -85,17 +114,18 @@ In shadcn/ui vocabulary `primary` is the blue action colour, `primary-foreground
 
 ## Colors
 
-Roles are explicit:
+Roles are explicit; values are given dark / light and both live in the frontmatter:
 
-- `ground` (`#080808`) is the page. Never use `#000000`.
-- `panel` (`#0c0c0c`) is the card and popover fill; `raised` (`#121212`) is quiet surfaces and inputs.
-- `ink` (`#f5f5f5`) is headings and body copy. `muted-ink` (`#9a9a9a`) is supporting copy and the second line of every heading. `faint` (`#7a7a7a`) is only for mono metadata, labels and decorative detail.
-- `hairline` (`#232323`) is every 1px rule and border; `hairline-strong` (`#383838`) is the rare emphasised edge.
-- `brand` (`#2f6cec`) fills primary buttons and nothing else large; primary buttons carry the `.btn-gloss` gradient (`#4576ee` → `#2f6cec` → `#2160e2` top to bottom) with white `on-brand` text. `brand-pressed` (`#1f5cd8`) is the pressed end of that gradient. Always use this trio together.
-- `link` is the same white ink as text: links are signalled by underline or an arrow, not by a second colour.
-- `live` (`#86e7b0`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
-- `danger` (`#ff6467`) exists only for shadcn/ui's `destructive` and invalid form states.
-- `focus-ring` (`#7d9df0`) is the focus outline; in shadcn/ui it is `ring`. It is the one lighter tint of the blue, so focus stays visible on both the ground and a blue button.
+- `ground` (`#080808` / `#f7f7f5`) is the page. Never use pure `#000000` or `#ffffff` for it.
+- `panel` (`#0c0c0c` / `#ffffff`) is the card and popover fill; `raised` (`#121212` / `#eeedeb`) is quiet surfaces and inputs.
+- `ink` (`#f5f5f5` / `#0b0b0b`) is headings and body copy. `muted-ink` (`#9a9a9a` / `#565656`) is supporting copy and the second line of every heading. `faint` (`#7a7a7a` / `#6e6e6e`) is only for mono metadata, labels and decorative detail.
+- `hairline` (`#232323` / `#e2e1dd`) is every 1px rule and border; `hairline-strong` (`#383838` / `#c8c7c2`) is the rare emphasised edge.
+- `brand` (`#2f6cec`, the same in both themes) fills primary buttons and nothing else large; primary buttons carry the `.btn-gloss` gradient (`#4576ee` → `#2f6cec` → `#2160e2` top to bottom) with white `on-brand` text. `brand-pressed` (`#1f5cd8`) is the pressed end of that gradient. Always use this trio together.
+- `link` is the same ink as text: links are signalled by underline or an arrow, not by a second colour.
+- `live` (`#86e7b0` / `#0f7a45`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
+- `danger` (`#ff6467` / `#d92d20`) exists only for shadcn/ui's `destructive` and invalid form states.
+- `focus-ring` (`#7d9df0` / `#1f5cd8`) is the focus outline; in shadcn/ui it is `ring`. In dark it is a lighter tint of the blue so it reads on both the ground and a blue button; in light it is the pressed blue, dark enough to separate from the page and from the button fill.
+- The decorative variables follow the same rule: `--wash` and `--wash-strong` are white at low alpha in dark and black at low alpha in light, `--glow` is white in dark and a faint blue sky-glow above the horizon in light, and `--mark`, `--dot`, `--dot-soft` and the `--horizon-*` trio are the same idea applied to the outline marks and dotted horizons.
 
 ## Typography
 
@@ -115,11 +145,11 @@ The hero and the closing call to action are the only full-bleed moments: the her
 
 ## Elevation & Depth
 
-Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The mobile menu panel is the one surface that carries a shadow, so it separates from the page.
+Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The mobile menu panel is the one surface that carries a shadow, so it separates from the page. In light mode the washes and halo flip to low-alpha black, so nothing turns muddy grey.
 
 ## Shapes
 
-Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs at 30% white.
+Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs in `text-mark` (30% white in dark, 20% black in light).
 
 ## Components
 
@@ -131,7 +161,8 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
 - **Separator** — the rule above the footer's bottom bar.
 - **Empty** — the “no posts / no help docs yet” states.
-- **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose prose-invert` typography.
+- **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
+- **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
 
@@ -141,9 +172,9 @@ Almost none. The accordion animates open and closed over 200ms; links transition
 
 ## Do's and Don'ts
 
-Do keep one blue action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section.
+Do keep one blue action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section. Do check every change in both themes — the header toggle, or `localStorage.setItem("orso-theme", "light")` in the console.
 
-Don't add shadows (except the mobile menu and the button gloss), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a blue fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Don't add shadows (except the mobile menu and the button gloss), colour accents or gradients without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Never hard-code `white`, `black` or a raw `rgb()` for a decorative surface: use `bg-wash`, `bg-glow`, `text-mark`, `--dot` or the `--horizon-*` variables so both themes keep working. Text on a blue fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 

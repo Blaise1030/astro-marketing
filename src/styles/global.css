@@ -4,10 +4,10 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * The site is a dark, near-black ledger: white ink on one ground, hairlines
- * instead of shadows, and a single blue action colour. There is no light theme
- * and no theme toggle — <html> carries a permanent `dark` class so shadcn/ui's
- * dark variants apply to every primitive.
+ * Two themes, one token set. `:root` is the daylight ledger; `.dark`, set on
+ * <html> before paint by the inline script in src/layouts/Base.astro, is the
+ * near-black one. Raw values live in `--palette-*` custom properties so
+ * `@theme inline` can hand utilities a var() instead of a frozen hex.
  *
  * Design tokens — the source of truth is DESIGN.md. Keep the two in sync.
  * Utilities are generated from these names: bg-ground, text-ink,
@@ -15,28 +15,83 @@
  */
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  color-scheme: light;
+
+  /* Ground, ink and rules */
+  --palette-ground: #f7f7f5;
+  --palette-panel: #ffffff;
+  --palette-raised: #eeedeb;
+  --palette-ink: #0b0b0b;
+  --palette-muted-ink: #565656;
+  --palette-faint: #6e6e6e;
+  --palette-hairline: #e2e1dd;
+  --palette-hairline-strong: #c8c7c2;
+
+  /* Signals */
+  --palette-live: #0f7a45;
+  --palette-brand: #2f6cec;
+  --palette-brand-pressed: #1f5cd8;
+  --palette-on-brand: #ffffff;
+  --palette-link: #0b0b0b;
+  --palette-danger: #d92d20;
+  --palette-focus-ring: #1f5cd8;
+
+  /* Decorative surfaces: washes, halos, outline marks and the dot horizons */
+  --wash: rgb(0 0 0 / 0.015);
+  --wash-strong: rgb(0 0 0 / 0.045);
+  --glow: rgb(47 108 236 / 0.08);
+  --glow-soft: rgb(0 0 0 / 0.03);
+  --mark: rgb(0 0 0 / 0.2);
+  --dot: rgb(0 0 0 / 0.42);
+  --dot-soft: rgb(0 0 0 / 0.26);
+  --horizon-wash: rgb(0 0 0 / 0.05);
+  --horizon-line: rgb(0 0 0 / 0.28);
+  --horizon-inner: rgb(0 0 0 / 0.06);
+
+  /* The primary button sits a little off the page */
+  --btn-lift: 0 1px 2px rgb(0 0 0 / 0.12), 0 10px 24px -14px rgb(47 108 236 / 0.45);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --palette-ground: #080808;
+  --palette-panel: #0c0c0c;
+  --palette-raised: #121212;
+  --palette-ink: #f5f5f5;
+  --palette-muted-ink: #9a9a9a;
+  --palette-faint: #7a7a7a;
+  --palette-hairline: #232323;
+  --palette-hairline-strong: #383838;
+
+  --palette-live: #86e7b0;
+  --palette-brand: #2f6cec;
+  --palette-brand-pressed: #1f5cd8;
+  --palette-on-brand: #ffffff;
+  --palette-link: #f5f5f5;
+  --palette-danger: #ff6467;
+  --palette-focus-ring: #7d9df0;
+
+  --wash: rgb(255 255 255 / 0.02);
+  --wash-strong: rgb(255 255 255 / 0.08);
+  --glow: rgb(255 255 255 / 0.1);
+  --glow-soft: rgb(255 255 255 / 0.05);
+  --mark: rgb(255 255 255 / 0.3);
+  --dot: rgb(255 255 255 / 0.72);
+  --dot-soft: rgb(255 255 255 / 0.5);
+  --horizon-wash: rgb(255 255 255 / 0.14);
+  --horizon-line: rgb(255 255 255 / 0.55);
+  --horizon-inner: rgb(255 255 255 / 0.16);
+
+  --btn-lift: 0 1px 2px rgb(0 0 0 / 0.5), 0 10px 24px -14px rgb(47 108 236 / 0.7);
+}
+
 @theme {
   /* Fonts — must mirror the fontFamily stack in DESIGN.md */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
-
-  /* Colours — one ground, one ink, a few greys, one blue accent */
-  --color-ground: #080808;
-  --color-panel: #0c0c0c;
-  --color-raised: #121212;
-  --color-ink: #f5f5f5;
-  --color-muted-ink: #9a9a9a;
-  --color-faint: #7a7a7a;
-  --color-hairline: #232323;
-  --color-hairline-strong: #383838;
-  --color-live: #86e7b0;
-  --color-brand: #2f6cec;
-  --color-brand-pressed: #1f5cd8;
-  --color-on-brand: #ffffff;
-  --color-link: #f5f5f5;
-  --color-danger: #ff6467;
-  --color-focus-ring: #7d9df0;
 
   /* Type scale */
   --text-h1: clamp(2.9rem, 6.8vw, 4.75rem);
@@ -84,31 +139,53 @@
 }
 
 /*
- * shadcn/ui's semantic tokens, mapped onto the palette above. Components in
- * src/components/ui use these names (bg-primary, text-muted-foreground,
- * border-border, …) so a palette change here flows through the whole site.
+ * Both vocabularies — the Orso palette utilities and shadcn/ui's semantic
+ * names — are mapped straight onto the runtime `--palette-*` variables. Going
+ * through `--palette-*` (rather than through another `--color-*`) is what makes
+ * every utility follow `.dark` at runtime.
  */
 @theme inline {
-  --color-background: var(--color-ground);
-  --color-foreground: var(--color-ink);
-  --color-card: var(--color-panel);
-  --color-card-foreground: var(--color-ink);
-  --color-popover: var(--color-panel);
-  --color-popover-foreground: var(--color-ink);
+  --color-ground: var(--palette-ground);
+  --color-panel: var(--palette-panel);
+  --color-raised: var(--palette-raised);
+  --color-ink: var(--palette-ink);
+  --color-muted-ink: var(--palette-muted-ink);
+  --color-faint: var(--palette-faint);
+  --color-hairline: var(--palette-hairline);
+  --color-hairline-strong: var(--palette-hairline-strong);
+  --color-live: var(--palette-live);
+  --color-brand: var(--palette-brand);
+  --color-brand-pressed: var(--palette-brand-pressed);
+  --color-on-brand: var(--palette-on-brand);
+  --color-link: var(--palette-link);
+  --color-danger: var(--palette-danger);
+  --color-focus-ring: var(--palette-focus-ring);
 
-  --color-primary: var(--color-brand);
-  --color-primary-foreground: var(--color-on-brand);
-  --color-secondary: var(--color-raised);
-  --color-secondary-foreground: var(--color-ink);
-  --color-muted: var(--color-raised);
-  --color-muted-foreground: var(--color-muted-ink);
-  --color-accent: var(--color-raised);
-  --color-accent-foreground: var(--color-ink);
-  --color-destructive: var(--color-danger);
+  --color-wash: var(--wash);
+  --color-wash-strong: var(--wash-strong);
+  --color-glow: var(--glow);
+  --color-mark: var(--mark);
 
-  --color-border: var(--color-hairline);
-  --color-input: var(--color-hairline-strong);
-  --color-ring: var(--color-focus-ring);
+  --color-background: var(--palette-ground);
+  --color-foreground: var(--palette-ink);
+  --color-card: var(--palette-panel);
+  --color-card-foreground: var(--palette-ink);
+  --color-popover: var(--palette-panel);
+  --color-popover-foreground: var(--palette-ink);
+
+  --color-primary: var(--palette-brand);
+  --color-primary-foreground: var(--palette-on-brand);
+  --color-secondary: var(--palette-raised);
+  --color-secondary-foreground: var(--palette-ink);
+  --color-muted: var(--palette-raised);
+  --color-muted-foreground: var(--palette-muted-ink);
+  --color-accent: var(--palette-raised);
+  --color-accent-foreground: var(--palette-ink);
+  --color-destructive: var(--palette-danger);
+
+  --color-border: var(--palette-hairline);
+  --color-input: var(--palette-hairline-strong);
+  --color-ring: var(--palette-focus-ring);
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -116,7 +193,6 @@
 
 @layer base {
   html {
-    color-scheme: dark;
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
   }
@@ -126,14 +202,20 @@
   body {
     @apply bg-background text-foreground;
     font-synthesis-weight: none;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
   }
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-ground);
+    background: var(--palette-ink);
+    color: var(--palette-ground);
   }
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+    body {
+      transition: none;
     }
   }
 }
@@ -155,8 +237,7 @@
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.28),
       inset 0 -1px 0 rgb(0 0 0 / 0.18),
-      0 1px 2px rgb(0 0 0 / 0.5),
-      0 10px 24px -14px rgb(47 108 236 / 0.7);
+      var(--btn-lift);
   }
 
   .btn-gloss:hover {
@@ -174,8 +255,18 @@
 @layer utilities {
   /* A 1-bit dot field. Used for the hero planet and the closing terrain. */
   .dot-field {
-    background-image: radial-gradient(circle, rgb(255 255 255 / 0.72) 0.65px, transparent 1px);
+    background-image: radial-gradient(circle, var(--dot) 0.65px, transparent 1px);
     background-size: 4px 4px;
+  }
+
+  /* A faint radial wash pinned to the top edge of a band; follows the theme. */
+  .wash-top {
+    background-image: radial-gradient(ellipse at 50% 0%, var(--wash-strong), transparent 68%);
+  }
+
+  /* A soft halo behind a floating panel; follows the theme. */
+  .halo {
+    background-image: radial-gradient(ellipse at center, var(--glow-soft), transparent 70%);
   }
 
   /*
@@ -191,8 +282,8 @@
     transform: translateX(-50%);
     border-radius: 50%;
     background-image:
-      radial-gradient(ellipse 55% 70% at 50% 0%, rgb(255 255 255 / 0.14), transparent 62%),
-      radial-gradient(circle, rgb(255 255 255 / 0.7) 0.65px, transparent 1px);
+      radial-gradient(ellipse 55% 70% at 50% 0%, var(--horizon-wash), transparent 62%),
+      radial-gradient(circle, var(--dot) 0.65px, transparent 1px);
     background-size: auto, 4px 4px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 18%, transparent 76%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 18%, transparent 76%);
@@ -204,7 +295,7 @@
     position: absolute;
     inset: -1px;
     border-radius: 50%;
-    border-top: 1px solid rgb(255 255 255 / 0.55);
+    border-top: 1px solid var(--horizon-line);
     filter: blur(2px);
     -webkit-mask-image: linear-gradient(to bottom, #000, transparent 16%);
     mask-image: linear-gradient(to bottom, #000, transparent 16%);
@@ -216,8 +307,8 @@
     inset: 0;
     border-radius: 50%;
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.35),
-      inset 0 2px 60px rgb(255 255 255 / 0.16);
+      inset 0 1px 0 var(--horizon-line),
+      inset 0 2px 60px var(--horizon-inner);
     -webkit-mask-image: linear-gradient(to bottom, #000, transparent 30%);
     mask-image: linear-gradient(to bottom, #000, transparent 30%);
   }
@@ -232,8 +323,8 @@
     transform: translateX(-50%);
     border-radius: 50%;
     background-image:
-      radial-gradient(ellipse 55% 90% at 50% 0%, rgb(255 255 255 / 0.1), transparent 65%),
-      radial-gradient(circle, rgb(255 255 255 / 0.5) 0.65px, transparent 1px);
+      radial-gradient(ellipse 55% 90% at 50% 0%, var(--horizon-wash), transparent 65%),
+      radial-gradient(circle, var(--dot-soft) 0.65px, transparent 1px);
     background-size: auto, 4px 4px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
@@ -245,7 +336,7 @@
     position: absolute;
     inset: -1px;
     border-radius: 50%;
-    border-top: 1px solid rgb(255 255 255 / 0.4);
+    border-top: 1px solid var(--horizon-line);
     filter: blur(2px);
     -webkit-mask-image: linear-gradient(to bottom, #000, transparent 18%);
     mask-image: linear-gradient(to bottom, #000, transparent 18%);

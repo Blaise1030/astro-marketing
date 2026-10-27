@@ -26,7 +26,7 @@ const { Content } = await render(entry);
         </div>
       )}
       {entry.data.coverImage && <Image class="mt-8 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
-      <div class="prose prose-invert mt-10 max-w-3xl prose-img:h-auto prose-img:max-w-full"><Content /></div>
+      <div class="prose dark:prose-invert mt-10 max-w-3xl prose-img:h-auto prose-img:max-w-full"><Content /></div>
     </div>
   </article>
 </Base>

@@ -34,15 +34,14 @@ const pillars = [
 
   <div class="mt-14 sm:mt-20">
     <div class="relative overflow-hidden border-y border-hairline">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgb(255_255_255/0.08),transparent_68%)]">
-      </div>
+      <div class="pointer-events-none absolute inset-0 wash-top"></div>
       <div class="relative grid grid-cols-2 lg:grid-cols-4">
         {
           pillars.map((pillar) => (
             <div class="flex h-40 items-center justify-center border-hairline [&:not(:nth-child(2n))]:border-r [&:nth-child(-n+2)]:border-b sm:h-52 lg:h-60 lg:[&:not(:nth-child(4n))]:border-r lg:[&:nth-child(-n+2)]:border-b-0">
               <svg
                 viewBox="0 0 100 100"
-                class="size-20 text-white/30 sm:size-24 md:size-28"
+                class="size-20 text-mark sm:size-24 md:size-28"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1"
