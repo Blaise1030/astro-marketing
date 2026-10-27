@@ -103,7 +103,7 @@ The system sans-serif stack throughout, at weight 500 for headings and 400 for b
 
 Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, wide-tracked, `faint`.
 
-Machine content — file paths, diffs, terminal prompts, status and the product mock — uses `font-mono` at 11–12.5px. It is the only place where monospace appears.
+Machine content — file paths, diffs, terminal prompts and status — uses `font-mono` at 11–12.5px. It is the only place where monospace appears.
 
 ## Layout
 
@@ -115,23 +115,22 @@ The hero and the closing call to action are the only full-bleed moments: the her
 
 ## Elevation & Depth
 
-Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The product mock is the main exception: it floats with a large, soft black shadow to read as a window. The mobile menu panel also carries a shadow so it separates from the page.
+Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The mobile menu panel is the one surface that carries a shadow, so it separates from the page.
 
 ## Shapes
 
-Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the product mock and terminal use `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs at 30% white.
+Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs at 30% white.
 
 ## Components
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
 
 - **Button** — the stock `default` (white fill, dark ink) and `link` variants. Every `default` button also carries `.btn-gloss`: a white-to-grey vertical gradient with an inset top highlight, a hairline bottom shade and a soft lift, brightening on hover and inverting slightly when pressed. CTAs pass `btn-gloss h-10 rounded-full px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
-- **Card** — the stock card with its ring, used for the product mock window, blog/help tiles and empty states. The product mock overrides padding to `p-0!` and the ring to `ring-0`, then owns its own hairlines.
+- **Card** — the stock card with its ring, used for blog/help tiles and empty states.
 - **Badge** — the stock pill in `outline` for the hero status, live-preview labels, tags and section labels. It is always a small signal, never a CTA.
 - **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
 - **Separator** — the rule above the footer's bottom bar.
 - **Empty** — the “no posts / no help docs yet” states.
-- **Skeleton** and **Bubble** — the product mock: a `Card` window, a `Skeleton` preview and the conversation in `Bubble`s.
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose prose-invert` typography.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
@@ -144,7 +143,7 @@ Almost none. The accordion animates open and closed over 200ms; links transition
 
 Do keep one white action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section.
 
-Don't add shadows (except the product mock, the mobile menu and the button gloss), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a white fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Don't add shadows (except the mobile menu and the button gloss), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a white fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 
