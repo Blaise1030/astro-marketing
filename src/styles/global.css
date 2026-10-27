@@ -143,6 +143,32 @@
   .shell {
     @apply mx-auto w-full max-w-7xl px-6 sm:px-8;
   }
+
+  /*
+   * The primary action. A white fill with a gloss: light along the top edge,
+   * settling into grey, a hairline highlight and a soft lift so it reads as a
+   * physical key against the near-black ground. The only gradient on the site
+   * outside the horizon washes.
+   */
+  .btn-gloss {
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 46%, #d4d4d4 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.85),
+      inset 0 -1px 0 rgb(0 0 0 / 0.16),
+      0 1px 2px rgb(0 0 0 / 0.5),
+      0 8px 20px -12px rgb(255 255 255 / 0.35);
+  }
+
+  .btn-gloss:hover {
+    background-image: linear-gradient(to bottom, #ffffff 0%, #fafafa 46%, #e2e2e2 100%);
+  }
+
+  .btn-gloss:active {
+    background-image: linear-gradient(to bottom, #dcdcdc 0%, #e8e8e8 54%, #f5f5f5 100%);
+    box-shadow:
+      inset 0 1px 2px rgb(0 0 0 / 0.18),
+      inset 0 -1px 0 rgb(255 255 255 / 0.5);
+  }
 }
 
 @layer utilities {

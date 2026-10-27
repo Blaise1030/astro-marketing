@@ -91,7 +91,7 @@ Roles are explicit:
 - `panel` (`#0c0c0c`) is the card and popover fill; `raised` (`#121212`) is quiet surfaces and inputs.
 - `ink` (`#f5f5f5`) is headings and body copy. `muted-ink` (`#9a9a9a`) is supporting copy and the second line of every heading. `faint` (`#7a7a7a`) is only for mono metadata, labels and decorative detail.
 - `hairline` (`#232323`) is every 1px rule and border; `hairline-strong` (`#383838`) is the rare emphasised edge.
-- `brand` (`#f5f5f5`) fills primary buttons and nothing else large; `brand-pressed` (`#d6d6d6`) is its hover state; `on-brand` (`#080808`) is the text on it. Always use this trio together.
+- `brand` (`#f5f5f5`) fills primary buttons and nothing else large; primary buttons carry the `.btn-gloss` gradient (`#ffffff` → `#f4f4f4` → `#d4d4d4` top to bottom) with `on-brand` (`#080808`) text. `brand-pressed` (`#d6d6d6`) is the pressed end of that gradient. Always use this trio together.
 - `link` is the same white ink as text: links are signalled by underline or an arrow, not by a second colour.
 - `live` (`#86e7b0`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
 - `danger` (`#ff6467`) exists only for shadcn/ui's `destructive` and invalid form states.
@@ -115,7 +115,7 @@ The hero and the closing call to action are the only full-bleed moments: the her
 
 ## Elevation & Depth
 
-Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The product mock is the main exception: it floats with a large, soft black shadow to read as a window. The mobile menu panel also carries a shadow so it separates from the page.
+Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The product mock is the main exception: it floats with a large, soft black shadow to read as a window. The mobile menu panel also carries a shadow so it separates from the page.
 
 ## Shapes
 
@@ -125,7 +125,7 @@ Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA ac
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
 
-- **Button** — the stock `default` (white fill, dark ink) and `link` variants. CTAs pass `h-10 rounded-full px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
+- **Button** — the stock `default` (white fill, dark ink) and `link` variants. Every `default` button also carries `.btn-gloss`: a white-to-grey vertical gradient with an inset top highlight, a hairline bottom shade and a soft lift, brightening on hover and inverting slightly when pressed. CTAs pass `btn-gloss h-10 rounded-full px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
 - **Card** — the stock card with its ring, used for the product mock window, blog/help tiles and empty states. The product mock overrides padding to `p-0!` and the ring to `ring-0`, then owns its own hairlines.
 - **Badge** — the stock pill in `outline` for the hero status, live-preview labels, tags and section labels. It is always a small signal, never a CTA.
 - **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
@@ -144,7 +144,7 @@ Almost none. The accordion animates open and closed over 200ms; links transition
 
 Do keep one white action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section.
 
-Don't add shadows (except the product mock), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a white fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Don't add shadows (except the product mock, the mobile menu and the button gloss), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a white fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 
