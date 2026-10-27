@@ -13,6 +13,7 @@ colors:
   brand-pressed: "#193cb8"
   brand-ink: "#1447e6"
   on-brand: "#eff6ff"
+  on-navy: "#ffffff"
   link: "#0075de"
   danger: "#e7000b"
   focus-ring: "#a1a1a1"
@@ -66,7 +67,7 @@ Clean, confident and product-first, following shadcn/ui's neutral theme. White s
 
 `src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same values, so the palette and the component library can never drift apart. The mapping:
 
-- Palette → `bg-ink`, `text-muted-ink`, `border-tertiary/30`, `bg-quiet`, `bg-surface`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-link`.
+- Palette → `bg-ink`, `text-muted-ink`, `border-tertiary/30`, `bg-quiet`, `bg-surface`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-on-navy`, `text-link`.
 - shadcn/ui → `bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `border-border`, `bg-card`, `ring-ring`.
 - Type → `text-h1-sm`, `text-h1`, `text-h2`, `text-body`, `text-label` (each carries its line height, tracking and weight).
 - Radius → `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`.
@@ -87,9 +88,9 @@ Roles are explicit, which is the point of adopting this set:
 - `link` (`#0075de`) is the lighter link blue, used for links and the small live-preview dot. It is a different job from `brand`; never use it for buttons.
 - `danger` (`#e7000b`) exists only for shadcn/ui's `destructive` and invalid form states; the marketing site has no destructive actions.
 - `focus-ring` (`#a1a1a1`) is the neutral focus outline; in shadcn/ui it is `ring`.
-- `navy` (`#0a1530`) is the hero band, with `navy-deep` and `navy-mid` available for depth inside it.
+- `navy` (`#0a1530`) is the hero band, with `navy-deep` and `navy-mid` available for depth inside it. Its text is `on-navy` (`#ffffff`), used at reduced opacity for supporting copy; it is a separate role from `on-brand`.
 
-In dark mode `ink`, `muted-ink`, `neutral`, `tertiary`, `quiet` and `surface` flip to shadcn's dark ramp: the page becomes `#0a0a0a`, cards `#171717`, quiet surfaces and hairlines `#262626`, ink `#fafafa` and muted ink `#a1a1a1`. `link` lightens to `#4a9eff`, `danger` to `#ff6467`, `focus-ring` to `#737373`, and `brand-ink` to `#2b7fff` so small brand text stays legible. `brand`, `brand-pressed`, `on-brand` and the navy band stay put — they are brand constants. Dark mode follows the visitor's system setting (a `prefers-color-scheme` media query), not a `.dark` class.
+In dark mode `ink`, `muted-ink`, `neutral`, `tertiary`, `quiet` and `surface` flip to shadcn's dark ramp: the page becomes `#0a0a0a`, cards `#171717`, quiet surfaces and hairlines `#262626`, ink `#fafafa` and muted ink `#a1a1a1`. `link` lightens to `#4a9eff`, `danger` to `#ff6467`, `focus-ring` to `#737373`, and `brand-ink` to `#2b7fff` so small brand text stays legible. `brand`, `brand-pressed`, `on-brand`, `on-navy` and the navy band stay put — they are brand constants. Dark mode follows the visitor's system setting (a `prefers-color-scheme` media query), not a `.dark` class.
 
 ## Typography
 
@@ -124,7 +125,7 @@ The hero closes with a single line of proof points separated by dots. The stack 
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second accent colour, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second accent colour, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`, and text on the navy band is `on-navy`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 

@@ -24,7 +24,7 @@ const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.locale
               <CardTitle>
                 <h2><a class="hover:underline" href={href(`/blog/${post.id}/`)}>{post.data.title}</a></h2>
               </CardTitle>
-              <time class="text-label text-tertiary" datetime={post.data.pubDate}>{post.data.pubDate}</time>
+              <time class="text-label text-muted-foreground" datetime={post.data.pubDate}>{post.data.pubDate}</time>
               <CardDescription>{post.data.description}</CardDescription>
             </CardHeader>
           </Card>

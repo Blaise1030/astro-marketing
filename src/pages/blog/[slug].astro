@@ -16,7 +16,7 @@ const { Content } = await render(entry);
     <a class={buttonVariants({ variant: "link" })} href={href("/blog/")}>Back to Blog</a>
     <h1 class="mt-4 text-h2">{entry.data.title}</h1>
     <p class="mt-2 text-lg text-muted-foreground">{entry.data.description}</p>
-    <time class="mt-2 block text-label text-tertiary" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
+    <time class="mt-2 block text-label text-muted-foreground" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
     {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
     {entry.data.tags.length > 0 && (
       <div class="mt-4 flex flex-wrap gap-2">

@@ -18,10 +18,10 @@ const proof = [
       <span class="size-1.5 rounded-full bg-link"></span>
       Free &amp; open source
     </Badge>
-    <h1 class="mx-auto max-w-4xl text-h1-sm text-white sm:text-h1">
+    <h1 class="mx-auto max-w-4xl text-h1-sm text-on-navy sm:text-h1">
       Your site. Your repo.<br class="hidden sm:block" /> Your agent.
     </h1>
-    <p class="mx-auto mt-md max-w-2xl text-lg text-white/70">
+    <p class="mx-auto mt-md max-w-2xl text-lg text-on-navy/70">
       Orso is a free, open-source studio for Astro sites. Edit content in a real UI, let Claude, Cursor or Codex make
       the change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
     </p>
@@ -29,12 +29,12 @@ const proof = [
       <a class={buttonVariants()} href={href("#how-it-works")}>Start building</a>
       <a class={buttonVariants({ variant: "outline" })} href={href("#features")}>See what it does</a>
     </p>
-    <ul class="mt-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-label text-white/60">
+    <ul class="mt-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-label text-on-navy/60">
       {
         proof.map((item, i) => (
           <li class="flex items-center gap-2">
             {i > 0 && (
-              <span aria-hidden="true" class="text-white/30">
+              <span aria-hidden="true" class="text-on-navy/30">
                 ·
               </span>
             )}

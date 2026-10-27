@@ -8,7 +8,7 @@ relatedPosts: [welcome]
 
 ## A calmer theme
 
-Earlier this week we shipped a refresh of the Orso site. The palette went a little softer, the type scaled a little more gently, and the spacing breathed a little more. Same product, calmer clothes.
+Earlier this week we shipped a refresh of the Orso site. It now follows shadcn/ui's neutral theme: white surfaces, near-black ink, one brand blue for actions and a lighter blue for links. Same product, calmer clothes.
 
 ## One source of truth
 
@@ -18,7 +18,7 @@ So we wrote it down. The design now lives in `DESIGN.md` and in the Tailwind the
 
 Every colour, size, radius and spacing decision now has a name:
 
-- Colours: `ink`, `muted-ink`, `tertiary`, `neutral`, `brand`, `link`
+- Colours: `ink`, `muted-ink`, `tertiary`, `quiet`, `surface`, `neutral`, `brand`, `link`
 - Type: `text-h1`, `text-h2`, `text-body`, `text-label`
 - Radius and spacing tokens, too.
 

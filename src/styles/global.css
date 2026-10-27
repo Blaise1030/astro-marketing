@@ -39,6 +39,7 @@
   --color-brand-pressed: oklch(0.424 0.199 265.638);
   --color-brand-ink: oklch(0.488 0.243 264.376);
   --color-on-brand: oklch(0.97 0.014 254.604);
+  --color-on-navy: #ffffff;
   --color-link: #0075de;
   --color-danger: oklch(0.577 0.245 27.325);
   --color-focus-ring: oklch(0.708 0 0);
