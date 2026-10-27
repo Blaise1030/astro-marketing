@@ -227,6 +227,30 @@
   }
 
   /*
+   * The sticky header fades into the page: the ground colour is opaque behind
+   * the logo and nav, then gives way to the content, so whatever scrolls up
+   * dissolves into the edge instead of being cut by a rule. The blur lives on
+   * the same layer and is masked with the fill, so its edge is soft too.
+   */
+  .header-fade::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      to bottom,
+      var(--palette-ground) 0%,
+      var(--palette-ground) 62%,
+      color-mix(in srgb, var(--palette-ground) 45%, transparent) 88%,
+      transparent 100%
+    );
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
+  }
+
+  /*
    * The primary action. A blue fill with a gloss: lighter along the top edge,
    * settling into the brand blue and darkening at the base, with a hairline
    * highlight and a soft blue lift so it reads as a physical key against the
