@@ -95,7 +95,7 @@ The theme is a class on `<html>`: `.dark` for the ledger, no class for daylight.
 Tokens are runtime custom properties, not build-time constants:
 
 - `--palette-*` holds every colour, defined in `:root` (light) and overridden in `.dark`.
-- `--wash`, `--wash-strong`, `--glow`, `--glow-soft`, `--mark`, `--dot`, `--dot-soft`, `--horizon-*` and `--btn-lift` hold the decorative surfaces that would otherwise be literal white — they flip with the theme, and utilities such as `bg-wash`, `bg-glow`, `text-mark`, `.wash-top`, `.halo`, `.dot-field` and `.btn-gloss` read them.
+- `--wash`, `--wash-strong`, `--glow`, `--glow-soft`, `--mark`, `--dot`, `--dot-soft`, `--horizon-*`, `--globe-*` and `--btn-lift` hold the decorative surfaces that would otherwise be literal white — they flip with the theme, and utilities such as `bg-wash`, `bg-glow`, `text-mark`, `.wash-top`, `.halo`, `.dot-field` and `.btn-gloss` read them. The `--globe-*` group is the one decorative set tinted toward brand blue: it draws the hero globe, while `--horizon-*` draws the closing terrain.
 - `@theme inline` maps both vocabularies straight onto those variables, so `bg-ground`, `text-ink`, `bg-primary` and every shadcn/ui primitive follow `.dark` at runtime. Never point a `--color-*` at another `--color-*`: `@theme inline` inlines the value, and the chain breaks the moment the class flips.
 
 Because `.dark` lives on `<html>`, every token inherits from the root element.
@@ -125,7 +125,7 @@ Roles are explicit; values are given dark / light and both live in the frontmatt
 - `live` (`#86e7b0` / `#0f7a45`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
 - `danger` (`#ff6467` / `#d92d20`) exists only for shadcn/ui's `destructive` and invalid form states.
 - `focus-ring` (`#7d9df0` / `#1f5cd8`) is the focus outline; in shadcn/ui it is `ring`. In dark it is a lighter tint of the blue so it reads on both the ground and a blue button; in light it is the pressed blue, dark enough to separate from the page and from the button fill.
-- The decorative variables follow the same rule: `--wash` and `--wash-strong` are white at low alpha in dark and black at low alpha in light, `--glow` is white in dark and a faint blue sky-glow above the horizon in light, and `--mark`, `--dot`, `--dot-soft` and the `--horizon-*` trio are the same idea applied to the outline marks and dotted horizons.
+- The decorative variables follow the same rule: `--wash` and `--wash-strong` are white at low alpha in dark and black at low alpha in light, `--glow` is white in dark and a faint blue sky-glow above the horizon in light, and `--mark`, `--dot`, `--dot-soft` and the `--horizon-*` trio are the same idea applied to the outline marks and dotted horizons. The `--globe-*` quartet (`dot`, `wash`, `line`, `inner`) is the deliberate exception: it keeps the hero globe a step toward `brand` blue in both themes, always at alpha low enough to stay a whisper, and the globe sits at `opacity: 0.26` so it reads as atmosphere rather than a solid object.
 
 ## Typography
 
