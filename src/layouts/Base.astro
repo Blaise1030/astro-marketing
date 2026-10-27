@@ -29,12 +29,15 @@ const base = import.meta.env.BASE_URL;
       Skip to content
     </a>
     <header class="sticky top-0 z-50 border-b border-hairline bg-ground/80 backdrop-blur-xl">
-      <div class="shell grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
-        <a class="shrink-0 justify-self-start text-[17px] font-semibold tracking-tight" href={base}>
+      <div class="shell relative flex h-16 items-center justify-between gap-4">
+        <a class="shrink-0 text-[17px] font-semibold tracking-tight" href={base}>
           orso<sup class="ml-0.5 align-super text-[9px] font-normal text-muted-ink">®</sup>
         </a>
 
-        <nav class="hidden items-center gap-1 justify-self-center lg:flex" aria-label="Main">
+        <nav
+          class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
+          aria-label="Main"
+        >
           {
             site.nav.map((l) => (
               <a
@@ -47,7 +50,7 @@ const base = import.meta.env.BASE_URL;
           }
         </nav>
 
-        <div class="flex items-center gap-2 justify-self-end">
+        <div class="ml-auto flex items-center gap-2">
           <a
             class="hidden rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink sm:inline-flex"
             href={site.repo}

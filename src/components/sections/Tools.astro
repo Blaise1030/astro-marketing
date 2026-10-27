@@ -1,16 +1,16 @@
 ---
-const tools = ["Claude", "Cursor", "Codex", "Astro", "GitHub"];
+const tools = ["Astro", "shadcn/ui", "GitHub", "Coding agents"];
 ---
 
 <section class="pb-4 pt-10 sm:pt-14" aria-label="Works with">
   <div class="shell">
     <p class="text-center text-label text-muted-ink">
-      Runs on the tools you already have. <span class="text-faint">From a prompt to a live site.</span>
+      Runs on trusted technologies you are using.
     </p>
-    <div class="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-5">
+    <div class="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-4">
       {
         tools.map((tool) => (
-          <div class="flex h-20 items-center justify-center gap-2.5 bg-ground px-4 last:col-span-2 sm:last:col-span-1">
+          <div class="flex h-20 items-center justify-center gap-2.5 bg-ground px-4">
             <span class="size-1.5 rounded-full bg-hairline-strong" aria-hidden="true"></span>
             <span class="text-sm font-medium tracking-tight text-muted-ink">{tool}</span>
           </div>
