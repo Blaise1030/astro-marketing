@@ -139,7 +139,7 @@ Machine content — file paths, diffs, terminal prompts and status — uses `fon
 
 Content sits in one centred column, `.shell`: `max-w-7xl` (80rem) with 1.5rem side padding, and 2rem from `sm` up. The header, every landing section, the article pages and the footer use the same column, so the logo, section headings and card edges line up.
 
-The header is 4rem tall, sticky and translucent (`bg-ground/80` with a backdrop blur) with a 1px bottom hairline. The hero is centred with 6rem–9rem of top space. Each section carries `py-section` (7rem) at `sm` and up, and 5rem on phones, so the visual gap between sections is roughly 14rem. Feature and ledger grids are separated by 1px `hairline` gaps rather than raised cards, and text columns sit under the shape band with a 2rem gap.
+The header is 4rem tall, sticky and translucent (`bg-ground/80` with a backdrop blur) with no rule under it — the blur alone separates it from the page. The hero is centred with 6rem–9rem of top space. Each section carries `py-section` (7rem) at `sm` and up, and 5rem on phones, so the visual gap between sections is roughly 14rem. Feature and ledger grids are separated by 1px `hairline` gaps rather than raised cards, and text columns sit under the shape band with a 2rem gap.
 
 The hero and the closing call to action are the only full-bleed moments: the hero carries the dotted planet, the CTA carries a smaller dotted terrain. Both are decorative, `aria-hidden`, and clip at the section edge.
 
