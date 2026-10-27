@@ -12,17 +12,21 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 <Base title={entry.data.title} description={entry.data.description}>
-  <article class="mx-auto max-w-5xl px-8 py-12">
-    <a class={buttonVariants({ variant: "link" })} href={href("/blog/")}>Back to Blog</a>
-    <h1 class="mt-4 text-h2">{entry.data.title}</h1>
-    <p class="mt-2 text-lg text-muted-foreground">{entry.data.description}</p>
-    <time class="mt-2 block text-label text-muted-foreground" datetime={entry.data.pubDate}>{entry.data.pubDate}</time>
-    {entry.data.coverImage && <Image class="mt-6 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
-    {entry.data.tags.length > 0 && (
-      <div class="mt-4 flex flex-wrap gap-2">
-        {entry.data.tags.map((tag) => <Badge variant="outline">{tag}</Badge>)}
-      </div>
-    )}
-    <div class="prose mt-8 max-w-3xl dark:prose-invert prose-img:h-auto prose-img:max-w-full"><Content /></div>
+  <article class="shell py-20 sm:py-section">
+    <div class="max-w-3xl">
+      <a class={buttonVariants({ variant: "link", className: "h-auto px-0 text-label text-muted-ink" })} href={href("/blog/")}>
+        ← Back to Blog
+      </a>
+      <p class="mt-8 text-eyebrow uppercase text-faint">{entry.data.pubDate}</p>
+      <h1 class="mt-3 text-h2">{entry.data.title}</h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-ink">{entry.data.description}</p>
+      {entry.data.tags.length > 0 && (
+        <div class="mt-5 flex flex-wrap gap-2">
+          {entry.data.tags.map((tag) => <Badge variant="outline" className="border-hairline text-muted-ink">{tag}</Badge>)}
+        </div>
+      )}
+      {entry.data.coverImage && <Image class="mt-8 h-auto max-w-full rounded-xl" src={entry.data.coverImage} alt={entry.data.coverAlt!} />}
+      <div class="prose prose-invert mt-10 max-w-3xl prose-img:h-auto prose-img:max-w-full"><Content /></div>
+    </div>
   </article>
 </Base>

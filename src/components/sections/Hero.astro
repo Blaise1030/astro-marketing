@@ -2,46 +2,52 @@
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
-
-const proof = [
-  "Runs on your machine",
-  "Astro-native",
-  "Publishes to GitHub Pages",
-  "Zero new subscriptions",
-  "No lock-in",
-];
 ---
 
-<section class="bg-navy" id="hero">
-  <div class="mx-auto max-w-5xl px-8 pt-24 pb-16 text-center sm:pt-32">
-    <Badge variant="secondary" className="mb-8">
-      <span class="size-1.5 rounded-full bg-link"></span>
+<section class="relative isolate overflow-hidden pt-24 sm:pt-36" id="hero">
+  <div class="shell relative z-10 text-center">
+    <Badge
+      variant="outline"
+      className="h-7 gap-2 rounded-full border-hairline bg-white/[0.02] px-3 text-[0.7rem] font-normal tracking-wide text-muted-ink"
+    >
+      <span class="size-1.5 rounded-full bg-live"></span>
       Free &amp; open source
     </Badge>
-    <h1 class="mx-auto max-w-4xl text-h1-sm text-on-navy sm:text-h1">
-      Your site. Your repo.<br class="hidden sm:block" /> Your agent.
+
+    <h1 class="mx-auto mt-8 max-w-5xl text-h1">
+      <span>Your site.</span>{" "}
+      <span class="block sm:inline">Your repo.</span><br class="hidden sm:inline" />
+      <span class="text-muted-ink">Your agent.</span>
     </h1>
-    <p class="mx-auto mt-md max-w-2xl text-lg text-on-navy/70">
-      Orso is a free, open-source studio for Astro sites. Edit content in a real UI, let Claude, Cursor or Codex make
-      the change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
+
+    <p class="mx-auto mt-6 max-w-lg text-body text-muted-ink">
+      Orso is a free, open-source studio for Astro sites. Edit content in a real UI, let Claude, Cursor or Codex make the
+      change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
     </p>
-    <p class="mt-12 flex flex-wrap justify-center gap-3">
-      <a class={buttonVariants()} href={href("#how-it-works")}>Start building</a>
-      <a class={buttonVariants({ variant: "outline" })} href={href("#features")}>See what it does</a>
-    </p>
-    <ul class="mt-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-label text-on-navy/60">
-      {
-        proof.map((item, i) => (
-          <li class="flex items-center gap-2">
-            {i > 0 && (
-              <span aria-hidden="true" class="text-on-navy/30">
-                ·
-              </span>
-            )}
-            <span>{item}</span>
-          </li>
-        ))
-      }
-    </ul>
+
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+      <a
+        class={buttonVariants({
+          size: "lg",
+          className: "h-10 rounded-full px-5 text-[0.82rem]",
+        })}
+        href={href("#how-it-works")}
+      >
+        Start building
+      </a>
+      <a
+        class="group inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
+        href={href("#features")}
+      >
+        See what it does
+        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="pointer-events-none relative z-0 mt-14 h-[260px] overflow-hidden sm:mt-16 sm:h-[360px]" aria-hidden="true">
+    <div class="absolute left-1/2 top-0 h-24 w-[52rem] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="planet"></div>
+    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
   </div>
 </section>

@@ -8,8 +8,10 @@ const docs = (await getCollection("helpDocs")).sort((a, b) => a.data.section.loc
 const sections = [...new Set(docs.map((doc) => doc.data.section))];
 ---
 <Base title="Help" description="Guides and answers to help you get started.">
-  <section class="mx-auto max-w-5xl px-8 py-12">
-    <h1 class="mb-8 text-h2">Help</h1>
+  <section class="shell py-20 sm:py-section">
+    <h1 class="text-h2">Help</h1>
+    <p class="mt-4 max-w-lg text-body text-muted-ink">Guides and answers for getting set up, editing content and publishing.</p>
+
     {docs.length === 0 ? (
       <Empty>
         <EmptyHeader>
@@ -18,16 +20,16 @@ const sections = [...new Set(docs.map((doc) => doc.data.section))];
         </EmptyHeader>
       </Empty>
     ) : sections.map((section) => (
-      <section class="mb-10">
-        <h2 class="mb-4 text-2xl font-semibold">{section}</h2>
-        <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-md">
+      <section class="mt-14">
+        <p class="text-eyebrow uppercase text-faint">{section}</p>
+        <div class="mt-5 grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-7">
           {docs.filter((doc) => doc.data.section === section).map((doc) => (
-            <Card size="sm">
+            <Card size="sm" className="transition-colors hover:ring-hairline-strong">
               <CardHeader>
                 <CardTitle>
-                  <h3><a class="hover:underline" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h3>
+                  <h2 class="text-h3"><a class="transition-colors hover:text-muted-ink" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h2>
                 </CardTitle>
-                <CardDescription>{doc.data.description}</CardDescription>
+                <CardDescription className="text-body">{doc.data.description}</CardDescription>
               </CardHeader>
             </Card>
           ))}

@@ -1,14 +1,14 @@
 ---
-title: "A new look, built on design tokens"
-description: "Our latest update gives the site a real design system — one source of truth for color, type, radius and spacing, with dark mode handled automatically."
-pubDate: "2026-10-24"
+title: "A darker look, built on design tokens"
+description: "Our latest update turns the site into a near-black ledger — one source of truth for colour, type, radius and spacing."
+pubDate: "2026-10-27"
 tags: [design, news]
 relatedPosts: [welcome]
 ---
 
-## A calmer theme
+## A sharper theme
 
-Earlier this week we shipped a refresh of the Orso site. It now follows shadcn/ui's neutral theme: white surfaces, near-black ink, one brand blue for actions and a lighter blue for links. Same product, calmer clothes.
+Earlier this year we shipped a refresh of the Orso site. It now reads like a ledger: white ink on one near-black ground, hairline rules instead of shadows, a grey second line on every heading, and a single inverted action colour — white. Same product, sharper clothes.
 
 ## One source of truth
 
@@ -18,20 +18,22 @@ So we wrote it down. The design now lives in `DESIGN.md` and in the Tailwind the
 
 Every colour, size, radius and spacing decision now has a name:
 
-- Colours: `ink`, `muted-ink`, `tertiary`, `quiet`, `surface`, `neutral`, `brand`, `link`
-- Type: `text-h1`, `text-h2`, `text-body`, `text-label`
-- Radius and spacing tokens, too.
+- Colours: `ground`, `panel`, `raised`, `ink`, `muted-ink`, `faint`, `hairline`, `live`, `brand`
+- Type: `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-label`, `text-eyebrow`
+- Radius, the section rhythm and the mono stack, too.
 
-Components now use the generated utilities — `bg-brand`, `text-muted-foreground`, `rounded-lg`, `p-md` — instead of raw values. The UI primitives come from shadcn/ui and are mapped onto the same tokens, so change a token once and the change ripples across the whole site.
+Components now use the generated utilities — `bg-ground`, `text-muted-foreground`, `border-hairline`, `rounded-lg`, `py-section` — instead of raw values. The UI primitives come from shadcn/ui and are mapped onto the same tokens, so change a token once and the change ripples across the whole site.
 
-## Dark mode, handled
+## Dark only, on purpose
 
-Dark mode used to mean a stack of `dark:` variants per component. Now the theme flips automatically with the visitor's system setting, so light and dark stay in sync without a single variant in sight.
+This is not a light theme with the lights turned off. The palette is one ground, one ink and a few greys; there is no light mode and no toggle to maintain. `color-scheme: dark` is set at the root, and the shadcn primitives follow the class-based `dark` variant. Fewer states, fewer places for the design to drift.
+
+The one colour signal is a soft green for live previews and connected agents. Everything else is earned by spacing, hairlines and type.
 
 ## Why it matters
 
-A design system means the quiet look we wanted is now a system we can keep — and improve — without guessing. Want tighter headings? Change one token. Want a new hairline border? Change one token.
+A design system means the quiet look we wanted is now a system we can keep — and improve — without guessing. Want tighter headings? Change one token. Want a softer rule? Change one token. Want the hero horizon to breathe? Change one mask.
 
 ## What you will see
 
-Nothing broke, and everything got calmer.
+A new hero with a dotted horizon, a product window that shows the agent and the preview side by side, a geometric feature band, a terminal split, a ruled "one app instead of three subscriptions" ledger, and a closing call to action over a second horizon. Nothing broke, and everything got quieter.

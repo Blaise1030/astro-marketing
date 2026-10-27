@@ -1,5 +1,6 @@
 ---
 import { FaqList } from "@/components/faq-list";
+import { href } from "@/lib/href";
 
 const faqs = [
   {
@@ -40,7 +41,24 @@ const faqs = [
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-lg" id="faq">
-  <h2 class="text-h2">Frequently asked questions</h2>
-  <FaqList faqs={faqs} client:visible />
+<section class="shell py-20 sm:py-section" id="faq">
+  <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+    <div class="lg:sticky lg:top-24 lg:self-start">
+      <h2 class="text-h2">
+        Questions,<br />
+        <span class="text-muted-ink">answered.</span>
+      </h2>
+      <p class="mt-5 max-w-xs text-body text-muted-ink">
+        Anything else, write to the team. A person replies, not a ticket bot.
+      </p>
+      <a
+        class="mt-7 inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
+        href={href("/help/")}
+      >
+        Read the help docs
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <FaqList faqs={faqs} client:idle />
+  </div>
 </section>

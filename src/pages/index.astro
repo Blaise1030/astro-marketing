@@ -6,6 +6,7 @@ import Hero from "../components/sections/Hero.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
 import ProductShot from "../components/sections/ProductShot.astro";
 import Stack from "../components/sections/Stack.astro";
+import Tools from "../components/sections/Tools.astro";
 import Base from "../layouts/Base.astro";
 ---
 
@@ -14,10 +15,11 @@ import Base from "../layouts/Base.astro";
   description="Orso is a free, open-source studio for Astro sites that runs on Claude, Cursor or Codex. Edit content, preview every change, publish to GitHub Pages — no lock-in."
 >
   <Hero />
+  <Tools />
   <ProductShot />
-  <Stack />
-  <HowItWorks />
   <Features />
+  <HowItWorks />
+  <Stack />
   <Faq />
   <Cta />
 </Base>

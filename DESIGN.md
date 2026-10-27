@@ -1,139 +1,160 @@
 ---
-version: alpha
+version: beta
 name: Orso
-description: A free studio for your site, and the agent you already pay for.
+description: A free studio for your site, running on the agent you already pay for.
 colors:
-  ink: "#0a0a0a"
-  muted-ink: "#737373"
-  tertiary: "#e5e5e5"
-  quiet: "#f5f5f5"
-  surface: "#ffffff"
-  neutral: "#ffffff"
-  brand: "#1447e6"
-  brand-pressed: "#193cb8"
-  brand-ink: "#1447e6"
-  on-brand: "#eff6ff"
-  on-navy: "#ffffff"
-  link: "#0075de"
-  danger: "#e7000b"
-  focus-ring: "#a1a1a1"
-  navy: "#0a1530"
-  navy-deep: "#070f24"
-  navy-mid: "#1a2a52"
+  ground: "#080808"
+  panel: "#0c0c0c"
+  raised: "#121212"
+  ink: "#f5f5f5"
+  muted-ink: "#9a9a9a"
+  faint: "#7a7a7a"
+  hairline: "#232323"
+  hairline-strong: "#383838"
+  live: "#86e7b0"
+  brand: "#f5f5f5"
+  brand-pressed: "#d6d6d6"
+  on-brand: "#080808"
+  link: "#f5f5f5"
+  danger: "#ff6467"
+  focus-ring: "#6b6b6b"
 typography:
-  h1-sm:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 3rem
-    fontWeight: 600
-    lineHeight: 1.03
   h1:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 4.5rem
-    fontWeight: 600
-    lineHeight: 1.03
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "clamp(2.9rem, 6.8vw, 4.75rem)"
+    fontWeight: 500
+    lineHeight: 1.02
   h2:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 2.25rem
-    fontWeight: 600
-    lineHeight: 1.15
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "clamp(2.1rem, 4.2vw, 3.25rem)"
+    fontWeight: 500
+    lineHeight: 1.04
+  h3:
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: 1.1875rem
+    fontWeight: 500
+    lineHeight: 1.3
   body:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 1rem
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: 0.9375rem
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    fontSize: 0.875rem
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: 0.8125rem
     fontWeight: 500
     lineHeight: 1.5
+  eyebrow:
+    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: 0.6875rem
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: 0.18em
+  mono:
+    fontFamily: "ui-monospace, SF Mono, SFMono-Regular, Menlo, Consolas, monospace"
 rounded:
   sm: 0.25rem
-  md: 0.5rem
-  lg: 0.625rem
-  xl: 0.875rem
-  2xl: 1.25rem
+  md: 0.375rem
+  lg: 0.5rem
+  xl: 0.75rem
+  2xl: 1rem
   full: 9999px
 spacing:
-  sm: 1rem
-  md: 1.75rem
-  lg: 5.5rem
+  section: 7rem
 ---
 
 ## Overview
 
-Clean, confident and product-first, following shadcn/ui's neutral theme. White surfaces, near-black ink, a single brand blue for every action, a lighter link blue for links, and one deep navy band carrying the hero. Flat and bordered rather than shadowed: the product sketch and the closing panel are the only tinted surfaces. Nothing decorative competes with the copy.
+A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single inverted action colour: white. The page is quiet and technical rather than decorative — small mono labels, generous negative space, and a dotted 1-bit horizon under the hero and the closing call to action. There is one visual idea per section, and the copy does the rest.
+
+The direction is adapted from Lexington's Buio theme: near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome (no blue primary) and the voice stays plain and ownership-led.
+
+The site is **dark only**. `<html class="dark">` is permanent; there is no light theme and no theme toggle. `color-scheme: dark` is set on the root so form controls and scrollbars match.
 
 ## Tokens
 
-`src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same values, so the palette and the component library can never drift apart. The mapping:
+`src/styles/global.css` holds this file's values in a Tailwind `@theme` block, and components use the generated utilities rather than raw palette values. `@theme inline` then maps shadcn/ui's semantic names onto the same values, so the palette and the component library cannot drift apart. The mapping:
 
-- Palette → `bg-ink`, `text-muted-ink`, `border-tertiary/30`, `bg-quiet`, `bg-surface`, `bg-neutral`, `bg-brand`, `text-on-brand`, `bg-navy`, `text-on-navy`, `text-link`.
-- shadcn/ui → `bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `border-border`, `bg-card`, `ring-ring`.
-- Type → `text-h1-sm`, `text-h1`, `text-h2`, `text-body`, `text-label` (each carries its line height, tracking and weight).
+- Palette → `bg-ground`, `bg-panel`, `bg-raised`, `text-ink`, `text-muted-ink`, `text-faint`, `border-hairline`, `border-hairline-strong`, `bg-live`, `bg-brand`, `text-on-brand`, `text-link`.
+- shadcn/ui → `bg-background`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `border-border`, `bg-card`, `ring-ring`, `bg-muted`, `bg-secondary`.
+- Type → `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-label`, `text-eyebrow` (each carries its line height, tracking and weight), and `font-mono` for machine labels.
 - Radius → `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`.
-- Spacing → `p-sm`, `gap-md`, `py-lg` (and the other margin, padding and gap utilities).
+- Spacing → `py-section` (7rem), plus numeric utilities for everything else. Only one named spacing token exists, because named spacing values also answer `max-w-*` lookups and would collapse the container widths.
 
-In shadcn/ui vocabulary `primary` is the brand action colour, `foreground` is ink, `secondary` / `muted` / `accent` are quiet `quiet` surfaces, and `card` / `popover` are `surface`. That is why the palette token for text is called `ink`, not `primary`.
+In shadcn/ui vocabulary `primary` is the white action colour, `primary-foreground` is the ground, `foreground` is ink, `secondary` / `muted` / `accent` are `raised` surfaces, and `card` / `popover` are `panel`.
 
 ## Colors
 
-Roles are explicit, which is the point of adopting this set:
+Roles are explicit:
 
-- `ink` (`#0a0a0a`) is all headings and body copy. Never use `#000000`.
-- `muted-ink` (`#737373`) is supporting copy.
-- `tertiary` (`#e5e5e5`) is the hairline colour, used at 30% for borders and higher for placeholder shapes.
-- `quiet` (`#f5f5f5`) backs shadcn/ui's quiet surfaces (`secondary`, `muted`, `accent`).
-- `surface` (`#ffffff`) is the card and popover fill; `neutral` (`#ffffff`) is the page surface (`background`).
-- `brand` (`#1447e6`) fills primary buttons and nothing else large; in shadcn/ui it is `primary`. `brand-pressed` (`#193cb8`) is its hover state, `brand-ink` is the accessible brand colour for small text, and `on-brand` (`#eff6ff`) is the text that sits on it. Always use this trio together — never `text-neutral` on a brand fill.
-- `link` (`#0075de`) is the lighter link blue, used for links and the small live-preview dot. It is a different job from `brand`; never use it for buttons.
-- `danger` (`#e7000b`) exists only for shadcn/ui's `destructive` and invalid form states; the marketing site has no destructive actions.
-- `focus-ring` (`#a1a1a1`) is the neutral focus outline; in shadcn/ui it is `ring`.
-- `navy` (`#0a1530`) is the hero band, with `navy-deep` and `navy-mid` available for depth inside it. Its text is `on-navy` (`#ffffff`), used at reduced opacity for supporting copy; it is a separate role from `on-brand`.
-
-In dark mode `ink`, `muted-ink`, `neutral`, `tertiary`, `quiet` and `surface` flip to shadcn's dark ramp: the page becomes `#0a0a0a`, cards `#171717`, quiet surfaces and hairlines `#262626`, ink `#fafafa` and muted ink `#a1a1a1`. `link` lightens to `#4a9eff`, `danger` to `#ff6467`, `focus-ring` to `#737373`, and `brand-ink` to `#2b7fff` so small brand text stays legible. `brand`, `brand-pressed`, `on-brand`, `on-navy` and the navy band stay put — they are brand constants. Dark mode follows the visitor's system setting (a `prefers-color-scheme` media query), not a `.dark` class.
+- `ground` (`#080808`) is the page. Never use `#000000`.
+- `panel` (`#0c0c0c`) is the card and popover fill; `raised` (`#121212`) is quiet surfaces and inputs.
+- `ink` (`#f5f5f5`) is headings and body copy. `muted-ink` (`#9a9a9a`) is supporting copy and the second line of every heading. `faint` (`#7a7a7a`) is only for mono metadata, labels and decorative detail.
+- `hairline` (`#232323`) is every 1px rule and border; `hairline-strong` (`#383838`) is the rare emphasised edge.
+- `brand` (`#f5f5f5`) fills primary buttons and nothing else large; `brand-pressed` (`#d6d6d6`) is its hover state; `on-brand` (`#080808`) is the text on it. Always use this trio together.
+- `link` is the same white ink as text: links are signalled by underline or an arrow, not by a second colour.
+- `live` (`#86e7b0`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
+- `danger` (`#ff6467`) exists only for shadcn/ui's `destructive` and invalid form states.
+- `focus-ring` (`#6b6b6b`) is the neutral focus outline; in shadcn/ui it is `ring`.
 
 ## Typography
 
-The system sans-serif stack throughout. Headings sit at weight 600, not 700: large, quiet and tight (`-0.03em` on the hero, `-0.025em` on section headings). The hero `h1` is responsive — `text-h1-sm` (3rem / 48px) on mobile and `text-h1` (4.5rem / 72px) from the `sm` breakpoint up, with a 1.03 line height. Section `h2` headings use `text-h2` (2.25rem) at every width. Body copy is `text-body` at 1.65 line height for airiness, and buttons, navigation and labels use `text-label` at weight 500. Section eyebrows are 0.75rem, uppercase, wide-tracked and `text-muted-foreground`.
+The system sans-serif stack throughout, at weight 500 for headings and 400 for body. Headings are large, tight and quiet (`-0.045em` on the hero, `-0.04em` on section headings) and use a clamped size: `text-h1` runs from 2.9rem to 4.75rem, `text-h2` from 2.1rem to 3.25rem. The signature headline pattern is two lines where the first line is `ink` and the second is `muted-ink`.
+
+Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, wide-tracked, `faint`.
+
+Machine content — file paths, diffs, terminal prompts, status and the product mock — uses `font-mono` at 11–12.5px. It is the only place where monospace appears.
 
 ## Layout
 
-Content sits in a centred column up to 64rem wide with 2rem side padding; the header and footer use the same column. The hero is a full-bleed navy band with 6rem–8rem of top space and 4rem below; other sections are separated by 5.5rem of vertical space. Card grids wrap automatically with a 1.75rem gap and shadcn's default 1rem card padding (three columns on desktop where the content allows). Space is the main structural device — prefer a wider gap over another border. The stack band between the hero sketch and How it works is the one compact section: it sits at 3.5rem so the two blocks either side keep their full rhythm.
+Content sits in one centred column, `.shell`: `max-w-7xl` (80rem) with 1.5rem side padding, and 2rem from `sm` up. The header, every landing section, the article pages and the footer use the same column, so the logo, section headings and card edges line up.
+
+The header is 4rem tall, sticky and translucent (`bg-ground/80` with a backdrop blur) with a 1px bottom hairline. The hero is centred with 6rem–9rem of top space. Each section carries `py-section` (7rem) at `sm` and up, and 5rem on phones, so the visual gap between sections is roughly 14rem. Feature and ledger grids are separated by 1px `hairline` gaps rather than raised cards, and text columns sit under the shape band with a 2rem gap.
+
+The hero and the closing call to action are the only full-bleed moments: the hero carries the dotted planet, the CTA carries a smaller dotted terrain. Both are decorative, `aria-hidden`, and clip at the section edge.
 
 ## Elevation & Depth
 
-The design is flat: no gradients and no drop shadows. Depth comes from hairline borders (`tertiary` at 30% opacity) and shadcn's default 1px foreground ring on cards. The product sketch keeps its 3% ink wash, and the closing panel is a default card. The navy hero band is the one large filled surface.
+Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The product mock is the main exception: it floats with a large, soft black shadow to read as a window. The mobile menu panel also carries a shadow so it separates from the page.
 
 ## Shapes
 
-Buttons use 0.625rem corners (`rounded-lg`), cards 0.875rem (`rounded-xl`), and the product sketch follows the card radius. Borders are 1px, plus the default card ring. Pills are reserved for badges; dots use `full`.
+Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the product mock and terminal use `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs at 30% white.
 
 ## Components
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
 
-- **Button** — the stock `default`, `outline` and `link` variants and sizes. Header, footer and article links are plain anchors, because a navigation link is not a button.
-- **Card** — the stock card with its ring, `--card-spacing` and default type scale, used for steps, features, stack panels, blog/help tiles and the closing panel.
-- **Badge** — the stock pill, in `secondary` for the hero status and `outline` for stack chips, tags and article section labels.
-- **Accordion** — the stock Base UI accordion: chevrons, `border-b` dividers and several items open at once.
-- **Separator** — the rules under the header and above the footer.
+- **Button** — the stock `default` (white fill, dark ink) and `link` variants. CTAs pass `h-10 rounded-full px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
+- **Card** — the stock card with its ring, used for the product mock window, blog/help tiles and empty states. The product mock overrides padding to `p-0!` and the ring to `ring-0`, then owns its own hairlines.
+- **Badge** — the stock pill in `outline` for the hero status, live-preview labels, tags and section labels. It is always a small signal, never a CTA.
+- **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
+- **Separator** — the rule above the footer's bottom bar.
 - **Empty** — the “no posts / no help docs yet” states.
-- **Skeleton** and **Bubble** — the hero product sketch: a `Card` window, a `Skeleton` preview and the conversation in `Bubble`s.
-- **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose` typography.
+- **Skeleton** and **Bubble** — the product mock: a `Card` window, a `Skeleton` preview and the conversation in `Bubble`s.
+- **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose prose-invert` typography.
 
-The hero closes with a single line of proof points separated by dots. The stack block pairs two cards — `You already have` chips and `You stop paying for` chips struck through — so the replacement story reads as a comparison, not a feature list. Structural HTML (sections, headings, paragraphs, lists, the article wrapper) stays semantic rather than being wrapped in components.
+Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
+
+## Motion
+
+Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. There is no parallax, no scroll animation and no auto-advancing content. `prefers-reduced-motion` disables smooth scrolling, and the dotted fields are static CSS.
 
 ## Do's and Don'ts
 
-Do keep one solid call-to-action per section, use the semantic colour tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives so light and dark mode stay in sync, and let whitespace separate sections. Don't add shadows, gradients, extra accent colours or custom font files without updating this file first. Don't use `brand` for body text or large surfaces, don't use `link` for buttons, don't use `#000000` or a second accent colour, and don't reach for raw palette values when a token exists. Text on a brand fill is always `on-brand`, and text on the navy band is `on-navy`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Do keep one white action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section.
+
+Don't add shadows (except the product mock), colour accents, gradients or a light theme without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Text on a white fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 
 Plain, friendly and benefit-led, with short sentences and no jargon. Headlines state ownership and cost plainly ("Your site. Your repo. Your agent.") and buttons use direct verbs such as "Start building". Talk about changes, previews and publishing — never about branches, commits or merges, and never about CI or deploy pipelines. Say "free and open source", never "all rights reserved", and always close on ownership: your repo, your site, no lock-in.
 
+Small mono labels can be technical ("src/pages/index.astro", "Preview rebuilt in 0.8s") because they illustrate the product, but surrounding copy stays human.
+
 ## References
 
-- **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co). Any agent that reads a `DESIGN.md` from that catalogue can read this one.
-- **Token set** — shadcn/ui's generated neutral theme with its blue primary (oklch values, retrieved 27 Oct 2026), extended with the role naming (`brand` / `brand-pressed` / `on-brand`), `quiet` and `surface` surfaces, and the navy hero band. The typography, spacing and component rules are ours.
+- **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co).
+- **Direction** — adapted from [Buio by Lexington Themes](https://lexingtonthemes.com/templates/buio): near-black ground, white ink, grey second lines, hairline ledgers, dotted horizons and a terminal split. The palette, type scale, layout and component rules are Orso's own.
 - **Components** — [shadcn/ui for Astro](https://ui.shadcn.com/docs/installation/astro), Base UI flavour. Primitives live in `src/components/ui`, configuration in `components.json`, and the semantic mapping in `src/styles/global.css`.
 - **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.

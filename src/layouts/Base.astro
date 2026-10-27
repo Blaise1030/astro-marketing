@@ -1,4 +1,5 @@
 ---
+import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { href } from "@/lib/href";
 import { site } from "@/site";
@@ -12,38 +13,139 @@ const { title, description } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<html lang="en" class="scheme-light-dark">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080808" />
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
   <body class="bg-background font-sans text-foreground antialiased">
-    <header>
-      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-6">
-        <a class="text-lg font-bold tracking-tight" href={base}>{site.name}</a>
-        <nav class="flex flex-wrap items-center gap-4 text-label text-muted-foreground sm:gap-md">
-          {site.nav.map((l) => (
-            <a class="transition-colors hover:text-foreground" href={href(l.href)}>{l.label}</a>
-          ))}
+    <a
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-label focus:text-on-brand"
+      href="#main"
+    >
+      Skip to content
+    </a>
+    <header class="sticky top-0 z-50 border-b border-hairline bg-ground/80 backdrop-blur-xl">
+      <div class="shell grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <a class="shrink-0 justify-self-start text-[17px] font-semibold tracking-tight" href={base}>
+          orso<sup class="ml-0.5 align-super text-[9px] font-normal text-muted-ink">®</sup>
+        </a>
+
+        <nav class="hidden items-center gap-1 justify-self-center lg:flex" aria-label="Main">
+          {
+            site.nav.map((l) => (
+              <a
+                class="rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink"
+                href={href(l.href)}
+              >
+                {l.label}
+              </a>
+            ))
+          }
         </nav>
+
+        <div class="flex items-center gap-2 justify-self-end">
+          <a
+            class="hidden rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink sm:inline-flex"
+            href={site.repo}
+            rel="noopener"
+          >
+            GitHub
+          </a>
+          <a
+            class={buttonVariants({ size: "sm", className: "h-8 rounded-full px-3.5 text-[0.78rem]" })}
+            href={href("#how-it-works")}
+          >
+            Start building
+          </a>
+
+          <details class="relative lg:hidden">
+            <summary
+              class="flex size-8 cursor-pointer list-none items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:text-ink [&::-webkit-details-marker]:hidden"
+              aria-label="Open menu"
+            >
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                <path d="M2 4h11M2 7.5h11M2 11h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </summary>
+            <nav
+              class="absolute right-0 top-[calc(100%+0.75rem)] w-56 rounded-xl border border-hairline bg-panel p-2 shadow-2xl shadow-black/60"
+              aria-label="Mobile"
+            >
+              {
+                site.nav.map((l) => (
+                  <a
+                    class="block rounded-md px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                    href={href(l.href)}
+                  >
+                    {l.label}
+                  </a>
+                ))
+              }
+              <a
+                class="mt-1 block rounded-md border-t border-hairline px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                href={site.repo}
+                rel="noopener"
+              >
+                GitHub
+              </a>
+            </nav>
+          </details>
+        </div>
       </div>
-      <Separator />
     </header>
-    <main><slot /></main>
-    <footer>
-      <Separator />
-      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-md px-8 py-10 text-label text-muted-foreground">
-        <p>{site.footer.text}</p>
-        <nav class="flex flex-wrap gap-md">
-          {site.footer.links.map((l) => (
-            <a class="transition-colors hover:text-foreground" href={href(l.href)}>{l.label}</a>
-          ))}
-          {site.socials.map((s) => (
-            <a class="transition-colors hover:text-foreground" href={s.href} rel="noopener">{s.label}</a>
-          ))}
-        </nav>
+
+    <main id="main"><slot /></main>
+
+    <footer class="border-t border-hairline">
+      <div class="shell py-16">
+        <div class="grid gap-12 lg:grid-cols-[1.1fr_1.6fr]">
+          <div>
+            <a class="text-3xl font-semibold tracking-tight" href={base}>
+              orso<sup class="ml-1 align-super text-xs font-normal text-muted-ink">®</sup>
+            </a>
+            <p class="mt-5 max-w-xs text-body text-muted-ink">{site.footer.tagline}</p>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {
+              site.footer.columns.map((column) => (
+                <div>
+                  <p class="text-eyebrow uppercase text-faint">{column.title}</p>
+                  <ul class="mt-4 space-y-2.5">
+                    {column.links.map((link) => (
+                      <li>
+                        <a
+                          class="text-label text-muted-ink transition-colors hover:text-ink"
+                          href={href(link.href)}
+                          rel={"external" in link ? "noopener" : undefined}
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <Separator className="mt-16" />
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-6 text-label text-faint">
+          <p>{site.footer.text}</p>
+          <nav class="flex flex-wrap items-center gap-5" aria-label="Footer">
+            {site.footer.links.map((l) => (
+              <a class="transition-colors hover:text-ink" href={href(l.href)}>{l.label}</a>
+            ))}
+            {site.socials.map((s) => (
+              <a class="transition-colors hover:text-ink" href={s.href} rel="noopener">{s.label}</a>
+            ))}
+          </nav>
+        </div>
       </div>
     </footer>
   </body>

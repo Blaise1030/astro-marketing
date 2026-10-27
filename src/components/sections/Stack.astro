@@ -1,52 +1,58 @@
 ---
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
 const keep = ["Your AI agent", "Astro", "Markdown", "Git + GitHub", "GitHub Pages"];
 const drop = ["AI site builders", "Hosted CMS", "Per-seat page builders"];
 ---
 
-<section class="mx-auto max-w-5xl px-8 py-14" id="stack">
-  <p class="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-    One app instead of three subscriptions
-  </p>
-  <p class="mx-auto mt-3 max-w-xl text-center text-lg text-muted-foreground">
-    Bring the agent you already pay for. Drop the rest of the stack.
-  </p>
-  <div class="mt-md grid gap-md sm:grid-cols-2">
-    <Card>
-      <CardHeader>
-        <p class="text-label text-muted-foreground">You already have</p>
-      </CardHeader>
-      <CardContent>
-        <ul class="mt-3 flex flex-wrap gap-2">
-          {
-            keep.map((name) => (
-              <li>
-                <Badge variant="outline">{name}</Badge>
-              </li>
-            ))
-          }
-        </ul>
-      </CardContent>
-    </Card>
-    <Card>
-      <CardHeader>
-        <p class="text-label text-muted-foreground">You stop paying for</p>
-      </CardHeader>
-      <CardContent>
-        <ul class="mt-3 flex flex-wrap gap-2">
-          {
-            drop.map((name) => (
-              <li>
-                <Badge variant="outline" className="line-through">
-                  {name}
-                </Badge>
-              </li>
-            ))
-          }
-        </ul>
-      </CardContent>
-    </Card>
+<section class="shell py-20 sm:py-section" id="stack">
+  <div class="grid gap-5 lg:grid-cols-[1fr_1fr] lg:items-end">
+    <h2 class="max-w-xl text-h2">
+      One app.<br />
+      <span class="text-muted-ink">Not three subscriptions.</span>
+    </h2>
+    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
+      Bring the agent you already pay for. Drop the rest of the stack — no new account, just the repo you already own.
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2">
+    <div class="bg-ground p-6 sm:p-8">
+      <div class="flex items-center justify-between">
+        <p class="text-eyebrow uppercase text-faint">You already have</p>
+        <span class="size-1.5 rounded-full bg-live" aria-hidden="true"></span>
+      </div>
+      <ul class="mt-5">
+        {
+          keep.map((name) => (
+            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
+              <span class="font-mono text-[11px] text-live" aria-hidden="true">
+                ✓
+              </span>
+              <span class="text-label text-ink">{name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-5 text-label text-faint">Already paid for, already in your repo.</p>
+    </div>
+
+    <div class="bg-ground p-6 sm:p-8">
+      <div class="flex items-center justify-between">
+        <p class="text-eyebrow uppercase text-faint">You stop paying for</p>
+        <span class="size-1.5 rounded-full bg-hairline-strong" aria-hidden="true"></span>
+      </div>
+      <ul class="mt-5">
+        {
+          drop.map((name) => (
+            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
+              <span class="font-mono text-[11px] text-faint" aria-hidden="true">
+                −
+              </span>
+              <span class="text-label text-faint line-through decoration-faint/60">{name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-5 text-label text-faint">Cancel whenever. Nothing here stops working.</p>
+    </div>
   </div>
 </section>
