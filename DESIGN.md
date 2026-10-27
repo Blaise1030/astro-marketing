@@ -141,7 +141,7 @@ Content sits in one centred column, `.shell`: `max-w-7xl` (80rem) with 1.5rem si
 
 The header is 4rem tall and sticky, with no rule under it. Its background is a vertical gradient — opaque `ground` behind the logo and nav, fading to transparent at the bottom edge — over a blurred backdrop that is masked with the same fade. Content scrolling underneath dissolves into the header instead of being cut off, and both the fill and the blur pick up the active theme. The hero is centred with 6rem–9rem of top space. Each section carries `py-section` (7rem) at `sm` and up, and 5rem on phones, so the visual gap between sections is roughly 14rem. Feature and ledger grids are separated by 1px `hairline` gaps rather than raised cards, and text columns sit under the shape band with a 2rem gap.
 
-The hero and the closing call to action are the only full-bleed moments: the hero carries the dotted planet, the CTA carries a smaller dotted terrain. Both are decorative, `aria-hidden`, and clip at the section edge.
+The hero and the closing call to action are the only full-bleed moments: the hero carries the dotted planet, the CTA carries a smaller dotted terrain. Both are decorative, `aria-hidden` and `pointer-events-none`. The hero globe clips at its band; the CTA terrain clips only horizontally (`overflow-x-clip`) so the dotted arc keeps running past the section's bottom edge and fades out behind the footer — the footer is `relative` so its text stays above the arc.
 
 ## Elevation & Depth
 
