@@ -159,7 +159,7 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Card** — the stock card with its ring, used for blog/help tiles and empty states.
 - **Badge** — the stock pill in `outline` for the hero status, live-preview labels, tags and section labels. It is always a small signal, never a CTA.
 - **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
-- **Separator** — the rule above the footer's bottom bar.
+- **Separator** — the stock hairline rule; the footer no longer uses one, so its top edge and bottom bar are separated by whitespace alone.
 - **Empty** — the “no posts / no help docs yet” states.
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
 - **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
