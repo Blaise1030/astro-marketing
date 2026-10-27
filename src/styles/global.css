@@ -5,9 +5,9 @@
 
 /*
  * The site is a dark, near-black ledger: white ink on one ground, hairlines
- * instead of shadows, and a single inverted (white) action colour. There is no
- * light theme and no theme toggle — <html> carries a permanent `dark` class so
- * shadcn/ui's dark variants apply to every primitive.
+ * instead of shadows, and a single blue action colour. There is no light theme
+ * and no theme toggle — <html> carries a permanent `dark` class so shadcn/ui's
+ * dark variants apply to every primitive.
  *
  * Design tokens — the source of truth is DESIGN.md. Keep the two in sync.
  * Utilities are generated from these names: bg-ground, text-ink,
@@ -21,7 +21,7 @@
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
 
-  /* Colours — one ground, one ink, a few greys, one white accent */
+  /* Colours — one ground, one ink, a few greys, one blue accent */
   --color-ground: #080808;
   --color-panel: #0c0c0c;
   --color-raised: #121212;
@@ -31,12 +31,12 @@
   --color-hairline: #232323;
   --color-hairline-strong: #383838;
   --color-live: #86e7b0;
-  --color-brand: #f5f5f5;
-  --color-brand-pressed: #d6d6d6;
-  --color-on-brand: #080808;
+  --color-brand: #2f6cec;
+  --color-brand-pressed: #1f5cd8;
+  --color-on-brand: #ffffff;
   --color-link: #f5f5f5;
   --color-danger: #ff6467;
-  --color-focus-ring: #6b6b6b;
+  --color-focus-ring: #7d9df0;
 
   /* Type scale */
   --text-h1: clamp(2.9rem, 6.8vw, 4.75rem);
@@ -145,29 +145,29 @@
   }
 
   /*
-   * The primary action. A white fill with a gloss: light along the top edge,
-   * settling into grey, a hairline highlight and a soft lift so it reads as a
-   * physical key against the near-black ground. The only gradient on the site
-   * outside the horizon washes.
+   * The primary action. A blue fill with a gloss: lighter along the top edge,
+   * settling into the brand blue and darkening at the base, with a hairline
+   * highlight and a soft blue lift so it reads as a physical key against the
+   * near-black ground. The only gradient on the site outside the horizon washes.
    */
   .btn-gloss {
-    background-image: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 46%, #d4d4d4 100%);
+    background-image: linear-gradient(to bottom, #4576ee 0%, #2f6cec 50%, #2160e2 100%);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.85),
-      inset 0 -1px 0 rgb(0 0 0 / 0.16),
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -1px 0 rgb(0 0 0 / 0.18),
       0 1px 2px rgb(0 0 0 / 0.5),
-      0 8px 20px -12px rgb(255 255 255 / 0.35);
+      0 10px 24px -14px rgb(47 108 236 / 0.7);
   }
 
   .btn-gloss:hover {
-    background-image: linear-gradient(to bottom, #ffffff 0%, #fafafa 46%, #e2e2e2 100%);
+    background-image: linear-gradient(to bottom, #5384f1 0%, #3a76ee 50%, #2a68e8 100%);
   }
 
   .btn-gloss:active {
-    background-image: linear-gradient(to bottom, #dcdcdc 0%, #e8e8e8 54%, #f5f5f5 100%);
+    background-image: linear-gradient(to bottom, #1f5cd8 0%, #2663e6 54%, #3a75ee 100%);
     box-shadow:
-      inset 0 1px 2px rgb(0 0 0 / 0.18),
-      inset 0 -1px 0 rgb(255 255 255 / 0.5);
+      inset 0 1px 2px rgb(0 0 0 / 0.25),
+      inset 0 -1px 0 rgb(255 255 255 / 0.18);
   }
 }
 
