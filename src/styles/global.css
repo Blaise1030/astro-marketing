@@ -44,11 +44,7 @@
   --glow-soft: rgb(0 0 0 / 0.03);
   --mark: rgb(0 0 0 / 0.2);
   --dot: rgb(0 0 0 / 0.42);
-  --dot-soft: rgb(0 0 0 / 0.26);
-  --horizon-wash: rgb(0 0 0 / 0.05);
-  --horizon-line: rgb(0 0 0 / 0.28);
-  --horizon-inner: rgb(0 0 0 / 0.06);
-  /* The hero globe is the one decorative surface tinted toward brand blue */
+  /* The globe tint is the one decorative surface tinted toward brand blue; the hero and closing horizons share it */
   --globe-dot: rgb(47 108 236 / 0.5);
   --globe-wash: rgb(47 108 236 / 0.07);
   --globe-line: rgb(47 108 236 / 0.38);
@@ -84,10 +80,6 @@
   --glow-soft: rgb(255 255 255 / 0.05);
   --mark: rgb(255 255 255 / 0.3);
   --dot: rgb(255 255 255 / 0.72);
-  --dot-soft: rgb(255 255 255 / 0.5);
-  --horizon-wash: rgb(255 255 255 / 0.14);
-  --horizon-line: rgb(255 255 255 / 0.55);
-  --horizon-inner: rgb(255 255 255 / 0.16);
 
   --globe-dot: rgb(154 188 255 / 0.62);
   --globe-wash: rgb(120 165 255 / 0.14);
@@ -347,7 +339,7 @@
     mask-image: linear-gradient(to bottom, #000, transparent 30%);
   }
 
-  /* The smaller horizon under the closing call to action. */
+  /* The smaller horizon under the closing call to action; shares the hero globe's blue tint. */
   .terrain {
     position: absolute;
     left: 50%;
@@ -357,12 +349,12 @@
     transform: translateX(-50%);
     border-radius: 50%;
     background-image:
-      radial-gradient(ellipse 55% 90% at 50% 0%, var(--horizon-wash), transparent 65%),
-      radial-gradient(circle, var(--dot-soft) 0.65px, transparent 1px);
+      radial-gradient(ellipse 55% 90% at 50% 0%, var(--globe-wash), transparent 65%),
+      radial-gradient(circle, var(--globe-dot) 0.65px, transparent 1px);
     background-size: auto, 4px 4px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
-    opacity: 0.5;
+    opacity: 0.26;
   }
 
   .terrain::before {
@@ -370,7 +362,7 @@
     position: absolute;
     inset: -1px;
     border-radius: 50%;
-    border-top: 1px solid var(--horizon-line);
+    border-top: 1px solid var(--globe-line);
     filter: blur(2px);
     -webkit-mask-image: linear-gradient(to bottom, #000, transparent 18%);
     mask-image: linear-gradient(to bottom, #000, transparent 18%);
