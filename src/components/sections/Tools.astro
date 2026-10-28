@@ -2,10 +2,10 @@
 import { toolLogos } from "@/lib/tool-logos";
 
 const tools = [
-  { name: "Astro", logo: toolLogos.astro },
-  { name: "shadcn/ui", logo: toolLogos.shadcnui },
-  { name: "GitHub", logo: toolLogos.github },
-  { name: "Coding agents", logo: toolLogos.terminal },
+  { name: "Astro", logos: [toolLogos.astro] },
+  { name: "shadcn/ui", logos: [toolLogos.shadcnui] },
+  { name: "GitHub", logos: [toolLogos.github] },
+  { name: "Coding agents", logos: [toolLogos.claude, toolLogos.cursor, toolLogos.codex] },
 ];
 ---
 
@@ -18,18 +18,18 @@ const tools = [
       {
         tools.map((tool) => (
           <div class="group flex h-20 items-center justify-center gap-3 bg-ground px-4">
-            <svg
-              class="size-6 shrink-0 text-muted-ink transition-colors group-hover:text-ink"
-              viewBox="0 0 24 24"
-              fill={tool.logo.style === "fill" ? "currentColor" : "none"}
-              stroke={tool.logo.style === "stroke" ? "currentColor" : undefined}
-              stroke-width={tool.logo.style === "stroke" ? "2" : undefined}
-              stroke-linecap={tool.logo.style === "stroke" ? "round" : undefined}
-              stroke-linejoin={tool.logo.style === "stroke" ? "round" : undefined}
-              aria-hidden="true"
-            >
-              <path d={tool.logo.path} />
-            </svg>
+            <span class="flex items-center gap-1.5 text-muted-ink transition-colors group-hover:text-ink">
+              {tool.logos.map((logo) => (
+                <svg
+                  class:list={["shrink-0", tool.logos.length > 1 ? "size-4" : "size-6"]}
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={logo.path} />
+                </svg>
+              ))}
+            </span>
             <span class="text-sm font-medium tracking-tight text-muted-ink">{tool.name}</span>
           </div>
         ))
