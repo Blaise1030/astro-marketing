@@ -1,26 +1,57 @@
 ---
 import { getCollection, render } from "astro:content";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import Base from "@/layouts/Base.astro";
-import { href } from "@/lib/href";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/href";
+import { loadHelp } from "../../lib/help";
 
 export async function getStaticPaths() {
-  return (await getCollection("helpDocs")).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  const { docs, categories } = await loadHelp(getCollection);
+  return docs.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: { entry, previous: docs[index - 1], next: docs[index + 1], categories },
+  }));
 }
-const { entry } = Astro.props;
+const { entry, previous, next, categories } = Astro.props;
+const category = categories.find((c) => c.slug === entry.data.section);
+const subcategory = category?.subcategories.find((s) => s.slug === entry.data.subcategory);
 const { Content } = await render(entry);
+const linkClass = "transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
 <Base title={entry.data.title} description={entry.data.description}>
-  <article class="shell py-20 sm:py-section">
-    <div class="max-w-3xl">
-      <a class={buttonVariants({ variant: "link", className: "h-auto px-0 text-label text-muted-ink" })} href={href("/help/")}>
-        ← Back to Help
-      </a>
-      <p class="mt-8"><Badge variant="outline" className="border-hairline text-muted-ink">{entry.data.section}</Badge></p>
-      <h1 class="mt-3 text-h2">{entry.data.title}</h1>
-      <p class="mt-4 max-w-2xl text-lg text-muted-ink">{entry.data.description}</p>
-      <div class="prose dark:prose-invert mt-10 max-w-3xl prose-img:h-auto prose-img:max-w-full"><Content /></div>
+  <article class="mx-auto max-w-6xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-body>
+    <a class={`text-xs text-brand-muted ${linkClass}`} href={href("/help/")}>← Help Center</a>
+    <p class="mt-8 text-xs font-medium uppercase tracking-wide text-brand-muted"><a class={linkClass} href={href(`/help/section/${entry.data.section}/`)}>{category?.name}</a>{subcategory && <span> / {subcategory.name}</span>}</p>
+    <h1 class="mt-4 max-w-3xl font-medium text-4xl leading-tight tracking-tight text-balance sm:text-5xl">{entry.data.title}</h1>
+    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-muted">{entry.data.description}</p>
+    <div class="mt-12 grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
+      <aside class="text-sm" data-pagefind-ignore>
+        <nav class="flex flex-col gap-6" aria-label="Help docs">
+          {categories.map((category) => {
+            const item = (doc: (typeof category.docs)[number]) => <a class={`block py-1 ${linkClass} ${doc.id === entry.id ? "font-medium text-brand-foreground" : "text-brand-muted"}`} href={href(`/help/${doc.id}/`)} aria-current={doc.id === entry.id ? "page" : undefined}>{doc.data.title}</a>;
+            return (
+              <div>
+                <a class={`text-xs font-medium uppercase tracking-wide ${linkClass} ${category.slug === entry.data.section ? "text-brand-foreground" : "text-brand-muted"}`} href={href(`/help/section/${category.slug}/`)}>{category.name}</a>
+                <div class="mt-2">{category.loose.map(item)}</div>
+                {category.subcategories.map((sub) => (
+                  <div class="mt-3">
+                    <p class="text-xs text-brand-muted/80">{sub.name}</p>
+                    <div class="mt-1 border-l border-section-line pl-3">{sub.docs.map(item)}</div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </nav>
+      </aside>
+      <div>
+        <div class="prose max-w-2xl break-words dark:prose-invert prose-headings:font-medium prose-headings:tracking-tight prose-a:text-brand-accent prose-a:decoration-brand-accent/40 prose-a:underline-offset-4 prose-pre:border prose-pre:border-section-line prose-pre:bg-section-panel prose-pre:text-brand-foreground prose-img:h-auto prose-img:max-w-full"><Content /></div>
+        {(previous || next) && (
+          <nav data-pagefind-ignore class="mt-16 grid max-w-2xl grid-cols-2 gap-8 border-t border-section-line pt-6 text-sm" aria-label="More docs">
+            <div>{previous && <a class={`block ${linkClass}`} href={href(`/help/${previous.id}/`)}><span class="block text-xs uppercase tracking-wide text-brand-muted">← Previous</span><span class="mt-2 block font-medium">{previous.data.title}</span></a>}</div>
+            <div class="text-right">{next && <a class={`block ${linkClass}`} href={href(`/help/${next.id}/`)}><span class="block text-xs uppercase tracking-wide text-brand-muted">Next →</span><span class="mt-2 block font-medium">{next.data.title}</span></a>}</div>
+          </nav>
+        )}
+      </div>
     </div>
   </article>
 </Base>

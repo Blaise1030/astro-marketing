@@ -11,6 +11,13 @@ export const site = {
     { label: "Help", href: "/help/" },
   ],
   repo: "https://github.com/Blaise1030/cms",
+  /** Right side of the header on some pages; download page reads `download`. */
+  actions: {
+    link: { label: "Help", href: "/help/" },
+    cta: { label: "Download", href: "/download/" },
+  },
+  /** Set `url` to the app installer; the download page shows a "coming soon" note while it is empty. */
+  download: { url: "", platform: "macOS" },
   footer: {
     text: "© 2026 Orso. Free and open source.",
     tagline:

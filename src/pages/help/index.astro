@@ -1,40 +1,29 @@
 ---
 import { getCollection } from "astro:content";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
-import Base from "@/layouts/Base.astro";
-import { href } from "@/lib/href";
-const docs = (await getCollection("helpDocs")).sort((a, b) => a.data.section.localeCompare(b.data.section) || a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
-const sections = [...new Set(docs.map((doc) => doc.data.section))];
+import Base from "../../layouts/Base.astro";
+import HelpSearch from "../../components/HelpSearch.astro";
+import { href } from "../../lib/href";
+import { loadHelp } from "../../lib/help";
+const { categories } = await loadHelp(getCollection);
 ---
-<Base title="Help" description="Guides and answers to help you get started.">
-  <section class="shell py-20 sm:py-section">
-    <h1 class="text-h2">Help</h1>
-    <p class="mt-4 max-w-lg text-body text-muted-ink">Guides and answers for getting set up, editing content and publishing.</p>
-
-    {docs.length === 0 ? (
-      <Empty>
-        <EmptyHeader>
-          <EmptyTitle>No help docs yet</EmptyTitle>
-          <EmptyDescription>Check back soon for guides and answers.</EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    ) : sections.map((section) => (
-      <section class="mt-14">
-        <p class="text-eyebrow uppercase text-faint">{section}</p>
-        <div class="mt-5 grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-7">
-          {docs.filter((doc) => doc.data.section === section).map((doc) => (
-            <Card size="sm" className="transition-colors hover:ring-hairline-strong">
-              <CardHeader>
-                <CardTitle>
-                  <h2 class="text-h3"><a class="transition-colors hover:text-muted-ink" href={href(`/help/${doc.id}/`)}>{doc.data.title}</a></h2>
-                </CardTitle>
-                <CardDescription className="text-body">{doc.data.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </section>
-    ))}
+<Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing with Orso.">
+  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs font-semibold uppercase tracking-wide">/// Help center</p>
+      <h1 class="mt-4 font-medium text-4xl tracking-tight text-balance sm:text-5xl">How can we help?</h1>
+      <div class="mt-8"><HelpSearch /></div>
+    </div>
+    {categories.length === 0 ? <p class="mt-16 text-center">No help docs yet. Check back soon for guides and answers.</p> : (
+      <div class="mt-12 grid gap-x-8 gap-y-8 sm:mt-16 sm:gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{categories.map((category) => (
+        <article class="group">
+          <a class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/help/section/${category.slug}/`)}>
+            <div class="aspect-[3/2] overflow-hidden bg-ui-fill"><div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div></div>
+            <div class="mt-5 text-xs font-medium uppercase tracking-wide text-brand-muted">{category.docs.length} {category.docs.length === 1 ? "article" : "articles"}</div>
+            <h2 class="mt-4 text-xl font-medium tracking-tight text-balance transition-colors group-hover:text-brand-accent">{category.name}</h2>
+            <p class="mt-3 leading-relaxed text-brand-muted">{category.description}</p>
+          </a>
+        </article>
+      ))}</div>
+    )}
   </section>
 </Base>
