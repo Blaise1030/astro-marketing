@@ -1,2 +1,133 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@theme {
+  --color-brand-foreground: light-dark(oklch(20% 0.04 275), oklch(96% 0.01 275));
+  --color-brand-copy: light-dark(oklch(34% 0.035 275), oklch(86% 0.015 275));
+  --color-brand-muted: light-dark(oklch(48% 0.03 275), oklch(72% 0.02 275));
+  --color-brand-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
+  --color-brand-accent: light-dark(oklch(52% 0.22 268), oklch(76% 0.13 268));
+  --color-action-top: oklch(68% 0.17 262);
+  --color-action-bottom: oklch(60% 0.19 263);
+  --color-action-edge: oklch(54% 0.19 263);
+  --color-section-ink: light-dark(oklch(98.8% 0.006 275), oklch(14% 0.03 275));
+  --color-section-panel: light-dark(oklch(100% 0 0), oklch(18% 0.035 275));
+  --color-section-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
+  --color-material: light-dark(oklch(97.2% 0.01 275), oklch(16.5% 0.035 275));
+  --color-ui-fill: light-dark(oklch(95% 0.02 275), oklch(24% 0.035 275));
+  --color-secondary-top: light-dark(oklch(100% 0 0), oklch(26% 0.04 275));
+  --color-inverse: oklch(16% 0.05 270);
+  --color-inverse-highlight: oklch(30% 0.06 270);
+  --color-inverse-foreground: oklch(100% 0 0);
+  --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --text-display: clamp(2.5rem, 5.5vw, 4.5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.035em;
+  --radius-panel: 0.75rem;
+  --spacing-section: 4rem;
+  --spacing-section-wide: 7rem;
+  --shadow-panel: 0 1px 2px light-dark(rgb(24 27 60 / 6%), rgb(0 0 0 / 40%)), 0 32px 80px -24px light-dark(rgb(24 27 60 / 28%), rgb(0 0 0 / 70%));
+  --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 2px rgb(20 20 60 / 35%);
+  --shadow-action-pressed: inset 0 1px 2px rgb(20 20 60 / 30%);
+  --shadow-action-secondary: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 6%)), 0 1px 2px light-dark(rgb(24 27 60 / 10%), rgb(0 0 0 / 40%));
+}
+
+/* Site header: solid by default; transparent over a navy hero until scrolled (`data-overlay` without `data-solid`). */
+@utility site-header {
+  color: var(--color-brand-foreground);
+  background-color: color-mix(in srgb, var(--color-section-ink) 90%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+
+  &[data-overlay]:not([data-solid]):not(:has(details[open])) {
+    color: var(--color-inverse-foreground);
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  /* An open mobile menu makes the bar solid so it matches the menu panel. */
+  &:has(details[open]) {
+    background-color: var(--color-section-ink);
+    backdrop-filter: none;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--color-section-ink);
+    backdrop-filter: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+@utility hero-glow {
+  background-image: radial-gradient(ellipse 60% 50% at 50% 100%, oklch(52% 0.22 268 / 35%), transparent 70%);
+}
+
+/* Pagefind UI, themed with the site tokens. */
+.help-search {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--color-brand-accent);
+  --pagefind-ui-text: var(--color-brand-foreground);
+  --pagefind-ui-background: var(--color-section-panel);
+  --pagefind-ui-border: var(--color-section-line);
+  --pagefind-ui-tag: var(--color-ui-fill);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-font: var(--font-sans);
+}
+
+.help-search .pagefind-ui__search-input {
+  height: 3.25rem;
+  padding-left: 3rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-brand-foreground);
+  background-color: var(--color-section-panel);
+  border: 1px solid var(--color-section-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-action-secondary);
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+.help-search .pagefind-ui__search-input::placeholder { color: var(--color-brand-muted); opacity: 1; font-weight: 400; }
+.help-search .pagefind-ui__search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+}
+.help-search .pagefind-ui__form::before { background-color: var(--color-brand-muted); opacity: 1; }
+.help-search .pagefind-ui__search-clear {
+  color: var(--color-brand-muted);
+  background: transparent;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+.help-search .pagefind-ui__search-clear:hover { color: var(--color-brand-foreground); background: var(--color-ui-fill); }
+.help-search .pagefind-ui__message { font-size: 0.875rem; font-weight: 500; color: var(--color-brand-muted); }
+.help-search .pagefind-ui__result { border-top: 1px solid var(--color-section-line); padding: 1.25rem 0; }
+.help-search .pagefind-ui__result:last-child { border-bottom: 1px solid var(--color-section-line); }
+.help-search .pagefind-ui__result-title { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; }
+.help-search .pagefind-ui__result-link { color: var(--color-brand-foreground); text-decoration: none; transition: color 150ms ease-out; }
+.help-search .pagefind-ui__result-link:hover { color: var(--color-brand-accent); text-decoration: none; }
+.help-search .pagefind-ui__result-excerpt { color: var(--color-brand-muted); font-size: 0.9375rem; line-height: 1.6; }
+.help-search .pagefind-ui__result-nested { color: var(--color-brand-copy); }
+.help-search .pagefind-ui__result-nested .pagefind-ui__result-link { font-size: 0.9375rem; font-weight: 500; }
+.help-search .pagefind-ui__result-inner > .pagefind-ui__result-title + .pagefind-ui__result-excerpt { margin-top: 0.25rem; }
+.help-search mark {
+  color: inherit;
+  background-color: color-mix(in srgb, var(--color-brand-accent) 22%, transparent);
+  border-radius: 0.2em;
+  padding: 0 0.1em;
+}
+.help-search .pagefind-ui__button {
+  color: var(--color-brand-foreground);
+  background: var(--color-section-panel);
+  border: 1px solid var(--color-section-line);
+  border-radius: var(--radius-panel);
+  font-weight: 500;
+}
+.help-search .pagefind-ui__button:hover { border-color: var(--color-brand-accent); }

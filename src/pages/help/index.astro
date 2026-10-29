@@ -1,28 +1,48 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import HelpSearch from "../../components/HelpSearch.astro";
 import { href } from "../../lib/href";
+import { loadHelp } from "../../lib/help";
 
 const docs = await getCollection("helpDocs");
-const categories = (await getCollection("helpDocsCategories")).sort(
+const docsCategories = (await getCollection("helpDocsCategories")).sort(
   (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id),
 );
-const docsByCategory = new Map(categories.map((category) => [category.id, [] as typeof docs]));
+const docsByCategory = new Map(docsCategories.map((category) => [category.id, [] as typeof docs]));
 for (const doc of docs) {
+  if (!doc.data.category) continue;
   const list = docsByCategory.get(doc.data.category);
   if (list) list.push(doc);
 }
 for (const list of docsByCategory.values()) {
   list.sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id));
 }
-const sections = categories.filter((category) => (docsByCategory.get(category.id)?.length ?? 0) > 0);
+const sections = docsCategories.filter((category) => (docsByCategory.get(category.id)?.length ?? 0) > 0);
+const { categories } = await loadHelp(getCollection);
 ---
-<Base title="Help" description="Guides and answers to help you get started.">
-  <section class="mx-auto max-w-5xl px-8 py-12">
-    <h1 class="mb-8 text-4xl font-bold tracking-tight">Help</h1>
-    {categories.length > 0 && <p class="mb-8 text-sm"><a class="hover:underline" href={href("/help/categories/")}>Browse all categories</a></p>}
-    {docs.length === 0 ? <p>No help docs yet. Check back soon for guides and answers.</p> : sections.map((category) => (
-      <section class="mb-10" id={category.data.slug}>
+<Base title="Orso Help" description="Guides and answers to help you get started. Guides for editing content, previewing changes, and publishing with Orso.">
+  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs font-semibold uppercase tracking-wide">/// Help center</p>
+      <h1 class="mt-4 font-medium text-4xl tracking-tight text-balance sm:text-5xl">How can we help?</h1>
+      <div class="mt-8"><HelpSearch /></div>
+      {docsCategories.length > 0 && <p class="mt-8 text-sm"><a class="hover:underline" href={href("/help/categories/")}>Browse all categories</a></p>}
+    </div>
+    {categories.length === 0 ? <p class="mt-16 text-center">No help docs yet. Check back soon for guides and answers.</p> : (
+      <div class="mt-12 grid gap-x-8 gap-y-8 sm:mt-16 sm:gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{categories.map((category) => (
+        <article class="group">
+          <a class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/help/section/${category.slug}/`)}>
+            <div class="aspect-[3/2] overflow-hidden bg-ui-fill"><div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div></div>
+            <div class="mt-5 text-xs font-medium uppercase tracking-wide text-brand-muted">{category.docs.length} {category.docs.length === 1 ? "article" : "articles"}</div>
+            <h2 class="mt-4 text-xl font-medium tracking-tight text-balance transition-colors group-hover:text-brand-accent">{category.name}</h2>
+            <p class="mt-3 leading-relaxed text-brand-muted">{category.description}</p>
+          </a>
+        </article>
+      ))}</div>
+    )}
+    {sections.map((category) => (
+      <section class="mt-16" id={category.data.slug}>
         <h2 class="mb-4 text-2xl font-semibold"><a class="hover:underline" href={href(`/help/categories/${category.data.slug}/`)}>{category.data.title}</a></h2>
         <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">{docsByCategory.get(category.id)!.map((doc) => (
           <article class="rounded-xl border border-neutral-400/30 p-5">

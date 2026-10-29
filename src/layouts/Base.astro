@@ -1,4 +1,6 @@
 ---
+import Button from "../components/ui/Button.astro";
+import Container from "../components/ui/Container.astro";
 import { href } from "../lib/href";
 import { site } from "../site";
 import "../styles/global.css";
@@ -6,32 +8,63 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description: string;
+  /** Sit the header transparently over a navy hero, solid once scrolled. */
+  overlay?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, overlay = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const linkClass = "inline-flex min-h-9 items-center transition-opacity hover:opacity-70 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
 
-<html lang="en" class="scheme-light-dark">
+<html lang="en" class="scheme-light-dark scroll-pt-16">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-    <header class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
-      <a class="font-bold" href={base}>{site.name}</a>
-      <nav class="flex gap-4">
-        {site.nav.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
-      </nav>
+  <body class="flex min-h-screen flex-col bg-section-ink text-brand-foreground antialiased selection:bg-action-bottom selection:text-white">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-lg focus:bg-action-bottom focus:px-4 focus:py-3 focus:text-white" href="#main">Skip to content</a>
+    <header id="site-header" data-overlay={overlay ? "" : undefined} class="site-header fixed inset-x-0 top-0 z-40">
+      <Container class="grid h-12 grid-cols-[1fr_auto] items-center gap-x-8 sm:grid-cols-[1fr_auto_1fr]">
+        <a class="justify-self-start text-xl font-semibold uppercase leading-none tracking-tight focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={base}>{site.name}</a>
+        <nav aria-label="Main navigation" class="hidden items-center justify-center gap-x-6 text-sm sm:flex">
+          {site.nav.map((l) => <a class={linkClass} href={href(l.href)}>{l.label}</a>)}
+        </nav>
+        <div class="flex items-center justify-self-end gap-x-4 text-sm">
+          <a class={`${linkClass} hidden sm:inline-flex`} href={href(site.actions.link.href)}>{site.actions.link.label}</a>
+          <Button href={site.actions.cta.href} size="sm">{site.actions.cta.label}</Button>
+          <details class="group -mr-2.5 -ml-2 sm:hidden">
+            <summary class="flex size-10 cursor-pointer list-none items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent [&::-webkit-details-marker]:hidden" aria-label="Menu">
+              <svg class="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path class="group-open:hidden" d="M3 6h14M3 14h14" /><path class="hidden group-open:block" d="M5 5l10 10M15 5L5 15" /></svg>
+            </summary>
+            <nav aria-label="Mobile navigation" class="absolute inset-x-0 top-full flex flex-col border-b border-section-line bg-section-ink px-6 pb-4 text-brand-foreground">
+              {[...site.nav, site.actions.link].map((l) => <a class={`${linkClass} border-b border-section-line last:border-0`} href={href(l.href)}>{l.label}</a>)}
+            </nav>
+          </details>
+        </div>
+      </Container>
     </header>
-    <main><slot /></main>
-    <footer class="flex flex-wrap items-center justify-between gap-4 px-8 py-4">
-      <p>{site.footer.text}</p>
-      <nav class="flex gap-4">
-        {site.footer.links.map((l) => <a class="hover:underline" href={href(l.href)}>{l.label}</a>)}
-        {site.socials.map((s) => <a class="hover:underline" href={s.href} rel="noopener">{s.label}</a>)}
-      </nav>
+    <main id="main" class:list={["flex-1", !overlay && "pt-12"]}><slot /></main>
+    <footer class="border-t border-section-line">
+      <Container class="flex flex-wrap items-center justify-between gap-6 py-8 text-sm text-brand-muted">
+        <p>{site.footer.text}</p>
+        <p class="hidden sm:block">Your content. Your code. Your site.</p>
+        <nav aria-label="Footer navigation" class="flex flex-wrap gap-x-6 gap-y-3">
+          {site.footer.links.map((l) => <a class="hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(l.href)}>{l.label}</a>)}
+          {site.socials.map((s) => <a class="hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={s.href} rel="noopener">{s.label}</a>)}
+        </nav>
+      </Container>
     </footer>
+    {overlay && (
+      <script is:inline>
+        (() => {
+          const header = document.getElementById("site-header");
+          const update = () => header.toggleAttribute("data-solid", window.scrollY > 24);
+          update();
+          addEventListener("scroll", update, { passive: true });
+        })();
+      </script>
+    )}
   </body>
 </html>

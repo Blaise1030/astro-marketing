@@ -1,0 +1,14 @@
+---
+import { href } from "../lib/href";
+import { slugify } from "../lib/blog";
+interface Props { categories: string[]; active?: string }
+const { categories, active } = Astro.props;
+const filterClass = "uppercase tracking-wide border-b border-transparent pb-0.5 text-xs font-medium text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent aria-[current=page]:border-brand-foreground aria-[current=page]:text-brand-foreground";
+---
+<div class="mb-12 flex flex-wrap items-center gap-x-10 gap-y-4">
+  <p class="text-xs font-semibold uppercase tracking-wide">/// {active ? active : "All posts"}</p>
+  <nav class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Blog categories">
+    <a class={filterClass} href={href("/blog/")} aria-current={active ? undefined : "page"}>All</a>
+    {categories.map((category) => <a class={filterClass} href={href(`/blog/category/${slugify(category)}/`)} aria-current={category === active ? "page" : undefined}>{category}</a>)}
+  </nav>
+</div>
