@@ -34,8 +34,8 @@ const linkClass = "transition-colors hover:text-brand-foreground focus-visible:o
         <div class="prose max-w-4xl break-words dark:prose-invert prose-headings:font-medium prose-headings:tracking-tight prose-a:text-brand-accent prose-a:decoration-brand-accent/40 prose-a:underline-offset-4 prose-pre:border prose-pre:border-section-line prose-pre:bg-section-panel prose-pre:text-brand-foreground prose-img:h-auto prose-img:max-w-full"><Content /></div>
         {(previous || next) && (
           <nav data-pagefind-ignore class="mt-16 grid max-w-4xl grid-cols-2 gap-8 border-t border-section-line pt-6 text-sm" aria-label="More docs">
-            <div>{previous && <a class={`block ${linkClass}`} href={href(`/help/${previous.id}/`)}><span class="block text-xs uppercase tracking-wide text-brand-muted">← Previous</span><span class="mt-2 block font-medium">{previous.data.title}</span></a>}</div>
-            <div class="text-right">{next && <a class={`block ${linkClass}`} href={href(`/help/${next.id}/`)}><span class="block text-xs uppercase tracking-wide text-brand-muted">Next →</span><span class="mt-2 block font-medium">{next.data.title}</span></a>}</div>
+            <div>{previous && <a class={`block ${linkClass}`} href={href(`/help/${previous.id}/`)}><span class="block text-sm text-brand-muted">← Previous</span><span class="mt-2 block font-medium">{previous.data.title}</span></a>}</div>
+            <div class="text-right">{next && <a class={`block ${linkClass}`} href={href(`/help/${next.id}/`)}><span class="block text-sm text-brand-muted">Next →</span><span class="mt-2 block font-medium">{next.data.title}</span></a>}</div>
           </nav>
         )}
       </div>
