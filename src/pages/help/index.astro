@@ -4,10 +4,25 @@ import Base from "../../layouts/Base.astro";
 import HelpSearch from "../../components/HelpSearch.astro";
 import { href } from "../../lib/href";
 import { loadHelp } from "../../lib/help";
+
+const docs = await getCollection("helpDocs");
+const docsCategories = (await getCollection("helpDocsCategories")).sort(
+  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id),
+);
+const docsByCategory = new Map(docsCategories.map((category) => [category.id, [] as typeof docs]));
+for (const doc of docs) {
+  if (!doc.data.category) continue;
+  const list = docsByCategory.get(doc.data.category);
+  if (list) list.push(doc);
+}
+for (const list of docsByCategory.values()) {
+  list.sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id));
+}
+const sections = docsCategories.filter((category) => (docsByCategory.get(category.id)?.length ?? 0) > 0);
 const { categories } = await loadHelp(getCollection);
 ---
-<Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing with Orso.">
-  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+<Base title="Orso Help" description="Guides and answers to help you get started. Guides for editing content, previewing changes, and publishing with Orso.">
+  <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <div class="mx-auto max-w-2xl text-center">
       <p class="text-xs font-semibold uppercase tracking-wide">/// Help center</p>
       <h1 class="mt-4 font-medium text-4xl tracking-tight text-balance sm:text-5xl">How can we help?</h1>
@@ -25,5 +40,25 @@ const { categories } = await loadHelp(getCollection);
         </article>
       ))}</div>
     )}
+    {sections.map((category) => (
+      <section class="mt-16" id={category.data.slug}>
+        <h2 class="text-2xl font-medium tracking-tight">
+          <a class="transition-colors hover:text-brand-accent" href={href(`/help/categories/${category.data.slug}/`)}>{category.data.title}</a>
+        </h2>
+        <ul class="mt-6 divide-y divide-section-line border-y border-section-line">
+          {docsByCategory.get(category.id)!.map((doc) => (
+            <li>
+              <a
+                class="block py-4 transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent"
+                href={href(`/help/${doc.id}/`)}
+              >
+                <span class="font-medium">{doc.data.title}</span>
+                <span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </Base>

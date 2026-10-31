@@ -21,13 +21,25 @@ test("astro sync writes the orso content manifest", () => {
     assert.ok(existsSync(path), `missing ${path}\n${result.stdout}${result.stderr}`);
     const manifest = JSON.parse(readFileSync(path, "utf8"));
     assert.equal(manifest.version, 1);
-    assert.deepEqual(manifest.collections.map(({ name }) => name), ["blog", "helpCategories", "helpSubcategories", "helpDocs"]);
+    assert.deepEqual(manifest.collections.map(({ name }) => name), ["blogCategories", "helpDocsCategories", "blog", "helpCategories", "helpSubcategories", "helpDocs"]);
     const byName = Object.fromEntries(manifest.collections.map((collection) => [collection.name, collection]));
+    assert.deepEqual(byName.blogCategories.loader, { base: "src/content/blogCategories/en", pattern: "*.md" });
+    assert.deepEqual(byName.helpDocsCategories.loader, { base: "src/content/helpDocsCategories/en", pattern: "*.md" });
     assert.deepEqual(byName.blog.loader, { base: "src/content/blog/en", pattern: "*.md" });
+    assert.deepEqual(byName.helpCategories.loader, { base: "src/content/helpCategories/en", pattern: "*.md" });
+    assert.deepEqual(byName.helpSubcategories.loader, { base: "src/content/helpSubcategories/en", pattern: "*.md" });
     assert.deepEqual(byName.helpDocs.loader, { base: "src/content/helpDocs/en", pattern: "*.md" });
     for (const collection of manifest.collections) assert.equal(collection.supportedForEditing, true, collection.reason);
     assert.equal(byName.blog.fields.properties.pubDate.type, "date");
     assert.equal(byName.blog.fields.properties.coverImage.type, "image");
+    assert.equal(byName.blog.fields.properties.categories.items.type, "reference");
+    assert.equal(byName.blog.fields.properties.categories.items.collection, "blogCategories");
+    assert.equal(byName.helpDocs.fields.properties.category.type, "reference");
+    assert.equal(byName.helpDocs.fields.properties.category.collection, "helpDocsCategories");
+    assert.equal(byName.helpDocs.fields.properties.section.type, "reference");
+    assert.equal(byName.helpDocs.fields.properties.section.collection, "helpCategories");
+    assert.equal(byName.blogCategories.fields.properties.slug.type, "string");
+    assert.equal(byName.helpDocsCategories.fields.properties.slug.type, "string");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

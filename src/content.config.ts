@@ -2,6 +2,27 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { orsoGlob } from "orso-astro";
 
+const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use a lowercase slug like getting-started");
+
+const blogCategories = defineCollection({
+  loader: orsoGlob({ base: "./src/content/blogCategories/en", pattern: "*.md" }),
+  schema: z.object({
+    title: z.string(),
+    slug,
+    description: z.string().optional(),
+  }),
+});
+
+const helpDocsCategories = defineCollection({
+  loader: orsoGlob({ base: "./src/content/helpDocsCategories/en", pattern: "*.md" }),
+  schema: z.object({
+    title: z.string(),
+    slug,
+    description: z.string().optional(),
+    order: z.number().default(0),
+  }),
+});
+
 const blog = defineCollection({
   loader: orsoGlob({ base: "./src/content/blog/en", pattern: "*.md" }),
   schema: ({ image }) => z.object({
@@ -13,6 +34,7 @@ const blog = defineCollection({
     }, "Use a valid calendar date").meta({ editor: { type: "date", knownRefinement: true } }),
     coverImage: image().meta({ editor: { type: "image" } }).optional(),
     coverAlt: z.string().optional(),
+    categories: z.array(z.string().meta({ editor: { type: "reference", collection: "blogCategories" } })).default([]),
     tags: z.array(z.string()).default([]),
     relatedPosts: z.array(z.string().meta({ editor: { type: "reference", collection: "blog" } })).default([]),
   }).superRefine((post, ctx) => {
@@ -46,6 +68,7 @@ const helpDocs = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    category: z.string().meta({ editor: { type: "reference", collection: "helpDocsCategories" } }).optional(),
     /** Top-level help category, shown as a card on the Help home. */
     section: z.string().meta({ editor: { type: "reference", collection: "helpCategories" } }),
     /** Optional group inside the category. */
@@ -54,4 +77,4 @@ const helpDocs = defineCollection({
   }),
 });
 
-export const collections = { blog, helpCategories, helpSubcategories, helpDocs };
+export const collections = { blogCategories, helpDocsCategories, blog, helpCategories, helpSubcategories, helpDocs };

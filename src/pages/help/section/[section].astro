@@ -11,7 +11,7 @@ const { category } = Astro.props;
 const linkClass = "transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
 ---
 <Base title={`${category.name} · Orso Help`} description={category.description}>
-  <section class="mx-auto max-w-4xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
+  <section class="mx-auto max-w-7xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
     <a class="text-xs text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href("/help/")}>← Help Center</a>
     <h1 class="mt-8 font-semibold text-4xl tracking-tight text-balance sm:text-5xl">{category.name}</h1>
     <p class="mt-4 text-lg leading-relaxed text-brand-muted">{category.description}</p>

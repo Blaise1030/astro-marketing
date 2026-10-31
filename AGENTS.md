@@ -5,8 +5,10 @@ Static Astro site. The landing page, navigation and footer are written directly 
 ## Content model
 
 - `src/content.config.ts` defines the collections and their schemas inline; each loader uses `orsoGlob` from `orso-astro`, and the `orso()` integration is registered in `astro.config.mjs`:
-  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `tags[]`, `relatedPosts[]`.
-  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `section` (reference to `helpCategories`), optional `subcategory` (reference to `helpSubcategories`), `order`.
+  - `blogCategories` ← `src/content/blogCategories/en/*.md`: `title`, `slug`, optional `description`.
+  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, `slug`, optional `description`, `order`.
+  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `tags[]`, `relatedPosts[]`.
+  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `category` (ref to `helpDocsCategories`), `section` (reference to `helpCategories`), optional `subcategory` (reference to `helpSubcategories`), `order`.
   - `helpCategories` ← `src/content/helpCategories/en/*.md`: `title`, `description` (card blurb), `order`. The entry id is the URL slug.
   - `helpSubcategories` ← `src/content/helpSubcategories/en/*.md`: `title`, `category` (reference to `helpCategories`), `order`.
 
@@ -29,6 +31,8 @@ Static Astro site. The landing page, navigation and footer are written directly 
 - New landing-page section: add a component in `src/components/sections/` and render it in `src/pages/index.astro`.
 - New page: add an `.astro` route in `src/pages/` wrapped in `Base`.
 - Blog posts and help docs: add or edit Markdown under `src/content/blog/en/` and `src/content/helpDocs/en/`.
+- Blog and help categories: add or edit Markdown under `src/content/blogCategories/en/` and `src/content/helpDocsCategories/en/`.
+- Help sections: add or edit Markdown under `src/content/helpCategories/en/` and `src/content/helpSubcategories/en/`.
 - Styling: use Tailwind utility classes and the shadcn/ui primitives. Prefer the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) plus the Orso palette (`bg-brand`, `text-link`, `bg-ground`, `bg-panel`, `border-hairline`). The site is dark-only: `<html class="dark">` is permanent and the `dark` variant is class-based — there is no toggle. Wrap rendered Markdown bodies in `prose prose-invert`. Avoid `<style>` blocks.
 - Adding a UI primitive: run `npx shadcn@latest add <name>` (Base UI flavour, configured in `components.json`). Leave the generated component, variants and sizes as shadcn ships them; theme through the tokens in `src/styles/global.css` and pass layout classes at the call site.
 - Compound Base UI components (Accordion, Dialog, …) must be composed inside a single React component and hydrated with `client:*`. Splitting their parts across `.astro` files breaks their context; see `src/components/faq-list.tsx`. Static primitives (Button, Card, Badge) need no client directive, and anchors should use `buttonVariants()` rather than an island.

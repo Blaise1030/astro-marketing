@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import { href } from "../../../lib/href";
+import { sortPosts } from "../../../lib/blog";
+
+export async function getStaticPaths() {
+  return (await getCollection("blogCategories")).map((category) => ({
+    params: { slug: category.data.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const posts = sortPosts(
+  (await getCollection("blog")).filter((post) => post.data.categories.includes(category.id)),
+);
+---
+<Base title={category.data.title} description={category.data.description ?? `Posts in ${category.data.title}.`}>
+  <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <a class="text-sm text-brand-muted transition-colors hover:text-brand-accent" href={href("/blog/")}>Back to Blog</a>
+    <h1 class="mt-4 text-4xl font-medium tracking-tight">{category.data.title}</h1>
+    {category.data.description && <p class="mt-3 max-w-2xl leading-relaxed text-brand-muted">{category.data.description}</p>}
+    {posts.length === 0 ? <p class="mt-10">No posts in this category yet.</p> : (
+      <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => <BlogCard post={post} />)}
+      </div>
+    )}
+  </section>
+</Base>
