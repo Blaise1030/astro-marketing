@@ -1,24 +1,58 @@
 ---
-import Badge from "../ui/Badge.astro";
-import Button from "../ui/Button.astro";
-import Container from "../ui/Container.astro";
-import SectionHeader from "../ui/SectionHeader.astro";
-import ProductPreview from "../ProductPreview.astro";
-const details = ["Content stays in your repository", "Live preview", "Publishes via GitHub"];
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { href } from "@/lib/href";
 ---
 
-<section id="hero" class="hero-glow overflow-hidden bg-inverse text-inverse-foreground">
-  <Container class="pb-16 pt-36 sm:pb-24 sm:pt-44">
-    <Badge tone="inverse">Markdown CMS and site agent for Astro</Badge>
-    <SectionHeader level="h1" tone="inverse" description="Edit Markdown content, hand larger changes to an agent, review them in a live preview, and publish through your existing GitHub workflow." class="mt-6 [&_h1]:max-w-3xl [&_h1]:text-display">
-      Your Astro site.<br /><span class="text-inverse-foreground/60">Easy to keep current.</span>
-      <Fragment slot="actions">
-        <Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button>
-      </Fragment>
-    </SectionHeader>
-    <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs text-inverse-foreground/60">
-      {details.map((detail) => <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="size-3.5 text-action-top" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 8 3 3 7-7" /></svg>{detail}</li>)}
-    </ul>
-    <div class="mt-14 sm:mt-20"><ProductPreview /></div>
-  </Container>
+<section class="relative isolate overflow-hidden pt-24 sm:pt-36" id="hero">
+  <div class="shell relative z-10 text-center">
+    <Badge
+      variant="outline"
+      className="h-7 gap-2 rounded-full border-hairline bg-wash px-3 text-[0.7rem] font-normal tracking-wide text-muted-ink"
+    >
+      <span class="size-1.5 rounded-full bg-live"></span>
+      Free &amp; open source
+    </Badge>
+
+    <h1 class="mx-auto mt-8 max-w-5xl text-h1">
+      <span>Your site.</span>{" "}
+      <span class="block sm:inline">Your repo.</span><br class="hidden sm:inline" />
+      <span class="text-muted-ink">Your agent.</span>
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-lg text-body text-muted-ink">
+      Orso is a free, open-source studio for Astro sites. Edit content in a real UI, let Claude, Cursor or Codex make the
+      change, preview it locally, publish to GitHub Pages — and keep everything in a repo you own.
+    </p>
+
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+      <a
+        class={buttonVariants({
+          size: "lg",
+          className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]",
+        })}
+        href={href("#how-it-works")}
+      >
+        Start building
+      </a>
+      <a
+        class="group inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
+        href={href("#features")}
+      >
+        See what it does
+        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="pointer-events-none relative z-0 -mt-24 sm:-mt-32" aria-hidden="true">
+    <div
+      class="absolute left-1/2 top-0 h-24 w-[52rem] -translate-x-1/2 -translate-y-20 rounded-full bg-glow opacity-50 blur-3xl"
+    >
+    </div>
+    <div class="relative h-[260px] overflow-hidden sm:h-[360px]">
+      <div class="planet"></div>
+      <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
+    </div>
+  </div>
 </section>

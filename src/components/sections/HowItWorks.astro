@@ -1,0 +1,107 @@
+---
+import { Badge } from "@/components/ui/badge";
+import { site } from "@/site";
+
+const steps = [
+  {
+    title: "Ask, or just edit",
+    body: "Developers describe the change and the agent writes the code, copy and styles. Everyone else fills in a friendly form. Same site, same repo.",
+  },
+  {
+    title: "Preview it for real",
+    body: "Every change is its own draft with a live preview on desktop and mobile, so nothing reaches the live site until it's right.",
+  },
+  {
+    title: "Publish when it's right",
+    body: "One click to GitHub Pages. Every earlier version stays in History, so a bad idea costs nothing.",
+  },
+];
+---
+
+<section class="shell py-20 sm:py-section" id="how-it-works">
+  <div class="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
+    <div>
+      <h2 class="max-w-xl text-h2">
+        Plain English in.<br />
+        <span class="text-muted-ink">A live site out.</span>
+      </h2>
+      <p class="mt-5 max-w-md text-body text-muted-ink">
+        Three steps from a sentence to a deployed site — with a developer-sized escape hatch at every stage.
+      </p>
+
+      <ol class="mt-10 border-t border-hairline">
+        {
+          steps.map((step, index) => (
+            <li class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-hairline py-5">
+              <span class="font-mono text-[11px] leading-6 text-faint">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="text-h3">{step.title}</h3>
+                <p class="mt-1.5 max-w-md text-body text-muted-ink">{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <a
+        class="mt-7 inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
+        href={site.repo}
+        rel="noopener"
+      >
+        Read the code
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="relative lg:sticky lg:top-24">
+      <div class="pointer-events-none absolute -inset-6 halo blur-2xl">
+      </div>
+      <div class="relative overflow-hidden rounded-xl border border-hairline bg-panel">
+        <div class="flex items-center gap-3 border-b border-hairline px-4 py-3">
+          <div class="flex gap-1.5">
+            <span class="size-2 rounded-full bg-hairline-strong"></span>
+            <span class="size-2 rounded-full bg-hairline-strong"></span>
+            <span class="size-2 rounded-full bg-hairline-strong"></span>
+          </div>
+          <span class="mx-auto font-mono text-[11px] text-faint">agent — my-site</span>
+          <Badge variant="outline" className="h-5 rounded-full border-hairline px-2 text-[10px] font-normal text-muted-ink">
+            <span class="size-1.5 rounded-full bg-live"></span>
+            ready
+          </Badge>
+        </div>
+
+        <div class="space-y-6 p-5 font-mono text-[12px] leading-relaxed sm:text-[12.5px]">
+          <div class="flex gap-2">
+            <span class="text-faint">$</span>
+            <p class="text-ink">
+              Change the headline to <span class="text-muted-ink">“Built for the whole team.”</span>
+            </p>
+          </div>
+
+          <div class="space-y-1.5">
+            <p class="text-faint">src/pages/index.astro</p>
+            <p class="flex gap-2 text-faint">
+              <span aria-hidden="true">−</span>
+              <span class="line-through decoration-faint/60">Your site. Your repo. Your agent.</span>
+            </p>
+            <p class="flex gap-2 text-live">
+              <span aria-hidden="true">+</span>
+              <span>Built for the whole team.</span>
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-hairline bg-raised/60 px-3.5 py-3 text-muted-ink">
+            <span class="text-ink">Done.</span> Preview rebuilt in 0.8s — open
+            <span class="text-ink">localhost:4321</span> to review.
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 border-t border-hairline px-4 py-3">
+          <span class="size-1.5 rounded-full bg-live"></span>
+          <span class="font-mono text-[11px] text-faint">Ready for the next change</span>
+          <span class="ml-auto rounded border border-hairline px-1.5 py-0.5 font-mono text-[10px] text-faint">⌘ K</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

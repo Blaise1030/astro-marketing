@@ -10,7 +10,7 @@ const html = (dir, path) => readFileSync(join(dir, "dist", path, "index.html"), 
 function fixture(run) {
   const dir = mkdtempSync(join(tmpdir(), "content-pages-"));
   try {
-    for (const path of ["src", "astro.config.mjs", "package.json"]) cpSync(join(root, path), join(dir, path), { recursive: true });
+    for (const path of ["src", "astro.config.mjs", "package.json", "tsconfig.json"]) cpSync(join(root, path), join(dir, path), { recursive: true });
     symlinkSync(join(root, "node_modules"), join(dir, "node_modules"), "dir");
     run(dir);
   } finally { rmSync(dir, { recursive: true, force: true }); }
@@ -29,7 +29,7 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
   assert.match(html(root, "help/getting-started"), /<h2[^>]*>.*First steps/);
   assert.match(html(root, ""), /href="\/blog\/"[^>]*>Blog/);
   assert.match(html(root, ""), /href="\/help\/"[^>]*>Help/);
-  for (const id of ["hero", "logos", "features", "testimonials", "pricing", "faq", "cta"]) assert.match(html(root, ""), new RegExp(`id="${id}"`));
+  for (const id of ["hero", "stack", "how-it-works", "features", "faq", "cta"]) assert.match(html(root, ""), new RegExp(`id="${id}"`));
 });
 
 // Fixtures vary filenames and dates/orders to catch sorting by filesystem order.

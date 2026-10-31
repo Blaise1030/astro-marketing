@@ -1,0 +1,39 @@
+---
+import { toolLogos } from "@/lib/tool-logos";
+
+const tools = [
+  { name: "Astro", logos: [toolLogos.astro] },
+  { name: "shadcn/ui", logos: [toolLogos.shadcnui] },
+  { name: "GitHub", logos: [toolLogos.github] },
+  { name: "Coding agents", logos: [toolLogos.claude, toolLogos.cursor, toolLogos.codex] },
+];
+---
+
+<section class="pb-4 pt-10 sm:pt-14" aria-label="Works with">
+  <div class="shell">
+    <p class="text-center text-label text-muted-ink">
+      Runs on trusted technologies you are using.
+    </p>
+    <div class="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-4">
+      {
+        tools.map((tool) => (
+          <div class="group flex h-20 items-center justify-center gap-3 bg-ground px-4">
+            <span class="flex items-center gap-1.5 text-muted-ink transition-colors group-hover:text-ink">
+              {tool.logos.map((logo) => (
+                <svg
+                  class:list={["shrink-0", tool.logos.length > 1 ? "size-4" : "size-6"]}
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={logo.path} />
+                </svg>
+              ))}
+            </span>
+            <span class="text-sm font-medium tracking-tight text-muted-ink">{tool.name}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
