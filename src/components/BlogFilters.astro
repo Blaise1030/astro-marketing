@@ -3,7 +3,7 @@ import { href } from "../lib/href";
 import { slugify } from "../lib/blog";
 interface Props { categories: string[]; active?: string }
 const { categories, active } = Astro.props;
-const filterClass = "uppercase tracking-wide border-b border-transparent pb-0.5 text-xs font-medium text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent aria-[current=page]:border-brand-foreground aria-[current=page]:text-brand-foreground";
+const filterClass = "border-b border-transparent pb-0.5 text-sm font-medium text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent aria-[current=page]:border-brand-foreground aria-[current=page]:text-brand-foreground";
 ---
 <div class="header-fade sticky top-16 z-40 -mx-6 mb-12 px-6 pb-5 sm:-mx-8 sm:px-8">
   <div class="flex flex-wrap items-center gap-x-10 gap-y-4">
