@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { category, categories, posts } = Astro.props;
 ---
 <Base title={`${category} · Orso Blog`} description={`Orso blog posts about ${category}.`}>
-  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
+  <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <h1 class="sr-only">{category}</h1>
     <BlogFilters categories={categories} active={category} />
     <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <BlogCard post={post} />)}</div>
