@@ -1,133 +1,459 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
+
+/*
+ * Two themes, one token set. `:root` is the daylight ledger; `.dark`, set on
+ * <html> before paint by the inline script in src/layouts/Base.astro, is the
+ * near-black one. Raw values live in `--palette-*` custom properties so
+ * `@theme inline` can hand utilities a var() instead of a frozen hex.
+ *
+ * Design tokens — the source of truth is DESIGN.md. Keep the two in sync.
+ * Utilities are generated from these names: bg-ground, text-ink,
+ * border-hairline, text-h1, rounded-xl, py-section, and so on.
+ */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: light;
+
+  /* Ground, ink and rules */
+  --palette-ground: #f7f7f5;
+  --palette-panel: #ffffff;
+  --palette-raised: #eeedeb;
+  --palette-ink: #0b0b0b;
+  --palette-muted-ink: #565656;
+  --palette-faint: #6e6e6e;
+  --palette-hairline: #e2e1dd;
+  --palette-hairline-strong: #c8c7c2;
+
+  /* Signals */
+  --palette-live: #0f7a45;
+  --palette-brand: #2f6cec;
+  --palette-brand-pressed: #1f5cd8;
+  --palette-on-brand: #ffffff;
+  --palette-link: #0b0b0b;
+  --palette-danger: #d92d20;
+  --palette-focus-ring: #1f5cd8;
+
+  /* Decorative surfaces: washes, halos, outline marks and the dot horizons */
+  --wash: rgb(0 0 0 / 0.015);
+  --wash-strong: rgb(0 0 0 / 0.045);
+  --glow: rgb(47 108 236 / 0.08);
+  --glow-soft: rgb(0 0 0 / 0.03);
+  --mark: rgb(0 0 0 / 0.2);
+  --dot: rgb(0 0 0 / 0.42);
+  /* The globe tint is the one decorative surface tinted toward brand blue; the hero and closing horizons share it */
+  --globe-dot: rgb(47 108 236 / 0.5);
+  --globe-wash: rgb(47 108 236 / 0.07);
+  --globe-line: rgb(47 108 236 / 0.38);
+  --globe-inner: rgb(47 108 236 / 0.1);
+
+  /* The primary button sits a little off the page */
+  --btn-lift: 0 1px 2px rgb(0 0 0 / 0.12), 0 10px 24px -14px rgb(47 108 236 / 0.45);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --palette-ground: #080808;
+  --palette-panel: #0c0c0c;
+  --palette-raised: #121212;
+  --palette-ink: #f5f5f5;
+  --palette-muted-ink: #9a9a9a;
+  --palette-faint: #7a7a7a;
+  --palette-hairline: #232323;
+  --palette-hairline-strong: #383838;
+
+  --palette-live: #86e7b0;
+  --palette-brand: #2f6cec;
+  --palette-brand-pressed: #1f5cd8;
+  --palette-on-brand: #ffffff;
+  --palette-link: #f5f5f5;
+  --palette-danger: #ff6467;
+  --palette-focus-ring: #7d9df0;
+
+  --wash: rgb(255 255 255 / 0.02);
+  --wash-strong: rgb(255 255 255 / 0.08);
+  --glow: rgb(255 255 255 / 0.1);
+  --glow-soft: rgb(255 255 255 / 0.05);
+  --mark: rgb(255 255 255 / 0.3);
+  --dot: rgb(255 255 255 / 0.72);
+
+  --globe-dot: rgb(154 188 255 / 0.62);
+  --globe-wash: rgb(120 165 255 / 0.14);
+  --globe-line: rgb(154 188 255 / 0.5);
+  --globe-inner: rgb(96 150 255 / 0.18);
+
+  --btn-lift: 0 1px 2px rgb(0 0 0 / 0.5), 0 10px 24px -14px rgb(47 108 236 / 0.7);
+}
 
 @theme {
-  --color-brand-foreground: light-dark(oklch(20% 0.04 275), oklch(96% 0.01 275));
-  --color-brand-copy: light-dark(oklch(34% 0.035 275), oklch(86% 0.015 275));
-  --color-brand-muted: light-dark(oklch(48% 0.03 275), oklch(72% 0.02 275));
-  --color-brand-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
-  --color-brand-accent: light-dark(oklch(52% 0.22 268), oklch(76% 0.13 268));
-  --color-action-top: oklch(68% 0.17 262);
-  --color-action-bottom: oklch(60% 0.19 263);
-  --color-action-edge: oklch(54% 0.19 263);
-  --color-section-ink: light-dark(oklch(98.8% 0.006 275), oklch(14% 0.03 275));
-  --color-section-panel: light-dark(oklch(100% 0 0), oklch(18% 0.035 275));
-  --color-section-line: light-dark(oklch(91% 0.016 275), oklch(28% 0.03 275));
-  --color-material: light-dark(oklch(97.2% 0.01 275), oklch(16.5% 0.035 275));
-  --color-ui-fill: light-dark(oklch(95% 0.02 275), oklch(24% 0.035 275));
-  --color-secondary-top: light-dark(oklch(100% 0 0), oklch(26% 0.04 275));
-  --color-inverse: oklch(16% 0.05 270);
-  --color-inverse-highlight: oklch(30% 0.06 270);
-  --color-inverse-foreground: oklch(100% 0 0);
-  --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --text-display: clamp(2.5rem, 5.5vw, 4.5rem);
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.035em;
-  --radius-panel: 0.75rem;
-  --spacing-section: 4rem;
+  /* Fonts — must mirror the fontFamily stack in DESIGN.md */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: var(--font-sans);
+
+  /* Type scale */
+  --text-h1: clamp(2.9rem, 6.8vw, 4.75rem);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.045em;
+  --text-h1--font-weight: 500;
+
+  --text-h2: clamp(2.1rem, 4.2vw, 3.25rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.04em;
+  --text-h2--font-weight: 500;
+
+  --text-h3: 1.1875rem;
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 500;
+
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.65;
+
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.5;
+  --text-label--font-weight: 500;
+
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.18em;
+  --text-eyebrow--font-weight: 500;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --spacing-section: 7rem;
   --spacing-section-wide: 7rem;
-  --shadow-panel: 0 1px 2px light-dark(rgb(24 27 60 / 6%), rgb(0 0 0 / 40%)), 0 32px 80px -24px light-dark(rgb(24 27 60 / 28%), rgb(0 0 0 / 70%));
+  --radius-panel: 0.75rem;
+  /*
+   * Only a named section rhythm is added here. Avoid names that collide with
+   * Tailwind's container widths (sm, md, lg, …): named spacing values also
+   * answer max-w-* lookups and would collapse max-w-md to a few rem.
+   */
+}
+
+/*
+ * Both vocabularies — the Orso palette utilities and shadcn/ui's semantic
+ * names — are mapped straight onto the runtime `--palette-*` variables. Going
+ * through `--palette-*` (rather than through another `--color-*`) is what makes
+ * every utility follow `.dark` at runtime.
+ */
+@theme inline {
+  --color-ground: var(--palette-ground);
+  --color-panel: var(--palette-panel);
+  --color-raised: var(--palette-raised);
+  --color-ink: var(--palette-ink);
+  --color-muted-ink: var(--palette-muted-ink);
+  --color-faint: var(--palette-faint);
+  --color-hairline: var(--palette-hairline);
+  --color-hairline-strong: var(--palette-hairline-strong);
+  --color-live: var(--palette-live);
+  --color-brand: var(--palette-brand);
+  --color-brand-pressed: var(--palette-brand-pressed);
+  --color-on-brand: var(--palette-on-brand);
+  --color-link: var(--palette-link);
+  --color-danger: var(--palette-danger);
+  --color-focus-ring: var(--palette-focus-ring);
+
+  --color-wash: var(--wash);
+  --color-wash-strong: var(--wash-strong);
+  --color-glow: var(--glow);
+  --color-mark: var(--mark);
+
+  --color-background: var(--palette-ground);
+  --color-foreground: var(--palette-ink);
+  --color-card: var(--palette-panel);
+  --color-card-foreground: var(--palette-ink);
+  --color-popover: var(--palette-panel);
+  --color-popover-foreground: var(--palette-ink);
+
+  --color-primary: var(--palette-brand);
+  --color-primary-foreground: var(--palette-on-brand);
+  --color-secondary: var(--palette-raised);
+  --color-secondary-foreground: var(--palette-ink);
+  --color-muted: var(--palette-raised);
+  --color-muted-foreground: var(--palette-muted-ink);
+  --color-accent: var(--palette-raised);
+  --color-accent-foreground: var(--palette-ink);
+  --color-destructive: var(--palette-danger);
+
+  --color-border: var(--palette-hairline);
+  --color-input: var(--palette-hairline-strong);
+  --color-ring: var(--palette-focus-ring);
+
+  /* Aliases used by Blog/Help pages and download UI brought in from the live site */
+  --color-brand-foreground: var(--palette-ink);
+  --color-brand-copy: var(--palette-muted-ink);
+  --color-brand-muted: var(--palette-muted-ink);
+  --color-brand-line: var(--palette-hairline);
+  --color-brand-accent: var(--palette-brand);
+  --color-action-top: var(--palette-brand);
+  --color-action-bottom: var(--palette-brand-pressed);
+  --color-action-edge: var(--palette-brand-pressed);
+  --color-section-ink: var(--palette-ground);
+  --color-section-panel: var(--palette-panel);
+  --color-section-line: var(--palette-hairline);
+  --color-material: var(--palette-raised);
+  --color-ui-fill: var(--palette-raised);
+  --color-secondary-top: var(--palette-panel);
+  --color-inverse: var(--palette-ink);
+  --color-inverse-highlight: var(--palette-muted-ink);
+  --color-inverse-foreground: var(--palette-on-brand);
+  --shadow-panel: 0 1px 2px rgb(0 0 0 / 6%), 0 32px 80px -24px rgb(0 0 0 / 28%);
   --shadow-action-raised: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 2px rgb(20 20 60 / 35%);
   --shadow-action-pressed: inset 0 1px 2px rgb(20 20 60 / 30%);
-  --shadow-action-secondary: inset 0 1px 0 light-dark(rgb(255 255 255 / 80%), rgb(255 255 255 / 6%)), 0 1px 2px light-dark(rgb(24 27 60 / 10%), rgb(0 0 0 / 40%));
+  --shadow-action-secondary: inset 0 1px 0 rgb(255 255 255 / 6%), 0 1px 2px rgb(0 0 0 / 40%);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
-/* Site header: solid by default; transparent over a navy hero until scrolled (`data-overlay` without `data-solid`). */
-@utility site-header {
-  color: var(--color-brand-foreground);
-  background-color: color-mix(in srgb, var(--color-section-ink) 90%, transparent);
-  backdrop-filter: blur(16px) saturate(140%);
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-
-  &[data-overlay]:not([data-solid]):not(:has(details[open])) {
-    color: var(--color-inverse-foreground);
-    background-color: transparent;
-    backdrop-filter: none;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
-
-  /* An open mobile menu makes the bar solid so it matches the menu panel. */
-  &:has(details[open]) {
-    background-color: var(--color-section-ink);
-    backdrop-filter: none;
+  * {
+    @apply border-border outline-ring/50;
   }
-
-  @media (prefers-reduced-transparency: reduce) {
-    background-color: var(--color-section-ink);
-    backdrop-filter: none;
+  body {
+    @apply bg-background text-foreground;
+    font-synthesis-weight: none;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
   }
-
+  ::selection {
+    background: var(--palette-ink);
+    color: var(--palette-ground);
+  }
   @media (prefers-reduced-motion: reduce) {
-    transition: none;
+    html {
+      scroll-behavior: auto;
+    }
+    body {
+      transition: none;
+    }
   }
 }
 
-@utility hero-glow {
-  background-image: radial-gradient(ellipse 60% 50% at 50% 100%, oklch(52% 0.22 268 / 35%), transparent 70%);
+@layer components {
+  /* The one measuring column used by the header, sections and the footer. */
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8;
+  }
+
+  /*
+   * The sticky header fades into the page: the ground colour is opaque behind
+   * the logo and nav, then gives way to the content, so whatever scrolls up
+   * dissolves into the edge instead of being cut by a rule. The blur lives on
+   * the same layer and is masked with the fill, so its edge is soft too.
+   */
+  .header-fade::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      to bottom,
+      var(--palette-ground) 0%,
+      var(--palette-ground) 74%,
+      color-mix(in srgb, var(--palette-ground) 40%, transparent) 90%,
+      transparent 100%
+    );
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  }
+
+  /*
+   * The primary action. A blue fill with a gloss: lighter along the top edge,
+   * settling into the brand blue and darkening at the base, with a hairline
+   * highlight and a soft blue lift so it reads as a physical key against the
+   * near-black ground. The only gradient on the site outside the horizon washes.
+   */
+  .btn-gloss {
+    background-image: linear-gradient(to bottom, #4576ee 0%, #2f6cec 50%, #2160e2 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -1px 0 rgb(0 0 0 / 0.18),
+      var(--btn-lift);
+  }
+
+  .btn-gloss:hover {
+    background-image: linear-gradient(to bottom, #5384f1 0%, #3a76ee 50%, #2a68e8 100%);
+  }
+
+  .btn-gloss:active {
+    background-image: linear-gradient(to bottom, #1f5cd8 0%, #2663e6 54%, #3a75ee 100%);
+    box-shadow:
+      inset 0 1px 2px rgb(0 0 0 / 0.25),
+      inset 0 -1px 0 rgb(255 255 255 / 0.18);
+  }
 }
 
-/* Pagefind UI, themed with the site tokens. */
-.help-search {
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: var(--color-brand-accent);
-  --pagefind-ui-text: var(--color-brand-foreground);
-  --pagefind-ui-background: var(--color-section-panel);
-  --pagefind-ui-border: var(--color-section-line);
-  --pagefind-ui-tag: var(--color-ui-fill);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 12px;
-  --pagefind-ui-font: var(--font-sans);
-}
+@layer utilities {
+  /* A 1-bit dot field. Used for the hero planet and the closing terrain. */
+  .dot-field {
+    background-image: radial-gradient(circle, var(--dot) 0.65px, transparent 1px);
+    background-size: 4px 4px;
+  }
 
-.help-search .pagefind-ui__search-input {
-  height: 3.25rem;
-  padding-left: 3rem;
-  font-weight: 400;
-  font-size: 1rem;
-  color: var(--color-brand-foreground);
-  background-color: var(--color-section-panel);
-  border: 1px solid var(--color-section-line);
-  border-radius: var(--radius-panel);
-  box-shadow: var(--shadow-action-secondary);
-  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  /* A faint radial wash pinned to the top edge of a band; follows the theme. */
+  .wash-top {
+    background-image: radial-gradient(ellipse at 50% 0%, var(--wash-strong), transparent 68%);
+  }
+
+  /* A soft halo behind a floating panel; follows the theme. */
+  .halo {
+    background-image: radial-gradient(ellipse at center, var(--glow-soft), transparent 70%);
+  }
+
+  /*
+   * The hero horizon: a very wide ellipse whose top arc reads as a planet.
+   * The dot field supplies the dither; the mask fades the disc into the ground.
+   */
+  .planet {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 150%;
+    aspect-ratio: 1.8 / 1;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background-image:
+      radial-gradient(ellipse 55% 70% at 50% 0%, var(--globe-wash), transparent 62%),
+      radial-gradient(circle, var(--globe-dot) 0.65px, transparent 1px);
+    background-size: auto, 4px 4px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 18%, transparent 76%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 18%, transparent 76%);
+    opacity: 0.26;
+  }
+
+  .planet::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border-top: 1px solid var(--globe-line);
+    filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 16%);
+    mask-image: linear-gradient(to bottom, #000, transparent 16%);
+  }
+
+  .planet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow:
+      inset 0 1px 0 var(--globe-line),
+      inset 0 2px 60px var(--globe-inner);
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 30%);
+    mask-image: linear-gradient(to bottom, #000, transparent 30%);
+  }
+
+  /* The smaller horizon under the closing call to action; shares the hero globe's blue tint. */
+  .terrain {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    width: 140%;
+    aspect-ratio: 2.2 / 1;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background-image:
+      radial-gradient(ellipse 55% 90% at 50% 0%, var(--globe-wash), transparent 65%),
+      radial-gradient(circle, var(--globe-dot) 0.65px, transparent 1px);
+    background-size: auto, 4px 4px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 8%, transparent 30%);
+    opacity: 0.26;
+  }
+
+  .terrain::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border-top: 1px solid var(--globe-line);
+    filter: blur(2px);
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 18%);
+    mask-image: linear-gradient(to bottom, #000, transparent 18%);
+  }
+
+  /* Pagefind UI on Help, themed with the site tokens. */
+  .help-search {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--color-brand-accent);
+    --pagefind-ui-text: var(--color-brand-foreground);
+    --pagefind-ui-background: var(--color-section-panel);
+    --pagefind-ui-border: var(--color-section-line);
+    --pagefind-ui-tag: var(--color-ui-fill);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 12px;
+    --pagefind-ui-font: var(--font-sans);
+  }
+
+  .help-search .pagefind-ui__search-input {
+    height: 3.25rem;
+    padding-left: 3rem;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--color-brand-foreground);
+    background-color: var(--color-section-panel);
+    border: 1px solid var(--color-section-line);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-action-secondary);
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  }
+  .help-search .pagefind-ui__search-input::placeholder { color: var(--color-brand-muted); opacity: 1; font-weight: 400; }
+  .help-search .pagefind-ui__search-input:focus {
+    outline: none;
+    border-color: var(--color-brand-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+  }
+  .help-search .pagefind-ui__form::before { background-color: var(--color-brand-muted); opacity: 1; }
+  .help-search .pagefind-ui__search-clear {
+    color: var(--color-brand-muted);
+    background: transparent;
+    font-weight: 500;
+    border-radius: 0.5rem;
+  }
+  .help-search .pagefind-ui__search-clear:hover { color: var(--color-brand-foreground); background: var(--color-ui-fill); }
+  .help-search .pagefind-ui__message { font-size: 0.875rem; font-weight: 500; color: var(--color-brand-muted); }
+  .help-search .pagefind-ui__result { border-top: 1px solid var(--color-section-line); padding: 1.25rem 0; }
+  .help-search .pagefind-ui__result:last-child { border-bottom: 1px solid var(--color-section-line); }
+  .help-search .pagefind-ui__result-title { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; }
+  .help-search .pagefind-ui__result-link { color: var(--color-brand-foreground); text-decoration: none; transition: color 150ms ease-out; }
+  .help-search .pagefind-ui__result-link:hover { color: var(--color-brand-accent); text-decoration: none; }
+  .help-search .pagefind-ui__result-excerpt { color: var(--color-brand-muted); font-size: 0.9375rem; line-height: 1.6; }
+  .help-search .pagefind-ui__result-nested { color: var(--color-brand-copy); }
+  .help-search .pagefind-ui__result-nested .pagefind-ui__result-link { font-size: 0.9375rem; font-weight: 500; }
+  .help-search .pagefind-ui__result-inner > .pagefind-ui__result-title + .pagefind-ui__result-excerpt { margin-top: 0.25rem; }
+  .help-search mark {
+    color: inherit;
+    background-color: color-mix(in srgb, var(--color-brand-accent) 22%, transparent);
+    border-radius: 0.2em;
+    padding: 0 0.1em;
+  }
+  .help-search .pagefind-ui__button {
+    color: var(--color-brand-foreground);
+    background: var(--color-section-panel);
+    border: 1px solid var(--color-section-line);
+    border-radius: var(--radius-panel);
+    font-weight: 500;
+  }
+  .help-search .pagefind-ui__button:hover { border-color: var(--color-brand-accent); }
 }
-.help-search .pagefind-ui__search-input::placeholder { color: var(--color-brand-muted); opacity: 1; font-weight: 400; }
-.help-search .pagefind-ui__search-input:focus {
-  outline: none;
-  border-color: var(--color-brand-accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
-}
-.help-search .pagefind-ui__form::before { background-color: var(--color-brand-muted); opacity: 1; }
-.help-search .pagefind-ui__search-clear {
-  color: var(--color-brand-muted);
-  background: transparent;
-  font-weight: 500;
-  border-radius: 0.5rem;
-}
-.help-search .pagefind-ui__search-clear:hover { color: var(--color-brand-foreground); background: var(--color-ui-fill); }
-.help-search .pagefind-ui__message { font-size: 0.875rem; font-weight: 500; color: var(--color-brand-muted); }
-.help-search .pagefind-ui__result { border-top: 1px solid var(--color-section-line); padding: 1.25rem 0; }
-.help-search .pagefind-ui__result:last-child { border-bottom: 1px solid var(--color-section-line); }
-.help-search .pagefind-ui__result-title { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; }
-.help-search .pagefind-ui__result-link { color: var(--color-brand-foreground); text-decoration: none; transition: color 150ms ease-out; }
-.help-search .pagefind-ui__result-link:hover { color: var(--color-brand-accent); text-decoration: none; }
-.help-search .pagefind-ui__result-excerpt { color: var(--color-brand-muted); font-size: 0.9375rem; line-height: 1.6; }
-.help-search .pagefind-ui__result-nested { color: var(--color-brand-copy); }
-.help-search .pagefind-ui__result-nested .pagefind-ui__result-link { font-size: 0.9375rem; font-weight: 500; }
-.help-search .pagefind-ui__result-inner > .pagefind-ui__result-title + .pagefind-ui__result-excerpt { margin-top: 0.25rem; }
-.help-search mark {
-  color: inherit;
-  background-color: color-mix(in srgb, var(--color-brand-accent) 22%, transparent);
-  border-radius: 0.2em;
-  padding: 0 0.1em;
-}
-.help-search .pagefind-ui__button {
-  color: var(--color-brand-foreground);
-  background: var(--color-section-panel);
-  border: 1px solid var(--color-section-line);
-  border-radius: var(--radius-panel);
-  font-weight: 500;
-}
-.help-search .pagefind-ui__button:hover { border-color: var(--color-brand-accent); }

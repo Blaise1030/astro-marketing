@@ -3,16 +3,21 @@ import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
 import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
-import Workflow from "../components/sections/Workflow.astro";
-import Comparison from "../components/sections/Comparison.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import Stack from "../components/sections/Stack.astro";
+import Tools from "../components/sections/Tools.astro";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base overlay title="Orso — Keep your Astro site current" description="Edit Astro content collections in a Markdown CMS, ask an agent for bigger site changes, preview the result, and publish through GitHub.">
+<Base
+  title="Orso — A free studio for your site, with the agent you already pay for"
+  description="Orso is a free, open-source studio for Astro sites that runs on Claude, Cursor or Codex. Edit content, preview every change, publish to GitHub Pages — no lock-in."
+>
   <Hero />
+  <Tools />
   <Features />
-  <Workflow />
-  <Comparison />
+  <HowItWorks />
+  <Stack />
   <Faq />
   <Cta />
 </Base>

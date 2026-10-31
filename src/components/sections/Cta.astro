@@ -1,12 +1,38 @@
 ---
-import Button from "../ui/Button.astro";
-import Section from "../ui/Section.astro";
-import SectionHeader from "../ui/SectionHeader.astro";
+import { buttonVariants } from "@/components/ui/button";
+import { href } from "@/lib/href";
+import { site } from "@/site";
 ---
 
-<Section id="cta" tone="inverse" class="hero-glow">
-  <SectionHeader tone="inverse" label="Get started" description="Edit content, make larger changes with an agent, and publish from one workspace.">
-    Keep your Astro site<br /><span class="text-inverse-foreground/60">up to date.</span>
-    <Fragment slot="actions"><Button href="#workflow">See how Orso works <span aria-hidden="true">↗</span></Button></Fragment>
-  </SectionHeader>
-</Section>
+<section class="relative isolate overflow-x-clip" id="cta">
+  <div class="terrain pointer-events-none" aria-hidden="true"></div>
+  <div class="shell relative z-10 py-24 text-center sm:py-32">
+    <p class="text-eyebrow uppercase text-faint">No lock-in. No seat tax.</p>
+    <h2 class="mx-auto mt-5 max-w-2xl text-h2">
+      Free, open, and yours.<br />
+      <span class="text-muted-ink">All the way down.</span>
+    </h2>
+    <p class="mx-auto mt-5 max-w-md text-body text-muted-ink">
+      Bring the agent you already pay for. Keep the site you already own.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+      <a
+        class={buttonVariants({
+          size: "lg",
+          className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]",
+        })}
+        href={href("#how-it-works")}
+      >
+        Start building
+      </a>
+      <a
+        class="group inline-flex items-center gap-2 text-label text-ink/80 transition-colors hover:text-ink"
+        href={site.repo}
+        rel="noopener"
+      >
+        Read the code
+        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+      </a>
+    </div>
+  </div>
+</section>

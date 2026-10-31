@@ -1,35 +1,72 @@
 ---
-import Panel from "../ui/Panel.astro";
-import Section from "../ui/Section.astro";
-import SectionHeader from "../ui/SectionHeader.astro";
+const pillars = [
+  {
+    shape: "circle",
+    title: "Write",
+    body: "Copy, blog posts and help articles get friendly forms. Markdown is still there when you want it.",
+  },
+  {
+    shape: "square",
+    title: "Ask",
+    body: "Describe a bigger change in plain English. Claude, Cursor or Codex writes the code and the styles.",
+  },
+  {
+    shape: "triangle",
+    title: "Preview",
+    body: "Every edit lives in its own draft with a live desktop and mobile preview, so nothing leaks early.",
+  },
+  {
+    shape: "hexagon",
+    title: "Publish",
+    body: "One click to GitHub Pages. History keeps a checkpoint of every save, one click away.",
+  },
+] as const;
 ---
 
-<Section id="content">
-  <SectionHeader label="Capabilities" description="A structured editor for routine content updates. An agent for changes to layout, styling, and code.">
-    Content and code,<br /><span class="text-brand-muted">one workspace.</span>
-  </SectionHeader>
-  <div class="mt-12 grid gap-6 sm:mt-16 lg:grid-cols-2">
-    <Panel class="flex min-w-0 flex-col overflow-hidden">
-      <div class="p-6 sm:p-8">
-        <p class="text-xs font-medium text-brand-accent">Markdown CMS</p>
-        <h3 class="mt-4 text-2xl font-normal tracking-tight">Edit content as Markdown files.</h3>
-        <p class="mt-3 max-w-md leading-relaxed text-brand-muted">Create posts, update help articles, and edit frontmatter fields. Orso writes changes directly to the Markdown in your configured Astro collections.</p>
+<section class="shell py-20 sm:py-section" id="features">
+  <h2 class="max-w-3xl text-h2">
+    Everything in one studio.<br />
+    <span class="text-muted-ink">Nothing in between.</span>
+  </h2>
+  <p class="mt-5 max-w-lg text-body text-muted-ink">
+    Write, ask, preview and publish from the same place. No terminal, no build pipeline to babysit.
+  </p>
+
+  <div class="mt-14 sm:mt-20">
+    <div class="relative overflow-hidden border-y border-hairline">
+      <div class="pointer-events-none absolute inset-0 wash-top"></div>
+      <div class="relative grid grid-cols-2 lg:grid-cols-4">
+        {
+          pillars.map((pillar) => (
+            <div class="flex h-40 items-center justify-center border-hairline [&:not(:nth-child(2n))]:border-r [&:nth-child(-n+2)]:border-b sm:h-52 lg:h-60 lg:[&:not(:nth-child(4n))]:border-r lg:[&:nth-child(-n+2)]:border-b-0">
+              <svg
+                viewBox="0 0 100 100"
+                class="size-20 text-mark sm:size-24 md:size-28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                aria-hidden="true"
+              >
+                {pillar.shape === "circle" && <circle cx="50" cy="50" r="46" />}
+                {pillar.shape === "square" && <rect x="6" y="6" width="88" height="88" />}
+                {pillar.shape === "triangle" && <path d="M50 6 94 90H6Z" />}
+                {pillar.shape === "hexagon" && <path d="M50 4 90 27v46L50 96 10 73V27Z" />}
+              </svg>
+            </div>
+          ))
+        }
       </div>
-      <div aria-hidden="true" class="mx-6 mt-auto rounded-t-lg border border-b-0 border-section-line bg-material p-5 sm:mx-8 sm:p-6">
-        <div class="flex items-center justify-between gap-3 text-xs"><span class="font-medium">launch.md</span><span class="rounded-full bg-emerald-500/10 px-2 py-1 text-[0.625rem] text-emerald-800 dark:text-emerald-300">Saved to your project</span></div>
-        <div class="mt-5 space-y-3 rounded-lg border border-section-line bg-section-panel p-4 font-mono text-xs leading-relaxed"><p><span class="text-brand-muted">title:</span> Product launch announcement</p><p><span class="text-brand-muted">pubDate:</span> 2026-10-24</p><div class="h-px bg-section-line"></div><p class="font-sans text-sm font-medium">Introducing our new release</p><p class="font-sans text-xs text-brand-muted">Edit, preview, and publish from one workspace.</p></div>
-      </div>
-    </Panel>
-    <Panel class="flex min-w-0 flex-col overflow-hidden">
-      <div class="p-6 sm:p-8">
-        <p class="text-xs font-medium text-brand-accent">Site agent</p>
-        <h3 class="mt-4 text-2xl font-normal tracking-tight">Delegate larger site changes.</h3>
-        <p class="mt-3 max-w-md leading-relaxed text-brand-muted">Describe a layout, styling, or code change. The agent makes the edit and you review the result in the same live preview.</p>
-      </div>
-      <div aria-hidden="true" class="mx-6 mt-auto rounded-t-lg border border-b-0 border-section-line bg-material p-5 sm:mx-8 sm:p-6">
-        <div class="ml-5 rounded-lg rounded-br-sm bg-action-bottom px-4 py-3 text-xs leading-relaxed text-white">Increase the hero spacing and make the primary button blue.</div>
-        <div class="mt-5 flex gap-3"><span class="flex size-6 shrink-0 items-center justify-center rounded-md border border-section-line bg-section-panel text-brand-accent">✧</span><div><p class="text-xs font-medium">Updated hero spacing and button color.</p><p class="mt-2 text-xs leading-relaxed text-brand-muted">Review the changes in your preview.</p><p class="mt-3 inline-flex items-center gap-1 rounded-md border border-section-line bg-section-panel px-2 py-1 text-[0.625rem] text-brand-copy">↗ Preview changes</p></div></div>
-      </div>
-    </Panel>
+    </div>
+
+    <div class="grid grid-cols-2 gap-x-8 gap-y-10 pt-8 lg:grid-cols-4">
+      {
+        pillars.map((pillar) => (
+          <div>
+            <h3 class="text-h3">{pillar.title}</h3>
+            <p class="mt-2 max-w-56 text-body text-muted-ink">{pillar.body}</p>
+          </div>
+        ))
+      }
+    </div>
   </div>
-</Section>
+</section>

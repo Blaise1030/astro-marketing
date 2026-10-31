@@ -1,7 +1,9 @@
 # Astro marketing site
 
-Static Astro site styled with Tailwind CSS. The landing page is written in `src/components/sections/`
-and `src/site.ts`; Blog and Help articles live in `src/content/` (see `AGENTS.md`).
+Static Astro site styled with Tailwind CSS v4 and shadcn/ui — the marketing sections compose stock React primitives from
+`src/components/ui/`, while only the interactive FAQ ships an island. The landing page lives in
+`src/components/sections/` and `src/site.ts`; Blog and Help articles live in `src/content/` (see `AGENTS.md` and
+`DESIGN.md`).
 
 ```bash
 npm ci
