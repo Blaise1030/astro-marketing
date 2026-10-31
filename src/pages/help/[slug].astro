@@ -42,7 +42,7 @@ const linkClass = "transition-colors hover:text-brand-foreground focus-visible:o
       {toc.length > 0 && (
         <aside class="text-sm lg:sticky lg:top-24 lg:self-start" data-pagefind-ignore>
           <nav class="flex flex-col" aria-label="On this page">
-            <p class="text-xs font-medium uppercase tracking-wide text-brand-muted">On this page</p>
+            <p class="text-sm font-medium text-brand-muted">On this page</p>
             <ul class="mt-3 space-y-2">
               {toc.map((heading) => (
                 <li class:list={[heading.depth > 2 && "pl-3"]}>
