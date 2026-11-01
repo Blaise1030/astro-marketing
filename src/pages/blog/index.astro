@@ -6,9 +6,9 @@ import BlogFilters from "../../components/BlogFilters.astro";
 import { categoriesOf, sortPosts } from "../../lib/blog";
 const posts = sortPosts(await getCollection("blog"));
 ---
-<Base title="Orso Blog" description="Product notes and practical guides for maintaining an Astro site with Orso.">
-  <section class="mx-auto max-w-6xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <h1 class="sr-only">Blog</h1>
+<Base title="Orso Blog" description="News and stories from our team. Product notes and practical guides for maintaining an Astro site with Orso.">
+  <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <h1 class="mb-8 text-4xl font-bold tracking-tight">Blog</h1>
     <BlogFilters categories={categoriesOf(posts)} />
     {posts.length === 0 ? <p>No blog posts yet. Check back soon for news and stories.</p> : (
       <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <BlogCard post={post} />)}</div>
