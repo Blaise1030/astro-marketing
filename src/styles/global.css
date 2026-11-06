@@ -398,9 +398,19 @@
 
   /*
    * Help search — Pagefind markup, site styles only (no pagefind-ui.css).
-   * Flat raised input; results sit in a hairline panel anchored under the bar.
+   * White elevated input (soft shadow); results sit in a hairline panel under the bar.
+   * Ink inside the field stays dark so it reads on the white fill in both themes.
    */
   .help-search {
+    --help-search-field: #ffffff;
+    --help-search-field-ink: #0b0b0b;
+    --help-search-field-muted: #565656;
+    --help-search-field-faint: #6e6e6e;
+    --help-search-field-border: #e2e1dd;
+    --help-search-field-border-strong: #c8c7c2;
+    --help-search-field-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 10px 28px -12px rgb(0 0 0 / 0.28);
+    --help-search-field-wash: rgb(0 0 0 / 0.045);
+
     position: relative;
     z-index: 30;
     font-family: var(--font-sans);
@@ -419,7 +429,7 @@
     position: relative;
   }
 
-  /* Magnifying-glass mask (same SVG Pagefind ships; tinted with faint ink) */
+  /* Magnifying-glass mask (same SVG Pagefind ships; tinted for the white field) */
   .help-search .pagefind-ui__form::before {
     content: "";
     position: absolute;
@@ -430,7 +440,7 @@
     width: 1rem;
     height: 1rem;
     margin-top: -0.5rem;
-    background-color: var(--color-faint);
+    background-color: var(--help-search-field-faint);
     opacity: 1;
     pointer-events: none;
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z' fill='%23000000'/%3E%3C/svg%3E");
@@ -454,29 +464,30 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-ink);
-    background-color: var(--color-raised);
-    border: 1px solid var(--color-hairline);
+    color: var(--help-search-field-ink);
+    background-color: var(--help-search-field);
+    border: 1px solid var(--help-search-field-border);
     border-radius: var(--radius-xl);
-    box-shadow: none;
-    transition: border-color 150ms ease-out, background-color 150ms ease-out;
+    box-shadow: var(--help-search-field-shadow);
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
   }
 
   .help-search .pagefind-ui__search-input::placeholder {
-    color: var(--color-muted-ink);
+    color: var(--help-search-field-muted);
     opacity: 1;
     font-weight: 400;
   }
 
   .help-search .pagefind-ui__search-input:hover {
-    border-color: var(--color-hairline-strong);
+    border-color: var(--help-search-field-border-strong);
   }
 
   .help-search .pagefind-ui__search-input:focus {
     outline: 2px solid var(--color-focus-ring);
     outline-offset: 2px;
-    border-color: var(--color-hairline-strong);
-    background-color: var(--color-panel);
+    border-color: var(--help-search-field-border-strong);
+    background-color: var(--help-search-field);
+    box-shadow: var(--help-search-field-shadow);
   }
 
   .help-search .pagefind-ui__search-clear {
@@ -491,7 +502,7 @@
     font-size: 0.8125rem;
     font-weight: 500;
     line-height: 1;
-    color: var(--color-muted-ink);
+    color: var(--help-search-field-muted);
     background: transparent;
     border: 0;
     border-radius: var(--radius-md);
@@ -500,8 +511,8 @@
   }
 
   .help-search .pagefind-ui__search-clear:hover {
-    color: var(--color-ink);
-    background: var(--color-wash-strong);
+    color: var(--help-search-field-ink);
+    background: var(--help-search-field-wash);
   }
 
   .help-search .pagefind-ui__search-clear:focus-visible {

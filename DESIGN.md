@@ -145,7 +145,7 @@ The hero and the closing call to action are the only full-bleed moments: the her
 
 ## Elevation & Depth
 
-Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The mobile menu panel is the one surface that carries a shadow, so it separates from the page. In light mode the washes and halo flip to low-alpha black, so nothing turns muddy grey.
+Flat. No drop shadows on page content, no gradients as backgrounds except the faint radial washes behind the shape band, the terminal and the dotted horizons, plus the primary button's gloss (`.btn-gloss`), which uses a short inset highlight and a soft lift to read as a physical key. Depth comes from hairlines, a one-step surface lift (`ground` → `panel` → `raised`) and the dot fields. The mobile menu panel and the Help search input are the surfaces that carry a shadow, so they separate from the page. In light mode the washes and halo flip to low-alpha black, so nothing turns muddy grey.
 
 ## Shapes
 
@@ -163,7 +163,7 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Empty** — the “no posts / no help docs yet” states.
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
 - **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
-- **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): raised input with hairline edge, quiet focus ring. Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
+- **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): white elevated input with a soft shadow and quiet focus ring (dark ink inside the field so it stays readable in both themes). Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
 
@@ -175,7 +175,7 @@ Almost none. The accordion animates open and closed over 200ms; links transition
 
 Do keep one blue action per section, use the semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) and the stock shadcn/ui primitives. Do use hairlines and space to separate things. Do write headings as two lines with the second in `muted-ink`. Do use `.shell` for every full-width section. Do check every change in both themes — the header toggle, or `localStorage.setItem("orso-theme", "light")` in the console.
 
-Don't add shadows (except the mobile menu and the button gloss), colour accents or gradients without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Never hard-code `white`, `black` or a raw `rgb()` for a decorative surface: use `bg-wash`, `bg-glow`, `text-mark`, `--dot` or the `--globe-*` variables so both themes keep working. Text on a blue fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
+Don't add shadows (except the mobile menu, the Help search input, and the button gloss), colour accents or gradients without updating this file first. Don't use `brand` for body text or large surfaces, don't invent a second accent colour, and don't reach for raw palette values when a token exists. Never hard-code `white`, `black` or a raw `rgb()` for a decorative surface: use `bg-wash`, `bg-glow`, `text-mark`, `--dot` or the `--globe-*` variables so both themes keep working. Text on a blue fill is always `on-brand`. Add a new primitive with `npx shadcn@latest add <name>` and leave the generated variants, sizes and component code alone; theme it through the token layer and pass layout classes at the call site.
 
 ## Voice & Tone
 
