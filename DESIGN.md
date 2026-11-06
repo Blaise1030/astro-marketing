@@ -84,7 +84,7 @@ spacing:
 
 A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single blue action colour: primary blue. The page is quiet and technical rather than decorative — small mono labels, generous negative space, and a dotted 1-bit horizon under the hero and the closing call to action. There is one visual idea per section, and the copy does the rest.
 
-The direction is adapted from Lexington's Buio theme: near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
+Near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
 
 The site ships in **two themes**. Dark is the signature ledger: near-black ground, white ink. Light is the same ledger in daylight: off-white ground, near-black ink, the same hairlines, the same blue, and the same dotted horizons drawn in dark ink. Neither is a filter of the other — each palette is tuned on its own, so the light theme keeps contrast without looking like an inverted screenshot.
 
@@ -186,6 +186,5 @@ Small mono labels can be technical ("src/pages/index.astro", "Preview rebuilt in
 ## References
 
 - **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co).
-- **Direction** — adapted from [Buio by Lexington Themes](https://lexingtonthemes.com/templates/buio): near-black ground, white ink, grey second lines, hairline ledgers, dotted horizons and a terminal split. The palette, type scale, layout and component rules are Orso's own.
 - **Components** — [shadcn/ui for Astro](https://ui.shadcn.com/docs/installation/astro), Base UI flavour. Primitives live in `src/components/ui`, configuration in `components.json`, and the semantic mapping in `src/styles/global.css`.
 - **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.
