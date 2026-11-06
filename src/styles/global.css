@@ -425,6 +425,12 @@
     display: none !important;
   }
 
+  /* Pagefind adds this when the query is empty — keep Clear out of the way */
+  .help-search .pagefind-ui__suppressed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .help-search .pagefind-ui__form {
     position: relative;
   }
