@@ -2,7 +2,7 @@
 title: Work with your team
 description: Share a project through GitHub so writers and developers edit the same site.
 category: account
-section: getting-started
+section: account
 order: 2
 ---
 

@@ -2,7 +2,7 @@
 title: Manage project settings
 description: Open a project, connect GitHub, and pick the coding agent Orso should use.
 category: account
-section: getting-started
+section: account
 order: 1
 ---
 

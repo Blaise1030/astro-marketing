@@ -2,7 +2,7 @@
 title: Billing and plans
 description: Orso itself is free. You only pay for the tools you already use.
 category: account
-section: getting-started
+section: account
 order: 3
 ---
 
