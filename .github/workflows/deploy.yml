@@ -56,6 +56,18 @@ jobs:
           RAW_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: echo "name=$(bash .github/scripts/preview-alias.sh "$RAW_BRANCH" "$WORKER_NAME")" >> "$GITHUB_OUTPUT"
 
+      # Preview builds must bake the preview origin into og:image / canonical so share
+      # cards fetch assets from this deploy (new files like /og.png are not on production yet).
+      - name: Preview site URL
+        if: github.event_name == 'pull_request'
+        env:
+          PREVIEW_ALIAS: ${{ steps.alias.outputs.name }}
+        run: |
+          prod_host="${PUBLIC_SITE_URL#https://}"
+          prod_host="${prod_host#http://}"
+          account_host="${prod_host#"${WORKER_NAME}".}"
+          echo "PUBLIC_SITE_URL=https://${PREVIEW_ALIAS}-${WORKER_NAME}.${account_host}" >> "$GITHUB_ENV"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
