@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
       });
     };
     script.onerror = () => {
-      root.innerHTML = '<p class="rounded-xl border border-hairline bg-raised px-4 py-3 text-sm text-muted-ink">Search is available in the built site. Run <code class="font-mono text-[0.8125rem]">npm run build</code> to create the index.</p>';
+      root.innerHTML = '<p class="rounded-xl border border-hairline bg-raised px-4 py-3 text-sm text-muted-ink">Search will be available once the site is published.</p>';
     };
     document.head.append(script);
   }
