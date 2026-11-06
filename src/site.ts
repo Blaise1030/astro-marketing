@@ -49,12 +49,9 @@ export const site = {
       },
     ],
     links: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
+      { label: "Privacy", href: "/privacy/" },
+      { label: "Terms", href: "/terms/" },
     ],
   },
-  socials: [
-    { label: "X", href: "https://x.com" },
-    { label: "GitHub", href: "https://github.com/Blaise1030/cms" },
-  ],
+  socials: [{ label: "GitHub", href: "https://github.com/Blaise1030/cms" }],
 };

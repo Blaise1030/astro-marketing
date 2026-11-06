@@ -7,11 +7,14 @@ import HowItWorks from "../components/sections/HowItWorks.astro";
 import Stack from "../components/sections/Stack.astro";
 import Tools from "../components/sections/Tools.astro";
 import Base from "../layouts/Base.astro";
+import { faqs } from "../lib/faqs";
+import { faqPageJsonLd } from "../lib/seo";
 ---
 
 <Base
   title="Orso — A free studio for your site, with the agent you already pay for"
   description="Orso is a free, open-source studio for Astro sites that runs on Claude, Cursor or Codex. Edit content, preview every change, publish to GitHub Pages — no lock-in."
+  jsonLd={faqPageJsonLd([...faqs])}
 >
   <Hero />
   <Tools />

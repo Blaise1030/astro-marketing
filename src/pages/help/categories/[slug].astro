@@ -15,7 +15,7 @@ const docs = (await getCollection("helpDocs"))
   .filter((doc) => doc.data.category === category.id)
   .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id));
 ---
-<Base title={category.data.title} description={category.data.description ?? `Help guides in ${category.data.title}.`}>
+<Base title={category.data.title} description={category.data.description ?? `Help guides in ${category.data.title}.`} image="/og-help.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <a class="text-sm text-brand-muted transition-colors hover:text-brand-accent" href={href("/help/")}>Back to Help</a>
     <h1 class="mt-4 text-4xl font-medium tracking-tight">{category.data.title}</h1>

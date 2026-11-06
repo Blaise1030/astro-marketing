@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 const { category, categories, posts } = Astro.props;
 ---
-<Base title={`${category} · Orso Blog`} description={`Orso blog posts about ${category}.`}>
+<Base title={`${category} · Orso Blog`} description={`Orso blog posts about ${category}.`} image="/og-blog.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <h1 class="sr-only">{category}</h1>
     <BlogFilters categories={categories} active={category} />

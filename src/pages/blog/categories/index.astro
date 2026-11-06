@@ -7,7 +7,7 @@ const categories = (await getCollection("blogCategories")).sort(
   (a, b) => a.data.title.localeCompare(b.data.title) || a.data.slug.localeCompare(b.data.slug),
 );
 ---
-<Base title="Blog categories" description="Browse posts by category.">
+<Base title="Blog categories" description="Browse Orso blog posts by topic — product updates, guides, company notes, and more." image="/og-blog.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <a class="text-sm text-brand-muted transition-colors hover:text-brand-accent" href={href("/blog/")}>Back to Blog</a>
     <h1 class="mt-4 mb-10 text-4xl font-medium tracking-tight">Blog categories</h1>
