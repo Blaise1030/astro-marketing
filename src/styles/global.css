@@ -483,8 +483,7 @@
   }
 
   .help-search .pagefind-ui__search-input:focus {
-    outline: 2px solid var(--color-focus-ring);
-    outline-offset: 2px;
+    outline: none;
     border-color: var(--help-search-field-border-strong);
     background-color: var(--help-search-field);
     box-shadow: var(--help-search-field-shadow);
