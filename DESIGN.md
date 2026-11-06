@@ -163,7 +163,7 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Empty** — the “no posts / no help docs yet” states.
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
 - **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
-- **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): `panel` fill, theme ink, hairline border, soft `--help-search-shadow` (tuned per theme), and no focus outline. Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
+- **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): `panel` fill, theme ink, hairline border, soft `--help-search-shadow` (tuned per theme), and no focus outline. A static shell matching the input paints first so mounting Pagefind does not flash or shift the page. Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
 
