@@ -39,6 +39,8 @@ jobs:
       pull-requests: write
     env:
       WORKER_NAME: ${{ vars.CLOUDFLARE_WORKER_NAME || 'astro-marketing' }}
+      # Canonical origin for sitemap + meta. Override with repo variable PUBLIC_SITE_URL for a custom domain.
+      PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL || 'https://astro-marketing.blaisetiong-dev.workers.dev' }}
     steps:
       # On a PR, build the head commit (not the merge commit): that is the SHA the deployment
       # is recorded for.

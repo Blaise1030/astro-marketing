@@ -7,7 +7,7 @@ const categories = (await getCollection("helpDocsCategories")).sort(
   (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.data.slug.localeCompare(b.data.slug),
 );
 ---
-<Base title="Help categories" description="Browse help by category.">
+<Base title="Help categories" description="Browse Orso help guides by topic — getting started, editing, publishing, and troubleshooting.">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <a class="text-sm text-brand-muted transition-colors hover:text-brand-accent" href={href("/help/")}>Back to Help</a>
     <h1 class="mt-4 mb-10 text-4xl font-medium tracking-tight">Help categories</h1>

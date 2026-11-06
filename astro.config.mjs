@@ -1,11 +1,14 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { orso } from "orso-astro";
 
 // The orso dev server proxies the site under /preview/{id}/.
 const base = process.env.PUBLIC_BASE ?? "/";
+// Absolute origin for canonical URLs and the sitemap. Override with PUBLIC_SITE_URL for a custom domain.
+const site = process.env.PUBLIC_SITE_URL ?? "https://astro-marketing.blaisetiong-dev.workers.dev";
 // The browser's HMR socket: the dev server's own port when the preview is framed directly
 // (orso's Vite dev UI), otherwise the daemon that proxies the preview.
 const hmrPort = Number(
@@ -13,8 +16,9 @@ const hmrPort = Number(
 );
 
 export default defineConfig({
+  site,
   base,
-  integrations: [mdx(), react(), orso()],
+  integrations: [mdx(), react(), orso(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
     server: {

@@ -1,0 +1,37 @@
+/** Home-page FAQ copy — shared by the accordion UI and FAQPage JSON-LD. */
+export const faqs = [
+  {
+    question: "How is this free?",
+    answer:
+      "The studio is open source and free to use, forever — read it, fork it, self-host it. A paid tier will only ever cover the part that needs a server: shared editing for teammates who don't want to run anything locally. The app itself does not go behind a paywall.",
+  },
+  {
+    question: "Do I need to know how to code?",
+    answer:
+      "No. You describe what you want and the agent does the editing, or fill in a form for copy. If you do code, it's a plain Astro and Tailwind project you can open in any editor.",
+  },
+  {
+    question: "Which AI agent do I need?",
+    answer:
+      "Claude, Cursor or Codex. If you already pay for one of them, you already have everything Orso needs.",
+  },
+  {
+    question: "Can non-technical teammates edit?",
+    answer:
+      "Yes. Copy, posts and help articles have their own forms, and every change is previewed before it goes live. Bigger changes go through the agent, with the developer in the loop.",
+  },
+  {
+    question: "Is there lock-in?",
+    answer:
+      "None. Your site is Markdown in a Git repo you own, the output is static, and the source of the tool is public. Nothing here stops working if Orso disappears.",
+  },
+  {
+    question: "Where does my site live?",
+    answer:
+      "In a Git repository you own. Publishing from the app sends it to GitHub Pages — or any static host, since the output is plain static files.",
+  },
+  {
+    question: "Can I undo something?",
+    answer: "Yes. Every save is a checkpoint, and History restores any earlier version in one click.",
+  },
+] as const;

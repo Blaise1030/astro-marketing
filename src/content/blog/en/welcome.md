@@ -1,6 +1,6 @@
 ---
 title: Introducing Orso
-description: News, ideas, and updates from the Acme team. A workspace for keeping an Astro site current, from Markdown content to bigger site changes.
+description: News, ideas, and updates from the Orso team. A workspace for keeping an Astro site current, from Markdown content to bigger site changes.
 pubDate: "2026-10-24"
 categories:
   - news
