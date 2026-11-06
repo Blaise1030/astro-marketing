@@ -21,7 +21,7 @@ for (const list of docsByCategory.values()) {
 const sections = docsCategories.filter((category) => (docsByCategory.get(category.id)?.length ?? 0) > 0);
 const { categories } = await loadHelp(getCollection);
 ---
-<Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing your Astro site with Orso.">
+<Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing your Astro site with Orso." image="/og-help.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <div class="mx-auto max-w-2xl text-center">
       <p class="text-xs font-semibold uppercase tracking-wide">/// Help center</p>

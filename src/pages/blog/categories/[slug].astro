@@ -17,7 +17,7 @@ const posts = sortPosts(
   (await getCollection("blog")).filter((post) => post.data.categories.includes(category.id)),
 );
 ---
-<Base title={category.data.title} description={category.data.description ?? `Posts in ${category.data.title}.`}>
+<Base title={category.data.title} description={category.data.description ?? `Posts in ${category.data.title}.`} image="/og-blog.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <a class="text-sm text-brand-muted transition-colors hover:text-brand-accent" href={href("/blog/")}>Back to Blog</a>
     <h1 class="mt-4 text-4xl font-medium tracking-tight">{category.data.title}</h1>

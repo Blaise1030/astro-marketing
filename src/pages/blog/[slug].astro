@@ -30,7 +30,7 @@ const jsonLd = blogPostingJsonLd({
   datePublished: entry.data.pubDate,
 });
 ---
-<Base title={entry.data.title} description={entry.data.description} type="article" jsonLd={jsonLd}>
+<Base title={entry.data.title} description={entry.data.description} type="article" image="/og-blog.png" jsonLd={jsonLd}>
   <article class="mx-auto max-w-6xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide">
     <a class={`text-xs text-brand-muted ${linkClass}`} href={href("/blog/")}>← Back to Blog</a>
     <div class="mt-8 flex flex-wrap gap-4 text-xs font-medium text-brand-muted">

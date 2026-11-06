@@ -6,7 +6,7 @@ import BlogFilters from "../../components/BlogFilters.astro";
 import { categoriesOf, sortPosts } from "../../lib/blog";
 const posts = sortPosts(await getCollection("blog"));
 ---
-<Base title="Orso Blog" description="Product notes, guides, and news about editing Astro sites with Orso — from Markdown content to bigger site changes.">
+<Base title="Orso Blog" description="Product notes, guides, and news about editing Astro sites with Orso — from Markdown content to bigger site changes." image="/og-blog.png">
   <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
     <h1 class="mb-8 text-4xl font-bold tracking-tight">Orso Blog</h1>
     <BlogFilters categories={categoriesOf(posts)} />
