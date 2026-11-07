@@ -1,7 +1,7 @@
 ---
 version: beta
 name: Orso
-description: A free studio for your site, running on the agent you already pay for.
+description: A free studio for Astro sites, running on the agent you already pay for.
 themes:
   dark:
     ground: "#080808"
@@ -66,7 +66,7 @@ typography:
     fontSize: 0.6875rem
     fontWeight: 500
     lineHeight: 1.4
-    letterSpacing: 0.18em
+    letterSpacing: 0.08em
   mono:
     fontFamily: "ui-monospace, SF Mono, SFMono-Regular, Menlo, Consolas, monospace"
 rounded:
@@ -131,7 +131,7 @@ Roles are explicit; values are given dark / light and both live in the frontmatt
 
 The system sans-serif stack throughout, at weight 500 for headings and 400 for body. Headings are large, tight and quiet (`-0.045em` on the hero, `-0.04em` on section headings) and use a clamped size: `text-h1` runs from 2.9rem to 4.75rem, `text-h2` from 2.1rem to 3.25rem. The signature headline pattern is two lines where the first line is `ink` and the second is `muted-ink`.
 
-Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, wide-tracked, `faint`.
+Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, lightly tracked, `faint`.
 
 Machine content — file paths, diffs, terminal prompts and status — uses `font-mono` at 11–12.5px. It is the only place where monospace appears.
 

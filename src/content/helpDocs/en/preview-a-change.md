@@ -1,14 +1,15 @@
 ---
 title: Preview a change before you publish
-description: See an edit in the live preview and fix it before it goes public.
+description: See an edit in the local desktop preview and fix it before it goes public.
+category: getting-started
 section: getting-started
 order: 2
 ---
 
 ## Open the preview
 
-Save an edit and the **Preview** pane reloads on its own. Use it to check layout, copy and links before sharing anything.
+Save an edit and the **Preview** pane reloads on its own. Orso runs the preview on your Mac so you can check layout, copy and links before sharing anything.
 
 ## If the preview looks stale
 
-Refresh the preview from the toolbar. If the dev server has crashed, restart it and the page will come back.
+Refresh the preview from the toolbar. If the preview has crashed, restart it and the page will come back.

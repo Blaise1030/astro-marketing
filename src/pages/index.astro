@@ -1,4 +1,5 @@
 ---
+import Comparison from "../components/sections/Comparison.astro";
 import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
 import Features from "../components/sections/Features.astro";
@@ -12,8 +13,8 @@ import { faqPageJsonLd } from "../lib/seo";
 ---
 
 <Base
-  title="Orso — A free studio for your site, with the agent you already pay for"
-  description="Orso is a free, open-source studio for Astro sites that runs on Claude, Cursor or Codex. Edit content, preview every change, publish to GitHub Pages — no lock-in."
+  title="Orso — A free studio for Astro sites, with the agent you already pay for"
+  description="Orso is a free, open-source studio for Astro sites. Edit Markdown in a real UI, or ask Claude, Cursor or Codex. Preview every draft locally, publish static files to the host you choose — no lock-in."
   jsonLd={faqPageJsonLd([...faqs])}
 >
   <Hero />
@@ -21,6 +22,7 @@ import { faqPageJsonLd } from "../lib/seo";
   <Features />
   <HowItWorks />
   <Stack />
+  <Comparison />
   <Faq />
   <Cta />
 </Base>

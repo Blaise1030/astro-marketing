@@ -8,7 +8,9 @@ order: 3
 
 ## Orso is free
 
-There is no Orso subscription, seat count, or usage meter. Download the app, open your site, and edit.
+There is no Orso subscription, seat count, or usage meter for the desktop studio. Download the app, open your site, and edit. The studio stays free and open source.
+
+If we add a paid tier later, it would only cover hosted extras — for example shared editing for teammates who do not want to run the app locally. The studio itself does not go behind a paywall.
 
 ## What you might still pay for
 
