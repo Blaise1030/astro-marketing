@@ -8,7 +8,7 @@ order: 1
 
 ## Open settings
 
-With a project open, use **Settings** to review the local folder, the linked GitHub repository, and which coding agent handles larger edits.
+With a project open in the macOS studio, use **Settings** to review the local folder, the linked GitHub repository, and which coding agent handles larger edits.
 
 ## Connect GitHub
 
@@ -16,4 +16,4 @@ Link a repository so you can create a change, share a preview, and publish. Orso
 
 ## Choose an agent
 
-Pick the agent you already use (Claude, Cursor, Codex, or another supported option). Orso sends structural site requests to that agent and leaves form edits for content collections.
+Pick the agent you already use (Claude, Cursor, or Codex). Orso sends structural site requests to that agent and leaves form edits for content collections.

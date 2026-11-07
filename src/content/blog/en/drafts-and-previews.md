@@ -1,9 +1,11 @@
 ---
 title: "Every edit gets its own draft"
-description: "How drafts, live previews, one-click publishing and History keep a bad idea from ever reaching the live site."
+description: "How drafts, live previews, deliberate publishing and History keep a bad idea from ever reaching the live site."
 pubDate: "2026-10-28"
+categories:
+  - guides
 tags: [workflow, product]
-relatedPosts: [design-tokens, welcome]
+relatedPosts: [welcome, content-in-markdown, bring-your-own-agent]
 ---
 
 ## Editing directly on live is a workflow, not a feature
@@ -14,11 +16,11 @@ Orso treats every change as a draft with its own preview. Nothing touches the pu
 
 ## The four steps
 
-**Write or ask.** Small changes go through a form: a headline, a post, a help article. Larger ones are a sentence to the agent — "move the pricing note under the hero and soften the border" — and it edits the code and styles.
+**Write or ask.** Small changes go through a form: a headline, a post, a help article. Larger ones are a sentence to Claude, Cursor or Codex — "move the pricing note under the hero and soften the border" — and the agent edits the code and styles.
 
-**Preview.** The draft rebuilds as you work, desktop and mobile side by side. You are looking at the real site at a real URL, not a mock-up of it.
+**Preview.** The draft rebuilds as you work on your Mac, desktop and mobile side by side. You are looking at the real site at a real URL, not a mock-up of it.
 
-**Publish.** One click sends the draft to GitHub Pages. The published site is static files, so there is no server to warm up and nothing to restart.
+**Publish.** One click publishes static files through your repo's workflow — GitHub Pages, Cloudflare, or any host you already use. There is no server to warm up and nothing to restart.
 
 **Undo.** Every save is a checkpoint. History lists them, and restoring an earlier one is a single click — which makes trying something risky cheap.
 
@@ -30,8 +32,8 @@ Because the draft is real, the thing you approve is the thing that ships. There 
 
 ## Small teams, same rules
 
-On a team the same model does the quiet work: a writer drafts the post, a developer reviews the diff, and the publish step stays deliberate. Non-technical teammates never need a terminal, and developers never lose the ability to open the repository and work in it directly. Same site, same repo, two doors into it.
+On a team the same model does the quiet work: a writer drafts the post, someone greenlights the change, and the publish step stays deliberate. Non-technical teammates never need a terminal, and developers never lose the ability to open the repository and work in it directly. Same site, same repo, two doors into it.
 
 ## A habit worth keeping
 
-Publish smaller, more often. A draft that lives for an hour is easy to reason about; a branch that lives for a week is a negotiation. With every change previewed and every save checkpointed, the safe move is also the quick one.
+Publish smaller, more often. A draft that lives for an hour is easy to reason about; a change that lives for a week is a negotiation. With every change previewed and every save checkpointed, the safe move is also the quick one.

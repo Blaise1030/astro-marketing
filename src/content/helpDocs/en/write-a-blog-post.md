@@ -1,6 +1,7 @@
 ---
 title: Write a blog post
 description: Add a post with a title, cover image and tags.
+category: editing
 section: content
 order: 1
 ---
@@ -12,3 +13,7 @@ Open **Content**, choose **Blog**, and add a new entry. Fill in the title, descr
 ## Add tags and a cover image
 
 Tags group posts on the blog index. A cover image needs alt text describing what it shows.
+
+## Preview before it goes live
+
+Save the post and check it in **Preview**. When it looks right, include it in a change, get a greenlight if needed, and publish.
