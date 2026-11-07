@@ -69,7 +69,7 @@ under the hero and closing CTA. One visual idea per section; copy does the rest.
 - System sans throughout. Headings weight 500; body 400. Use `text-h1` /
   `text-h2` / `text-h3` / `text-body` / `text-label` / `text-eyebrow`.
 - Signature heading: two lines — first `ink`, second `muted-ink`.
-- Body usually capped ~28–32rem. Eyebrows are small, uppercase, wide-tracked,
+- Body usually capped ~28–32rem. Eyebrows are small, uppercase, lightly tracked,
   `faint`. Mono only for machine labels (paths, diffs, status).
 - Avoid generic AI typography tells: single-word accent colors in headlines,
   middle-dot meta rows, emoji, or a second display face unless `DESIGN.md` adds
