@@ -144,10 +144,62 @@ Use the type that matches the page's visible content and current search-feature 
 </script>
 ```
 
+## WebSite (optional SearchAction)
+
+Use on the homepage when a sitewide search URL exists and is crawlable.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Example",
+  "url": "https://example.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://example.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+```
+
+Omit `SearchAction` when there is no real on-site search destination.
+
+## HowTo
+
+Only when the page visibly walks through steps a user can follow.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Replace a widget filter",
+  "description": "Swap the filter cartridge in under five minutes.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Power down",
+      "text": "Turn off the device and unplug it."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Swap the cartridge",
+      "text": "Remove the old filter and insert the new one until it clicks."
+    }
+  ]
+}
+</script>
+```
+
 ## Validation
 
 Test structured data at:
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema.org Validator](https://validator.schema.org/)
+
+Confirm the markup matches visible page content. Valid syntax does not guarantee
+a rich result.
 
 ---
