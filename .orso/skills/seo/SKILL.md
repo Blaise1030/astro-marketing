@@ -57,10 +57,10 @@ Every indexable page needs a unique `description`.
 
 ## Headings
 
-- One clear primary heading for the page topic (`<h1>` on landing/templates;
-  the Markdown title usually supplies it for blog and help).
-- Use a logical `##` / `###` hierarchy in Markdown; do not skip levels for style.
-- Make headings descriptive (`## What bring-your-own means`, not `## Overview`).
+- One clear primary heading for the page topic (an H1 on landing templates; the
+  Markdown title usually supplies it for blog and help).
+- Use a logical H2 / H3 hierarchy in Markdown; do not skip levels for style.
+- Make headings descriptive ("What bring-your-own means", not "Overview").
 - Put the main topic near the start of the first heading and first paragraph.
 
 ## Helpful content
@@ -130,28 +130,28 @@ File names under content collections become URL slugs.
 
 ### Blog post (`src/content/blog/en/*.md`)
 
-- [ ] Unique `title` and `description`
-- [ ] Valid `pubDate` (`YYYY-MM-DD`)
-- [ ] Filename slug is short and topical
-- [ ] `coverImage` + `coverAlt` when a cover is used
-- [ ] Clear `##` outline that matches the promise of the title
-- [ ] `relatedPosts` / in-body links to relevant posts
-- [ ] Body answers the title's question in the first screen of copy
+- Unique `title` and `description`
+- Valid `pubDate` (`YYYY-MM-DD`)
+- Filename slug is short and topical
+- `coverImage` + `coverAlt` when a cover is used
+- Clear H2 outline that matches the promise of the title
+- `relatedPosts` / in-body links to relevant posts
+- Body answers the title's question in the first screen of copy
 
 ### Help article (`src/content/helpDocs/en/*.md`)
 
-- [ ] Unique `title` and `description`
-- [ ] Correct `section` (and `subcategory` if needed)
-- [ ] Sensible `order` among siblings
-- [ ] Steps a person can follow without guessing
-- [ ] Links to related help or product UI terms that match the app
+- Unique `title` and `description`
+- Correct `section` (and `subcategory` if needed)
+- Sensible `order` among siblings
+- Steps a person can follow without guessing
+- Links to related help or product UI terms that match the app
 
 ### Landing page / section
 
-- [ ] Section heading states a single job
-- [ ] Supporting sentence is specific, not slogan-only
-- [ ] CTA labels describe the destination
-- [ ] FAQ answers are real and match visible copy if FAQ schema is used
+- Section heading states a single job
+- Supporting sentence is specific, not slogan-only
+- CTA labels describe the destination
+- FAQ answers are real and match visible copy if FAQ schema is used
 
 ## What this site already handles
 
