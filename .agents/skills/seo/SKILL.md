@@ -1,15 +1,23 @@
 ---
 name: seo
-description: Optimize for search engine visibility and ranking. Use when asked to "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", or "search engine optimization".
+description: >-
+  Optimize for search engine visibility and ranking across technical SEO,
+  on-page content, structured data, social previews, and crawl/index controls.
+  Use when asked to improve SEO, optimize for search, fix meta tags, write
+  titles or descriptions, add structured data, improve content quality for
+  search, set Open Graph tags, fix canonicals/sitemaps/robots, or run a search
+  engine optimization audit.
 license: MIT
 metadata:
   author: web-quality-skills
-  version: "2.0"
+  version: "2.1"
 ---
 
 # SEO optimization
 
-Search engine optimization based on Lighthouse SEO audits and Google Search guidelines. Focus on technical SEO, on-page optimization, and structured data.
+Search engine optimization based on Lighthouse SEO audits and Google Search
+guidelines. Covers technical crawl/index controls, on-page optimization,
+content quality, structured data, and social preview metadata.
 
 ## Evidence-led audit workflow
 
@@ -249,6 +257,24 @@ Treat title-link rewriting separately from truncation. Google may build a differ
 - Fix broken links promptly
 - Use breadcrumbs for hierarchy
 
+### Content quality and intent
+
+Technical tags cannot rescue thin or mismatched content. When writing or
+reviewing copy, read [the content quality reference](references/CONTENT-QUALITY.md).
+
+* Match search intent (informational, navigational, commercial, transactional).
+* Prefer original, substantial, people-first pages over keyword-stuffed rewrites.
+* Lead with the answer; use descriptive subheads; keep one primary topic per URL.
+* For YMYL topics, prioritize accuracy, sourcing, and clear authorship.
+* Do not invent E-E-A-T scores or promise ranking outcomes from copy edits alone.
+
+### Social previews, redirects, and indexation extras
+
+Read [social metadata and crawling extras](references/SOCIAL-AND-CRAWLING.md) when
+auditing Open Graph/Twitter tags, redirects, soft 404s, JS-rendered content, or
+faceted URLs. Keep social title/description aligned with the document meta tags;
+use absolute share-image URLs.
+
 ---
 
 ## Structured data (JSON-LD)
@@ -365,27 +391,32 @@ body {
 - [ ] No `noindex` on important pages
 - [ ] Title tags present and unique
 - [ ] Primary page heading is descriptive and the hierarchy is logical
+- [ ] Important URLs return the correct status code (no soft 404s)
 
 ### High priority
-- [ ] Meta descriptions present
-- [ ] Sitemap submitted
-- [ ] Canonical URLs set
+- [ ] Meta descriptions present and unique
+- [ ] Content matches search intent and is substantially helpful
+- [ ] Sitemap submitted (canonical, indexable URLs only)
+- [ ] Canonical URLs set consistently
 - [ ] Mobile-responsive
 - [ ] Core Web Vitals passing
 
 ### Medium priority
-- [ ] Structured data implemented
+- [ ] Structured data implemented where eligible
+- [ ] Open Graph / Twitter tags consistent with page meta
 - [ ] Internal linking strategy
-- [ ] Image alt text
+- [ ] Image alt text and descriptive filenames
 - [ ] Descriptive URLs
 - [ ] Breadcrumb navigation
+- [ ] JS-critical content visible to crawlers
 - [ ] Agentic Browsing failures reviewed when agent access matters
 
 ### Ongoing
 - [ ] Fix crawl errors in Search Console
 - [ ] Update sitemap when content changes
-- [ ] Monitor ranking changes
-- [ ] Check for broken links
+- [ ] Monitor ranking and snippet changes
+- [ ] Check for broken links and redirect chains
+- [ ] Refresh outdated or contradictory content
 - [ ] Review Search Console insights
 
 ---
@@ -400,10 +431,15 @@ body {
 | Live Lighthouse audit (Chrome DevTools MCP: `lighthouse_audit`) | Rendered SEO and Agentic Browsing checks for agents |
 | Lighthouse CLI | SEO audit fallback |
 | Screaming Frog | Crawl analysis |
+| Social platform debuggers | Verify Open Graph / card previews after deploy |
 
 ## References
 
+- [Content quality](references/CONTENT-QUALITY.md)
+- [Social metadata and crawling extras](references/SOCIAL-AND-CRAWLING.md)
+- [Structured data](references/STRUCTURED-DATA.md)
 - [Google Search Central](https://developers.google.com/search)
+- [Creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
 - [Schema.org](https://schema.org/)
 - [Core Web Vitals](../core-web-vitals/SKILL.md)
 - [Web Quality Audit](../web-quality-audit/SKILL.md)
