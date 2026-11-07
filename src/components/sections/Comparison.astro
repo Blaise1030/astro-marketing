@@ -1,37 +1,49 @@
----
-import Section from "../ui/Section.astro";
-import SectionHeader from "../ui/SectionHeader.astro";
 const choices = [
   {
     name: "WordPress",
-    orso: "Your site is already built with Astro, and you want to edit its Markdown content without moving it into WordPress.",
-    other: "Choose WordPress for its extensive plugin ecosystem and traditional publishing tools.",
+    orso: "You already have an Astro site and want to edit Markdown without moving content into WordPress.",
+    other: "WordPress fits when you want its plugin ecosystem and a traditional CMS.",
   },
   {
     name: "Wix, Framer, or Webflow",
-    orso: "You want a friendly editing workflow while keeping your existing site and deployment outside a visual website platform.",
-    other: "Choose a visual builder when you want to design and host the whole site there.",
+    orso: "You want a friendly editing workflow while keeping the site, repo, and host under your control.",
+    other: "A visual builder fits when you want design and hosting locked into one platform.",
   },
   {
-    name: "Builder.io",
-    orso: "You want a focused local workspace and a CMS that writes directly to your Astro content files.",
-    other: "Choose Builder.io for a broader visual content and development platform.",
+    name: "AI site builders",
+    orso: "You already pay for Claude, Cursor or Codex and want them editing a real Astro project you own.",
+    other: "An AI site builder fits when you want a hosted canvas and don’t need the source in Git.",
   },
 ];
 ---
 
-<Section id="why-orso" rule>
-  <SectionHeader label="Why Orso" description="Orso adds an editing workflow to your existing Astro project. Your Markdown, source code, and deployment stay under your control.">
-    You keep <span class="text-brand-muted">control.</span>
-  </SectionHeader>
-  <div class="mt-12 border-b border-section-line sm:mt-16">
-    <div class="hidden grid-cols-[1fr_1.4fr_1.4fr] gap-8 border-t border-section-line py-3 text-xs font-medium text-brand-muted md:grid"><p>Compared with</p><p>Orso is a fit when</p><p>The alternative fits when</p></div>
-    {choices.map((choice) => (
-      <article class="grid gap-3 border-t border-section-line py-6 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
-        <h3 class="text-base font-medium">{choice.name}</h3>
-        <p class="text-sm leading-relaxed text-brand-copy">{choice.orso}</p>
-        <p class="text-sm leading-relaxed text-brand-muted">{choice.other}</p>
-      </article>
-    ))}
+<section class="shell py-20 sm:py-section" id="why-orso">
+  <div class="grid gap-5 lg:grid-cols-[1fr_1fr] lg:items-end">
+    <h2 class="max-w-xl text-h2">
+      Keep control.<br />
+      <span class="text-muted-ink">Skip the migration.</span>
+    </h2>
+    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
+      Orso is a studio on top of your existing Astro project — not a new place to rebuild the site.
+    </p>
   </div>
-</Section>
+
+  <div class="mt-12 border-y border-hairline">
+    <div
+      class="hidden grid-cols-[1fr_1.4fr_1.4fr] gap-8 border-b border-hairline py-3 text-eyebrow uppercase text-faint md:grid"
+    >
+      <p>Compared with</p>
+      <p>Orso fits when</p>
+      <p>The other fits when</p>
+    </div>
+    {
+      choices.map((choice) => (
+        <article class="grid gap-3 border-b border-hairline py-6 last:border-b-0 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
+          <h3 class="text-h3">{choice.name}</h3>
+          <p class="text-body text-muted-ink md:pt-0.5">{choice.orso}</p>
+          <p class="text-body text-faint md:pt-0.5">{choice.other}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

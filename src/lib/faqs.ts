@@ -3,7 +3,7 @@ export const faqs = [
   {
     question: "How is this free?",
     answer:
-      "The studio is open source and free to use, forever — read it, fork it, self-host it. A paid tier will only ever cover the part that needs a server: shared editing for teammates who don't want to run anything locally. The app itself does not go behind a paywall.",
+      "The Orso studio is open source and free to use — read it, fork it, run it locally. A paid tier, if we add one, would only cover hosted extras like shared editing for teammates who don't want to run the app. The studio itself does not go behind a paywall.",
   },
   {
     question: "Do I need to know how to code?",
@@ -14,6 +14,11 @@ export const faqs = [
     question: "Which AI agent do I need?",
     answer:
       "Claude, Cursor or Codex. If you already pay for one of them, you already have everything Orso needs.",
+  },
+  {
+    question: "What platforms does Orso run on?",
+    answer:
+      "The desktop app ships for macOS first. The studio is open source, so you can also run it from source on other platforms as support lands.",
   },
   {
     question: "Can non-technical teammates edit?",
@@ -28,7 +33,7 @@ export const faqs = [
   {
     question: "Where does my site live?",
     answer:
-      "In a Git repository you own. Publishing from the app sends it to GitHub Pages — or any static host, since the output is plain static files.",
+      "In a Git repository you own. Orso publishes static files — GitHub Pages, Cloudflare, or any other static host you already use.",
   },
   {
     question: "Can I undo something?",

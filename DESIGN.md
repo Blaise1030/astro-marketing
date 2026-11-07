@@ -1,7 +1,7 @@
 ---
 version: beta
 name: Orso
-description: A free studio for your site, running on the agent you already pay for.
+description: A free studio for Astro sites, running on the agent you already pay for.
 themes:
   dark:
     ground: "#080808"
