@@ -2,17 +2,32 @@
 import Base from "../layouts/Base.astro";
 import Button from "../components/ui/Button.astro";
 import { site } from "../site";
-const { url, platform } = site.download;
+const { url, urlIntel, platform } = site.download;
 ---
 <Base title="Download Orso" description="Download the Orso studio for macOS — edit Markdown, ask your coding agent, and preview your Astro site locally.">
   <section class="mx-auto max-w-3xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
     <h1 class="font-semibold text-5xl tracking-tight text-balance sm:text-6xl">Download Orso</h1>
     <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-brand-muted">A free desktop studio for Astro sites. Edit Markdown, ask Claude, Cursor or Codex, and preview every draft locally.</p>
     <div class="mt-10 flex flex-col items-center gap-3">
-      {url
-        ? <Button href={url}>Download for {platform}</Button>
-        : <p class="rounded-lg border border-section-line bg-section-panel px-5 py-3 text-sm text-brand-muted">The {platform} download is coming soon.</p>}
+      {url ? (
+        <>
+          <Button href={url}>Download for macOS (Apple Silicon)</Button>
+          {urlIntel ? (
+            <Button href={urlIntel} variant="secondary">Download for Intel Mac</Button>
+          ) : null}
+        </>
+      ) : (
+        <p class="rounded-lg border border-section-line bg-section-panel px-5 py-3 text-sm text-brand-muted">The {platform} download is coming soon.</p>
+      )}
       <p class="text-xs text-brand-muted">Available for {platform}.</p>
     </div>
+    {url ? (
+      <div class="mx-auto mt-10 max-w-lg rounded-lg border border-section-line bg-section-panel px-5 py-4 text-left text-sm leading-relaxed text-brand-muted">
+        <p class="font-medium text-brand-foreground">First open on macOS</p>
+        <p class="mt-2">
+          macOS may block Orso because the app is not notarized yet. After downloading, right-click the app and choose <strong>Open</strong>, or go to <strong>System Settings → Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>.
+        </p>
+      </div>
+    ) : null}
   </section>
 </Base>

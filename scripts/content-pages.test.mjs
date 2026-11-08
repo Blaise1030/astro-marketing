@@ -32,6 +32,14 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
   for (const id of ["hero", "stack", "how-it-works", "features", "faq", "cta"]) assert.match(html(root, ""), new RegExp(`id="${id}"`));
 });
 
+test("download page links v0.1.0 DMGs and documents Gatekeeper Open Anyway", () => {
+  const page = html(root, "download");
+  assert.match(page, /orso-0\.1\.0-aarch64\.dmg/);
+  assert.match(page, /orso-0\.1\.0-x86_64\.dmg/);
+  assert.match(page, /Open Anyway/i);
+  assert.doesNotMatch(page, /coming soon/i);
+});
+
 // Fixtures vary filenames and dates/orders to catch sorting by filesystem order.
 test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   for (const name of ["blog", "helpDocs", "blogCategories", "helpDocsCategories"]) mkdirSync(join(dir, "src/content", name, "en"), { recursive: true });

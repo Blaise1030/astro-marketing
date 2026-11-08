@@ -16,8 +16,12 @@ export const site = {
     link: { label: "Help", href: "/help/" },
     cta: { label: "Download", href: "/download/" },
   },
-  /** Set `url` to the app installer; the download page shows a "coming soon" note while it is empty. */
-  download: { url: "", platform: "macOS" },
+  /** App installers for the download page; empty `url` shows a "coming soon" note. */
+  download: {
+    url: "https://github.com/Blaise1030/cms/releases/download/v0.1.0/orso-0.1.0-aarch64.dmg",
+    urlIntel: "https://github.com/Blaise1030/cms/releases/download/v0.1.0/orso-0.1.0-x86_64.dmg",
+    platform: "macOS",
+  },
   footer: {
     text: "© 2026 Orso. Free and open source.",
     tagline:
