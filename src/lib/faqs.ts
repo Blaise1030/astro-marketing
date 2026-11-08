@@ -33,7 +33,7 @@ export const faqs = [
   {
     question: "Where does my site live?",
     answer:
-      "In a Git repository you own. Orso publishes static files — GitHub Pages, Cloudflare, or any other static host you already use.",
+      "In a Git repository you own. Orso publishes through your GitHub workflow; the starter deploys on Cloudflare Workers, or whatever host your repo already uses.",
   },
   {
     question: "Can I undo something?",
