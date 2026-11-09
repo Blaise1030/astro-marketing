@@ -32,11 +32,12 @@ test("built sample Blog and Help articles render Markdown and navigation", () =>
   for (const id of ["hero", "stack", "how-it-works", "features", "faq", "cta"]) assert.match(html(root, ""), new RegExp(`id="${id}"`));
 });
 
-test("download page links v0.1.0 DMGs and documents Gatekeeper Open Anyway", () => {
+test("download page links v0.1.1 DMGs and documents Gatekeeper Open Anyway", () => {
   const page = html(root, "download");
-  assert.match(page, /orso-0\.1\.0-aarch64\.dmg/);
-  assert.match(page, /orso-0\.1\.0-x86_64\.dmg/);
+  assert.match(page, /orso-0\.1\.1-aarch64\.dmg/);
+  assert.match(page, /orso-0\.1\.1-x86_64\.dmg/);
   assert.match(page, /Open Anyway/i);
+  assert.match(page, /damaged/i);
   assert.doesNotMatch(page, /coming soon/i);
 });
 

@@ -18,8 +18,8 @@ export const site = {
   },
   /** App installers for the download page; empty `url` shows a "coming soon" note. */
   download: {
-    url: "https://github.com/Blaise1030/cms/releases/download/v0.1.0/orso-0.1.0-aarch64.dmg",
-    urlIntel: "https://github.com/Blaise1030/cms/releases/download/v0.1.0/orso-0.1.0-x86_64.dmg",
+    url: "https://github.com/Blaise1030/cms/releases/download/v0.1.1/orso-0.1.1-aarch64.dmg",
+    urlIntel: "https://github.com/Blaise1030/cms/releases/download/v0.1.1/orso-0.1.1-x86_64.dmg",
     platform: "macOS",
   },
   footer: {
