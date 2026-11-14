@@ -37,7 +37,7 @@ export function CopyCommand({ command, label = "Install with curl" }: Props) {
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto px-4 py-4 font-mono text-[0.8125rem] leading-relaxed text-brand-foreground sm:text-sm">
+      <pre className="overflow-x-auto bg-ground px-4 py-4 font-mono text-[0.8125rem] leading-relaxed text-brand-foreground sm:text-sm">
         <code ref={codeRef}>{command}</code>
       </pre>
     </div>
