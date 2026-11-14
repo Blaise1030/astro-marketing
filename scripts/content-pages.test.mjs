@@ -54,6 +54,9 @@ test("base-prefixed routes sort Blog and Help entries", () => fixture((dir) => {
   }
   build(dir);
   const blog = html(dir, "blog");
+  // Canonical stays on the public origin even when built under Orso's /preview/… mount.
+  assert.match(blog, /rel="canonical" href="https:\/\/astro-marketing\.blaisetiong-dev\.workers\.dev\/blog\/"/);
+  assert.doesNotMatch(blog, /rel="canonical"[^>]*\/preview\//);
   assert.ok(blog.indexOf("Newest article") < blog.indexOf("Oldest article"));
   assert.match(blog, /href="\/preview\/example\/blog\/a-new\/"/);
   assert.match(blog, /href="\/preview\/example\/#features"/);

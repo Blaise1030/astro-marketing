@@ -1,21 +1,44 @@
 import { site } from "@/site";
 
-/** Absolute URL for the current page (honours `site` + `base`). */
+const FALLBACK_ORIGIN = "https://astro-marketing.blaisetiong-dev.workers.dev";
+
+/** Strip Astro `base` (e.g. Orso `/preview/{id}/`) so public URLs use site-root paths. */
+export function sitePathname(pathname: string, base = import.meta.env.BASE_URL): string {
+  const normalizedBase = (base || "/").replace(/\/?$/, "/") || "/";
+  let path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  if (normalizedBase !== "/" && path.startsWith(normalizedBase)) {
+    path = `/${path.slice(normalizedBase.length)}`;
+  }
+  path = path.replace(/\/{2,}/g, "/");
+  return path || "/";
+}
+
+function siteOrigin(): string {
+  return (import.meta.env.SITE || FALLBACK_ORIGIN).replace(/\/$/, "");
+}
+
+/** Absolute URL for the current page on the public site origin (never the preview mount). */
 export function canonicalUrl(pageUrl: URL): string {
-  const path = `${pageUrl.pathname}${pageUrl.search}`;
+  const path = `${sitePathname(pageUrl.pathname)}${pageUrl.search}`;
   if (import.meta.env.SITE) {
     return new URL(path, import.meta.env.SITE).href;
   }
-  return pageUrl.href;
+  return new URL(path, pageUrl.origin).href;
 }
 
-/** Absolute asset / path URL under the configured site origin. */
+/** Absolute asset / path URL under the configured site origin (site-root paths, not `base`). */
 export function absoluteUrl(path: string): string {
-  const origin = import.meta.env.SITE || "https://astro-marketing.blaisetiong-dev.workers.dev";
-  if (/^https?:\/\//i.test(path)) return path;
-  const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-  const normalized = path.startsWith("/") ? path.slice(1) : path;
-  return new URL(`${base}${normalized}`.replace(/\/{2,}/g, "/"), origin).href;
+  const origin = siteOrigin();
+  if (/^https?:\/\//i.test(path)) {
+    try {
+      const url = new URL(path);
+      return new URL(`${sitePathname(url.pathname)}${url.search}`, origin).href;
+    } catch {
+      return path;
+    }
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(sitePathname(normalized), origin).href;
 }
 
 /** Keep brand in the document title when the page title omits it. */
@@ -72,7 +95,7 @@ export function blogPostingJsonLd(input: {
     publisher: {
       "@type": "Organization",
       name: site.name,
-      url: import.meta.env.SITE || "https://astro-marketing.blaisetiong-dev.workers.dev",
+      url: import.meta.env.SITE || FALLBACK_ORIGIN,
     },
   };
 }
