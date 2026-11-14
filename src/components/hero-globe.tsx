@@ -11,8 +11,8 @@ import {
   WebGLRenderer,
 } from "three";
 
-const POINT_COUNT = 2200;
-const RADIUS = 1.55;
+const POINT_COUNT = 2800;
+const RADIUS = 2.15;
 
 function fibonacciSphere(count: number, radius: number) {
   const positions = new Float32Array(count * 3);
@@ -72,7 +72,7 @@ export function HeroGlobe() {
     const camera = new PerspectiveCamera(42, 1, 0.1, 20);
     // Sit slightly above the equator and look at the sphere origin so the
     // horizon reads centered in the wide, short canvas.
-    camera.position.set(0, 0.35, 3.4);
+    camera.position.set(0, 0.45, 3.1);
     camera.lookAt(0, 0, 0);
 
     const geometry = new BufferGeometry();
