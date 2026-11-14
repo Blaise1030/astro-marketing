@@ -4,13 +4,13 @@ Static Astro site. The landing page, navigation and footer are written directly 
 
 ## Content model
 
-- `src/content.config.ts` defines the collections and their schemas inline; each loader uses `orsoGlob` from `orso-astro`, and the `orso()` integration is registered in `astro.config.mjs`:
-  - `blogCategories` ← `src/content/blogCategories/en/*.md`: `title`, `slug`, optional `description`.
-  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, `slug`, optional `description`, `order`.
-  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `tags[]`, `relatedPosts[]`.
-  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `category` (ref to `helpDocsCategories`), `section` (reference to `helpCategories`), optional `subcategory` (reference to `helpSubcategories`), `order`.
-  - `helpCategories` ← `src/content/helpCategories/en/*.md`: `title`, `description` (card blurb), `order`. The entry id is the URL slug.
-  - `helpSubcategories` ← `src/content/helpSubcategories/en/*.md`: `title`, `category` (reference to `helpCategories`), `order`.
+- Collection schemas, loaders, and `previewPath` helpers live in `src/orso.collections.mjs` as `siteCollections`. `astro.config.mjs` passes them to `orso({ collections: siteCollections })` from `orso-astro` (`file:packages/astro`). `src/content.config.ts` only re-exports `collections` from `virtual:orso/collections`.
+  - `blogCategories` ← `src/content/blogCategories/en/*.md`: `title`, `slug`, optional `description`. Preview: `/blog/categories/{id}/`.
+  - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, `slug`, optional `description`, `order`. Preview: `/help/categories/{id}/`.
+  - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `tags[]`, `relatedPosts[]`. Preview: `/blog/{id}/`.
+  - `helpDocs` ← `src/content/helpDocs/en/*.md`: `title`, `description`, `category` (ref to `helpDocsCategories`), `section` (reference to `helpCategories`), optional `subcategory` (reference to `helpSubcategories`), `order`. Preview: `/help/{id}/`.
+  - `helpCategories` ← `src/content/helpCategories/en/*.md`: `title`, `description` (card blurb), `order`. Preview: `/help/section/{id}/`.
+  - `helpSubcategories` ← `src/content/helpSubcategories/en/*.md`: `title`, `category` (reference to `helpCategories`), `order`. No standalone preview URL.
 
 ## File map
 

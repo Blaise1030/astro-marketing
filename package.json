@@ -8,18 +8,23 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "og": "node scripts/generate-og.mjs",
+    "sync:orso-astro": "rm -rf node_modules/orso-astro && mkdir -p node_modules && cp -R packages/astro node_modules/orso-astro",
+    "postinstall": "npm run sync:orso-astro",
     "test": "npm run build && node --test --test-concurrency=1 scripts/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "8.0.2",
     "@astrojs/react": "7.1.1",
-    "@astrojs/sitemap": "^3.7.4",
     "@base-ui/react": "1.9.0",
+    "@casoon/astro-site-files": "^0.7.2",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",
     "class-variance-authority": "0.7.1",
     "cn": "0.5.0",
+    "js-yaml": "^4.3.2",
+    "jsonc-parser": "^3.3.1",
+    "linkedom": "^0.18.15",
     "lucide-react": "1.61.0",
     "orso-astro": "file:packages/astro",
     "pagefind": "^1.5.2",
@@ -27,10 +32,13 @@
     "react-dom": "19.3.1",
     "shadcn": "4.22.1",
     "tailwindcss": "4.3.3",
-    "tw-animate-css": "1.4.0"
+    "three": "^0.187.0",
+    "tw-animate-css": "1.4.0",
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0"
+    "@types/react-dom": "19.3.0",
+    "@types/three": "^0.187.0"
   }
 }

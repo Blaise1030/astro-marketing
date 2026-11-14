@@ -162,17 +162,22 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
             </svg>
           </button>
 
-          <details class="relative lg:hidden">
-            <summary
-              class="flex size-8 cursor-pointer list-none items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:text-ink [&::-webkit-details-marker]:hidden"
+          <div class="relative lg:hidden">
+            <button
+              type="button"
+              id="mobile-nav-toggle"
+              class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:text-ink"
               aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
             >
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
                 <path d="M2 4h11M2 7.5h11M2 11h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
               </svg>
-            </summary>
+            </button>
             <nav
-              class="absolute right-0 top-[calc(100%+0.75rem)] w-56 rounded-xl border border-hairline bg-panel p-2 shadow-2xl shadow-black/10 dark:shadow-black/60"
+              id="mobile-nav"
+              class="absolute right-0 top-[calc(100%+0.75rem)] hidden w-56 rounded-xl border border-hairline bg-panel p-2 shadow-2xl shadow-black/10 dark:shadow-black/60"
               aria-label="Mobile"
             >
               {
@@ -193,7 +198,7 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
                 GitHub
               </a>
             </nav>
-          </details>
+          </div>
         </div>
       </div>
     </header>
@@ -257,25 +262,49 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
       (() => {
         const root = document.documentElement;
         const button = document.getElementById("theme-toggle");
-        if (!button) return;
+        if (button) {
+          const sync = () => {
+            const dark = root.classList.contains("dark");
+            button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
+          };
 
-        const sync = () => {
-          const dark = root.classList.contains("dark");
-          button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-          const meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
-        };
-
-        sync();
-
-        button.addEventListener("click", () => {
-          const dark = root.classList.toggle("dark");
-          root.style.colorScheme = dark ? "dark" : "light";
-          try {
-            localStorage.setItem("orso-theme", dark ? "dark" : "light");
-          } catch {}
           sync();
-        });
+
+          button.addEventListener("click", () => {
+            const dark = root.classList.toggle("dark");
+            root.style.colorScheme = dark ? "dark" : "light";
+            try {
+              localStorage.setItem("orso-theme", dark ? "dark" : "light");
+            } catch {}
+            sync();
+          });
+        }
+
+        const navToggle = document.getElementById("mobile-nav-toggle");
+        const nav = document.getElementById("mobile-nav");
+        if (navToggle && nav) {
+          const setOpen = (open) => {
+            nav.classList.toggle("hidden", !open);
+            navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          };
+
+          navToggle.addEventListener("click", () => {
+            setOpen(nav.classList.contains("hidden"));
+          });
+
+          document.addEventListener("click", (event) => {
+            if (!nav.classList.contains("hidden") && !navToggle.contains(event.target) && !nav.contains(event.target)) {
+              setOpen(false);
+            }
+          });
+
+          document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setOpen(false);
+          });
+        }
       })();
     </script>
   </body>

@@ -1,33 +1,30 @@
 ---
 import Base from "../layouts/Base.astro";
-import Button from "../components/ui/Button.astro";
+import { CopyCommand } from "../components/copy-command";
 import { site } from "../site";
-const { url, urlIntel, platform } = site.download;
+
+const { installCommand, runCommand, platforms } = site.download;
 ---
-<Base title="Download Orso" description="Download the Orso studio for macOS — edit Markdown, ask your coding agent, and preview your Astro site locally.">
-  <section class="mx-auto max-w-3xl px-6 py-section text-center sm:px-8 sm:py-section-wide">
-    <h1 class="font-semibold text-5xl tracking-tight text-balance sm:text-6xl">Download Orso</h1>
-    <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-brand-muted">A free desktop studio for Astro sites. Edit Markdown, ask Claude, Cursor or Codex, and preview every draft locally.</p>
-    <div class="mt-10 flex flex-col items-center gap-3">
-      {url ? (
-        <>
-          <Button href={url}>Download for macOS (Apple Silicon)</Button>
-          {urlIntel ? (
-            <Button href={urlIntel} variant="secondary">Download for Intel Mac</Button>
-          ) : null}
-        </>
-      ) : (
-        <p class="rounded-lg border border-section-line bg-section-panel px-5 py-3 text-sm text-brand-muted">The {platform} download is coming soon.</p>
-      )}
-      <p class="text-xs text-brand-muted">Available for {platform}.</p>
+<Base title="Download Orso" description="Install Orso with a one-line bash script on macOS or Linux — edit Markdown, ask your coding agent, and preview your Astro site locally.">
+  <section class="mx-auto max-w-3xl px-6 py-section sm:px-8 sm:py-section-wide">
+    <div class="text-center">
+      <h1 class="font-semibold text-5xl tracking-tight text-balance sm:text-6xl">Install Orso</h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-brand-muted">
+        A free desktop studio for Astro sites. One command installs the CLI on {platforms}.
+      </p>
     </div>
-    {url ? (
-      <div class="mx-auto mt-10 max-w-lg rounded-lg border border-section-line bg-section-panel px-5 py-4 text-left text-sm leading-relaxed text-brand-muted">
-        <p class="font-medium text-brand-foreground">First open on macOS</p>
-        <p class="mt-2">
-          macOS may block Orso because the app is not notarized yet — it sometimes says the app is “damaged.” That warning is Gatekeeper, not a bad download. Drag Orso into <strong>Applications</strong>, then either right-click the app and choose <strong>Open</strong>, use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>, or run <code class="text-brand-foreground">xattr -cr /Applications/orso.app</code> in Terminal and open it again.
-        </p>
-      </div>
-    ) : null}
+
+    <div class="mx-auto mt-10 max-w-2xl">
+      <CopyCommand client:load command={installCommand} />
+      <p class="mt-4 text-center text-sm text-brand-muted">
+        Then start it with{" "}
+        <code class="rounded-md border border-section-line bg-section-panel px-1.5 py-0.5 font-mono text-[0.8125rem] text-brand-foreground">{runCommand}</code>
+      </p>
+    </div>
+
+    <p class="mt-8 text-center text-xs text-brand-muted">
+      Available for {platforms}.{" "}
+      <a class="underline underline-offset-4 hover:text-brand-foreground" href={site.repo}>Source on GitHub</a>
+    </p>
   </section>
 </Base>

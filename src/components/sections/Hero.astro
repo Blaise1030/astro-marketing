@@ -1,4 +1,5 @@
 ---
+import { HeroGlobe } from "@/components/hero-globe";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
@@ -51,7 +52,7 @@ import { href } from "@/lib/href";
     >
     </div>
     <div class="relative h-[260px] overflow-hidden sm:h-[360px]">
-      <div class="planet"></div>
+      <HeroGlobe client:visible />
       <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
     </div>
   </div>

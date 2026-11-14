@@ -1,9 +1,10 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
+import siteFiles from "@casoon/astro-site-files";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { orso } from "orso-astro";
+import { siteCollections } from "./src/orso.collections.mjs";
 
 // The orso dev server proxies the site under /preview/{id}/.
 const base = process.env.PUBLIC_BASE ?? "/";
@@ -15,10 +16,34 @@ const hmrPort = Number(
   process.env.ORSO_DEV_PORT || process.env.ORSO_PROXY_PORT || process.env.WORKBENCH_PROXY_PORT || 0,
 );
 
+/** Drop Orso’s `/preview/{id}/` mount so sitemap/robots URLs match the public site. */
+function publicPathname(pathname) {
+  return pathname.replace(/^\/preview\/[^/]+(?=\/|$)/, "") || "/";
+}
+
 export default defineConfig({
   site,
   base,
-  integrations: [mdx(), react(), orso(), sitemap()],
+  integrations: [
+    mdx(),
+    react(),
+    // Before orso so `astro:build:done` writes sitemap/robots before orso’s site check.
+    siteFiles({
+      robots: {
+        // Allow everything; point crawlers at the generated sitemap.
+        sitemap: new URL("/sitemap.xml", site).href,
+      },
+      sitemap: {
+        output: { mode: "single", filename: "sitemap.xml" },
+        serialize(entry) {
+          const url = new URL(entry.loc);
+          url.pathname = publicPathname(url.pathname);
+          return { ...entry, loc: url.href };
+        },
+      },
+    }),
+    orso({ collections: siteCollections }),
+  ],
   vite: {
     plugins: [tailwindcss()],
     server: {
