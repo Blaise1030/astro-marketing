@@ -8,6 +8,8 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "og": "node scripts/generate-og.mjs",
+    "sync:orso-astro": "rm -rf node_modules/orso-astro && mkdir -p node_modules && cp -R packages/astro node_modules/orso-astro",
+    "postinstall": "npm run sync:orso-astro",
     "test": "npm run build && node --test --test-concurrency=1 scripts/*.test.mjs"
   },
   "dependencies": {
