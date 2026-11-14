@@ -16,11 +16,10 @@ export const site = {
     link: { label: "Help", href: "/help/" },
     cta: { label: "Download", href: "/download/" },
   },
-  /** Install commands for the download page (curl script + optional Homebrew). */
+  /** Install commands for the download page. */
   download: {
     installCommand:
       "curl -fsSL https://raw.githubusercontent.com/Blaise1030/cms/main/scripts/install.sh | sh",
-    brewCommand: "brew install blaise1030/tap/orso",
     runCommand: "orso serve --open",
     platforms: "macOS and Linux",
   },

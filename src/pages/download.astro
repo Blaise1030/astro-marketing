@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import { CopyCommand } from "../components/copy-command";
 import { site } from "../site";
 
-const { installCommand, brewCommand, runCommand, platforms } = site.download;
+const { installCommand, runCommand, platforms } = site.download;
 ---
 <Base title="Download Orso" description="Install Orso with a one-line bash script on macOS or Linux — edit Markdown, ask your coding agent, and preview your Astro site locally.">
   <section class="mx-auto max-w-3xl px-6 py-section sm:px-8 sm:py-section-wide">
@@ -23,9 +23,7 @@ const { installCommand, brewCommand, runCommand, platforms } = site.download;
     </div>
 
     <div class="mx-auto mt-10 max-w-2xl rounded-2xl border border-section-line bg-section-panel px-5 py-4 text-sm leading-relaxed text-brand-muted">
-      <p class="font-medium text-brand-foreground">Prefer Homebrew on macOS?</p>
-      <pre class="mt-3 overflow-x-auto font-mono text-[0.8125rem] text-brand-foreground"><code>{brewCommand}</code></pre>
-      <p class="mt-3">
+      <p>
         The curl script downloads the matching GitHub Release, checks the sha256, and puts{" "}
         <code class="text-brand-foreground">orso</code> on your PATH (default{" "}
         <code class="text-brand-foreground">~/.local/bin</code>).
