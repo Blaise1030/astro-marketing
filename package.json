@@ -16,6 +16,7 @@
     "@astrojs/mdx": "8.0.2",
     "@astrojs/react": "7.1.1",
     "@base-ui/react": "1.9.0",
+    "@casoon/astro-site-files": "^0.7.2",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",
