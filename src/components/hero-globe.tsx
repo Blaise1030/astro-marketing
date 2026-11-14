@@ -70,8 +70,10 @@ export function HeroGlobe() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const scene = new Scene();
     const camera = new PerspectiveCamera(42, 1, 0.1, 20);
-    camera.position.set(0, 0.55, 3.15);
-    camera.lookAt(0, -0.15, 0);
+    // Sit slightly above the equator and look at the sphere origin so the
+    // horizon reads centered in the wide, short canvas.
+    camera.position.set(0, 0.35, 3.4);
+    camera.lookAt(0, 0, 0);
 
     const geometry = new BufferGeometry();
     geometry.setAttribute("position", new Float32BufferAttribute(fibonacciSphere(POINT_COUNT, RADIUS), 3));
@@ -87,13 +89,18 @@ export function HeroGlobe() {
     });
 
     const points = new Points(geometry, material);
-    points.rotation.x = 0.18;
+    points.rotation.x = 0.12;
     scene.add(points);
 
     const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
-    host.appendChild(renderer.domElement);
+    const canvas = renderer.domElement;
+    canvas.style.display = "block";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.margin = "0 auto";
+    host.appendChild(canvas);
 
     let frame = 0;
     let disposed = false;
@@ -146,11 +153,5 @@ export function HeroGlobe() {
     };
   }, []);
 
-  return (
-    <div
-      ref={hostRef}
-      className="absolute inset-0"
-      aria-hidden="true"
-    />
-  );
+  return <div ref={hostRef} className="absolute inset-0 flex items-center justify-center" aria-hidden="true" />;
 }
