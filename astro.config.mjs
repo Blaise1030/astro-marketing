@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { orso } from "orso-astro";
+import { siteCollections } from "./src/orso.collections.mjs";
 
 // The orso dev server proxies the site under /preview/{id}/.
 const base = process.env.PUBLIC_BASE ?? "/";
@@ -18,7 +19,7 @@ const hmrPort = Number(
 export default defineConfig({
   site,
   base,
-  integrations: [mdx(), react(), orso(), sitemap()],
+  integrations: [mdx(), react(), orso({ collections: siteCollections }), sitemap()],
   vite: {
     plugins: [tailwindcss()],
     server: {

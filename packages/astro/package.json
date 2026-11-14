@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "exports": { ".": "./src/index.js" },
+  "exports": {
+    ".": "./src/index.js",
+    "./marketing": "./src/marketing.js"
+  },
   "files": ["src", "README.md"],
   "scripts": { "test": "node --test test/*.test.mjs" },
   "dependencies": {
@@ -12,5 +15,8 @@
     "yaml": "^2.9.1"
   },
   "peerDependencies": { "astro": ">=7.3.0 <8" },
-  "devDependencies": { "astro": "7.3.5" }
+  "devDependencies": {
+    "astro": "7.3.5",
+    "linkedom": "^0.18.12"
+  }
 }
