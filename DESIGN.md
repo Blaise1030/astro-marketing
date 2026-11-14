@@ -82,7 +82,7 @@ spacing:
 
 ## Overview
 
-A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single blue action colour: primary blue. The page is quiet and technical rather than decorative — small mono labels, generous negative space, and a dotted 1-bit horizon under the hero and the closing call to action. There is one visual idea per section, and the copy does the rest.
+A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single blue action colour: primary blue. The page is quiet and technical rather than decorative — small mono labels, generous negative space, a slow Three.js point-globe under the hero, and a dotted 1-bit horizon under the closing call to action. There is one visual idea per section, and the copy does the rest.
 
 Near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
 
@@ -95,7 +95,7 @@ The theme is a class on `<html>`: `.dark` for the ledger, no class for daylight.
 Tokens are runtime custom properties, not build-time constants:
 
 - `--palette-*` holds every colour, defined in `:root` (light) and overridden in `.dark`.
-- `--wash`, `--wash-strong`, `--glow`, `--glow-soft`, `--mark`, `--dot`, `--globe-*` and `--btn-lift` hold the decorative surfaces that would otherwise be literal white — they flip with the theme, and utilities such as `bg-wash`, `bg-glow`, `text-mark`, `.wash-top`, `.halo`, `.dot-field` and `.btn-gloss` read them. The `--globe-*` group is the one decorative set tinted toward brand blue: it draws both the hero globe and the closing terrain.
+- `--wash`, `--wash-strong`, `--glow`, `--glow-soft`, `--mark`, `--dot`, `--globe-*` and `--btn-lift` hold the decorative surfaces that would otherwise be literal white — they flip with the theme, and utilities such as `bg-wash`, `bg-glow`, `text-mark`, `.wash-top`, `.halo`, `.dot-field` and `.btn-gloss` read them. The `--globe-*` group is the one decorative set tinted toward brand blue: the hero Three.js point globe reads `--globe-dot`, and the closing CSS terrain still uses the full set.
 - `@theme inline` maps both vocabularies straight onto those variables, so `bg-ground`, `text-ink`, `bg-primary` and every shadcn/ui primitive follow `.dark` at runtime. Never point a `--color-*` at another `--color-*`: `@theme inline` inlines the value, and the chain breaks the moment the class flips.
 
 Because `.dark` lives on `<html>`, every token inherits from the root element.
@@ -125,7 +125,7 @@ Roles are explicit; values are given dark / light and both live in the frontmatt
 - `live` (`#86e7b0` / `#0f7a45`) is a single green signal: live previews, connected agents and "you already have" checks. It is never a large surface.
 - `danger` (`#ff6467` / `#d92d20`) exists only for shadcn/ui's `destructive` and invalid form states.
 - `focus-ring` (`#7d9df0` / `#1f5cd8`) is the focus outline; in shadcn/ui it is `ring`. In dark it is a lighter tint of the blue so it reads on both the ground and a blue button; in light it is the pressed blue, dark enough to separate from the page and from the button fill.
-- The decorative variables follow the same rule: `--wash` and `--wash-strong` are white at low alpha in dark and black at low alpha in light, `--glow` is white in dark and a faint blue sky-glow above the horizon in light, and `--mark` and `--dot` are the same idea applied to the outline marks and dotted fields. The `--globe-*` quartet (`dot`, `wash`, `line`, `inner`) is the deliberate exception: it keeps both the hero globe and the closing terrain a step toward `brand` blue in both themes, always at alpha low enough to stay a whisper, and both sit at `opacity: 0.26` so they read as atmosphere rather than solid objects.
+- The decorative variables follow the same rule: `--wash` and `--wash-strong` are white at low alpha in dark and black at low alpha in light, `--glow` is white in dark and a faint blue sky-glow above the horizon in light, and `--mark` and `--dot` are the same idea applied to the outline marks and dotted fields. The `--globe-*` quartet (`dot`, `wash`, `line`, `inner`) is the deliberate exception: it keeps the hero point globe and the closing terrain a step toward `brand` blue in both themes, always quiet enough to read as atmosphere rather than a solid object.
 
 ## Typography
 
@@ -141,7 +141,7 @@ Content sits in one centred column, `.shell`: `max-w-7xl` (80rem) with 1.5rem si
 
 The header is 4rem tall, sticky, and uses `.header-fade`: a top-to-bottom ground gradient with a soft blur, taller than the bar so content scrolling underneath dissolves instead of hitting a hard edge. No rule under it. The hero is centred with 6rem–9rem of top space. Each section carries `py-section` (7rem) at `sm` and up, and 5rem on phones, so the visual gap between sections is roughly 14rem. Feature and ledger grids are separated by 1px `hairline` gaps rather than raised cards, and text columns sit under the shape band with a 2rem gap.
 
-The hero and the closing call to action are the only full-bleed moments: the hero carries the dotted planet and the CTA carries a smaller dotted terrain, both drawn with the same `--globe-*` blue tint. Both are decorative, `aria-hidden` and `pointer-events-none`. The hero globe clips at its band; the CTA terrain uses `overflow-x-clip` on the section so the wide arc isn't cut sideways, and a `overflow-clip` wrapper around `<main>` + `<footer>` in `Base.astro` lets the dotted arc fade behind the footer without extending the page past the footer's bottom edge — the footer is `relative` so its text stays above the arc.
+The hero and the closing call to action are the only full-bleed moments: the hero carries a Three.js point globe (`HeroGlobe`, hydrated with `client:visible`) that slowly turns under the copy, and the CTA carries a smaller dotted CSS terrain. Both use the `--globe-*` blue tint, stay decorative (`aria-hidden`, `pointer-events-none`), and fade into the ground. The hero globe clips at its band; the CTA terrain uses `overflow-x-clip` on the section so the wide arc isn't cut sideways, and a `overflow-clip` wrapper around `<main>` + `<footer>` in `Base.astro` lets the dotted arc fade behind the footer without extending the page past the footer's bottom edge — the footer is `relative` so its text stays above the arc.
 
 ## Elevation & Depth
 
@@ -164,12 +164,13 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
 - **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
 - **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): `panel` fill, theme ink, hairline border, soft `--help-search-shadow` (tuned per theme), and no focus outline. A static shell matching the input paints first so mounting Pagefind does not flash or shift the page. Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
+- **HeroGlobe** — a light Three.js point sphere in `src/components/hero-globe.tsx`, hydrated with `client:visible` under the hero copy. Soft brand-blue dots, transparent canvas, ground fade overlay, theme sync via `--globe-dot`, and no rotation when `prefers-reduced-motion` is on.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
 
 ## Motion
 
-Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. There is no parallax, no scroll animation and no auto-advancing content. `prefers-reduced-motion` disables smooth scrolling, and the dotted fields are static CSS.
+Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. The hero point globe drifts on a slow idle rotation and freezes when `prefers-reduced-motion: reduce` is set. There is no parallax, no scroll animation and no auto-advancing content. `prefers-reduced-motion` also disables smooth scrolling, and the CTA dotted terrain stays static CSS.
 
 ## Do's and Don'ts
 
