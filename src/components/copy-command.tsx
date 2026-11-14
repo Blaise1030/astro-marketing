@@ -32,7 +32,7 @@ export function CopyCommand({ command, label = "Install with curl" }: Props) {
         <button
           type="button"
           onClick={copy}
-          className="rounded-lg border border-section-line bg-linear-to-b from-secondary-top to-material px-2.5 py-1 text-xs font-medium text-brand-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+          className="rounded-full border border-section-line bg-linear-to-b from-secondary-top to-material px-2.5 py-1 text-xs font-medium text-brand-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
         >
           {copied ? "Copied" : "Copy"}
         </button>

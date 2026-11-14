@@ -149,13 +149,13 @@ Flat. No drop shadows on page content, no gradients as backgrounds except the fa
 
 ## Shapes
 
-Buttons use `rounded-lg` (0.5rem) in the shadcn default, but the two hero/CTA actions are full pills (`rounded-full`). Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs in `text-mark` (30% white in dark, 20% black in light).
+Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs in `text-mark` (30% white in dark, 20% black in light).
 
 ## Components
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
 
-- **Button** — the stock `default` (blue fill, white ink) and `link` variants. Every `default` button also carries `.btn-gloss`: a blue vertical gradient with an inset top highlight, a hairline bottom shade and a soft blue lift, brightening on hover and darkening when pressed. CTAs pass `btn-gloss h-10 rounded-full px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
+- **Button** — the stock `default` (blue fill, white ink) and `link` variants, always pill-shaped (`rounded-full`). Every `default` button also carries `.btn-gloss`: a blue vertical gradient with an inset top highlight, a hairline bottom shade and a soft blue lift, brightening on hover and darkening when pressed. CTAs pass `btn-gloss h-10 px-5 text-[0.82rem]`; header and article links are plain anchors or `buttonVariants()` when they need button metrics. Navigation is never a button.
 - **Card** — the stock card with its ring, used for blog/help tiles and empty states.
 - **Badge** — the stock pill in `outline` for the hero status, live-preview labels, tags and section labels. It is always a small signal, never a CTA.
 - **Accordion** — the stock Base UI accordion in one React island. The built-in chevrons are hidden in `faq-list.tsx` in favour of a plus/minus mark; the trigger is 0.9375rem, normal weight, with 1.25rem vertical padding and `border-b` hairlines.
