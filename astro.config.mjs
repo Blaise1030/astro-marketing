@@ -1,6 +1,5 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { orso } from "orso-astro";
@@ -19,7 +18,9 @@ const hmrPort = Number(
 export default defineConfig({
   site,
   base,
-  integrations: [mdx(), react(), orso({ collections: siteCollections }), sitemap()],
+  // Sitemap + robots are `src/pages/sitemap.xml.ts` and `src/pages/robots.txt.ts`
+  // so they exist in preview and as `/sitemap.xml` / `/robots.txt` in the build.
+  integrations: [mdx(), react(), orso({ collections: siteCollections })],
   vite: {
     plugins: [tailwindcss()],
     server: {
