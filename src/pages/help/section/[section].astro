@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { category } = Astro.props;
 const rows = (docs: typeof category.loose) => docs.map((doc) => ({ href: `/help/${doc.id}/`, title: doc.data.title, description: doc.data.description }));
 ---
-<Base title={`${category.name} · Orso Help`} description={category.description} image="/og-help.png">
+<Base title={`${category.name} · Project Orso Help`} description={category.description} image="/og-help.png">
   <Rails>
     <div data-pagefind-ignore>
       <PageHeader tag="Help section" back={{ href: "/help/", label: "Help center" }} lead={category.description}>

@@ -3,7 +3,7 @@ export const faqs = [
   {
     question: "How is this free?",
     answer:
-      "Orso is an open-source project, not a product with plans. Read it, fork it, run it locally — there's no paid tier and nothing behind a paywall.",
+      "Project Orso is an open-source project, not a product with plans. Read it, fork it, run it locally — there's no paid tier and nothing behind a paywall.",
   },
   {
     question: "Do I need to know how to code?",

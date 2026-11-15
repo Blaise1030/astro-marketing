@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 const { category, categories, posts } = Astro.props;
 ---
-<Base title={`${category} · Orso Blog`} description={`Orso blog posts about ${category}.`} image="/og-blog.png">
+<Base title={`${category} · Project Orso Blog`} description={`Orso blog posts about ${category}.`} image="/og-blog.png">
   <Rails>
     <PageHeader tag="Blog" back={{ href: "/blog/", label: "All posts" }}>
       <span class="capitalize">{category}</span> <Accent>notes</Accent>.
