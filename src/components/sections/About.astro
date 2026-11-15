@@ -1,16 +1,18 @@
 ---
 import Accent from "@/components/landing/Accent.astro";
 import SectionIntro from "@/components/landing/SectionIntro.astro";
+import { toolLogos } from "@/lib/tool-logos";
+import { Bot, FormInput, GitBranch, GitCommitHorizontal, GitMerge, GitPullRequest, Globe } from "lucide-react";
 
 // The developer tool underneath → what a teammate who doesn't code actually sees.
 const layers = [
-  ["git branch", "A draft"],
-  ["preview deploy", "A preview link to share"],
-  ["pull request", "Send for review"],
-  ["merge to main", "Publish"],
-  ["git commit", "A checkpoint you can undo"],
-  ["coding agent", "Ask in plain English"],
-  ["frontmatter", "A form with real fields"],
+  { tool: "git branch", ui: "A draft", Icon: GitBranch },
+  { tool: "preview deploy", ui: "A preview link to share", Icon: Globe },
+  { tool: "pull request", ui: "Send for review", Icon: GitPullRequest },
+  { tool: "merge to main", ui: "Publish", Icon: GitMerge },
+  { tool: "git commit", ui: "A checkpoint you can undo", Icon: GitCommitHorizontal },
+  { tool: "coding agent", ui: "Ask in plain English", Icon: Bot },
+  { tool: "frontmatter", ui: "A form with real fields", Icon: FormInput },
 ];
 
 const reasons = [
@@ -40,25 +42,39 @@ const reasons = [
           drafts, previews and a Publish button. Nobody has to learn GitHub to run their content on it.
         </Fragment>
       </SectionIntro>
+      <p class="flex w-fit items-center gap-2.5 rounded-full bg-ink/[0.04] py-1.5 pl-2 pr-3.5 text-[13px] text-muted-ink">
+        <svg class="size-4 text-ink" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d={toolLogos.github.path} />
+        </svg>
+        Content ops run on GitHub
+      </p>
     </div>
 
     <div class="frame" data-reveal style="--d: 100ms">
       <div class="frame-inner">
         <div class="grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 border-b border-hairline px-5 py-3 font-mono text-[11px] text-faint">
-          <span>underneath</span>
+          <span class="flex items-center gap-1.5">
+            <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={toolLogos.github.path} />
+            </svg>
+            underneath
+          </span>
           <span></span>
           <span>what your team sees</span>
         </div>
         <ul>
           {
-            layers.map(([tool, ui], i) => (
+            layers.map(({ tool, ui, Icon }, i) => (
               <li
                 class:list={[
                   "grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 px-5 py-3",
                   i > 0 && "border-t border-dashed border-hairline-strong",
                 ]}
               >
-                <span class="font-mono text-[12px] text-muted-ink">{tool}</span>
+                <span class="flex items-center gap-2 font-mono text-[12px] text-muted-ink">
+                  <Icon className="size-3.5 shrink-0 text-faint" strokeWidth={1.75} aria-hidden="true" />
+                  {tool}
+                </span>
                 <span aria-hidden="true" class="text-[12px] text-faint">→</span>
                 <span class="text-[14.5px] font-medium tracking-[-0.01em]">{ui}</span>
               </li>
