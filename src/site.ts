@@ -6,6 +6,7 @@ export const site = {
   nav: [
     { label: "Features", href: "/#features" },
     { label: "Workflow", href: "/#how-it-works" },
+    { label: "About", href: "/#about" },
     { label: "Blog", href: "/blog/" },
     { label: "Help", href: "/help/" },
   ],

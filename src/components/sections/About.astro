@@ -1,0 +1,91 @@
+---
+import Accent from "@/components/landing/Accent.astro";
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+
+// The developer tool underneath → what a teammate who doesn't code actually sees.
+const layers = [
+  ["git branch", "A draft"],
+  ["preview deploy", "A preview link to share"],
+  ["pull request", "Send for review"],
+  ["merge to main", "Publish"],
+  ["git commit", "A checkpoint you can undo"],
+  ["coding agent", "Ask in plain English"],
+  ["frontmatter", "A form with real fields"],
+];
+
+const reasons = [
+  {
+    title: "Speed shouldn't stop at engineering",
+    body: "Agents made changing a site in the repo fast. If only engineers can use them, everyone else files a ticket and waits, and the bottleneck is back.",
+  },
+  {
+    title: "On top, not in between",
+    body: "Lee's problem was a CMS sitting between the agent and the content. Orso is a view over the same files, so the agent, the developer and the marketer all edit one source of truth.",
+  },
+  {
+    title: "One stack for the whole team",
+    body: "No second login, no separate system to keep in sync, no content to migrate later. One repo, one review process, one history — with the people who own the words able to ship them.",
+  },
+];
+---
+
+<section id="about" class="flex scroll-mt-14 flex-col gap-16 px-6 py-20 sm:px-10">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+    <div class="flex flex-col gap-6" data-reveal>
+      <SectionIntro tag="The project">
+        Developer tools, <Accent>without the developer workflow</Accent>.
+        <Fragment slot="lead">
+          Project Orso is an attempt to give the rest of the team the tools developers already have. Git, branches, pull
+          requests, preview deploys and coding agents do the work underneath; marketers, writers and founders see
+          drafts, previews and a Publish button. Nobody has to learn GitHub to run their content on it.
+        </Fragment>
+      </SectionIntro>
+    </div>
+
+    <div class="frame" data-reveal style="--d: 100ms">
+      <div class="frame-inner">
+        <div class="grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 border-b border-hairline px-5 py-3 font-mono text-[11px] text-faint">
+          <span>underneath</span>
+          <span></span>
+          <span>what your team sees</span>
+        </div>
+        <ul>
+          {
+            layers.map(([tool, ui], i) => (
+              <li
+                class:list={[
+                  "grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 px-5 py-3",
+                  i > 0 && "border-t border-dashed border-hairline-strong",
+                ]}
+              >
+                <span class="font-mono text-[12px] text-muted-ink">{tool}</span>
+                <span aria-hidden="true" class="text-[12px] text-faint">→</span>
+                <span class="text-[14.5px] font-medium tracking-[-0.01em]">{ui}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-6" data-reveal style="--d: 120ms">
+    <p class="font-mono text-[12px] text-muted-ink">why it matters</p>
+    <div class="grid md:grid-cols-3">
+      {
+        reasons.map((r, i) => (
+          <div
+            class:list={[
+              "flex flex-col gap-2 py-6 md:px-8",
+              i === 0 ? "border-t border-dashed border-hairline-strong md:pl-0" : "border-t border-dashed border-hairline-strong md:border-l",
+              i === 2 && "md:pr-0",
+            ]}
+          >
+            <h3 class="text-[17px] font-medium tracking-[-0.02em]">{r.title}</h3>
+            <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{r.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
