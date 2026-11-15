@@ -211,6 +211,13 @@
     parent.postMessage(Object.assign({ type: TYPE, op }, extra), parentOrigin || "*");
   }
 
+  function postSnapshot() {
+    post("snapshot", {
+      url: location.href,
+      html: document.documentElement.outerHTML,
+    });
+  }
+
   addEventListener("message", (e) => {
     if (e.source !== parent || !isLoopback(e.origin) || !e.data || e.data.type !== TYPE) return;
     parentOrigin = e.origin;
@@ -218,6 +225,8 @@
     else if (e.data.op === "pick:stop") stop();
     else if (e.data.op === "appearance") {
       applyAppearance({ rtl: !!e.data.rtl, dark: !!e.data.dark });
+    } else if (e.data.op === "snapshot") {
+      postSnapshot();
     }
   });
 
@@ -227,4 +236,15 @@
       if (appearance) applyAppearance(appearance);
     });
   }
+
+  // A cross-origin frame hides its location from the app, so the app cannot keep the reader's
+  // page across a reload unless the page says where it is. Report on every navigation.
+  function reportPath() {
+    post("path", { url: location.href });
+  }
+  addEventListener("load", reportPath);
+  addEventListener("popstate", reportPath);
+  addEventListener("hashchange", reportPath);
+  document.addEventListener("astro:page-load", reportPath);
+  reportPath();
 })();

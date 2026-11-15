@@ -6,6 +6,8 @@ categories:
   - guides
 tags: [content, markdown]
 relatedPosts: [welcome, bring-your-own-agent, drafts-and-previews]
+"coverAlt": Label image
+"coverImage": ../../../assets/blog/content-in-markdown/screenshot-2026-11-14-at-3-51-02-pm.png
 ---
 
 ## A form is a view, not a store
