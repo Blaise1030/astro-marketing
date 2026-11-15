@@ -2,7 +2,6 @@
 import Selection from "@/components/landing/Selection.astro";
 import Serif from "@/components/landing/Serif.astro";
 import { buttonVariants } from "@/components/ui/button";
-import { FlipWords } from "@/components/ui/flip-words";
 import { href } from "@/lib/href";
 import { site } from "@/site";
 import ProductMockup from "./ProductMockup.astro";
@@ -23,18 +22,8 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     </a>
 
     <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
-      Edit your site with the
-      <Selection>
-        agent
-        <span slot="label" class="inline-flex items-center">
-          agent /<FlipWords
-            client:load
-            words={["claude", "cursor", "codex"]}
-            duration={2400}
-            className="px-0 pl-1 text-white dark:text-white"
-          />
-        </span>
-      </Selection>
+      Edit your site with the{" "}
+      <Selection label="agent / claude" cycle={["agent / claude", "agent / cursor", "agent / codex"]}>agent</Selection>{" "}
       you <Serif>already pay for</Serif>.
     </h1>
 
@@ -64,3 +53,22 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     </div>
   </div>
 </section>
+<script>
+  // Rotate cycling labels with a short blur swap; skipped under reduced motion.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll<HTMLElement>("[data-cycle]").forEach((el) => {
+      const labels = el.dataset.cycle!.split("|");
+      let i = Math.max(0, labels.indexOf(el.dataset.label ?? ""));
+      window.setInterval(() => {
+        el.style.opacity = "0";
+        el.style.filter = "blur(4px)";
+        window.setTimeout(() => {
+          i = (i + 1) % labels.length;
+          el.dataset.label = labels[i];
+          el.style.opacity = "";
+          el.style.filter = "";
+        }, 200);
+      }, 2400);
+    });
+  }
+</script>

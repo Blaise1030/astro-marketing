@@ -1,12 +1,15 @@
 ---
 // A Figma-style selection box: brand outline, four corner handles and a mono label.
-// Pass `label`, or fill the `label` slot (e.g. with an island).
+// The label is drawn with CSS (`content: attr(data-label)`) so it never becomes part
+// of the heading's text. Pass `cycle` to list labels; the hero script rotates them
+// (kept out of this component so no <script> lands inside a heading).
 interface Props {
-  label?: string;
+  label: string;
+  cycle?: string[];
   position?: "top" | "bottom";
   class?: string;
 }
-const { label, position = "bottom", class: className } = Astro.props;
+const { label, cycle, position = "bottom", class: className } = Astro.props;
 const handle = "absolute size-[7px] border-[1.5px] border-brand bg-panel";
 ---
 
@@ -15,19 +18,18 @@ const handle = "absolute size-[7px] border-[1.5px] border-brand bg-panel";
     "relative -mx-[0.06em] inline-block bg-brand/[0.07] px-[0.06em] outline-[1.5px] outline-brand outline-solid",
     className,
   ]}
->
-  <slot />
-  <span aria-hidden="true" class:list={[handle, "-left-[4px] -top-[4px]"]}></span>
-  <span aria-hidden="true" class:list={[handle, "-right-[4px] -top-[4px]"]}></span>
-  <span aria-hidden="true" class:list={[handle, "-bottom-[4px] -left-[4px]"]}></span>
-  <span aria-hidden="true" class:list={[handle, "-bottom-[4px] -right-[4px]"]}></span>
-  <span
+><slot /><span aria-hidden="true" class:list={[handle, "-left-[4px] -top-[4px]"]}></span><span
     aria-hidden="true"
+    class:list={[handle, "-right-[4px] -top-[4px]"]}></span><span
+    aria-hidden="true"
+    class:list={[handle, "-bottom-[4px] -left-[4px]"]}></span><span
+    aria-hidden="true"
+    class:list={[handle, "-bottom-[4px] -right-[4px]"]}></span><span
+    aria-hidden="true"
+    data-label={label}
+    data-cycle={cycle?.join("|")}
     class:list={[
-      "absolute left-1/2 z-10 inline-flex -translate-x-1/2 items-center whitespace-nowrap rounded-[4px] bg-brand px-1.5 py-0.5 font-mono text-[11px] font-medium leading-4 tracking-normal text-white",
+      "absolute left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-[4px] bg-brand px-1.5 py-0.5 font-mono text-[11px] font-medium leading-4 tracking-normal text-white transition-[opacity,filter,translate] duration-200 before:content-[attr(data-label)]",
       position === "bottom" ? "top-[calc(100%+8px)]" : "bottom-[calc(100%+8px)]",
-    ]}
-  >
-    {label}<slot name="label" />
-  </span>
-</span>
+    ]}></span></span>
+
