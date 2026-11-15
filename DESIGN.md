@@ -67,6 +67,8 @@ typography:
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: 0.08em
+  serif:
+    fontFamily: "Iowan Old Style, Palatino Linotype, Palatino, Book Antiqua, Georgia, serif"
   mono:
     fontFamily: "ui-monospace, SF Mono, SFMono-Regular, Menlo, Consolas, monospace"
 rounded:
@@ -170,14 +172,11 @@ Compound Base UI components must be composed inside a single React component and
 
 ## Motion
 
-The page follows the structure of Aceternity's product landing template, using Aceternity UI components installed through the shadcn registry (`@aceternity/*`, in `src/components/ui/`, powered by `motion`). Leave those files as generated.
+Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered). The headline's selection-box label cycles claude → cursor → codex (Aceternity `flip-words`, installed via the shadcn registry and powered by `motion`; leave it as generated). Below the hero, sections reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, optional `--d` stagger). If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the product mockup. The accordion animates over 200ms; links transition colour; arrows nudge on hover. CSS motion is disabled under `prefers-reduced-motion`. No parallax, no scroll-linked transforms, no glow effects.
 
-- **Hero:** an animated spotlight (`spotlight-new`) sweeps over a fading grid. The headline carries an inline "live specimen" chip that cycles Claude → Cursor → Codex (`flip-words`, `src/components/agent-chip.tsx`). Pill, headline, copy and CTAs rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered).
-- **Product window:** `ProductMockup.astro` (a token-built Orso workspace) sits in `container-scroll-animation`, which tilts it from 20° to flat as you scroll. If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the mockup.
-- **Sections:** reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, 900ms expo-out, optional `--d` stagger). Feature cards carry a cursor-tracking glowing border (`glowing-effect`). The CTA sits on animated beams (`background-beams`).
-- **Small things:** the accordion animates over 200ms; links transition colour; arrows nudge on hover.
+## Page frame
 
-CSS-driven motion (`animate-hero-in`, reveals, caret blink) is disabled under `prefers-reduced-motion`. The `motion`-based Aceternity effects do not read that preference on their own. There is no auto-advancing content beyond the agent chip.
+The landing page is one framed column (`max-w-6xl`) with vertical hairline rails; sections sit edge to edge inside it, separated by hairline rules, with `px-6 sm:px-10` gutters. Headlines are left-aligned sans with one serif accent phrase (`font-serif font-normal`). Each section opens with a small tag (`bg-brand/10 text-brand`, `rounded-sm`). The hero headline frames one word in a Figma-style selection box (brand outline, corner handles, mono label). Feature cells are divided by dashed `hairline-strong` rules rather than cards.
 
 ## Do's and Don'ts
 

@@ -1,7 +1,5 @@
 ---
-import { GlowingEffect } from "@/components/ui/glowing-effect";
-
-const visual = "flex h-40 items-center justify-center overflow-hidden rounded-lg border border-hairline bg-ground";
+const visual = "flex h-40 items-center justify-center overflow-hidden rounded-md border border-hairline bg-panel";
 const features = [
   { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and copy get friendly fields. Markdown is still there when you want it." },
   { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex writes the code and the styles." },
@@ -12,24 +10,26 @@ const features = [
 ];
 ---
 
-<section class="shell py-20 sm:py-section" id="features">
-  <div class="grid gap-5 lg:grid-cols-2 lg:items-end" data-reveal>
-    <h2 class="max-w-xl text-h2">
-      Stop rebuilding<br />
-      <span class="text-muted-ink">what already exists.</span>
+<section class="pt-16 sm:pt-24" id="features">
+  <div class="px-6 sm:px-10" data-reveal>
+    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Studio</span>
+    <h2 class="mt-5 max-w-2xl text-h2">
+      Stop rebuilding what <span class="font-serif font-normal tracking-[-0.02em]">already exists.</span>
     </h2>
-    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
-      Write, ask, preview and publish from one studio — built for developers with an agent, and for teammates who just
-      need a form.
+    <p class="mt-5 max-w-lg text-body text-muted-ink">
+      Your site is already written in Astro. Orso puts a studio on top of it, so the page you edit is the page that ships.
     </p>
   </div>
 
-  <ul class="mt-14 grid gap-4 sm:mt-16 md:grid-cols-2 lg:grid-cols-3">
+  <ul class="mt-12 grid border-t border-dashed border-hairline-strong sm:mt-16 md:grid-cols-2 lg:grid-cols-3">
     {
       features.map((f, i) => (
-        <li class="relative list-none rounded-2xl border border-hairline p-2 md:rounded-3xl md:p-2.5" data-reveal style={`--d: ${(i % 3) * 100}ms`}>
-          <GlowingEffect client:visible spread={40} glow disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
-          <div class="relative flex h-full flex-col overflow-hidden rounded-xl bg-panel p-5 md:rounded-2xl">
+        <li
+          class="group list-none border-b border-dashed border-hairline-strong p-6 sm:p-8 md:[&:nth-child(2n+1)]:border-r md:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-child(2n+1)]:border-r-0 lg:[&:not(:nth-child(3n))]:border-r lg:[&:nth-last-child(-n+3)]:border-b-0"
+          data-reveal
+          style={`--d: ${(i % 3) * 100}ms`}
+        >
+          <div class="flex h-full flex-col">
             <div class={visual} aria-hidden="true">
               {f.id === "write" && (
                 <div class="w-48 space-y-2.5 text-[0.65rem]">
@@ -87,8 +87,8 @@ const features = [
                 </ul>
               )}
             </div>
-            <h3 class="mt-5 text-h3">{f.title}</h3>
-            <p class="mt-2 text-body text-muted-ink">{f.body}</p>
+            <h3 class="mt-6 text-[0.95rem] font-medium tracking-tight">{f.title}</h3>
+            <p class="mt-1.5 text-[0.85rem] leading-relaxed text-muted-ink">{f.body}</p>
           </div>
         </li>
       ))

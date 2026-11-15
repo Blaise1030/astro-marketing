@@ -1,5 +1,4 @@
 ---
-import AgentDemo from "../components/sections/AgentDemo.astro";
 import Comparison from "../components/sections/Comparison.astro";
 import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
@@ -18,13 +17,15 @@ import { faqPageJsonLd } from "../lib/seo";
   description="Orso is a free, open-source studio for Astro sites. Edit Markdown or ask your agent, preview drafts locally, and publish static files — no lock-in."
   jsonLd={faqPageJsonLd([...faqs])}
 >
-  <Hero />
-  <Tools />
-  <AgentDemo />
-  <Features />
-  <HowItWorks />
-  <Stack />
-  <Comparison />
-  <Faq />
-  <Cta />
+  <!-- One framed column: vertical rails, hairline rules between sections -->
+  <div class="mx-auto max-w-6xl border-x border-hairline [&>section+section]:border-t [&>section+section]:border-hairline">
+    <Hero />
+    <Tools />
+    <Features />
+    <Stack />
+    <HowItWorks />
+    <Comparison />
+    <Faq />
+    <Cta />
+  </div>
 </Base>

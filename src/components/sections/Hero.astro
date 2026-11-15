@@ -1,76 +1,79 @@
 ---
-import { AgentChip } from "@/components/agent-chip";
 import { buttonVariants } from "@/components/ui/button";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { Spotlight } from "@/components/ui/spotlight-new";
+import { FlipWords } from "@/components/ui/flip-words";
 import { href } from "@/lib/href";
 import { site } from "@/site";
 import ProductMockup from "./ProductMockup.astro";
+
+const handle = "absolute size-2 border-[1.5px] border-brand bg-panel";
 ---
 
-<section class="relative isolate overflow-hidden pt-24 sm:pt-32" id="hero">
-  <!-- Backdrop: animated spotlight beams over a fading grid -->
-  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-    <div
-      class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-hairline)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-hairline)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_45%_at_50%_0%,#000_30%,transparent_100%)]"
-    >
-    </div>
-    <Spotlight client:load />
-  </div>
+<section class="relative px-6 pb-14 pt-16 sm:px-10 sm:pb-20 sm:pt-24" id="hero">
+  <a
+    class="group inline-flex items-center gap-2 text-[0.75rem] text-muted-ink transition-colors hover:text-ink motion-safe:animate-hero-in"
+    href={site.repo}
+    rel="noopener"
+  >
+    <span class="rounded-sm bg-brand px-1.5 py-0.5 text-[0.65rem] font-medium text-on-brand">Free</span>
+    Open source on GitHub
+    <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+  </a>
 
-  <div class="shell relative z-10 text-center">
+  <h1 class="mt-10 max-w-4xl text-h1 motion-safe:animate-hero-in" style="animation-delay:100ms">
+    Edit your site with the
+    <span class="relative mx-[0.06em] inline-block whitespace-nowrap">
+      <span class="relative z-10 px-[0.1em]">agent</span>
+      <span class="absolute inset-0 border-[1.5px] border-brand bg-brand/[0.06]" aria-hidden="true">
+        <span class:list={[handle, "-left-1 -top-1"]}></span>
+        <span class:list={[handle, "-right-1 -top-1"]}></span>
+        <span class:list={[handle, "-bottom-1 -left-1"]}></span>
+        <span class:list={[handle, "-bottom-1 -right-1"]}></span>
+      </span>
+      <span
+        class="absolute bottom-full right-0 mb-2 inline-flex items-center rounded-sm bg-brand py-1 pl-1.5 font-mono text-[0.7rem] font-normal leading-none tracking-normal text-on-brand"
+        aria-hidden="true"
+      >
+        agent /<FlipWords
+          client:load
+          words={["claude", "cursor", "codex"]}
+          duration={2400}
+          className="px-1 text-on-brand dark:text-on-brand"
+        />
+      </span>
+    </span>
+    <br class="hidden sm:block" />
+    you <span class="font-serif font-normal tracking-[-0.02em]">already pay for.</span>
+  </h1>
+
+  <p class="mt-7 max-w-xl text-body text-muted-ink motion-safe:animate-hero-in" style="animation-delay:220ms">
+    Orso is a free desktop studio for Astro. Edit Markdown in a real UI or hand the change to Claude, Cursor or Codex,
+    preview every draft locally, and publish static files to the host you choose.
+  </p>
+
+  <div class="mt-8 flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:320ms">
     <a
-      class="group inline-flex items-center gap-2 rounded-full border border-hairline bg-panel/70 py-1 pl-1 pr-3 text-[0.72rem] text-muted-ink backdrop-blur transition-colors hover:border-hairline-strong hover:text-ink motion-safe:animate-hero-in"
-      href={site.repo}
-      rel="noopener"
+      class={buttonVariants({ size: "lg", className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]" })}
+      href={href("/download/")}
     >
-      <span class="rounded-full bg-brand/15 px-2 py-0.5 font-medium text-ink">Open source</span>
-      Free forever, MIT on GitHub
-      <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+      Get Orso for macOS
     </a>
-
-    <h1 class="mx-auto mt-8 max-w-5xl text-h1 motion-safe:animate-hero-in" style="animation-delay:120ms">
-      Edit your Astro site with
-      <span class="sr-only">Claude, Cursor or Codex</span>
-      <span aria-hidden="true"><AgentChip client:load /></span>
-      <span class="text-muted-ink">the agent you already pay for.</span>
-    </h1>
-
-    <p class="mx-auto mt-6 max-w-xl text-body text-muted-ink motion-safe:animate-hero-in" style="animation-delay:280ms">
-      A free desktop studio for Astro. Edit Markdown in a real UI or hand the change to your agent, preview every draft
-      locally, and publish static files to the host you choose — all in a repo you own.
-    </p>
-
-    <div
-      class="mt-9 flex flex-wrap items-center justify-center gap-3 motion-safe:animate-hero-in"
-      style="animation-delay:400ms"
+    <a
+      class={buttonVariants({
+        variant: "outline",
+        size: "lg",
+        className: "h-10 gap-2 rounded-full border-hairline-strong px-5 text-[0.82rem]",
+      })}
+      href={href("#how-it-works")}
     >
-      <a
-        class={buttonVariants({ size: "lg", className: "btn-gloss h-11 rounded-full px-6 text-[0.85rem]" })}
-        href={href("/download/")}
-      >
-        Get Orso for macOS
-      </a>
-      <a
-        class={buttonVariants({
-          variant: "outline",
-          size: "lg",
-          className: "h-11 rounded-full border-hairline-strong bg-panel/60 px-6 text-[0.85rem] backdrop-blur",
-        })}
-        href={href("#how-it-works")}
-      >
-        See how it works
-      </a>
-    </div>
-    <p class="mt-4 text-[0.72rem] text-faint motion-safe:animate-hero-in" style="animation-delay:480ms">
-      Free · no account · works with your existing repo
-    </p>
+      <span aria-hidden="true" class="text-[0.6rem]">▶</span> See how it works
+    </a>
+    <span class="text-[0.72rem] text-faint">Free · no account · your existing repo</span>
   </div>
 
-  <!-- The product window tilts flat as you scroll -->
-  <div class="relative z-10 -mt-24 sm:-mt-44">
-    <ContainerScroll client:load titleComponent="">
-      <ProductMockup />
-    </ContainerScroll>
+  <div
+    class="mt-14 h-[26rem] overflow-hidden rounded-xl border border-hairline-strong shadow-[0_24px_60px_-30px_rgb(0_0_0/0.35)] motion-safe:animate-hero-in sm:mt-16 md:h-[34rem]"
+    style="animation-delay:450ms"
+  >
+    <ProductMockup />
   </div>
 </section>

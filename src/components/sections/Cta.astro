@@ -1,22 +1,19 @@
 ---
-import { BackgroundBeams } from "@/components/ui/background-beams";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
 ---
 
-<section class="relative isolate overflow-x-clip" id="cta">
-  <div class="pointer-events-none absolute inset-0" aria-hidden="true"><BackgroundBeams client:visible /></div>
-  <div class="shell relative z-10 py-24 text-center sm:py-32">
-    <p class="text-eyebrow uppercase text-faint">No lock-in. Open source.</p>
-    <h2 class="mx-auto mt-5 max-w-2xl text-h2">
-      Free, open, and yours.<br />
-      <span class="text-muted-ink">All the way down.</span>
+<section class="relative" id="cta">
+  <div class="px-6 py-20 sm:px-10 sm:py-28">
+    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Get started</span>
+    <h2 class="mt-6 max-w-4xl text-h1">
+      Free, open, and yours — <span class="font-serif font-normal tracking-[-0.02em]">all the way down.</span>
     </h2>
-    <p class="mx-auto mt-5 max-w-md text-body text-muted-ink">
+    <p class="mt-6 max-w-md text-body text-muted-ink">
       Bring the agent you already pay for. Keep the Astro site you already own. macOS app first.
     </p>
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+    <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
       <a
         class={buttonVariants({
           size: "lg",

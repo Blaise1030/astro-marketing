@@ -1,58 +1,59 @@
 ---
-const keep = ["Your AI agent", "Astro", "Markdown", "Git + GitHub", "Your static host"];
-const drop = ["AI site builders", "Hosted CMS", "Per-seat page builders"];
+const before = [
+  "Export everything out of a hosted CMS",
+  "Rebuild the site in a per-seat page builder",
+  "Wait on a developer to change a headline",
+  "Lose the site when the subscription ends",
+];
 ---
 
-<section class="shell py-20 sm:py-section" id="stack">
-  <div class="grid gap-5 lg:grid-cols-[1fr_1fr] lg:items-end" data-reveal>
-    <h2 class="max-w-xl text-h2">
-      One app.<br />
-      <span class="text-muted-ink">Not three subscriptions.</span>
+<section class="py-16 sm:py-24" id="stack">
+  <div class="px-6 sm:px-10" data-reveal>
+    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Repo</span>
+    <h2 class="mt-5 max-w-2xl text-h2">
+      Your content is a <span class="font-serif font-normal tracking-[-0.02em]">file,</span> not a subscription.
     </h2>
-    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
-      Bring the agent you already pay for. Drop the rest of the stack — no new CMS account, just the Astro repo you already own.
+    <p class="mt-5 max-w-lg text-body text-muted-ink">
+      Every edit — yours or your agent's — lands as Markdown in the Astro repo you already own. No new CMS account, no
+      export button, nothing to migrate.
     </p>
   </div>
 
-  <div class="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2" data-reveal style="--d: 120ms">
-    <div class="bg-ground p-6 sm:p-8">
-      <div class="flex items-center justify-between">
-        <p class="text-eyebrow uppercase text-faint">You already have</p>
-        <span class="size-1.5 rounded-full bg-live" aria-hidden="true"></span>
-      </div>
-      <ul class="mt-5">
+  <div class="mt-12 grid border-y border-hairline md:grid-cols-2" data-reveal style="--d: 120ms">
+    <div class="border-hairline p-6 sm:p-10 md:border-r">
+      <p class="flex items-center gap-2 text-[0.7rem] uppercase tracking-widest text-faint">
+        <span class="size-1.5 rounded-full bg-hairline-strong"></span>Before
+      </p>
+      <ul class="mt-6">
         {
-          keep.map((name) => (
-            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
-              <span class="font-mono text-[11px] text-live" aria-hidden="true">
-                ✓
-              </span>
-              <span class="text-label text-ink">{name}</span>
+          before.map((item) => (
+            <li class="border-t border-dashed border-hairline-strong py-3.5 text-[0.85rem] text-faint line-through decoration-faint/50 last:border-b">
+              {item}
             </li>
           ))
         }
       </ul>
-      <p class="mt-5 text-label text-faint">Already paid for, already in your repo.</p>
     </div>
 
-    <div class="bg-ground p-6 sm:p-8">
-      <div class="flex items-center justify-between">
-        <p class="text-eyebrow uppercase text-faint">You stop paying for</p>
-        <span class="size-1.5 rounded-full bg-hairline-strong" aria-hidden="true"></span>
+    <div class="p-6 sm:p-10">
+      <p class="flex items-center gap-2 text-[0.7rem] uppercase tracking-widest text-brand">
+        <span class="size-1.5 rounded-full bg-brand"></span>With Orso
+      </p>
+      <div class="mt-6 overflow-hidden rounded-lg border border-hairline-strong bg-panel">
+        <div class="flex items-center justify-between border-b border-hairline px-4 py-2 font-mono text-[0.68rem] text-faint">
+          <span>src/content/blog/en/launch.md</span>
+          <span aria-hidden="true">⧉</span>
+        </div>
+        <pre class="overflow-x-auto p-4 font-mono text-[0.75rem] leading-relaxed text-muted-ink"><code><span class="text-faint">---</span>
+<span class="text-brand">title</span>: <span class="text-ink">"Introducing Orso 1.0"</span>
+<span class="text-brand">pubDate</span>: <span class="text-ink">2026-11-15</span>
+<span class="text-brand">categories</span>: [<span class="text-ink">product</span>]
+<span class="text-faint">---</span>
+
+<span class="text-ink">A studio for the site you already own.</span>
+Edit it here, or ask your agent.</code></pre>
       </div>
-      <ul class="mt-5">
-        {
-          drop.map((name) => (
-            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
-              <span class="font-mono text-[11px] text-faint" aria-hidden="true">
-                −
-              </span>
-              <span class="text-label text-faint line-through decoration-faint/60">{name}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="mt-5 text-label text-faint">Cancel whenever. Nothing here stops working.</p>
+      <p class="mt-4 text-[0.8rem] text-muted-ink">Plain Markdown. Diff it, review it, keep it forever.</p>
     </div>
   </div>
 </section>

@@ -5,35 +5,33 @@ const tools = [
   { name: "Astro", logos: [toolLogos.astro] },
   { name: "Markdown", logos: [toolLogos.markdown] },
   { name: "GitHub", logos: [toolLogos.github] },
-  { name: "Coding agents", logos: [toolLogos.claude, toolLogos.cursor, toolLogos.codex] },
+  { name: "Claude", logos: [toolLogos.claude] },
+  { name: "Cursor", logos: [toolLogos.cursor] },
+  { name: "Codex", logos: [toolLogos.codex] },
 ];
 ---
 
-<section class="pb-4 pt-10 sm:pt-14" aria-label="Works with">
-  <div class="shell">
-    <p class="text-center text-label text-muted-ink">
-      Built on the stack you already trust.
-    </p>
-    <div class="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-4">
-      {
-        tools.map((tool) => (
-          <div class="group flex h-20 items-center justify-center gap-3 bg-ground px-4">
-            <span class="flex items-center gap-1.5 text-muted-ink transition-colors group-hover:text-ink">
-              {tool.logos.map((logo) => (
-                <svg
-                  class:list={["shrink-0", tool.logos.length > 1 ? "size-4" : "size-6"]}
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d={logo.path} />
-                </svg>
-              ))}
-            </span>
-            <span class="text-sm font-medium tracking-tight text-muted-ink">{tool.name}</span>
-          </div>
-        ))
-      }
-    </div>
+<section class="pt-8" aria-label="Works with">
+  <p class="px-6 text-[0.8rem] text-muted-ink sm:px-10">Built on the stack you already trust.</p>
+  <div class="mt-6 grid grid-cols-3 border-t border-hairline sm:grid-cols-6">
+    {
+      tools.map((tool, i) => (
+        <div
+          class:list={[
+            "group flex h-20 items-center justify-center gap-2 border-hairline text-faint transition-colors hover:text-ink",
+            i % 3 !== 2 && "border-r",
+            i < 3 && "border-b sm:border-b-0",
+            "sm:[&:not(:last-child)]:border-r",
+          ]}
+        >
+          {tool.logos.map((logo) => (
+            <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={logo.path} />
+            </svg>
+          ))}
+          <span class="text-[0.85rem] font-medium tracking-tight">{tool.name}</span>
+        </div>
+      ))
+    }
   </div>
 </section>
