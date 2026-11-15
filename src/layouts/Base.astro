@@ -145,7 +145,7 @@ import "@fontsource-variable/geist-mono";
           <button
             type="button"
             id="theme-toggle"
-            class="flex size-8 shrink-0 items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:border-hairline-strong hover:text-ink"
+            class="hidden size-8 shrink-0 items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink md:flex"
             aria-label="Switch to light theme"
           >
             <svg
@@ -214,6 +214,22 @@ import "@fontsource-variable/geist-mono";
               >
                 GitHub
               </a>
+              <div
+                class="mt-1 flex -translate-y-1 items-center justify-between gap-3 border-t border-dashed border-hairline-strong px-3 pb-1 pt-2.5 opacity-0 transition-[opacity,translate] duration-200 ease-out group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                style={`transition-delay: ${40 + (site.nav.length + 1) * 30}ms`}
+              >
+                <span class="font-mono text-[11.5px] text-faint">theme</span>
+                <div class="flex w-32 gap-0.5 rounded-[10px] bg-ink/[0.04] p-0.5" role="group" aria-label="Theme">
+                  <button type="button" class="relative inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded-[8px] text-[12.5px] font-medium text-muted-ink transition-colors hover:text-ink aria-pressed:bg-panel aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_6%,transparent),0_1px_2px_rgb(0_0_0/0.06)]" data-theme-set="light" aria-pressed="false">
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.25"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4l1.4-1.4M18 6l1.4-1.4"></path></svg>
+                    Light
+                  </button>
+                  <button type="button" class="relative inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded-[8px] text-[12.5px] font-medium text-muted-ink transition-colors hover:text-ink aria-pressed:bg-panel aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_6%,transparent),0_1px_2px_rgb(0_0_0/0.06)]" data-theme-set="dark" aria-pressed="false">
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"></path></svg>
+                    Dark
+                  </button>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
@@ -273,26 +289,27 @@ import "@fontsource-variable/geist-mono";
     <script is:inline>
       (() => {
         const root = document.documentElement;
+        // Theme: the header button (desktop) toggles; the menu switch (mobile) sets.
         const button = document.getElementById("theme-toggle");
-        if (button) {
-          const sync = () => {
-            const dark = root.classList.contains("dark");
-            button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-            const meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
-          };
-
+        const choices = document.querySelectorAll("[data-theme-set]");
+        const sync = () => {
+          const dark = root.classList.contains("dark");
+          button?.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+          choices.forEach((el) => el.setAttribute("aria-pressed", String((el.dataset.themeSet === "dark") === dark)));
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", dark ? "#0b0b0c" : "#fcfcfc");
+        };
+        const setTheme = (dark) => {
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+          try {
+            localStorage.setItem("orso-theme", dark ? "dark" : "light");
+          } catch {}
           sync();
-
-          button.addEventListener("click", () => {
-            const dark = root.classList.toggle("dark");
-            root.style.colorScheme = dark ? "dark" : "light";
-            try {
-              localStorage.setItem("orso-theme", dark ? "dark" : "light");
-            } catch {}
-            sync();
-          });
-        }
+        };
+        sync();
+        button?.addEventListener("click", () => setTheme(!root.classList.contains("dark")));
+        choices.forEach((el) => el.addEventListener("click", () => setTheme(el.dataset.themeSet === "dark")));
 
         const navToggle = document.getElementById("mobile-nav-toggle");
         const nav = document.getElementById("mobile-nav");
