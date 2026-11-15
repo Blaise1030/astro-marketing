@@ -2,10 +2,36 @@
 import Accent from "@/components/landing/Accent.astro";
 import Tag from "@/components/landing/Tag.astro";
 
-const stats = [
-  ["1", "repo for pages, posts and images"],
-  ["0", "CMS logins — GitHub is the account"],
-  ["$0", "for Orso, forever"],
+const source = "https://leerob.com/agents";
+
+// Lee Robinson's reasons for taking cursor.com off its CMS, quoted from the post.
+const reasons = [
+  {
+    title: "Agents can't reach the content",
+    body: "Content fetched from a CMS API is invisible to a coding agent working in the repo.",
+    quote: "Agents can’t use their tools to grep and edit the code.",
+  },
+  {
+    title: "Two logins for one website",
+    body: "Marketers needed CMS accounts on top of the GitHub accounts the team already had.",
+    quote: "We added our marketing team to GitHub instead.",
+  },
+  {
+    title: "Previews behind accounts",
+    body: "Draft previews needed extra accounts to open. In the repo, a pull request is the preview.",
+    quote: "When the content is code, you can create a PR, get a link with your changes, and share it with anyone.",
+  },
+  {
+    title: "Paying for the convenience",
+    body: "Hosted media and translation plugins added cost and moving parts the site didn't need.",
+    quote: "We’ve spent $56,848 on CDN usage since launching in September.",
+  },
+];
+
+const results = [
+  ["3 days", "to move cursor.com into the repo, against a 1–2 week estimate"],
+  ["$260", "in agent tokens for the whole migration"],
+  ["2×", "faster builds, with no CMS calls at build time"],
 ];
 ---
 
@@ -15,32 +41,71 @@ const stats = [
     <p class="max-w-4xl text-[30px] font-medium leading-[1.18] tracking-[-0.03em] text-balance sm:text-[40px]">
       Teams are deleting their CMS. Orso brings <Accent>everyone else</Accent> along.
     </p>
-    <div class="grid max-w-4xl gap-6 text-[15.5px] leading-relaxed text-pretty text-muted-ink md:grid-cols-2 md:gap-10">
-      <p>
-        Engineering-led teams like Cursor and Prefect have moved their websites out of the headless CMS and into the
-        repo. Content sits next to the code as Markdown, images are plain files, and an agent can change anything in
-        minutes instead of weeks.
-      </p>
-      <p>
-        That works when everyone on the team is a developer. Orso gives marketers, writers and founders the same
-        tools — branches, previews, pull requests, a coding agent — behind forms and plain English. Content ops run on
-        GitHub; nobody has to learn it.
-      </p>
-    </div>
+    <p class="max-w-2xl text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+      In <a class="text-link underline-offset-4 hover:underline" href={source} rel="noopener">Coding Agents &amp; Complexity Budgets</a>,
+      Lee Robinson explains why Cursor took cursor.com off its headless CMS and put the content back in the repo as
+      Markdown. Prefect has since made the same move. The argument is simple: a CMS was built for people clicking
+      through a UI, and now most changes start with an agent.
+    </p>
   </div>
-  <dl class="grid sm:grid-cols-3" data-reveal style="--d: 120ms">
+
+  <figure class="flex max-w-3xl flex-col gap-4 border-l-2 border-brand pl-6" data-reveal style="--d: 80ms">
+    <blockquote class="text-[22px] font-medium leading-snug tracking-[-0.02em] text-balance sm:text-[26px]">
+      “With AI and coding agents, the cost of an abstraction has never been higher.”
+    </blockquote>
+    <figcaption class="font-mono text-[12px] text-faint">
+      Lee Robinson · <a class="hover:text-ink" href={source} rel="noopener">leerob.com/agents</a>
+    </figcaption>
+  </figure>
+
+  <div class="grid gap-x-10 md:grid-cols-2" data-reveal style="--d: 120ms">
     {
-      stats.map(([value, label], i) => (
-        <div
-          class:list={[
-            "flex flex-col-reverse gap-1.5 py-5 sm:px-8",
-            i === 0 ? "sm:pl-0" : "border-t border-dashed border-hairline-strong sm:border-l sm:border-t-0",
-          ]}
-        >
-          <dt class="text-[13.5px] text-muted-ink">{label}</dt>
-          <dd class="text-[34px] font-medium tabular-nums tracking-[-0.04em]">{value}</dd>
+      reasons.map((r, i) => (
+        <div class="flex flex-col gap-2 border-t border-dashed border-hairline-strong py-6">
+          <p class="flex items-baseline gap-3">
+            <span class="font-mono text-[12px] text-faint">{String(i + 1).padStart(2, "0")}</span>
+            <span class="text-[16px] font-medium tracking-[-0.015em]">{r.title}</span>
+          </p>
+          <p class="pl-8 text-[14.5px] leading-relaxed text-pretty text-muted-ink">{r.body}</p>
+          <p class="pl-8 text-[14px] leading-relaxed text-pretty text-faint italic">“{r.quote}”</p>
         </div>
       ))
     }
-  </dl>
+  </div>
+
+  <div class="flex flex-col gap-4" data-reveal style="--d: 160ms">
+    <p class="font-mono text-[12px] text-muted-ink">cursor.com, after the move</p>
+    <dl class="grid sm:grid-cols-3">
+      {
+        results.map(([value, label], i) => (
+          <div
+            class:list={[
+              "flex flex-col-reverse gap-1.5 py-5 sm:px-8",
+              i === 0 ? "sm:pl-0" : "border-t border-dashed border-hairline-strong sm:border-l sm:border-t-0",
+            ]}
+          >
+            <dt class="text-[13.5px] text-muted-ink">{label}</dt>
+            <dd class="text-[34px] font-medium tabular-nums tracking-[-0.04em]">{value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="grid gap-8 border-t border-dashed border-hairline-strong pt-10 md:grid-cols-2 md:gap-10" data-reveal>
+    <div class="flex flex-col gap-2">
+      <p class="font-mono text-[12px] text-faint">the catch</p>
+      <p class="text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+        It worked because the people editing cursor.com already work like developers. Most marketing teams don't, and that is
+        the case CMS vendors make for keeping the CMS: someone still needs forms, drafts and a safe way to publish.
+      </p>
+    </div>
+    <div class="flex flex-col gap-2">
+      <p class="font-mono text-[12px] text-brand">where orso fits</p>
+      <p class="text-[15.5px] leading-relaxed text-pretty text-ink">
+        Orso gives marketers, writers and founders the same setup without the developer workflow. Content ops run on
+        GitHub — drafts are branches, reviews are pull requests, images are files — behind forms and plain English.
+      </p>
+    </div>
+  </div>
 </section>
