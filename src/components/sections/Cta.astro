@@ -1,6 +1,7 @@
 ---
 import Selection from "@/components/landing/Selection.astro";
 import Accent from "@/components/landing/Accent.astro";
+import Logo from "@/components/landing/Logo.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
@@ -22,6 +23,9 @@ const lines = [
   >
     {[...lines, ...lines].join("\n")}
   </div>
+
+  <!-- Faint bear walking in from the edge, behind the copy -->
+  <Logo class="pointer-events-none absolute -bottom-8 -right-16 h-72 w-auto text-ink/[0.05] sm:-right-10" />
 
   <div class="relative flex flex-col items-center gap-7 text-center" data-reveal>
     <h2 class="max-w-3xl text-[40px] font-medium leading-[1.04] tracking-[-0.04em] text-balance sm:text-[56px]">
