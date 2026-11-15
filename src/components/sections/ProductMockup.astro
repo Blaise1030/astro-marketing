@@ -1,0 +1,149 @@
+---
+// The hero product window: a realistic Orso workspace built from tokens.
+// Optional recording: drop public/hero-demo.webm|mp4 and it plays over the mockup.
+import { href } from "@/lib/href";
+
+const files = [
+  { name: "launch.md", active: true },
+  { name: "pricing.md", active: false, added: true },
+  { name: "roadmap.md", active: false },
+];
+---
+
+<div class="relative flex h-full flex-col overflow-hidden rounded-xl bg-ground text-left text-ink" aria-hidden="true">
+  <!-- Title bar -->
+  <div class="flex items-center gap-3 border-b border-hairline bg-raised px-4 py-2.5">
+    <div class="flex gap-1.5">
+      <span class="size-2.5 rounded-full bg-[#ff5f57]/80"></span>
+      <span class="size-2.5 rounded-full bg-[#febc2e]/80"></span>
+      <span class="size-2.5 rounded-full bg-[#28c840]/80"></span>
+    </div>
+    <span class="ml-2 hidden text-[0.7rem] text-muted-ink sm:inline">your-site <span class="mx-1.5 text-faint">/</span> Blog</span>
+    <span class="ml-auto flex items-center gap-1.5 rounded-full border border-hairline px-2 py-0.5 font-mono text-[0.6rem] text-muted-ink">
+      <span class="size-1.5 rounded-full bg-brand"></span>draft/pricing
+    </span>
+    <span class="rounded-full bg-brand px-3 py-1 text-[0.65rem] font-medium text-on-brand">Publish</span>
+  </div>
+
+  <div class="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[10.5rem_1fr_1.15fr]">
+    <!-- Sidebar -->
+    <aside class="hidden flex-col gap-1 border-r border-hairline bg-panel p-3 text-[0.7rem] md:flex">
+      <p class="px-2 pb-2 pt-1 text-[0.6rem] uppercase tracking-widest text-faint">Workspace</p>
+      <p class="rounded-md bg-raised px-2 py-1.5 text-ink">▤ Content</p>
+      <p class="px-2 py-1.5 text-muted-ink">✧ Agent</p>
+      <p class="px-2 py-1.5 text-muted-ink">◷ History</p>
+      <p class="px-2 pb-2 pt-5 text-[0.6rem] uppercase tracking-widest text-faint">Blog</p>
+      {
+        files.map((f) => (
+          <p class:list={["flex items-center justify-between rounded-md px-2 py-1.5 font-mono text-[0.65rem]", f.active ? "bg-brand/15 text-ink" : "text-muted-ink"]}>
+            {f.name}
+            {f.added && <span class="text-live">+</span>}
+          </p>
+        ))
+      }
+      <p class="px-2 pb-2 pt-5 text-[0.6rem] uppercase tracking-widest text-faint">Help docs</p>
+      <p class="px-2 py-1 font-mono text-[0.65rem] text-muted-ink">getting-started.md</p>
+      <p class="px-2 py-1 font-mono text-[0.65rem] text-muted-ink">publishing.md</p>
+    </aside>
+
+    <!-- Editor -->
+    <section class="hidden min-w-0 flex-col border-r border-hairline p-5 md:flex">
+      <p class="text-[0.6rem] uppercase tracking-widest text-faint">Title</p>
+      <p class="mt-1.5 rounded-lg border border-hairline-strong bg-panel px-3 py-2 text-[0.8rem]">Introducing Orso 1.0</p>
+      <div class="mt-3 grid grid-cols-2 gap-2">
+        <div>
+          <p class="text-[0.6rem] uppercase tracking-widest text-faint">Date</p>
+          <p class="mt-1.5 rounded-lg border border-hairline bg-panel px-3 py-1.5 font-mono text-[0.65rem] text-muted-ink">2026-11-15</p>
+        </div>
+        <div>
+          <p class="text-[0.6rem] uppercase tracking-widest text-faint">Category</p>
+          <p class="mt-1.5 rounded-lg border border-hairline bg-panel px-3 py-1.5 text-[0.65rem] text-brand">Product</p>
+        </div>
+      </div>
+      <div class="mt-4 flex gap-3 border-y border-hairline py-1.5 text-[0.7rem] text-faint">
+        <b>B</b><i>I</i><span>H₂</span><span>“</span><span>↗</span>
+      </div>
+      <p class="mt-4 text-[1.05rem] font-semibold tracking-tight">A studio for the site you already own</p>
+      <p class="mt-2 text-[0.7rem] leading-relaxed text-muted-ink">
+        Edit Markdown in a real UI, or hand the change to your agent. Every draft gets a live preview before anything ships.
+      </p>
+      <p class="mt-2 text-[0.7rem] leading-relaxed text-muted-ink">No new CMS account. No migration. Just your repo.</p>
+
+      <!-- Agent prompt -->
+      <div class="mt-auto rounded-xl border border-hairline-strong bg-panel p-3 shadow-[0_20px_60px_-20px_rgb(47_108_236/0.5)]">
+        <div class="flex items-center gap-2 text-[0.6rem] text-faint">
+          <span class="rounded-full border border-hairline px-2 py-0.5 text-ink">Claude</span> agent
+        </div>
+        <p class="mt-2 text-[0.72rem] text-ink">
+          Add a pricing page with three tiers<span class="ml-0.5 inline-block h-3 w-px translate-y-0.5 bg-brand motion-safe:animate-caret"></span>
+        </p>
+        <div class="mt-2 space-y-1 font-mono text-[0.6rem] text-muted-ink">
+          <p><span class="text-live">+</span> src/pages/pricing.astro</p>
+          <p><span class="text-brand">~</span> src/site.ts</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live preview -->
+    <section class="flex min-w-0 flex-col bg-panel p-4 sm:p-5">
+      <div class="flex items-center justify-between text-[0.65rem] text-faint">
+        <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live"></span>Live preview</span>
+        <span class="flex gap-1 rounded-full border border-hairline p-0.5">
+          <span class="rounded-full bg-raised px-2 py-0.5 text-ink">Desktop</span>
+          <span class="px-2 py-0.5">Mobile</span>
+        </span>
+      </div>
+      <div class="mt-3 flex-1 overflow-hidden rounded-lg border border-neutral-300 bg-white text-neutral-900">
+        <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-2.5 text-[0.65rem]">
+          <b>your-site</b>
+          <span class="flex gap-3 text-neutral-500"><span>Blog</span><span class="text-neutral-900">Pricing</span><span>Docs</span></span>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="text-[0.55rem] font-semibold uppercase tracking-widest text-[#2f6cec]">Pricing</p>
+          <p class="mt-1.5 text-lg font-semibold leading-tight tracking-tight sm:text-xl">Simple plans for every team.</p>
+          <div class="mt-4 grid grid-cols-3 gap-2">
+            {
+              [
+                ["Starter", "$0"],
+                ["Team", "$18"],
+                ["Scale", "Custom"],
+              ].map(([name, price], i) => (
+                <div class:list={["rounded-md border p-2.5", i === 1 ? "border-[#2f6cec] bg-[#2f6cec]/5" : "border-neutral-200"]}>
+                  <p class="text-[0.55rem] text-neutral-500">{name}</p>
+                  <p class="mt-1 text-sm font-semibold">{price}</p>
+                  <div class="mt-2 space-y-1">
+                    <div class="h-1 rounded-full bg-neutral-200" />
+                    <div class="h-1 w-2/3 rounded-full bg-neutral-200" />
+                  </div>
+                  <div class:list={["mt-3 h-4 rounded", i === 1 ? "bg-[#2f6cec]" : "bg-neutral-900/80"]} />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <video
+    class="absolute inset-0 size-full bg-ground object-cover opacity-0 transition-opacity duration-700"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    data-hero-video
+  >
+    <source src={href("/hero-demo.webm")} type="video/webm" />
+    <source src={href("/hero-demo.mp4")} type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
+  if (video) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) video.pause();
+    video.addEventListener("loadeddata", () => video.classList.remove("opacity-0"), { once: true });
+    video.querySelector("source:last-of-type")?.addEventListener("error", () => video.remove());
+  }
+</script>

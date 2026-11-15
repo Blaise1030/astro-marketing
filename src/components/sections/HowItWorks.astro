@@ -104,4 +104,20 @@ const steps = [
       </div>
     </div>
   </div>
+
+  <dl class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-3" data-reveal>
+    {
+      [
+        ["$0", "for Orso — bring the agent you already pay for"],
+        ["0", "new accounts, databases or CMS migrations"],
+        ["100%", "static output you can host anywhere"],
+      ].map(([value, label]) => (
+        <div class="bg-ground p-6 sm:p-8">
+          <dt class="sr-only">{label}</dt>
+          <dd class="text-h2 tracking-tight">{value}</dd>
+          <dd class="mt-2 text-body text-muted-ink">{label}</dd>
+        </div>
+      ))
+    }
+  </dl>
 </section>

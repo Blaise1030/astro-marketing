@@ -170,7 +170,14 @@ Compound Base UI components must be composed inside a single React component and
 
 ## Motion
 
-Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. The hero point globe drifts on a slow idle rotation and freezes when `prefers-reduced-motion: reduce` is set. The hero is the one choreographed moment: badge, headline lines, copy and CTAs rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, 120ms stagger), then the framed product demo lifts into place (`animate-hero-rise`, 1.4s) and carries a cursor-following blue spotlight. The demo is a muted, looping screen recording (`public/hero-demo.webm` / `.mp4`) that pauses offscreen. All of it is wrapped in `motion-safe` and the video stays on its poster under `prefers-reduced-motion`. Below the hero, sections reveal once as they scroll into view (`data-reveal` plus an `IntersectionObserver` in `Base.astro`, 900ms expo-out, optional `--d` stagger); the agent demo strip uses the same stagger to play out a prompt, a thinking state and file changes. Features is a hover-lift bento of small illustrative mockups. Reveals are disabled under `prefers-reduced-motion`. There is no parallax, no scroll-linked animation and no auto-advancing content. `prefers-reduced-motion` also disables smooth scrolling, and the CTA dotted terrain stays static CSS.
+The page follows the structure of Aceternity's product landing template, using Aceternity UI components installed through the shadcn registry (`@aceternity/*`, in `src/components/ui/`, powered by `motion`). Leave those files as generated.
+
+- **Hero:** an animated spotlight (`spotlight-new`) sweeps over a fading grid. The headline carries an inline "live specimen" chip that cycles Claude → Cursor → Codex (`flip-words`, `src/components/agent-chip.tsx`). Pill, headline, copy and CTAs rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered).
+- **Product window:** `ProductMockup.astro` (a token-built Orso workspace) sits in `container-scroll-animation`, which tilts it from 20° to flat as you scroll. If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the mockup.
+- **Sections:** reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, 900ms expo-out, optional `--d` stagger). Feature cards carry a cursor-tracking glowing border (`glowing-effect`). The CTA sits on animated beams (`background-beams`).
+- **Small things:** the accordion animates over 200ms; links transition colour; arrows nudge on hover.
+
+CSS-driven motion (`animate-hero-in`, reveals, caret blink) is disabled under `prefers-reduced-motion`. The `motion`-based Aceternity effects do not read that preference on their own. There is no auto-advancing content beyond the agent chip.
 
 ## Do's and Don'ts
 
