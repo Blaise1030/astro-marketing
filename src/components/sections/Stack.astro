@@ -3,32 +3,56 @@ import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
 
 const before = [
-  "“Can someone change this headline?” — a ticket, then a wait",
-  "A developer has to run the preview before anyone sees it",
-  "A second login for a CMS nobody else uses",
-  "Content locked in a CMS the agent can't see",
+  "Only the fields the CMS was set up to show",
+  "A new page means a ticket, then a sprint",
+  "Ideas wait on a developer's calendar",
+  "The campaign ships after the moment has passed",
+];
+
+// What teammates who don't code can now ask for, and what lands in the repo.
+const asks = [
+  {
+    who: "marketing",
+    ask: "Build a landing page for the spring launch with our usual hero and FAQ.",
+    file: "+ src/pages/spring-launch.astro",
+  },
+  {
+    who: "founder",
+    ask: "Add a comparison page against Webflow with a feature table.",
+    file: "+ src/pages/vs-webflow.astro",
+  },
+  {
+    who: "support",
+    ask: "Turn this week's top customer questions into help articles.",
+    file: "+ 4 files in content/helpDocs/en/",
+  },
+  {
+    who: "writer",
+    ask: "Link every post that mentions previews to the new guide.",
+    file: "~ 7 files in content/blog/en/",
+  },
 ];
 const badge = "grid size-5 place-items-center rounded-full text-white";
 ---
 
 <section id="handoff" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
-    <SectionIntro tag="Repo">
-      A headline change shouldn't need a <Accent>ticket</Accent>.
+    <SectionIntro tag="Possibilities">
+      Not just edits. <Accent>Whole new pages</Accent>.
       <Fragment slot="lead">
-        Your teammate makes the edit, or asks the agent to. Either way it lands as Markdown in the repo, right where
-        your developers and their agents work.
+        A CMS lets people fill in the fields someone built for them. With an AI agent on the repo, your team can ask for
+        things that used to take a sprint — and every one of them lands as a draft to review before it ships.
       </Fragment>
     </SectionIntro>
   </div>
 
-  <div class="grid md:grid-cols-2" data-reveal style="--d: 100ms">
+  <div class="grid md:grid-cols-[0.8fr_1.2fr]" data-reveal style="--d: 100ms">
     <div class="flex flex-col gap-5 pb-10 md:pb-0 md:pr-10">
       <span class="flex items-center gap-2.5">
         <span class:list={[badge, "bg-ink/20 shadow-[0_0_0_3px_color-mix(in_oklab,var(--palette-ink)_4%,transparent)]"]}>
           <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
         </span>
-        <span class="font-mono text-[12px] text-muted-ink">before</span>
+        <span class="font-mono text-[12px] text-muted-ink">with a cms</span>
       </span>
       <ul class="flex flex-col">
         {
@@ -51,23 +75,26 @@ const badge = "grid size-5 place-items-center rounded-full text-white";
         <span class:list={[badge, "bg-brand shadow-[0_0_0_3px_rgb(47_108_236/0.14)]"]}>
           <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
         </span>
-        <span class="font-mono text-[12px] text-muted-ink">with orso</span>
+        <span class="font-mono text-[12px] text-muted-ink">with orso and an agent</span>
       </span>
       <div class="frame">
-        <div class="frame-inner">
-          <div class="flex h-10 items-center justify-between border-b border-hairline px-4">
-            <span class="font-mono text-[11.5px] text-muted-ink">src/content/blog/en/launch.md</span>
-            <span class="rounded-md px-1.5 py-0.5 font-mono text-[10.5px] text-faint shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_8%,transparent)]">copy</span>
-          </div>
-          <pre class="overflow-x-auto p-4 font-mono text-[12.5px] leading-[1.75] text-muted-ink"><code><span class="text-faint">---</span>
-<span class="text-brand-ink">title</span>: <span class="text-ink">"Introducing Orso 1.0"</span>
-<span class="text-brand-ink">pubDate</span>: <span class="text-ink">2026-11-15</span>
-<span class="text-brand-ink">categories</span>: [<span class="text-ink">product</span>]
-<span class="text-faint">---</span>
-
-<span class="text-ink">A studio for the site you already own.</span>
-Edit it here, or ask your agent.</code></pre>
-        </div>
+        <ul class="frame-inner">
+          {
+            asks.map((a, i) => (
+              <li class:list={["flex flex-col gap-2 px-4 py-3.5", i > 0 && "border-t border-dashed border-hairline-strong"]}>
+                <p class="flex items-start gap-3">
+                  <span class="mt-0.5 w-[4.5rem] shrink-0 font-mono text-[10.5px] text-faint">{a.who}</span>
+                  <span class="text-[14px] leading-snug text-ink">“{a.ask}”</span>
+                </p>
+                <p class="flex items-center gap-2 pl-[5.25rem] font-mono text-[10.5px] text-muted-ink">
+                  <span class="size-1.5 rounded-full bg-live" />
+                  <span>draft ready</span>
+                  <span class="text-faint">· {a.file}</span>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </div>
