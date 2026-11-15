@@ -1,4 +1,6 @@
 ---
+import Divider from "../components/landing/Divider.astro";
+import About from "../components/sections/About.astro";
 import Comparison from "../components/sections/Comparison.astro";
 import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
@@ -6,23 +8,42 @@ import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
 import Stack from "../components/sections/Stack.astro";
+import Statement from "../components/sections/Statement.astro";
 import Tools from "../components/sections/Tools.astro";
+import WhyRepo from "../components/sections/WhyRepo.astro";
 import Base from "../layouts/Base.astro";
 import { faqs } from "../lib/faqs";
 import { faqPageJsonLd } from "../lib/seo";
 ---
 
 <Base
-  title="Orso — Free Astro studio with the agent you already pay for"
-  description="Orso is a free, open-source studio for Astro sites. Edit Markdown or ask your agent, preview drafts locally, and publish static files — no lock-in."
+  title="Project Orso — Developer tools for the whole team"
+  description="Project Orso gives non-developers the tools developers have: drafts, previews, pull requests and coding agents, behind forms and plain English. Free and open source."
   jsonLd={faqPageJsonLd([...faqs])}
 >
-  <Hero />
-  <Tools />
-  <Features />
-  <HowItWorks />
-  <Stack />
-  <Comparison />
-  <Faq />
-  <Cta />
+  <!-- One framed column: double rails down each side, a dotted hairline between sections -->
+  <div class="rails relative mx-auto max-w-6xl">
+    <Hero />
+    <Divider />
+    <Tools />
+    <Divider />
+    <About />
+    <Divider />
+    <Stack />
+    <Divider />
+    <Features />
+    <Divider />
+    <HowItWorks />
+    <Divider />
+    <WhyRepo />
+    <Divider />
+    <Statement />
+    <Divider />
+    <Comparison />
+    <Divider />
+    <Faq />
+    <Divider />
+    <Cta />
+    <Divider />
+  </div>
 </Base>

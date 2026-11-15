@@ -1,72 +1,143 @@
 ---
-const pillars = [
-  {
-    shape: "circle",
-    title: "Write",
-    body: "Copy, blog posts and help articles get friendly forms. Markdown is still there when you want it.",
-  },
-  {
-    shape: "square",
-    title: "Ask",
-    body: "Describe a bigger change in plain English. Claude, Cursor or Codex writes the code and the styles.",
-  },
-  {
-    shape: "triangle",
-    title: "Preview",
-    body: "Every edit lives in its own draft with a live desktop and mobile preview, so nothing leaks early.",
-  },
-  {
-    shape: "hexagon",
-    title: "Publish",
-    body: "Ship static files to the host you already use. History keeps a checkpoint of every save.",
-  },
-] as const;
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Accent from "@/components/landing/Accent.astro";
+
+const features = [
+  { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and page copy get real fields. Markdown is still one click away." },
+  { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex edits the repo, never the live site." },
+  { id: "preview", title: "Every draft, previewed", body: "Each change gets its own draft with a live desktop and mobile preview, so nothing ships early." },
+  { id: "publish", title: "Static files, any host", body: "Publish plain static output through the workflow you already have. No runtime, no lock-in." },
+  { id: "history", title: "Content ops on GitHub", body: "Drafts are branches, reviews are pull requests, publishing is a merge. GitHub handles who can publish — no second login." },
+  { id: "repo", title: "Images are just files", body: "Upload an image and it lands in the repo next to the post. No media library, no CDN bill, nothing to migrate." },
+];
+
+// Dashed grid rules: 1 column → 2 (md) → 3 (xl), with the outer gutters trimmed.
+const cell = [
+  "md:border-t-0 md:border-l-0 md:pl-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-t-0 md:border-l md:pr-0 xl:border-l xl:px-8",
+  "border-t md:border-l-0 md:pl-0 xl:border-t-0 xl:border-l xl:pr-0 xl:pl-8",
+  "border-t md:border-l md:pr-0 xl:border-l-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-l-0 md:pl-0 xl:border-l xl:px-8",
+  "border-t md:border-l md:pr-0 xl:border-l xl:pr-0 xl:pl-8",
+];
+const mono = "font-mono text-[10px] text-faint";
 ---
 
-<section class="shell py-20 sm:py-section" id="features">
-  <h2 class="max-w-3xl text-h2">
-    Everything in one studio.<br />
-    <span class="text-muted-ink">Nothing in between.</span>
-  </h2>
-  <p class="mt-5 max-w-lg text-body text-muted-ink">
-    Write, ask, preview and publish from the same place — built for developers with an agent, and for teammates who just need a form.
-  </p>
+<section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Studio">
+      Powerful underneath. <Accent>Plain</Accent> on top.
+      <Fragment slot="lead">
+        Each part of the studio is a developer tool your team never has to see: forms over Markdown, drafts over
+        branches, Publish over a merge. The page they edit is still the page that ships.
+      </Fragment>
+    </SectionIntro>
+  </div>
 
-  <div class="mt-14 sm:mt-20">
-    <div class="relative overflow-hidden border-y border-hairline">
-      <div class="pointer-events-none absolute inset-0 wash-top"></div>
-      <div class="relative grid grid-cols-2 lg:grid-cols-4">
-        {
-          pillars.map((pillar) => (
-            <div class="flex h-40 items-center justify-center border-hairline [&:not(:nth-child(2n))]:border-r [&:nth-child(-n+2)]:border-b sm:h-52 lg:h-60 lg:[&:not(:nth-child(4n))]:border-r lg:[&:nth-child(-n+2)]:border-b-0">
-              <svg
-                viewBox="0 0 100 100"
-                class="size-20 text-mark sm:size-24 md:size-28"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                aria-hidden="true"
-              >
-                {pillar.shape === "circle" && <circle cx="50" cy="50" r="46" />}
-                {pillar.shape === "square" && <rect x="6" y="6" width="88" height="88" />}
-                {pillar.shape === "triangle" && <path d="M50 6 94 90H6Z" />}
-                {pillar.shape === "hexagon" && <path d="M50 4 90 27v46L50 96 10 73V27Z" />}
+  <div class="grid md:grid-cols-2 xl:grid-cols-3">
+    {
+      features.map((f, i) => (
+        <div
+          class:list={["flex flex-col gap-6 border-dashed border-hairline-strong py-8 md:px-8", cell[i]]}
+          data-reveal
+          style={`--d: ${(i % 3) * 90}ms`}
+        >
+          <div class="dot-well relative grid h-60 place-items-center overflow-hidden rounded-[14px]" aria-hidden="true">
+            {f.id === "write" && (
+              <div class="float-card w-[244px] rounded-xl px-2.5 py-1.5">
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>title</span>
+                  <span class="relative rounded-md bg-ink/[0.04] px-2 py-1 text-[11px] outline-[1.5px] outline-brand outline-solid">
+                    Product launch
+                  </span>
+                </div>
+                <div class="border-t border-dashed border-hairline-strong" />
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>pubDate</span>
+                  <span class="rounded-md bg-ink/[0.04] px-2 py-1 font-mono text-[10px]">2026-11-15</span>
+                </div>
+                <div class="border-t border-dashed border-hairline-strong" />
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>tags</span>
+                  <span class="flex gap-1">
+                    <span class="rounded-[5px] bg-brand/10 px-1.5 py-0.5 font-mono text-[10px] text-brand-ink">news</span>
+                    <span class="rounded-[5px] bg-ink/[0.05] px-1.5 py-0.5 font-mono text-[10px] text-muted-ink">product</span>
+                  </span>
+                </div>
+              </div>
+            )}
+            {f.id === "ask" && (
+              <div class="flex w-[250px] flex-col gap-2">
+                <p class="ml-auto w-fit rounded-xl rounded-br-sm bg-ink px-3 py-2 text-[11.5px] text-ground">Make the hero headline bolder</p>
+                <div class="float-card w-fit rounded-xl rounded-bl-sm px-3 py-2">
+                  <p class="flex items-center gap-1.5 text-[11.5px]"><span class="size-1.5 rounded-full bg-live" />Updated in a draft</p>
+                  <p class="mt-1.5 font-mono text-[10px] text-faint"><span class="text-brand">~</span> sections/Hero.astro</p>
+                </div>
+              </div>
+            )}
+            {f.id === "preview" && (
+              <div class="flex items-end gap-3">
+                <div class="float-card h-32 w-48 rounded-lg p-3">
+                  <div class="h-1.5 w-1/3 rounded-full bg-ink/15" />
+                  <div class="mt-2.5 h-12 rounded-md bg-brand/15" />
+                  <div class="mt-2.5 h-1.5 w-4/5 rounded-full bg-ink/[0.07]" />
+                  <div class="mt-1.5 h-1.5 w-3/5 rounded-full bg-ink/[0.07]" />
+                </div>
+                <div class="float-card h-28 w-14 rounded-lg p-1.5">
+                  <div class="h-7 rounded-sm bg-brand/15" />
+                  <div class="mt-1.5 h-1 w-full rounded-full bg-ink/[0.07]" />
+                  <div class="mt-1 h-1 w-2/3 rounded-full bg-ink/[0.07]" />
+                </div>
+              </div>
+            )}
+            {f.id === "publish" && (
+              <div class="float-card w-[230px] rounded-xl px-3 py-2 font-mono text-[10.5px]">
+                {[
+                  ["build", "4.1s"],
+                  ["upload", "38 files"],
+                ].map(([k, v]) => (
+                  <p class="flex justify-between border-b border-dashed border-hairline-strong py-1.5 text-muted-ink">
+                    <span>{k}</span>
+                    <span class="text-live">✓ {v}</span>
+                  </p>
+                ))}
+                <p class="flex justify-between py-1.5">
+                  <span>live</span>
+                  <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />your-site.com</span>
+                </p>
+              </div>
+            )}
+            {f.id === "history" && (
+              <svg class="w-[250px] overflow-visible" viewBox="0 0 250 110" fill="none">
+                <path d="M10 70H240" class="stroke-ink/20" stroke-width="1.5" />
+                <path d="M70 70C95 70 95 30 120 30H160C185 30 185 70 210 70" class="stroke-brand" stroke-width="1.5" />
+                {[10, 70, 210, 240].map((x) => <circle cx={x} cy="70" r="4" class="fill-panel stroke-ink/40" stroke-width="1.5" />)}
+                {[120, 160].map((x) => <circle cx={x} cy="30" r="4" class="fill-panel stroke-brand" stroke-width="1.5" />)}
+                <text x="120" y="16" class="fill-brand font-mono" font-size="9">draft/pricing</text>
+                <text x="10" y="92" class="fill-faint font-mono" font-size="9">main</text>
+                <text x="196" y="92" class="fill-faint font-mono" font-size="9">merged</text>
               </svg>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="grid grid-cols-2 gap-x-8 gap-y-10 pt-8 lg:grid-cols-4">
-      {
-        pillars.map((pillar) => (
-          <div>
-            <h3 class="text-h3">{pillar.title}</h3>
-            <p class="mt-2 max-w-56 text-body text-muted-ink">{pillar.body}</p>
+            )}
+            {f.id === "repo" && (
+              <div class="float-card w-[230px] rounded-xl px-3 py-2.5 font-mono text-[10.5px] leading-[1.9] text-muted-ink">
+                <p>▾ src/</p>
+                <p class="pl-3">▾ content/blog/en/</p>
+                <p class="pl-6">launch.md</p>
+                <p class="pl-3">▾ assets/blog/</p>
+                <p class="-mx-1.5 flex items-center gap-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">
+                  launch-cover.png
+                  <span class="ml-auto mr-1.5 text-[9px] text-live">+ added</span>
+                </p>
+                <p>astro.config.mjs</p>
+              </div>
+            )}
           </div>
-        ))
-      }
-    </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-[17px] font-medium tracking-[-0.02em]">{f.title}</h3>
+            <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{f.body}</p>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>

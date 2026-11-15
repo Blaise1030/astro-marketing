@@ -1,48 +1,51 @@
 ---
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Accent from "@/components/landing/Accent.astro";
+
 const choices = [
   {
+    name: "Headless CMS",
+    orso: "You want content in the repo where agents can edit it, without making your marketing team learn Git.",
+    other: "A headless CMS fits when dozens of editors co-write in real time and publish to many channels at once.",
+  },
+  {
     name: "WordPress",
-    orso: "You already have an Astro site and want to edit Markdown without moving content into WordPress.",
+    orso: "Your team wants easy editing without a plugin stack to maintain, and your developers want the site in Astro.",
     other: "WordPress fits when you want its plugin ecosystem and a traditional CMS.",
   },
   {
     name: "Wix, Framer, or Webflow",
-    orso: "You want a friendly editing workflow while keeping the site, repo, and host under your control.",
+    orso: "Your team wants the same friendly editing, without the site, repo and host belonging to the platform.",
     other: "A visual builder fits when you want design and hosting locked into one platform.",
   },
   {
     name: "AI site builders",
-    orso: "You already pay for Claude, Cursor or Codex and want them editing a real Astro project you own.",
+    orso: "Your team wants to ask for changes in plain English, on a real site your developers can still work on — using the Claude, Cursor or Codex CLI subscription you already have, not another AI plan.",
     other: "An AI site builder fits when you want a hosted canvas and don’t need the source in Git.",
   },
 ];
 ---
 
-<section class="shell py-20 sm:py-section" id="why-orso">
-  <div class="grid gap-5 lg:grid-cols-[1fr_1fr] lg:items-end">
-    <h2 class="max-w-xl text-h2">
-      Keep control.<br />
-      <span class="text-muted-ink">Skip the migration.</span>
-    </h2>
-    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
-      Orso is a studio on top of your existing Astro project — not a new place to rebuild the site.
-    </p>
+<section id="why-orso" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Compare">
+      Why not <Accent>just</Accent>…?
+      <Fragment slot="lead">Each of these gives non-developers a way to edit. Here's when Orso is the better fit, and when it isn't.</Fragment>
+    </SectionIntro>
   </div>
 
-  <div class="mt-12 border-y border-hairline">
-    <div
-      class="hidden grid-cols-[1fr_1.4fr_1.4fr] gap-8 border-b border-hairline py-3 text-eyebrow uppercase text-faint md:grid"
-    >
-      <p>Compared with</p>
-      <p>Orso fits when</p>
-      <p>The other fits when</p>
+  <div data-reveal style="--d: 100ms">
+    <div class="hidden grid-cols-[1fr_1.4fr_1.4fr] gap-8 pb-3 font-mono text-[11.5px] text-faint md:grid">
+      <p>compared with</p>
+      <p>orso fits when</p>
+      <p>the other fits when</p>
     </div>
     {
       choices.map((choice) => (
-        <article class="grid gap-3 border-b border-hairline py-6 last:border-b-0 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
-          <h3 class="text-h3">{choice.name}</h3>
-          <p class="text-body text-muted-ink md:pt-0.5">{choice.orso}</p>
-          <p class="text-body text-faint md:pt-0.5">{choice.other}</p>
+        <article class="grid gap-2 border-t border-dashed border-hairline-strong py-5 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
+          <h3 class="text-[16px] font-medium tracking-[-0.015em]">{choice.name}</h3>
+          <p class="text-[14.5px] leading-relaxed text-muted-ink">{choice.orso}</p>
+          <p class="text-[14.5px] leading-relaxed text-faint">{choice.other}</p>
         </article>
       ))
     }

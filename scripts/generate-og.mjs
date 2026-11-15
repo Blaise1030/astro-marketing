@@ -1,89 +1,139 @@
 #!/usr/bin/env node
 /**
- * Rasterize Orso Open Graph images (1200×630) into public/.
- * Run: node scripts/generate-og.mjs
+ * Rasterize Project Orso Open Graph images (1200×630) into public/.
+ * Run: npm run og
+ *
+ * Light theme, same frame as the landing page: double rails, the bear mark and
+ * wordmark, a headline with one phrase in the brand selection box, and a faint
+ * bear walking in from the right edge.
  */
 import sharp from "sharp";
-import { mkdirSync } from "fs";
+import { mkdirSync, readFileSync } from "fs";
 
 const W = 1200;
 const H = 630;
 mkdirSync("public", { recursive: true });
 
-function dots(color = "#2f6cec", opacity = 0.22) {
-  const cells = [];
-  for (let y = 280; y < H - 40; y += 18) {
-    for (let x = 620; x < W - 48; x += 18) {
-      const dx = (x - 900) / 420;
-      const dy = (y - 480) / 220;
-      if (dx * dx + dy * dy > 1) continue;
-      cells.push(`<circle cx="${x}" cy="${y}" r="1.15" fill="${color}" fill-opacity="${opacity}"/>`);
+const C = {
+  ground: "#fcfcfc",
+  ink: "#1d1d1f",
+  muted: "#6e6e73",
+  faint: "#a1a1a6",
+  hairline: "#e8e8ea",
+  brand: "#2f6cec",
+};
+const SANS = "Helvetica Neue";
+const MONO = "Menlo";
+
+// The bear mark from the site logo component, so the two never drift apart.
+const logo = readFileSync("src/components/landing/Logo.astro", "utf8");
+const BEAR = logo.match(/<path d="([^"]+)"/)[1];
+const [bx, by, bw, bh] = logo.match(/viewBox="([^"]+)"/)[1].split(" ").map(Number);
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+/** Measure rendered text width (px) with the same font stack librsvg will use. */
+async function textWidth(text, size, weight = "Medium") {
+  const { info } = await sharp({
+    text: { text: `<span font_family="${SANS}" font_weight="${weight === "Medium" ? 500 : 400}" size="${size * 1024}">${esc(text)}</span>`, dpi: 72, rgba: true },
+  }).toBuffer({ resolveWithObject: true });
+  return info.width;
+}
+
+function bear(x, y, height, fill, opacity = 1) {
+  const s = height / bh;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-bx} ${-by})"><path d="${BEAR}" fill="${fill}" fill-opacity="${opacity}"/></g>`;
+}
+
+async function card({ eyebrow, lines, highlight, label, subtitle, filename }) {
+  const size = 72;
+  const lineH = 84;
+  const top = 250;
+
+  const text = [];
+  for (const [i, line] of lines.entries()) {
+    // Extra room above the highlighted line for its label tab.
+    const y = top + i * lineH + (i >= highlight ? 30 : 0);
+    if (i === highlight) {
+      // Brand selection box around the whole line, with its label tab — as in the hero.
+      const w = await textWidth(line, size);
+      const pad = 10;
+      const boxY = y - size * 0.78 - pad;
+      const boxH = size * 0.98 + pad * 2;
+      text.push(
+        `<rect x="${72 - pad}" y="${boxY}" width="${w + pad * 2}" height="${boxH}" fill="${C.brand}" fill-opacity="0.06" stroke="${C.brand}" stroke-width="2"/>`,
+        ...[
+          [72 - pad, boxY],
+          [72 + w + pad, boxY],
+          [72 - pad, boxY + boxH],
+          [72 + w + pad, boxY + boxH],
+        ].map(([cx, cy]) => `<rect x="${cx - 4}" y="${cy - 4}" width="8" height="8" fill="#fff" stroke="${C.brand}" stroke-width="2"/>`),
+        `<rect x="${72 - pad}" y="${boxY - 26}" width="${label.length * 8.4 + 16}" height="22" rx="3" fill="${C.brand}"/>`,
+        `<text x="${72 - pad + 8}" y="${boxY - 10.5}" font-family="${MONO}" font-size="13" fill="#fff">${esc(label)}</text>`,
+      );
     }
+    text.push(
+      `<text x="72" y="${y}" font-family="${SANS}" font-size="${size}" font-weight="500" letter-spacing="-2.2" fill="${C.ink}">${esc(line)}</text>`,
+    );
   }
-  return cells.join("");
-}
-
-function escapeXml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function card({ eyebrow, title, subtitle, filename }) {
-  const titleLines = title.split("\n");
-  const titleSpans = titleLines
-    .map((line, i) => {
-      const y = 250 + i * 78;
-      const fill = i === titleLines.length - 1 && titleLines.length > 1 ? "#9a9a9a" : "#f5f5f5";
-      return `<text x="72" y="${y}" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="64" font-weight="500" letter-spacing="-1.8" fill="${fill}">${escapeXml(line)}</text>`;
-    })
-    .join("");
 
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <rect width="${W}" height="${H}" fill="#080808"/>
-  <rect x="0" y="0" width="${W}" height="${H}" fill="url(#wash)"/>
-  <defs>
-    <radialGradient id="wash" cx="78%" cy="72%" r="55%">
-      <stop offset="0%" stop-color="#2f6cec" stop-opacity="0.10"/>
-      <stop offset="55%" stop-color="#080808" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  ${dots()}
-  <rect x="72" y="72" width="56" height="1" fill="#383838"/>
-  <circle cx="148" cy="72.5" r="3" fill="#2f6cec"/>
-  <text x="164" y="77" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="13" font-weight="500" letter-spacing="2.4" fill="#7a7a7a">${escapeXml(eyebrow.toUpperCase())}</text>
-  <text x="72" y="160" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="42" font-weight="600" letter-spacing="-0.6" fill="#f5f5f5">orso</text>
-  <text x="168" y="148" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="400" fill="#9a9a9a">®</text>
-  ${titleSpans}
-  <text x="72" y="540" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="400" fill="#9a9a9a">${escapeXml(subtitle)}</text>
-  <rect x="72" y="568" width="1200" height="1" fill="#232323"/>
+  <rect width="${W}" height="${H}" fill="${C.ground}"/>
+
+  <!-- Double rails, as on the landing page -->
+  <rect x="28" y="0" width="1" height="${H}" fill="${C.hairline}"/>
+  <rect x="34" y="0" width="1" height="${H}" fill="${C.hairline}"/>
+  <rect x="${W - 35}" y="0" width="1" height="${H}" fill="${C.hairline}"/>
+  <rect x="${W - 29}" y="0" width="1" height="${H}" fill="${C.hairline}"/>
+  <line x1="35" y1="120" x2="${W - 35}" y2="120" stroke="${C.hairline}" stroke-dasharray="2 4"/>
+  <line x1="35" y1="${H - 96}" x2="${W - 35}" y2="${H - 96}" stroke="${C.hairline}" stroke-dasharray="2 4"/>
+
+  <!-- Faint bear walking along the bottom rule -->
+  ${bear(720, H - 96 - 220, 220, C.ink, 0.06)}
+
+  <!-- Wordmark -->
+  ${bear(72, 56, 30, C.ink)}
+  <text x="${72 + (30 * bw) / bh + 14}" y="80" font-family="${SANS}" font-size="26" font-weight="400" letter-spacing="-0.4" fill="${C.faint}">project <tspan fill="${C.ink}" font-weight="600">orso</tspan></text>
+  <text x="${W - 72}" y="78" text-anchor="end" font-family="${MONO}" font-size="14" letter-spacing="1.6" fill="${C.muted}">${esc(eyebrow.toUpperCase())}</text>
+
+  ${text.join("\n  ")}
+
+  ${[].concat(subtitle).map((l, i) => `<text x="72" y="${top + lines.length * lineH + 22 + i * 34}" font-family="${SANS}" font-size="25" fill="${C.muted}">${esc(l)}</text>`).join("")}
+
+  <!-- Footer strip -->
+  <circle cx="78" cy="${H - 50}" r="4" fill="${C.brand}"/>
+  <text x="92" y="${H - 45}" font-family="${MONO}" font-size="15" fill="${C.muted}">free &amp; open source  ·  content ops on github  ·  claude · cursor · codex</text>
 </svg>`;
 
   return sharp(Buffer.from(svg)).png().toFile(`public/${filename}`);
 }
 
-await Promise.all([
-  card({
-    eyebrow: "Open source studio",
-    title: "Your site.\nYour repo.\nYour agent.",
-    subtitle: "A free studio for Astro sites — edit, preview, publish.",
-    filename: "og.png",
-  }),
-  card({
-    eyebrow: "Orso Blog",
-    title: "Notes on\nbuilding with\nOrso.",
-    subtitle: "Product updates, guides, and practical site tips.",
-    filename: "og-blog.png",
-  }),
-  card({
-    eyebrow: "Orso Help",
-    title: "Guides to\nedit, preview,\nand publish.",
-    subtitle: "Answers for getting started and shipping changes.",
-    filename: "og-help.png",
-  }),
-]);
+await card({
+  eyebrow: "Open source project",
+  lines: ["Developer tools for", "the whole team."],
+  highlight: 1,
+  label: "team / marketing",
+  subtitle: ["Drafts, previews and a Publish button over your repo,", "plus an AI agent anyone on the team can ask."],
+  filename: "og.png",
+});
+await card({
+  eyebrow: "Blog",
+  lines: ["Notes on content,", "agents and GitHub."],
+  highlight: 1,
+  label: "blog / latest",
+  subtitle: ["Project notes, guides and news from Project Orso."],
+  filename: "og-blog.png",
+});
+await card({
+  eyebrow: "Help",
+  lines: ["Draft, preview,", "and publish."],
+  highlight: 1,
+  label: "help / guides",
+  subtitle: ["Guides for editing your site with Project Orso,", "no Git required."],
+  filename: "og-help.png",
+});
 
 console.log("Wrote public/og.png, public/og-blog.png, public/og-help.png");

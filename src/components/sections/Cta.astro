@@ -1,38 +1,42 @@
 ---
+import Selection from "@/components/landing/Selection.astro";
+import Accent from "@/components/landing/Accent.astro";
+import Logo from "@/components/landing/Logo.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
+
+const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
+// Faint Markdown "paper" behind the closing headline.
+const lines = [
+  "---", 'title: "Introducing Orso 1.0"', "pubDate: 2026-11-15", "categories: [product]", "---", "",
+  "# A studio for the site you already own", "", "Edit it here, or ask your agent.", "Preview every draft.",
+  "Publish static files anywhere.", "", "## What changed", "- Forms for every collection", "- Drafts with live preview",
+  "- Checkpoints in git", "",
+];
 ---
 
-<section class="relative isolate overflow-x-clip" id="cta">
-  <div class="terrain pointer-events-none" aria-hidden="true"></div>
-  <div class="shell relative z-10 py-24 text-center sm:py-32">
-    <p class="text-eyebrow uppercase text-faint">No lock-in. Open source.</p>
-    <h2 class="mx-auto mt-5 max-w-2xl text-h2">
-      Free, open, and yours.<br />
-      <span class="text-muted-ink">All the way down.</span>
+<section id="get-started" class="relative scroll-mt-14 overflow-hidden px-6 py-28 sm:px-10">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 select-none overflow-hidden whitespace-pre px-10 py-6 font-mono text-[13px] leading-[1.9] text-ink/[0.07] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_100%)]"
+  >
+    {[...lines, ...lines].join("\n")}
+  </div>
+
+  <!-- Faint bear walking in from the edge, behind the copy -->
+  <Logo class="pointer-events-none absolute -bottom-8 -right-16 h-72 w-auto text-ink/[0.05] sm:-right-10" />
+
+  <div class="relative flex flex-col items-center gap-7 text-center" data-reveal>
+    <h2 class="max-w-3xl text-[40px] font-medium leading-[1.04] tracking-[-0.04em] text-balance sm:text-[56px]">
+      Give your team the tools. <Accent>Keep</Accent> the{" "}<Selection label="main · your-repo">repo</Selection>.
     </h2>
-    <p class="mx-auto mt-5 max-w-md text-body text-muted-ink">
-      Bring the agent you already pay for. Keep the Astro site you already own. macOS app first.
+    <p class="max-w-md pt-2 text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+      Free and open source. Your developer sets it up once; everyone else just edits.
     </p>
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
-      <a
-        class={buttonVariants({
-          size: "lg",
-          className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]",
-        })}
-        href={href("/download/")}
-      >
-        Get Orso
-      </a>
-      <a
-        class="group inline-flex items-center gap-2 text-label text-ink/80 transition-colors hover:text-ink"
-        href={site.repo}
-        rel="noopener"
-      >
-        Read the code
-        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
-      </a>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>
+      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={site.repo} rel="noopener">Read the code</a>
     </div>
   </div>
 </section>

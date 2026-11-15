@@ -1,0 +1,29 @@
+---
+// Numbered list of links with dashed rules, as in the landing page's workflow steps.
+import { href } from "@/lib/href";
+
+interface Props {
+  items: { href: string; title: string; description?: string }[];
+}
+const { items } = Astro.props;
+---
+
+<ol class="flex flex-col">
+  {
+    items.map((item, i) => (
+      <li class:list={[i > 0 && "border-t border-dashed border-hairline-strong"]}>
+        <a
+          class="group grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-x-4 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          href={href(item.href)}
+        >
+          <span class="font-mono text-[12px] text-faint">{String(i + 1).padStart(2, "0")}</span>
+          <span class="min-w-0">
+            <span class="block text-[16px] font-medium tracking-[-0.015em] transition-colors group-hover:text-brand-ink">{item.title}</span>
+            {item.description && <span class="mt-1 block text-[14px] leading-relaxed text-muted-ink">{item.description}</span>}
+          </span>
+          <span aria-hidden="true" class="text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-ink">→</span>
+        </a>
+      </li>
+    ))
+  }
+</ol>

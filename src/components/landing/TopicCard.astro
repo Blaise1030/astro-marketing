@@ -1,0 +1,40 @@
+---
+// A framed topic card (help section, help category, blog category) with a small
+// "index card" illustration in a dotted well.
+import { href } from "@/lib/href";
+
+interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  meta?: string;
+  items?: string[];
+}
+const { href: to, title, description, meta, items = [] } = Astro.props;
+---
+
+<a class="frame group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href={href(to)}>
+  <div class="frame-inner flex h-full flex-col">
+    <div class="dot-well m-1.5 grid h-36 place-items-center rounded-[12px]" aria-hidden="true">
+      <div class="float-card w-[220px] rounded-xl px-3 py-2 transition-transform duration-300 group-hover:-translate-y-1">
+        <p class="flex items-center justify-between font-mono text-[10px] text-faint">
+          <span class="truncate">{title.toLowerCase()}</span>
+          {meta && <span class="shrink-0 text-brand-ink">{meta}</span>}
+        </p>
+        <div class="mt-2 flex flex-col">
+          {
+            (items.length ? items.slice(0, 3) : [null, null, null]).map((item, i) => (
+              <p class:list={["truncate py-1 text-[11px]", i > 0 && "border-t border-dashed border-hairline-strong"]}>
+                {item ?? <span class="block h-1.5 w-3/4 rounded-full bg-ink/[0.07]" />}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col gap-1.5 px-5 pb-5 pt-3">
+      <h2 class="text-[17px] font-medium tracking-[-0.02em] transition-colors group-hover:text-brand-ink">{title}</h2>
+      {description && <p class="text-[14px] leading-relaxed text-pretty text-muted-ink">{description}</p>}
+    </div>
+  </div>
+</a>
