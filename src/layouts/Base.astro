@@ -47,6 +47,12 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <script is:inline>
+      // Scroll reveals only run when motion is welcome; without this class everything stays visible.
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("reveal-on");
+      }
+    </script>
+    <script is:inline>
       // Pick the theme before first paint: stored choice first, system second.
       (() => {
         const root = document.documentElement;
@@ -305,6 +311,27 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
             if (event.key === "Escape") setOpen(false);
           });
         }
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        const items = document.querySelectorAll("[data-reveal]");
+        if (!items.length) return;
+        if (!document.documentElement.classList.contains("reveal-on") || !("IntersectionObserver" in window)) {
+          items.forEach((el) => el.classList.add("is-in"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+        );
+        items.forEach((el) => io.observe(el));
       })();
     </script>
   </body>
