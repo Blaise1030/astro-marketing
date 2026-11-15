@@ -1,59 +1,73 @@
 ---
-import { HeroGlobe } from "@/components/hero-globe";
-import { Badge } from "@/components/ui/badge";
+import Selection from "@/components/landing/Selection.astro";
+import Accent from "@/components/landing/Accent.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
+import { site } from "@/site";
+import ProductMockup from "./ProductMockup.astro";
+
+const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
 ---
 
-<section class="relative isolate overflow-hidden pt-24 sm:pt-36" id="hero">
-  <div class="shell relative z-10 text-center">
-    <Badge
-      variant="outline"
-      className="h-7 gap-2 rounded-full border-hairline bg-wash px-3 text-[0.7rem] font-normal tracking-wide text-muted-ink"
+<section id="hero" class="flex scroll-mt-14 flex-col gap-14 px-6 pb-16 pt-20 sm:px-10 sm:pt-24">
+  <div class="flex flex-col gap-7">
+    <a
+      class="group flex w-fit items-center gap-2.5 motion-safe:animate-hero-in"
+      href={site.repo}
+      rel="noopener"
     >
-      <span class="size-1.5 rounded-full bg-live"></span>
-      Free &amp; open source
-    </Badge>
+      <span class="rounded-md bg-brand px-1.5 py-0.5 font-mono text-[11.5px] leading-4 text-white">alpha</span>
+      <span class="text-[13px] text-muted-ink transition-colors group-hover:text-ink">Early days · free and open source on GitHub</span>
+      <span aria-hidden="true" class="text-[13px] text-faint transition-transform group-hover:translate-x-0.5">→</span>
+    </a>
 
-    <h1 class="mx-auto mt-8 max-w-5xl text-h1">
-      <span>Your site.</span>{" "}
-      <span class="block sm:inline">Your repo.</span><br class="hidden sm:inline" />
-      <span class="text-muted-ink">Your agent.</span>
+    <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
+      Let your <Accent>content team</Accent> edit the site with an{" "}
+      <Selection label="agent / claude" cycle={["agent / claude", "agent / cursor", "agent / codex"]}>agent</Selection>.
     </h1>
 
-    <p class="mx-auto mt-6 max-w-lg text-body text-muted-ink">
-      A free desktop studio for Astro sites. Edit Markdown in a real UI, or ask Claude, Cursor or Codex. Preview every
-      draft locally, publish static files to the host you choose — and keep everything in a repo you own.
+    <p
+      class="max-w-xl text-[16.5px] leading-relaxed text-pretty text-muted-ink motion-safe:animate-hero-in"
+      style="animation-delay:160ms"
+    >
+      Your developer set up the repo. Now marketing, writers and founders can change the site themselves: in a form,
+      or by asking an agent. Every change is a draft you preview before it goes live.
     </p>
 
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
-      <a
-        class={buttonVariants({
-          size: "lg",
-          className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]",
-        })}
-        href={href("/download/")}
-      >
-        Get Orso
-      </a>
-      <a
-        class="group inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
-        href={href("#how-it-works")}
-      >
+    <div class="flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:240ms">
+      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>
+      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={href("#how-it-works")}>
+        <svg class="size-3 text-faint" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
+        </svg>
         See how it works
-        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
       </a>
+      <span class="ml-1 font-mono text-[12px] text-faint">free &amp; open source · no migration · works with your repo</span>
     </div>
   </div>
 
-  <div class="pointer-events-none relative z-0 -mt-24 sm:-mt-32" aria-hidden="true">
-    <div
-      class="absolute left-1/2 top-0 h-24 w-[52rem] -translate-x-1/2 -translate-y-20 rounded-full bg-glow opacity-50 blur-3xl"
-    >
-    </div>
-    <div class="relative h-[260px] overflow-hidden sm:h-[360px]">
-      <HeroGlobe client:visible />
-      <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
+  <div class="frame motion-safe:animate-hero-in" style="animation-delay:320ms">
+    <div class="frame-inner h-[28rem] md:h-[36rem]">
+      <ProductMockup />
     </div>
   </div>
 </section>
+<script>
+  // Rotate cycling labels with a short blur swap; skipped under reduced motion.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll<HTMLElement>("[data-cycle]").forEach((el) => {
+      const labels = el.dataset.cycle!.split("|");
+      let i = Math.max(0, labels.indexOf(el.dataset.label ?? ""));
+      window.setInterval(() => {
+        el.style.opacity = "0";
+        el.style.filter = "blur(4px)";
+        window.setTimeout(() => {
+          i = (i + 1) % labels.length;
+          el.dataset.label = labels[i];
+          el.style.opacity = "";
+          el.style.filter = "";
+        }, 200);
+      }, 2400);
+    });
+  }
+</script>

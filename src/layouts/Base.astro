@@ -1,4 +1,5 @@
 ---
+import Logo from "@/components/landing/Logo.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import {
@@ -36,16 +37,26 @@ const canonical = canonicalUrl(Astro.url);
 const ogImage = absoluteUrl(image ?? "/og.png");
 const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
 ---
 
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f7f5" />
-    <link rel="icon" href={href("/favicon.svg")} type="image/svg+xml" />
+    <meta name="theme-color" content="#fcfcfc" />
+    <link rel="icon" href={href("/favicon.svg?v=bear")} type="image/svg+xml" />
+    <link rel="icon" href={href("/favicon-32.png?v=bear")} type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href={href("/apple-touch-icon.png?v=bear")} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    <script is:inline>
+      // Scroll reveals only run when motion is welcome; without this class everything stays visible.
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("reveal-on");
+      }
+    </script>
     <script is:inline>
       // Pick the theme before first paint: stored choice first, system second.
       (() => {
@@ -55,13 +66,13 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
           theme = localStorage.getItem("orso-theme");
         } catch {}
         if (theme !== "light" && theme !== "dark") {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          theme = "light";
         }
         const dark = theme === "dark";
         root.classList.toggle("dark", dark);
         root.style.colorScheme = theme;
         const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
+        if (meta) meta.setAttribute("content", dark ? "#0b0b0c" : "#fcfcfc");
       })();
     </script>
     <title>{pageTitle}</title>
@@ -93,20 +104,23 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     >
       Skip to content
     </a>
-    <header class="header-fade sticky top-0 z-50">
-      <div class="shell relative flex h-16 items-center justify-between gap-4">
-        <a class="shrink-0 text-[17px] font-semibold tracking-tight" href={base}>
-          orso<sup class="ml-0.5 align-super text-[9px] font-normal text-muted-ink">®</sup>
+    <header class="sticky top-0 z-50 border-b border-hairline bg-ground/80 backdrop-blur-md">
+      <div class="rails relative mx-auto flex h-14 max-w-6xl items-center gap-5 px-6 sm:px-10 lg:gap-8">
+        <div aria-hidden="true" class="absolute inset-x-0 -bottom-px h-px">
+          <span class="absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10 left-1 -translate-x-1/2"></span>
+          <span class="absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10 right-1 translate-x-1/2"></span>
+        </div>
+        <a class="relative flex shrink-0 items-center gap-1.5 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
+          <Logo class="h-[18px] w-auto shrink-0 text-ink" />
+          <span><span class="font-normal text-faint">project</span> orso</span>
+          <span class="rounded-[4px] bg-brand/10 px-1 py-[2px] font-mono text-[10px] font-normal leading-none tracking-normal text-brand-ink">alpha</span>
         </a>
 
-        <nav
-          class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
-          aria-label="Main"
-        >
+        <nav class="hidden items-center gap-5 md:flex lg:gap-6" aria-label="Main">
           {
             site.nav.map((l) => (
               <a
-                class="rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink"
+                class="whitespace-nowrap text-[13.5px] font-medium text-muted-ink transition-colors duration-150 hover:text-ink"
                 href={href(l.href)}
               >
                 {l.label}
@@ -115,25 +129,27 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
           }
         </nav>
 
-        <div class="ml-auto flex items-center gap-2">
+        <div class="flex-1"></div>
+
+        <div class="flex items-center gap-2.5">
           <a
-            class="hidden rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink sm:inline-flex"
+            class="hidden whitespace-nowrap text-[13.5px] font-medium text-muted-ink transition-colors hover:text-ink sm:inline"
             href={site.repo}
             rel="noopener"
           >
             GitHub
           </a>
           <a
-            class={buttonVariants({ size: "sm", className: "btn-gloss h-8 rounded-full px-3.5 text-[0.78rem]" })}
-            href={href("#how-it-works")}
+            class={buttonVariants({ className: "btn-gloss h-8 rounded-[10px] px-3 text-[13px] font-medium tracking-[-0.01em]" })}
+            href={href("/download/")}
           >
-            Start building
+            Get Orso
           </a>
 
           <button
             type="button"
             id="theme-toggle"
-            class="flex size-8 shrink-0 items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:border-hairline-strong hover:text-ink"
+            class="hidden size-8 shrink-0 items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink md:flex"
             aria-label="Switch to light theme"
           >
             <svg
@@ -162,28 +178,32 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
             </svg>
           </button>
 
-          <div class="relative lg:hidden">
+          <div class="relative md:hidden">
             <button
               type="button"
               id="mobile-nav-toggle"
-              class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:text-ink"
+              class="group flex size-8 cursor-pointer items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink aria-expanded:text-ink"
               aria-label="Open menu"
               aria-expanded="false"
               aria-controls="mobile-nav"
             >
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-                <path d="M2 4h11M2 7.5h11M2 11h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <!-- Three bars that fold into an X while the menu is open -->
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+                <path class="origin-center transition-transform duration-300 ease-out [transform-box:fill-box] group-aria-expanded:translate-y-[3.5px] group-aria-expanded:rotate-45 motion-reduce:transition-none" d="M2 4h11" />
+                <path class="origin-center transition-[opacity,scale] duration-200 ease-out [transform-box:fill-box] group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0 motion-reduce:transition-none" d="M2 7.5h11" />
+                <path class="origin-center transition-transform duration-300 ease-out [transform-box:fill-box] group-aria-expanded:-translate-y-[3.5px] group-aria-expanded:-rotate-45 motion-reduce:transition-none" d="M2 11h11" />
               </svg>
             </button>
             <nav
               id="mobile-nav"
-              class="absolute right-0 top-[calc(100%+0.75rem)] hidden w-56 rounded-xl border border-hairline bg-panel p-2 shadow-2xl shadow-black/10 dark:shadow-black/60"
+              class="group/menu float-card invisible absolute right-0 top-[calc(100%+0.75rem)] w-56 origin-top-right -translate-y-1 scale-95 rounded-xl p-1.5 opacity-0 transition-[opacity,scale,translate,visibility] duration-200 ease-out data-open:visible data-open:translate-y-0 data-open:scale-100 data-open:opacity-100 motion-reduce:transition-none"
               aria-label="Mobile"
             >
               {
-                site.nav.map((l) => (
+                site.nav.map((l, i) => (
                   <a
-                    class="block rounded-md px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                    class="block -translate-y-1 rounded-[8px] px-3 py-2 text-[13.5px] font-medium text-muted-ink opacity-0 transition-[opacity,translate,color,background-color] duration-200 ease-out hover:bg-ink/[0.04] hover:text-ink group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                    style={`transition-delay: ${40 + i * 30}ms`}
                     href={href(l.href)}
                   >
                     {l.label}
@@ -191,12 +211,29 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
                 ))
               }
               <a
-                class="mt-1 block rounded-md border-t border-hairline px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                class="mt-1 block -translate-y-1 rounded-[8px] border-t border-dashed border-hairline-strong px-3 py-2 text-[13.5px] font-medium text-muted-ink opacity-0 transition-[opacity,translate,color,background-color] duration-200 ease-out hover:bg-ink/[0.04] hover:text-ink group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                style={`transition-delay: ${40 + site.nav.length * 30}ms`}
                 href={site.repo}
                 rel="noopener"
               >
                 GitHub
               </a>
+              <div
+                class="mt-1 flex -translate-y-1 items-center justify-between gap-3 border-t border-dashed border-hairline-strong px-3 pb-1 pt-2.5 opacity-0 transition-[opacity,translate] duration-200 ease-out group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                style={`transition-delay: ${40 + (site.nav.length + 1) * 30}ms`}
+              >
+                <span class="font-mono text-[11.5px] text-faint">theme</span>
+                <div class="flex w-32 gap-0.5 rounded-[10px] bg-ink/[0.04] p-0.5" role="group" aria-label="Theme">
+                  <button type="button" class="relative inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded-[8px] text-[12.5px] font-medium text-muted-ink transition-colors hover:text-ink aria-pressed:bg-panel aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_6%,transparent),0_1px_2px_rgb(0_0_0/0.06)]" data-theme-set="light" aria-pressed="false">
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.25"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4l1.4-1.4M18 6l1.4-1.4"></path></svg>
+                    Light
+                  </button>
+                  <button type="button" class="relative inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded-[8px] text-[12.5px] font-medium text-muted-ink transition-colors hover:text-ink aria-pressed:bg-panel aria-pressed:text-ink aria-pressed:shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_6%,transparent),0_1px_2px_rgb(0_0_0/0.06)]" data-theme-set="dark" aria-pressed="false">
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"></path></svg>
+                    Dark
+                  </button>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
@@ -210,48 +247,46 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     <div class="relative overflow-clip">
       <main id="main"><slot /></main>
 
-      <footer class="relative">
-        <div class="shell py-16">
-          <div class="grid gap-12 lg:grid-cols-[1.1fr_1.6fr]">
-            <div>
-              <a class="text-3xl font-semibold tracking-tight" href={base}>
-                orso<sup class="ml-1 align-super text-xs font-normal text-muted-ink">®</sup>
+      <footer class="rails relative mx-auto max-w-6xl">
+        <div class="flex flex-col gap-12 px-6 pb-8 pt-14 sm:px-10">
+          <div class="grid gap-10 sm:grid-cols-[1.5fr_repeat(3,1fr)]">
+            <div class="flex flex-col gap-3">
+              <a class="flex w-fit items-center gap-1.5 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
+                <Logo class="h-[18px] w-auto shrink-0 text-ink" />
+                <span><span class="font-normal text-faint">project</span> orso</span>
               </a>
-              <p class="mt-5 max-w-xs text-body text-muted-ink">{site.footer.tagline}</p>
+              <p class="max-w-[260px] text-[13px] leading-relaxed text-muted-ink">{site.footer.tagline}</p>
             </div>
-            <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
-              {
-                site.footer.columns.map((column) => (
-                  <div>
-                    <p class="text-eyebrow text-faint">{column.title}</p>
-                    <ul class="mt-4 space-y-2.5">
-                      {column.links.map((link) => (
-                        <li>
-                          <a
-                            class="text-label text-muted-ink transition-colors hover:text-ink"
-                            href={href(link.href)}
-                            rel={"external" in link ? "noopener" : undefined}
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              }
-            </div>
+            {
+              site.footer.columns.map((column) => (
+                <div class="flex flex-col gap-3">
+                  <p class="font-mono text-[11.5px] text-faint">{column.title}</p>
+                  {column.links.map((link) => (
+                    <a
+                      class="w-fit text-[13.5px] text-muted-ink transition-colors duration-150 hover:text-ink"
+                      href={href(link.href)}
+                      rel={"external" in link ? "noopener" : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              ))
+            }
           </div>
 
-          <div class="mt-16 flex flex-wrap items-center justify-between gap-4 text-label text-faint">
-            <p>{site.footer.text}</p>
+          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-hairline-strong pt-6 text-[12.5px] text-faint">
+            <p>
+              {site.footer.text} Built by{" "}
+              <a class="text-muted-ink underline decoration-hairline-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink" href={site.author.href} rel="author noopener">{site.author.label}</a>.
+            </p>
             <nav class="flex flex-wrap items-center gap-5" aria-label="Footer">
               {site.footer.links.map((l) => (
                 <a class="transition-colors hover:text-ink" href={href(l.href)}>{l.label}</a>
               ))}
-              {site.socials.map((s) => (
-                <a class="transition-colors hover:text-ink" href={s.href} rel="noopener">{s.label}</a>
-              ))}
+              <span class="flex items-center gap-1.5 font-mono text-[11.5px]">
+                <span class="size-1.5 rounded-full bg-live"></span>open source
+              </span>
             </nav>
           </div>
         </div>
@@ -261,42 +296,44 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     <script is:inline>
       (() => {
         const root = document.documentElement;
+        // Theme: the header button (desktop) toggles; the menu switch (mobile) sets.
         const button = document.getElementById("theme-toggle");
-        if (button) {
-          const sync = () => {
-            const dark = root.classList.contains("dark");
-            button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-            const meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
-          };
-
+        const choices = document.querySelectorAll("[data-theme-set]");
+        const sync = () => {
+          const dark = root.classList.contains("dark");
+          button?.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+          choices.forEach((el) => el.setAttribute("aria-pressed", String((el.dataset.themeSet === "dark") === dark)));
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", dark ? "#0b0b0c" : "#fcfcfc");
+        };
+        const setTheme = (dark) => {
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+          try {
+            localStorage.setItem("orso-theme", dark ? "dark" : "light");
+          } catch {}
           sync();
-
-          button.addEventListener("click", () => {
-            const dark = root.classList.toggle("dark");
-            root.style.colorScheme = dark ? "dark" : "light";
-            try {
-              localStorage.setItem("orso-theme", dark ? "dark" : "light");
-            } catch {}
-            sync();
-          });
-        }
+        };
+        sync();
+        button?.addEventListener("click", () => setTheme(!root.classList.contains("dark")));
+        choices.forEach((el) => el.addEventListener("click", () => setTheme(el.dataset.themeSet === "dark")));
 
         const navToggle = document.getElementById("mobile-nav-toggle");
         const nav = document.getElementById("mobile-nav");
         if (navToggle && nav) {
+          const isOpen = () => nav.hasAttribute("data-open");
           const setOpen = (open) => {
-            nav.classList.toggle("hidden", !open);
+            nav.toggleAttribute("data-open", open);
             navToggle.setAttribute("aria-expanded", open ? "true" : "false");
             navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
           };
 
           navToggle.addEventListener("click", () => {
-            setOpen(nav.classList.contains("hidden"));
+            setOpen(!isOpen());
           });
 
           document.addEventListener("click", (event) => {
-            if (!nav.classList.contains("hidden") && !navToggle.contains(event.target) && !nav.contains(event.target)) {
+            if (isOpen() && !navToggle.contains(event.target) && !nav.contains(event.target)) {
               setOpen(false);
             }
           });
@@ -305,6 +342,27 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
             if (event.key === "Escape") setOpen(false);
           });
         }
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        const items = document.querySelectorAll("[data-reveal]");
+        if (!items.length) return;
+        if (!document.documentElement.classList.contains("reveal-on") || !("IntersectionObserver" in window)) {
+          items.forEach((el) => el.classList.add("is-in"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+        );
+        items.forEach((el) => io.observe(el));
       })();
     </script>
   </body>

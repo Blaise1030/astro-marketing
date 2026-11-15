@@ -1,0 +1,9 @@
+---
+// Full-width hairline between landing sections, pinned to the rails with two ringed dots.
+const dot = "absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10";
+---
+
+<div aria-hidden="true" class="relative h-px bg-hairline">
+  <span class:list={[dot, "left-1 -translate-x-1/2"]}></span>
+  <span class:list={[dot, "right-1 translate-x-1/2"]}></span>
+</div>

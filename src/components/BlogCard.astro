@@ -4,18 +4,31 @@ import { href } from "../lib/href";
 import { categoryOf, formatDate, type Post } from "../lib/blog";
 const { post } = Astro.props as { post: Post };
 ---
-<article class="group" data-category={categoryOf(post)}>
-  <a class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href(`/blog/${post.id}/`)}>
-    <div class="aspect-[3/2] overflow-hidden bg-ui-fill">
-      {post.data.coverImage
-        ? <Image class="h-full w-full object-cover" src={post.data.coverImage} alt={post.data.coverAlt!} widths={[400, 800]} sizes="(min-width: 1024px) 24rem, 50vw" />
-        : <div class="h-full w-full bg-[repeating-radial-gradient(circle_at_30%_60%,transparent_0_14px,var(--color-brand-accent)_14px_15px)] opacity-30" aria-hidden="true"></div>}
+<article class="group h-full" data-category={categoryOf(post)}>
+  <a class="frame block h-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href={href(`/blog/${post.id}/`)}>
+    <div class="frame-inner flex h-full flex-col">
+      <div class="m-1.5 aspect-[3/2] overflow-hidden rounded-[12px]">
+        {post.data.coverImage
+          ? <Image class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" src={post.data.coverImage} alt={post.data.coverAlt!} widths={[400, 800]} sizes="(min-width: 1024px) 22rem, 50vw" />
+          : (
+            <div class="dot-well grid h-full w-full place-items-center" aria-hidden="true">
+              <div class="float-card w-[72%] rounded-xl p-3 transition-transform duration-300 group-hover:-translate-y-1">
+                <p class="font-mono text-[9.5px] text-faint">{post.id}.md</p>
+                <p class="mt-2 line-clamp-2 text-[12.5px] font-medium leading-snug tracking-[-0.01em] text-ink">{post.data.title}</p>
+                <div class="mt-2.5 h-1.5 w-full rounded-full bg-ink/[0.06]"></div>
+                <div class="mt-1.5 h-1.5 w-2/3 rounded-full bg-ink/[0.06]"></div>
+              </div>
+            </div>
+          )}
+      </div>
+      <div class="flex flex-1 flex-col gap-2 px-5 pb-5 pt-3">
+        <div class="flex items-center justify-between gap-3 font-mono text-[11.5px] text-faint">
+          <span class="rounded-md bg-brand/[0.08] px-1.5 py-0.5 font-sans text-[11.5px] font-medium capitalize text-brand-ink">{categoryOf(post)}</span>
+          <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>
+        </div>
+        <h2 class="mt-1 text-[18px] font-medium leading-snug tracking-[-0.02em] text-balance transition-colors group-hover:text-brand-ink">{post.data.title}</h2>
+        <p class="text-[14px] leading-relaxed text-pretty text-muted-ink">{post.data.description}</p>
+      </div>
     </div>
-    <div class="mt-5 flex items-baseline justify-between text-xs font-medium text-brand-muted">
-      <span>{categoryOf(post)}</span>
-      <time datetime={post.data.pubDate}>{formatDate(post.data.pubDate)}</time>
-    </div>
-    <h2 class="mt-4 text-xl font-medium tracking-tight text-balance transition-colors group-hover:text-brand-accent">{post.data.title}</h2>
-    <p class="mt-3 leading-relaxed text-brand-muted">{post.data.description}</p>
   </a>
 </article>

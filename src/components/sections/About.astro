@@ -1,0 +1,107 @@
+---
+import Accent from "@/components/landing/Accent.astro";
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import { toolLogos } from "@/lib/tool-logos";
+import { Bot, FormInput, GitBranch, GitCommitHorizontal, GitMerge, GitPullRequest, Globe } from "lucide-react";
+
+// The developer tool underneath → what a teammate who doesn't code actually sees.
+const layers = [
+  { tool: "git branch", ui: "A draft", Icon: GitBranch },
+  { tool: "preview deploy", ui: "A preview link to share", Icon: Globe },
+  { tool: "pull request", ui: "Send for review", Icon: GitPullRequest },
+  { tool: "merge to main", ui: "Publish", Icon: GitMerge },
+  { tool: "git commit", ui: "A checkpoint you can undo", Icon: GitCommitHorizontal },
+  { tool: "coding agent", ui: "Ask in plain English", Icon: Bot },
+  { tool: "frontmatter", ui: "A form with real fields", Icon: FormInput },
+];
+
+const reasons = [
+  {
+    title: "No more tickets for a typo",
+    body: "If only engineers can change the site, everyone else files a ticket and waits. With Orso, the person who owns the words ships them.",
+  },
+  {
+    title: "People and agents, same rules",
+    body: "Whoever starts the change, a teammate or an agent, it ends the same way: a draft, a preview, and a person who hits Publish.",
+  },
+  {
+    title: "One place for the content",
+    body: "No second system to keep in sync and nothing to migrate later. The agent, the developer and the marketer all edit the same files.",
+  },
+];
+---
+
+<section id="about" class="flex scroll-mt-14 flex-col gap-16 px-6 py-20 sm:px-10">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+    <div class="flex flex-col gap-6" data-reveal>
+      <SectionIntro tag="The project">
+        Your site runs on developer tools. <Accent>Your team never sees them</Accent>.
+        <Fragment slot="lead">
+          Agents made changing a site cheap. Handing it to the people who own the words still isn't. Orso gives
+          marketers, writers and founders drafts, previews and a Publish button. Each one needs a GitHub account, and
+          that's the last they'll see of GitHub.
+        </Fragment>
+      </SectionIntro>
+      <p class="flex w-fit items-center gap-2.5 rounded-full bg-ink/[0.04] py-1.5 pl-2 pr-3.5 text-[13px] text-muted-ink">
+        <svg class="size-4 text-ink" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d={toolLogos.github.path} />
+        </svg>
+        Content ops run on GitHub
+      </p>
+    </div>
+
+    <div class="frame" data-reveal style="--d: 100ms">
+      <div class="frame-inner">
+        <div class="grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 border-b border-hairline px-5 py-3 font-mono text-[11px] text-faint">
+          <span class="flex items-center gap-1.5">
+            <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={toolLogos.github.path} />
+            </svg>
+            in your repo
+          </span>
+          <span></span>
+          <span>in Orso</span>
+        </div>
+        <ul>
+          {
+            layers.map(({ tool, ui, Icon }, i) => (
+              <li
+                class:list={[
+                  "grid grid-cols-[1fr_auto_1.2fr] items-center gap-x-4 px-5 py-3",
+                  i > 0 && "border-t border-dashed border-hairline-strong",
+                ]}
+              >
+                <span class="flex items-center gap-2 font-mono text-[12px] text-muted-ink">
+                  <Icon className="size-3.5 shrink-0 text-faint" strokeWidth={1.75} aria-hidden="true" />
+                  {tool}
+                </span>
+                <span aria-hidden="true" class="text-[12px] text-faint">→</span>
+                <span class="text-[14.5px] font-medium tracking-[-0.01em]">{ui}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-6" data-reveal style="--d: 120ms">
+    <p class="font-mono text-[12px] text-muted-ink">why it matters</p>
+    <div class="grid md:grid-cols-3">
+      {
+        reasons.map((r, i) => (
+          <div
+            class:list={[
+              "flex flex-col gap-2 py-6 md:px-8",
+              i === 0 ? "border-t border-dashed border-hairline-strong md:pl-0" : "border-t border-dashed border-hairline-strong md:border-l",
+              i === 2 && "md:pr-0",
+            ]}
+          >
+            <h3 class="text-[17px] font-medium tracking-[-0.02em]">{r.title}</h3>
+            <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{r.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

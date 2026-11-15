@@ -1,16 +1,18 @@
 /** Site-wide name, navigation and footer, rendered by `layouts/Base.astro`. */
 export const site = {
-  name: "Orso",
+  name: "Project Orso",
   description:
-    "Orso is a free, open-source studio for Astro sites that runs on the coding agent you already have. Edit content, preview every change, publish static files to the host you choose — no lock-in.",
+    "Developer tools for content teams: drafts, previews, pull requests and coding agents behind forms and plain English. Free and open source.",
   nav: [
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Features", href: "/#features" },
+    { label: "Workflow", href: "/#how-it-works" },
+    { label: "About", href: "/#about" },
     { label: "Blog", href: "/blog/" },
     { label: "Help", href: "/help/" },
   ],
   repo: "https://github.com/Blaise1030/cms",
+  /** Credit link in the footer. */
+  author: { label: "blaisetiong.dev", href: "https://blaisetiong.dev" },
   /** Right side of the header on some pages; download page reads `download`. */
   actions: {
     link: { label: "Help", href: "/help/" },
@@ -24,16 +26,16 @@ export const site = {
     platforms: "macOS and Linux",
   },
   footer: {
-    text: "© 2026 Orso. Free and open source.",
+    text: "© 2026 Project Orso. Free and open source.",
     tagline:
-      "A free studio for Astro sites, running on the agent you already pay for. Your content stays Markdown in a repo you own.",
+      "Developer tools for content teams. Your content stays Markdown in a repo you own.",
     columns: [
       {
-        title: "Product",
+        title: "Project",
         links: [
-          { label: "How it works", href: "#how-it-works" },
-          { label: "Features", href: "#features" },
-          { label: "FAQ", href: "#faq" },
+          { label: "Features", href: "/#features" },
+          { label: "Workflow", href: "/#how-it-works" },
+          { label: "FAQ", href: "/#faq" },
         ],
       },
       {
@@ -45,7 +47,7 @@ export const site = {
         ],
       },
       {
-        title: "Project",
+        title: "Open source",
         links: [
           { label: "Source", href: "https://github.com/Blaise1030/cms", external: true },
           { label: "Issues", href: "https://github.com/Blaise1030/cms/issues", external: true },

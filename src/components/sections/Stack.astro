@@ -1,58 +1,101 @@
 ---
-const keep = ["Your AI agent", "Astro", "Markdown", "Git + GitHub", "Your static host"];
-const drop = ["AI site builders", "Hosted CMS", "Per-seat page builders"];
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Accent from "@/components/landing/Accent.astro";
+
+const before = [
+  "Only the fields the CMS was set up to show",
+  "A new page means a ticket, then a sprint",
+  "Ideas wait on a developer's calendar",
+  "The campaign ships after the moment has passed",
+];
+
+// What teammates who don't code can now ask for, and what lands in the repo.
+const asks = [
+  {
+    who: "marketing",
+    ask: "Build a landing page for group bookings with our usual hero and FAQ.",
+    file: "+ src/pages/group-bookings.astro",
+  },
+  {
+    who: "founder",
+    ask: "Add a comparison page against Calendly with a feature table.",
+    file: "+ src/pages/vs-calendly.astro",
+  },
+  {
+    who: "support",
+    ask: "Turn this week's top customer questions into help articles.",
+    file: "+ 4 files in content/helpDocs/en/",
+  },
+  {
+    who: "writer",
+    ask: "Link every post that mentions previews to the new guide.",
+    file: "~ 7 files in content/blog/en/",
+  },
+];
+const badge = "grid size-5 place-items-center rounded-full text-white";
 ---
 
-<section class="shell py-20 sm:py-section" id="stack">
-  <div class="grid gap-5 lg:grid-cols-[1fr_1fr] lg:items-end">
-    <h2 class="max-w-xl text-h2">
-      One app.<br />
-      <span class="text-muted-ink">Not three subscriptions.</span>
-    </h2>
-    <p class="max-w-md text-body text-muted-ink lg:justify-self-end">
-      Bring the agent you already pay for. Drop the rest of the stack — no new CMS account, just the Astro repo you already own.
-    </p>
+<section id="handoff" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Possibilities">
+      Ask for <Accent>whole new pages</Accent>, not just edits.
+      <Fragment slot="lead">
+        A CMS lets people fill in the fields someone built for them. With an agent on the repo, your team can ask for
+        things that used to take a sprint, and each one lands as a draft to review before it ships.
+      </Fragment>
+    </SectionIntro>
   </div>
 
-  <div class="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2">
-    <div class="bg-ground p-6 sm:p-8">
-      <div class="flex items-center justify-between">
-        <p class="text-eyebrow uppercase text-faint">You already have</p>
-        <span class="size-1.5 rounded-full bg-live" aria-hidden="true"></span>
-      </div>
-      <ul class="mt-5">
+  <div class="grid md:grid-cols-[0.8fr_1.2fr]" data-reveal style="--d: 100ms">
+    <div class="flex flex-col gap-5 pb-10 md:pb-0 md:pr-10">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-ink/20 shadow-[0_0_0_3px_color-mix(in_oklab,var(--palette-ink)_4%,transparent)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">with a cms</span>
+      </span>
+      <ul class="flex flex-col">
         {
-          keep.map((name) => (
-            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
-              <span class="font-mono text-[11px] text-live" aria-hidden="true">
-                ✓
-              </span>
-              <span class="text-label text-ink">{name}</span>
+          before.map((item, i) => (
+            <li
+              class:list={[
+                "py-3.5 text-[15.5px] font-medium tracking-[-0.015em] text-faint line-through decoration-ink/20",
+                i > 0 && "border-t border-dashed border-hairline-strong",
+              ]}
+            >
+              {item}
             </li>
           ))
         }
       </ul>
-      <p class="mt-5 text-label text-faint">Already paid for, already in your repo.</p>
     </div>
 
-    <div class="bg-ground p-6 sm:p-8">
-      <div class="flex items-center justify-between">
-        <p class="text-eyebrow uppercase text-faint">You stop paying for</p>
-        <span class="size-1.5 rounded-full bg-hairline-strong" aria-hidden="true"></span>
+    <div class="flex flex-col gap-5 border-t border-dashed border-hairline-strong pt-10 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-brand shadow-[0_0_0_3px_rgb(47_108_236/0.14)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">with orso and an agent</span>
+      </span>
+      <div class="frame">
+        <ul class="frame-inner">
+          {
+            asks.map((a, i) => (
+              <li class:list={["flex flex-col gap-2 px-4 py-3.5", i > 0 && "border-t border-dashed border-hairline-strong"]}>
+                <p class="flex items-start gap-3">
+                  <span class="mt-0.5 w-[4.5rem] shrink-0 font-mono text-[10.5px] text-faint">{a.who}</span>
+                  <span class="text-[14px] leading-snug text-ink">“{a.ask}”</span>
+                </p>
+                <p class="flex items-center gap-2 pl-[5.25rem] font-mono text-[10.5px] text-muted-ink">
+                  <span class="size-1.5 rounded-full bg-live" />
+                  <span>draft ready</span>
+                  <span class="text-faint">· {a.file}</span>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
       </div>
-      <ul class="mt-5">
-        {
-          drop.map((name) => (
-            <li class="flex items-center gap-3 border-t border-hairline py-3 last:border-b">
-              <span class="font-mono text-[11px] text-faint" aria-hidden="true">
-                −
-              </span>
-              <span class="text-label text-faint line-through decoration-faint/60">{name}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="mt-5 text-label text-faint">Cancel whenever. Nothing here stops working.</p>
     </div>
   </div>
 </section>

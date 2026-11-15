@@ -4,71 +4,73 @@ name: Orso
 description: A free studio for Astro sites, running on the agent you already pay for.
 themes:
   dark:
-    ground: "#080808"
-    panel: "#0c0c0c"
-    raised: "#121212"
-    ink: "#f5f5f5"
-    muted-ink: "#9a9a9a"
-    faint: "#7a7a7a"
-    hairline: "#232323"
-    hairline-strong: "#383838"
+    ground: "#0b0b0c"
+    panel: "#161618"
+    raised: "#101012"
+    ink: "#ededee"
+    muted-ink: "#a1a1a6"
+    faint: "#76767b"
+    hairline: "#1b1b1d"
+    hairline-strong: "#29292c"
     live: "#86e7b0"
     brand: "#2f6cec"
     brand-pressed: "#1f5cd8"
+    brand-ink: "#8fb0ff"
     on-brand: "#ffffff"
-    link: "#f5f5f5"
+    link: "#ededee"
     danger: "#ff6467"
     focus-ring: "#7d9df0"
   light:
-    ground: "#f7f7f5"
+    ground: "#fcfcfc"
     panel: "#ffffff"
-    raised: "#eeedeb"
-    ink: "#0b0b0b"
-    muted-ink: "#565656"
-    faint: "#6e6e6e"
-    hairline: "#e2e1dd"
-    hairline-strong: "#c8c7c2"
+    raised: "#f6f6f7"
+    ink: "#1d1d1f"
+    muted-ink: "#6b6b70"
+    faint: "#8e8e93"
+    hairline: "#ededee"
+    hairline-strong: "#e1e1e3"
     live: "#0f7a45"
     brand: "#2f6cec"
     brand-pressed: "#1f5cd8"
+    brand-ink: "#1f5cd8"
     on-brand: "#ffffff"
-    link: "#0b0b0b"
+    link: "#1d1d1f"
     danger: "#d92d20"
     focus-ring: "#1f5cd8"
 typography:
   h1:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(2.9rem, 6.8vw, 4.75rem)"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 6vw, 4rem)"
     fontWeight: 500
-    lineHeight: 1.02
+    lineHeight: 1.03
   h2:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(2.1rem, 4.2vw, 3.25rem)"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.125rem, 3.6vw, 2.625rem)"
     fontWeight: 500
-    lineHeight: 1.04
+    lineHeight: 1.08
   h3:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 1.1875rem
     fontWeight: 500
     lineHeight: 1.3
   body:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.9375rem
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.8125rem
     fontWeight: 500
     lineHeight: 1.5
   eyebrow:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.6875rem
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: 0.08em
   mono:
-    fontFamily: "ui-monospace, SF Mono, SFMono-Regular, Menlo, Consolas, monospace"
+    fontFamily: "Geist Mono Variable, Geist Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
 rounded:
   sm: 0.25rem
   md: 0.375rem
@@ -82,15 +84,11 @@ spacing:
 
 ## Overview
 
-A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single blue action colour: primary blue. The page is quiet and technical rather than decorative — small mono labels, generous negative space, a slow Three.js point-globe under the hero, and a dotted 1-bit horizon under the closing call to action. There is one visual idea per section, and the copy does the rest.
-
-Near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
-
-The site ships in **two themes**. Dark is the signature ledger: near-black ground, white ink. Light is the same ledger in daylight: off-white ground, near-black ink, the same hairlines, the same blue, and the same dotted horizons drawn in dark ink. Neither is a filter of the other — each palette is tuned on its own, so the light theme keeps contrast without looking like an inverted screenshot.
+A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Everything is set in Geist: headlines are left-aligned at medium weight (an accent phrase is marked with `Accent.astro` but shares the same face), and small mono labels in Geist Mono carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
 
 ## Themes
 
-The theme is a class on `<html>`: `.dark` for the ledger, no class for daylight. The server renders `.dark` as the default, so a reader with JavaScript disabled keeps the signature dark page. An inline script in `src/layouts/Base.astro` then resolves the theme before first paint — a stored choice in `localStorage` (`orso-theme`, `light` or `dark`) wins, otherwise the OS `prefers-color-scheme` decides — and removes or keeps the class accordingly, then sets `color-scheme` and the `theme-color` meta so scrollbars and browser chrome match. The header toggle flips the class, writes the choice back, swaps its sun/moon icon and updates its label. It is the only JavaScript the layout ships.
+Light is the default. The theme is a class on `<html>`: no class for light, `.dark` for the night variant. An inline script in `src/layouts/Base.astro` resolves it before first paint — a stored choice in `localStorage` (`orso-theme`) wins, otherwise light — then sets `color-scheme` and the `theme-color` meta. The header toggle flips the class and writes the choice back.
 
 Tokens are runtime custom properties, not build-time constants:
 
@@ -129,7 +127,7 @@ Roles are explicit; values are given dark / light and both live in the frontmatt
 
 ## Typography
 
-The system sans-serif stack throughout, at weight 500 for headings and 400 for body. Headings are large, tight and quiet (`-0.045em` on the hero, `-0.04em` on section headings) and use a clamped size: `text-h1` runs from 2.9rem to 4.75rem, `text-h2` from 2.1rem to 3.25rem. The signature headline pattern is two lines where the first line is `ink` and the second is `muted-ink`.
+Geist throughout (self-hosted via `@fontsource-variable/geist`), Geist Mono for labels, dates and code — no other faces. Headings are weight 500, body 400. `text-h1` runs from 2.75rem to 4rem (`-0.04em`), `text-h2` from 2.125rem to 2.625rem (`-0.035em`); both are left-aligned and balanced. A headline may mark one accent phrase with `Accent.astro`, which renders in the same face.
 
 Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, lightly tracked, `faint`.
 
@@ -151,6 +149,10 @@ Flat. No drop shadows on page content, no gradients as backgrounds except the fa
 
 Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs in `text-mark` (30% white in dark, 20% black in light).
 
+## Logo
+
+A walking bear in silhouette, facing right (toward the wordmark): a smooth, compact body with a gentle shoulder hump and rounded rump, a short rounded muzzle, one small round ear, and four legs mid-stride with small forward-pointing paws. The mark is monochrome only, one solid path in `currentColor` (`src/components/landing/Logo.astro`, viewBox about 41:22), so it is sized by height (`h-[18px] w-auto`, `gap-1.5` to the wordmark). Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. On the landing page the mark also appears once as a large watermark at 5% `ink` in the bottom-right of the closing CTA, behind the copy. Open Graph images (`public/og*.png`) are generated by `npm run og` (`scripts/generate-og.mjs`), which reads the bear path from `Logo.astro`: light ground, double rails, wordmark, a two-line headline with the second line in the brand selection box, and a faint bear walking along the bottom rule. `public/favicon-32.png` and `public/apple-touch-icon.png` are PNG fallbacks of the favicon. While the project is in alpha, the header wordmark carries a small `alpha` tag (`bg-brand/10`, `text-brand-ink`, mono 10px) and the hero pill reads "alpha · Early days". Remove both at the first stable release. `public/favicon.svg` uses the same path centred in a square and switches between near-black and near-white with `prefers-color-scheme`.
+
 ## Components
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
@@ -164,13 +166,24 @@ The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui
 - **Links** — anchors that look like buttons use `buttonVariants()` rather than a React island, so the static HTML stays JavaScript-free; article body links ride the `prose dark:prose-invert` typography.
 - **Theme toggle** — a plain round icon button in the header (`#theme-toggle`), built from two inline SVGs: a sun that shows in dark, a moon that shows in light. It is wired to the inline script at the end of the layout, so it needs no island and no hydration.
 - **HelpSearch** — Pagefind UI themed in `global.css` (no `pagefind-ui.css`): `panel` fill, theme ink, hairline border, soft `--help-search-shadow` (tuned per theme), and no focus outline. A static shell matching the input paints first so mounting Pagefind does not flash or shift the page. Results open in a `panel` dropdown with a hairline border, anchored under the bar (`position: absolute; top: 100%`) so the help grid below does not shift.
-- **HeroGlobe** — a light Three.js point sphere in `src/components/hero-globe.tsx`, hydrated with `client:visible` under the hero copy. Soft brand-blue dots, transparent canvas, ground fade overlay, theme sync via `--globe-dot`, and no rotation when `prefers-reduced-motion` is on.
+- **HeroGlobe** — a Three.js point sphere in `src/components/hero-globe.tsx`. Not currently rendered on the landing page.
 
 Compound Base UI components must be composed inside a single React component and hydrated with `client:*`; splitting their parts across `.astro` files breaks their context (see `src/components/faq-list.tsx`). Static primitives need no client directive, and anchors should use `buttonVariants()` rather than an island.
 
 ## Motion
 
-Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. The hero point globe drifts on a slow idle rotation and freezes when `prefers-reduced-motion: reduce` is set. There is no parallax, no scroll animation and no auto-advancing content. `prefers-reduced-motion` also disables smooth scrolling, and the CTA dotted terrain stays static CSS.
+Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered). The headline's selection-box label cycles agent / claude → cursor → codex with a 200ms blur swap. The label is drawn with CSS (`content: attr(data-label)`) and rotated by a small script at the end of `Hero.astro`, so no island or script sits inside the `<h1>` and the heading text stays clean. Below the hero, sections reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, optional `--d` stagger). If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the product mockup. The accordion animates over 200ms; links transition colour; arrows nudge on hover. CSS motion is disabled under `prefers-reduced-motion`. No parallax, no scroll-linked transforms, no glow effects.
+
+## Page frame
+
+- **Rails and dividers:** `.rails` draws an 8px double hairline down each side of the column (header, landing page and footer all use it). `components/landing/Divider.astro` is the section rule with its two ringed dots.
+- **Section intro:** `components/landing/SectionIntro.astro` — a tag (`Tag.astro`: `bg-brand/[0.08] text-brand-ink`, `rounded-md`, 12.5px), an `h2` (`text-h2`, medium, balanced) and an optional 15.5px lead. Accent phrases use `Accent.astro` (Geist, same as the headline).
+- **Selection box:** `components/landing/Selection.astro` frames a word with a brand outline, four 7px corner handles and a mono label (top or bottom). Used once in the hero and once in the closing CTA.
+- **Surfaces:** `.frame` + `.frame-inner` (22px tray, 16px inner) for product windows and code; `.dot-well` for illustration wells; `.float-card` for the small UI pieces inside them.
+- **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
+- **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
+- **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
+- **Order:** Hero (pill, headline with selection box, CTAs, product window) → tools strip ("Underneath…") → About (dev tool → what the team sees, why it matters) → Possibilities (CMS limits vs what the team can ask an agent for) → Studio features (3×2) → Workflow steps + agent window → Why GitHub (6 reasons, each tagged with the GitHub feature behind it) → Why now (quote, reasons, results, the catch) → Compare → FAQ → CTA → footer.
 
 ## Do's and Don'ts
 

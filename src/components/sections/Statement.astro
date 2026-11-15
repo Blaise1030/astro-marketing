@@ -1,0 +1,42 @@
+---
+import Accent from "@/components/landing/Accent.astro";
+import Tag from "@/components/landing/Tag.astro";
+import { site } from "@/site";
+
+const source = "https://leerob.com/agents";
+---
+
+<section id="why" class="flex scroll-mt-14 flex-col gap-14 px-6 py-24 sm:px-10">
+  <div class="flex flex-col gap-8" data-reveal>
+    <Tag>Why now</Tag>
+    <p class="max-w-4xl text-[30px] font-medium leading-[1.18] tracking-[-0.03em] text-balance sm:text-[40px]">
+      Teams are deleting their CMS. Orso brings <Accent>everyone else</Accent> along.
+    </p>
+    <p class="max-w-2xl text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+      Cursor moved cursor.com off its CMS and back into the repo as Markdown, and Prefect did the same. The reason
+      is simple: a CMS was built for people clicking through a UI, and now most changes start with an agent.
+    </p>
+  </div>
+
+  <figure class="flex max-w-3xl flex-col gap-4 border-l-2 border-brand pl-6" data-reveal style="--d: 80ms">
+    <blockquote class="text-[22px] font-medium leading-snug tracking-[-0.02em] text-balance sm:text-[26px]">
+      “With AI and coding agents, the cost of an abstraction has never been higher.”
+    </blockquote>
+    <figcaption class="font-mono text-[12px] text-faint">
+      Lee Robinson · <a class="hover:text-ink" href={source} rel="noopener">Coding Agents &amp; Complexity Budgets</a>
+    </figcaption>
+  </figure>
+
+  <div class="flex max-w-3xl flex-col gap-3 border-t border-dashed border-hairline-strong pt-10" data-reveal>
+    <p class="font-mono text-[12px] text-faint">a note from the maker</p>
+    <p class="text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+      That move works when the people editing the site already work like developers. Most marketing teams don't.
+      Delete the CMS and someone still asks, the week after, “can you change the pricing?” I built Orso so they can
+      do it themselves, with the forms, drafts and safe Publish button a CMS gave them, while the content stays in
+      the repo. <span class="text-ink">If it isn't simple enough for my own non-technical teammates, it isn't done.</span>
+    </p>
+    <p class="font-mono text-[12px] text-faint">
+      — Blaise · <a class="hover:text-ink" href={site.author.href} rel="noopener">{site.author.label}</a>
+    </p>
+  </div>
+</section>
