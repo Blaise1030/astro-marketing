@@ -1,4 +1,5 @@
 ---
+import Logo from "@/components/landing/Logo.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import {
@@ -108,7 +109,7 @@ import "@fontsource-variable/geist-mono";
           <span class="absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10 right-1 translate-x-1/2"></span>
         </div>
         <a class="relative flex shrink-0 items-center gap-2 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
-          <span aria-hidden="true" class="grid size-5 place-items-center rounded-[6px] bg-brand font-mono text-[11px] text-white">o</span>
+          <Logo class="size-6 shrink-0 text-ink" />
           <span class="font-normal text-faint">project</span> orso
         </a>
 
@@ -248,7 +249,7 @@ import "@fontsource-variable/geist-mono";
           <div class="grid gap-10 sm:grid-cols-[1.5fr_repeat(3,1fr)]">
             <div class="flex flex-col gap-3">
               <a class="flex w-fit items-center gap-2 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
-                <span aria-hidden="true" class="grid size-5 place-items-center rounded-[6px] bg-brand font-mono text-[11px] text-white">o</span>
+                <Logo class="size-6 shrink-0 text-ink" />
                 <span class="font-normal text-faint">project</span> orso
               </a>
               <p class="max-w-[260px] text-[13px] leading-relaxed text-muted-ink">{site.footer.tagline}</p>

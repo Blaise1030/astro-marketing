@@ -149,6 +149,10 @@ Flat. No drop shadows on page content, no gradients as backgrounds except the fa
 
 Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rounded-xl` (0.75rem); badges are pills; the terminal window uses `rounded-xl`. Borders are 1px `hairline`; cards keep shadcn's 1px foreground ring at 10% instead of a shadow. Geometric feature marks are 1px outline SVGs in `text-mark` (30% white in dark, 20% black in light).
 
+## Logo
+
+A bear head in profile: a solid round head, two round ears, a short pointed snout facing right, and two tilted pill eyes cut out of the head. The mark is monochrome only, one path in `currentColor` (`src/components/landing/Logo.astro`), with the eyes drawn as holes so it works on any background. Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path and switches between near-black and near-white with `prefers-color-scheme`.
+
 ## Components
 
 The UI uses stock shadcn/ui components (Base UI flavour) from `src/components/ui`. They are themed only through the token layer in `src/styles/global.css`; the component code, variants and sizes are left as generated. Landing-page sections and content routes compose them:
