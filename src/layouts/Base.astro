@@ -276,7 +276,10 @@ import "@fontsource-variable/geist-mono";
           </div>
 
           <div class="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-hairline-strong pt-6 text-[12.5px] text-faint">
-            <p>{site.footer.text}</p>
+            <p>
+              {site.footer.text} Built by{" "}
+              <a class="text-muted-ink underline decoration-hairline-strong underline-offset-4 transition-colors hover:text-ink hover:decoration-ink" href={site.author.href} rel="author noopener">{site.author.label}</a>.
+            </p>
             <nav class="flex flex-wrap items-center gap-5" aria-label="Footer">
               {site.footer.links.map((l) => (
                 <a class="transition-colors hover:text-ink" href={href(l.href)}>{l.label}</a>

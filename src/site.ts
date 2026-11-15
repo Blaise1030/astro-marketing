@@ -11,6 +11,8 @@ export const site = {
     { label: "Help", href: "/help/" },
   ],
   repo: "https://github.com/Blaise1030/cms",
+  /** Credit link in the footer. */
+  author: { label: "blaisetiong.dev", href: "https://blaisetiong.dev" },
   /** Right side of the header on some pages; download page reads `download`. */
   actions: {
     link: { label: "Help", href: "/help/" },
