@@ -151,7 +151,7 @@ Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rou
 
 ## Logo
 
-A walking bear in silhouette, facing left: a smooth, compact body with a gentle shoulder hump and rounded rump, a short rounded muzzle, one small round ear, and four legs mid-stride with small forward-pointing paws. The mark is monochrome only, one solid path in `currentColor` (`src/components/landing/Logo.astro`, viewBox about 41:22), so it is sized by height (`h-5 w-auto`). Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path centred in a square and switches between near-black and near-white with `prefers-color-scheme`.
+A walking bear in silhouette, facing right (toward the wordmark): a smooth, compact body with a gentle shoulder hump and rounded rump, a short rounded muzzle, one small round ear, and four legs mid-stride with small forward-pointing paws. The mark is monochrome only, one solid path in `currentColor` (`src/components/landing/Logo.astro`, viewBox about 41:22), so it is sized by height (`h-5 w-auto`). Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path centred in a square and switches between near-black and near-white with `prefers-color-scheme`.
 
 ## Components
 
