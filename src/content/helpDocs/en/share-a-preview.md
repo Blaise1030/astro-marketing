@@ -15,14 +15,18 @@ Share early for copy and layout feedback. Share again after bigger edits so ever
 ## Create a shareable link
 
 1. Open the **change** you want reviewed.
-2. Choose **Share preview**.
-3. Copy the link and send it to your reviewers.
+2. Choose **Share preview**. Orso sends your change to GitHub, and your host builds a preview of it.
+3. When the preview is ready, open **Review → Open deployed preview**, copy the address, and send it to your reviewers.
 
 Anyone with the link can open the preview. They do not need to publish anything, and the link never makes the change live on its own.
 
+## Update the preview
+
+After more edits, choose **Update preview** to send them. When everything is already shared, the button steps aside until there's something new to send.
+
 ## What reviewers see
 
-The preview shows the site with this change applied: pages, copy, images, and navigation as they currently stand. It updates as you keep editing — the same link points at the latest version of the change, so you usually do not need a new link after each tweak.
+The preview shows the site with this change applied: pages, copy, images, and navigation as of your last **Share preview** or **Update preview**. The same link keeps pointing at the latest version you sent, so you don't need a new link after each update.
 
 If something looks out of date, ask the reviewer to refresh the page. For your own local preview pane, see [Preview a change before you publish](/help/preview-a-change/).
 
