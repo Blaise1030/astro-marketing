@@ -1,11 +1,14 @@
 ---
+import Divider from "../components/landing/Divider.astro";
 import Comparison from "../components/sections/Comparison.astro";
 import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
 import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
+import Pricing from "../components/sections/Pricing.astro";
 import Stack from "../components/sections/Stack.astro";
+import Statement from "../components/sections/Statement.astro";
 import Tools from "../components/sections/Tools.astro";
 import Base from "../layouts/Base.astro";
 import { faqs } from "../lib/faqs";
@@ -17,15 +20,27 @@ import { faqPageJsonLd } from "../lib/seo";
   description="Orso is a free, open-source studio for Astro sites. Edit Markdown or ask your agent, preview drafts locally, and publish static files — no lock-in."
   jsonLd={faqPageJsonLd([...faqs])}
 >
-  <!-- One framed column: vertical rails, hairline rules between sections -->
-  <div class="mx-auto max-w-6xl border-x border-hairline [&>section+section]:border-t [&>section+section]:border-hairline">
+  <!-- One framed column: double rails down each side, a dotted hairline between sections -->
+  <div class="rails relative mx-auto max-w-6xl">
     <Hero />
+    <Divider />
     <Tools />
+    <Divider />
     <Features />
+    <Divider />
     <Stack />
+    <Divider />
     <HowItWorks />
+    <Divider />
+    <Statement />
+    <Divider />
+    <Pricing />
+    <Divider />
     <Comparison />
+    <Divider />
     <Faq />
+    <Divider />
     <Cta />
+    <Divider />
   </div>
 </Base>

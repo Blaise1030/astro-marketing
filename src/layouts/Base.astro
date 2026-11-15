@@ -36,13 +36,16 @@ const canonical = canonicalUrl(Astro.url);
 const ogImage = absoluteUrl(image ?? "/og.png");
 const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
+import "@fontsource-variable/inter";
+import "@fontsource-variable/source-serif-4";
+import "@fontsource-variable/geist-mono";
 ---
 
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f7f5" />
+    <meta name="theme-color" content="#fcfcfc" />
     <link rel="icon" href={href("/favicon.svg")} type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
@@ -61,13 +64,13 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
           theme = localStorage.getItem("orso-theme");
         } catch {}
         if (theme !== "light" && theme !== "dark") {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          theme = "light";
         }
         const dark = theme === "dark";
         root.classList.toggle("dark", dark);
         root.style.colorScheme = theme;
         const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", dark ? "#080808" : "#f7f7f5");
+        if (meta) meta.setAttribute("content", dark ? "#0b0b0c" : "#fcfcfc");
       })();
     </script>
     <title>{pageTitle}</title>
@@ -99,20 +102,22 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     >
       Skip to content
     </a>
-    <header class="header-fade sticky top-0 z-50">
-      <div class="shell relative flex h-16 items-center justify-between gap-4">
-        <a class="shrink-0 text-[17px] font-semibold tracking-tight" href={base}>
-          orso<sup class="ml-0.5 align-super text-[9px] font-normal text-muted-ink">®</sup>
+    <header class="sticky top-0 z-50 border-b border-hairline bg-ground/80 backdrop-blur-md">
+      <div class="rails relative mx-auto flex h-14 max-w-6xl items-center gap-5 px-6 sm:px-10 lg:gap-8">
+        <div aria-hidden="true" class="absolute inset-x-0 -bottom-px h-px">
+          <span class="absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10 left-1 -translate-x-1/2"></span>
+          <span class="absolute top-1/2 z-10 size-2 -translate-y-1/2 rounded-full bg-panel shadow-sm shadow-black/10 ring-1 ring-ink/10 right-1 translate-x-1/2"></span>
+        </div>
+        <a class="relative flex shrink-0 items-center gap-2 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
+          <span aria-hidden="true" class="grid size-5 place-items-center rounded-[6px] bg-brand font-mono text-[11px] text-white">o</span>
+          orso <span class="font-normal text-faint">studio</span>
         </a>
 
-        <nav
-          class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
-          aria-label="Main"
-        >
+        <nav class="hidden items-center gap-5 md:flex lg:gap-6" aria-label="Main">
           {
             site.nav.map((l) => (
               <a
-                class="rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink"
+                class="whitespace-nowrap text-[13.5px] font-medium text-muted-ink transition-colors duration-150 hover:text-ink"
                 href={href(l.href)}
               >
                 {l.label}
@@ -121,25 +126,27 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
           }
         </nav>
 
-        <div class="ml-auto flex items-center gap-2">
+        <div class="flex-1"></div>
+
+        <div class="flex items-center gap-2.5">
           <a
-            class="hidden rounded-md px-3 py-2 text-label text-muted-ink transition-colors hover:text-ink sm:inline-flex"
+            class="hidden whitespace-nowrap text-[13.5px] font-medium text-muted-ink transition-colors hover:text-ink sm:inline"
             href={site.repo}
             rel="noopener"
           >
             GitHub
           </a>
           <a
-            class={buttonVariants({ size: "sm", className: "btn-gloss h-8 rounded-full px-3.5 text-[0.78rem]" })}
-            href={href("#how-it-works")}
+            class={buttonVariants({ className: "btn-gloss h-8 rounded-[10px] px-3 text-[13px] font-medium tracking-[-0.01em]" })}
+            href={href("/download/")}
           >
-            Start building
+            Get Orso
           </a>
 
           <button
             type="button"
             id="theme-toggle"
-            class="flex size-8 shrink-0 items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:border-hairline-strong hover:text-ink"
+            class="flex size-8 shrink-0 items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:border-hairline-strong hover:text-ink"
             aria-label="Switch to light theme"
           >
             <svg
@@ -168,11 +175,11 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
             </svg>
           </button>
 
-          <div class="relative lg:hidden">
+          <div class="relative md:hidden">
             <button
               type="button"
               id="mobile-nav-toggle"
-              class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-hairline text-muted-ink transition-colors hover:text-ink"
+              class="flex size-8 cursor-pointer items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink"
               aria-label="Open menu"
               aria-expanded="false"
               aria-controls="mobile-nav"
@@ -216,48 +223,43 @@ const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
     <div class="relative overflow-clip">
       <main id="main"><slot /></main>
 
-      <footer class="relative">
-        <div class="shell py-16">
-          <div class="grid gap-12 lg:grid-cols-[1.1fr_1.6fr]">
-            <div>
-              <a class="text-3xl font-semibold tracking-tight" href={base}>
-                orso<sup class="ml-1 align-super text-xs font-normal text-muted-ink">®</sup>
+      <footer class="rails relative mx-auto max-w-6xl">
+        <div class="flex flex-col gap-12 px-6 pb-8 pt-14 sm:px-10">
+          <div class="grid gap-10 sm:grid-cols-[1.5fr_repeat(3,1fr)]">
+            <div class="flex flex-col gap-3">
+              <a class="flex w-fit items-center gap-2 text-[15px] font-semibold leading-none tracking-[-0.02em]" href={base}>
+                <span aria-hidden="true" class="grid size-5 place-items-center rounded-[6px] bg-brand font-mono text-[11px] text-white">o</span>
+                orso <span class="font-normal text-faint">studio</span>
               </a>
-              <p class="mt-5 max-w-xs text-body text-muted-ink">{site.footer.tagline}</p>
+              <p class="max-w-[260px] text-[13px] leading-relaxed text-muted-ink">{site.footer.tagline}</p>
             </div>
-            <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
-              {
-                site.footer.columns.map((column) => (
-                  <div>
-                    <p class="text-eyebrow text-faint">{column.title}</p>
-                    <ul class="mt-4 space-y-2.5">
-                      {column.links.map((link) => (
-                        <li>
-                          <a
-                            class="text-label text-muted-ink transition-colors hover:text-ink"
-                            href={href(link.href)}
-                            rel={"external" in link ? "noopener" : undefined}
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              }
-            </div>
+            {
+              site.footer.columns.map((column) => (
+                <div class="flex flex-col gap-3">
+                  <p class="font-mono text-[11.5px] text-faint">{column.title}</p>
+                  {column.links.map((link) => (
+                    <a
+                      class="w-fit text-[13.5px] text-muted-ink transition-colors duration-150 hover:text-ink"
+                      href={href(link.href)}
+                      rel={"external" in link ? "noopener" : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              ))
+            }
           </div>
 
-          <div class="mt-16 flex flex-wrap items-center justify-between gap-4 text-label text-faint">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-hairline-strong pt-6 text-[12.5px] text-faint">
             <p>{site.footer.text}</p>
             <nav class="flex flex-wrap items-center gap-5" aria-label="Footer">
               {site.footer.links.map((l) => (
                 <a class="transition-colors hover:text-ink" href={href(l.href)}>{l.label}</a>
               ))}
-              {site.socials.map((s) => (
-                <a class="transition-colors hover:text-ink" href={s.href} rel="noopener">{s.label}</a>
-              ))}
+              <span class="flex items-center gap-1.5 font-mono text-[11.5px]">
+                <span class="size-1.5 rounded-full bg-live"></span>open source
+              </span>
             </nav>
           </div>
         </div>

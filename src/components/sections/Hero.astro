@@ -1,79 +1,66 @@
 ---
+import Selection from "@/components/landing/Selection.astro";
+import Serif from "@/components/landing/Serif.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { FlipWords } from "@/components/ui/flip-words";
 import { href } from "@/lib/href";
 import { site } from "@/site";
 import ProductMockup from "./ProductMockup.astro";
 
-const handle = "absolute size-2 border-[1.5px] border-brand bg-panel";
+const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
 ---
 
-<section class="relative px-6 pb-14 pt-16 sm:px-10 sm:pb-20 sm:pt-24" id="hero">
-  <a
-    class="group inline-flex items-center gap-2 text-[0.75rem] text-muted-ink transition-colors hover:text-ink motion-safe:animate-hero-in"
-    href={site.repo}
-    rel="noopener"
-  >
-    <span class="rounded-sm bg-brand px-1.5 py-0.5 text-[0.65rem] font-medium text-on-brand">Free</span>
-    Open source on GitHub
-    <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
-  </a>
-
-  <h1 class="mt-10 max-w-4xl text-h1 motion-safe:animate-hero-in" style="animation-delay:100ms">
-    Edit your site with the
-    <span class="relative mx-[0.06em] inline-block whitespace-nowrap">
-      <span class="relative z-10 px-[0.1em]">agent</span>
-      <span class="absolute inset-0 border-[1.5px] border-brand bg-brand/[0.06]" aria-hidden="true">
-        <span class:list={[handle, "-left-1 -top-1"]}></span>
-        <span class:list={[handle, "-right-1 -top-1"]}></span>
-        <span class:list={[handle, "-bottom-1 -left-1"]}></span>
-        <span class:list={[handle, "-bottom-1 -right-1"]}></span>
-      </span>
-      <span
-        class="absolute bottom-full right-0 mb-2 inline-flex items-center rounded-sm bg-brand py-1 pl-1.5 font-mono text-[0.7rem] font-normal leading-none tracking-normal text-on-brand"
-        aria-hidden="true"
-      >
-        agent /<FlipWords
-          client:load
-          words={["claude", "cursor", "codex"]}
-          duration={2400}
-          className="px-1 text-on-brand dark:text-on-brand"
-        />
-      </span>
-    </span>
-    <br class="hidden sm:block" />
-    you <span class="font-serif font-normal tracking-[-0.02em]">already pay for.</span>
-  </h1>
-
-  <p class="mt-7 max-w-xl text-body text-muted-ink motion-safe:animate-hero-in" style="animation-delay:220ms">
-    Orso is a free desktop studio for Astro. Edit Markdown in a real UI or hand the change to Claude, Cursor or Codex,
-    preview every draft locally, and publish static files to the host you choose.
-  </p>
-
-  <div class="mt-8 flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:320ms">
+<section id="hero" class="flex scroll-mt-14 flex-col gap-14 px-6 pb-16 pt-20 sm:px-10 sm:pt-24">
+  <div class="flex flex-col gap-7">
     <a
-      class={buttonVariants({ size: "lg", className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]" })}
-      href={href("/download/")}
+      class="group flex w-fit items-center gap-2.5 motion-safe:animate-hero-in"
+      href={site.repo}
+      rel="noopener"
     >
-      Get Orso for macOS
+      <span class="rounded-md bg-brand px-1.5 py-0.5 font-mono text-[11.5px] leading-4 text-white">free</span>
+      <span class="text-[13px] text-muted-ink transition-colors group-hover:text-ink">Open source on GitHub</span>
+      <span aria-hidden="true" class="text-[13px] text-faint transition-transform group-hover:translate-x-0.5">→</span>
     </a>
-    <a
-      class={buttonVariants({
-        variant: "outline",
-        size: "lg",
-        className: "h-10 gap-2 rounded-full border-hairline-strong px-5 text-[0.82rem]",
-      })}
-      href={href("#how-it-works")}
+
+    <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
+      Edit your site with the
+      <Selection>
+        agent
+        <span slot="label" class="inline-flex items-center">
+          agent /<FlipWords
+            client:load
+            words={["claude", "cursor", "codex"]}
+            duration={2400}
+            className="px-0 pl-1 text-white dark:text-white"
+          />
+        </span>
+      </Selection>
+      you <Serif>already pay for</Serif>.
+    </h1>
+
+    <p
+      class="max-w-xl text-[16.5px] leading-relaxed text-pretty text-muted-ink motion-safe:animate-hero-in"
+      style="animation-delay:160ms"
     >
-      <span aria-hidden="true" class="text-[0.6rem]">▶</span> See how it works
-    </a>
-    <span class="text-[0.72rem] text-faint">Free · no account · your existing repo</span>
+      Orso is a free desktop studio for Astro. Edit Markdown in a real UI or hand the change to your agent, preview every
+      draft, and publish static files to the host you choose.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:240ms">
+      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>
+      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={href("#how-it-works")}>
+        <svg class="size-3 text-faint" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
+        </svg>
+        See how it works
+      </a>
+      <span class="ml-1 font-mono text-[12px] text-faint">free forever · no account</span>
+    </div>
   </div>
 
-  <div
-    class="mt-14 h-[26rem] overflow-hidden rounded-xl border border-hairline-strong shadow-[0_24px_60px_-30px_rgb(0_0_0/0.35)] motion-safe:animate-hero-in sm:mt-16 md:h-[34rem]"
-    style="animation-delay:450ms"
-  >
-    <ProductMockup />
+  <div class="frame motion-safe:animate-hero-in" style="animation-delay:320ms">
+    <div class="frame-inner h-[28rem] md:h-[36rem]">
+      <ProductMockup />
+    </div>
   </div>
 </section>

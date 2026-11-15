@@ -1,0 +1,81 @@
+---
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Serif from "@/components/landing/Serif.astro";
+import { buttonVariants } from "@/components/ui/button";
+import { href } from "@/lib/href";
+
+const btn = "h-9 w-full rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
+const plans = [
+  {
+    name: "Orso",
+    price: "$0",
+    note: "free forever",
+    featured: true,
+    items: ["Desktop studio for Astro", "Forms for every content collection", "Live desktop and mobile preview", "A git checkpoint for every save"],
+    cta: { label: "Get Orso", href: "/download/" },
+  },
+  {
+    name: "Your agent",
+    price: "$0",
+    note: "extra · use the one you have",
+    items: ["Claude, Cursor or Codex", "Plain-English changes to code and copy", "Edits land in a draft, never live"],
+    cta: { label: "See how it works", href: "#how-it-works" },
+  },
+  {
+    name: "Your host",
+    price: "Any",
+    note: "static host you like",
+    items: ["Plain static files in dist/", "Deploys through your GitHub workflow", "Starter ships for Cloudflare Workers"],
+    cta: { label: "Read the docs", href: "/help/" },
+  },
+];
+---
+
+<section id="pricing" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Pricing">
+      Pay for your agent. <Serif>Orso</Serif> is free.
+      <Fragment slot="lead">
+        No seats, no plans, no trial. The only subscription in the loop is the agent you already use.
+      </Fragment>
+    </SectionIntro>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    {
+      plans.map((plan, i) => (
+        <div class="frame" data-reveal style={`--d: ${i * 90}ms`}>
+          <div
+            class:list={[
+              "frame-inner flex h-full flex-col gap-6 p-6",
+              plan.featured && "shadow-[0_0_0_1.5px_var(--palette-brand)]",
+            ]}
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="text-[16px] font-medium tracking-[-0.015em]">{plan.name}</h3>
+              {plan.featured && <span class="rounded-md bg-brand/[0.08] px-2 py-0.5 text-[11.5px] font-medium text-brand-ink">open source</span>}
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-[44px] font-medium leading-none tracking-[-0.04em]">{plan.price}</span>
+              <span class="font-mono text-[12px] text-faint">{plan.note}</span>
+            </div>
+            <ul class="flex flex-1 flex-col">
+              {plan.items.map((item, j) => (
+                <li class:list={["flex items-center gap-2.5 py-2.5 text-[14px]", j > 0 && "border-t border-dashed border-hairline-strong"]}>
+                  <svg class="size-3.5 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a
+              class={buttonVariants({ variant: "ghost", className: `${plan.featured ? "btn-gloss" : "btn-quiet"} ${btn}` })}
+              href={href(plan.cta.href)}
+            >
+              {plan.cta.label}
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

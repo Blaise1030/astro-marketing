@@ -4,9 +4,9 @@ export const site = {
   description:
     "Orso is a free, open-source studio for Astro sites that runs on the coding agent you already have. Edit content, preview every change, publish static files to the host you choose — no lock-in.",
   nav: [
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Features", href: "/#features" },
+    { label: "Workflow", href: "/#how-it-works" },
+    { label: "Pricing", href: "/#pricing" },
     { label: "Blog", href: "/blog/" },
     { label: "Help", href: "/help/" },
   ],
@@ -31,9 +31,10 @@ export const site = {
       {
         title: "Product",
         links: [
-          { label: "How it works", href: "#how-it-works" },
-          { label: "Features", href: "#features" },
-          { label: "FAQ", href: "#faq" },
+          { label: "Features", href: "/#features" },
+          { label: "Workflow", href: "/#how-it-works" },
+          { label: "Pricing", href: "/#pricing" },
+          { label: "FAQ", href: "/#faq" },
         ],
       },
       {

@@ -2,35 +2,28 @@
 import { toolLogos } from "@/lib/tool-logos";
 
 const tools = [
-  { name: "Astro", logos: [toolLogos.astro] },
-  { name: "Markdown", logos: [toolLogos.markdown] },
-  { name: "GitHub", logos: [toolLogos.github] },
-  { name: "Claude", logos: [toolLogos.claude] },
-  { name: "Cursor", logos: [toolLogos.cursor] },
-  { name: "Codex", logos: [toolLogos.codex] },
+  { name: "Astro", logo: toolLogos.astro },
+  { name: "Markdown", logo: toolLogos.markdown },
+  { name: "GitHub", logo: toolLogos.github },
+  { name: "Claude", logo: toolLogos.claude },
+  { name: "Cursor", logo: toolLogos.cursor },
+  { name: "Codex", logo: toolLogos.codex },
 ];
 ---
 
-<section class="pt-8" aria-label="Works with">
-  <p class="px-6 text-[0.8rem] text-muted-ink sm:px-10">Built on the stack you already trust.</p>
-  <div class="mt-6 grid grid-cols-3 border-t border-hairline sm:grid-cols-6">
+<section id="logos" class="flex scroll-mt-14 flex-col gap-8 px-6 py-12 sm:px-10" aria-label="Works with">
+  <p class="text-[13.5px] text-muted-ink">Built on the stack you already trust</p>
+  <div class="grid grid-cols-3 items-center gap-y-8 md:flex md:justify-between">
     {
-      tools.map((tool, i) => (
-        <div
-          class:list={[
-            "group flex h-20 items-center justify-center gap-2 border-hairline text-faint transition-colors hover:text-ink",
-            i % 3 !== 2 && "border-r",
-            i < 3 && "border-b sm:border-b-0",
-            "sm:[&:not(:last-child)]:border-r",
-          ]}
-        >
-          {tool.logos.map((logo) => (
-            <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d={logo.path} />
+      tools.map((tool) => (
+        <span class="flex justify-center">
+          <span class="inline-flex h-7 items-center gap-2 whitespace-nowrap text-faint transition-colors duration-150 hover:text-ink">
+            <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={tool.logo.path} />
             </svg>
-          ))}
-          <span class="text-[0.85rem] font-medium tracking-tight">{tool.name}</span>
-        </div>
+            <span class="text-[18px] font-semibold leading-none tracking-[-0.03em]">{tool.name}</span>
+          </span>
+        </span>
       ))
     }
   </div>

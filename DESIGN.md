@@ -4,73 +4,75 @@ name: Orso
 description: A free studio for Astro sites, running on the agent you already pay for.
 themes:
   dark:
-    ground: "#080808"
-    panel: "#0c0c0c"
-    raised: "#121212"
-    ink: "#f5f5f5"
-    muted-ink: "#9a9a9a"
-    faint: "#7a7a7a"
-    hairline: "#232323"
-    hairline-strong: "#383838"
+    ground: "#0b0b0c"
+    panel: "#161618"
+    raised: "#101012"
+    ink: "#ededee"
+    muted-ink: "#a1a1a6"
+    faint: "#76767b"
+    hairline: "#1b1b1d"
+    hairline-strong: "#29292c"
     live: "#86e7b0"
     brand: "#2f6cec"
     brand-pressed: "#1f5cd8"
+    brand-ink: "#8fb0ff"
     on-brand: "#ffffff"
-    link: "#f5f5f5"
+    link: "#ededee"
     danger: "#ff6467"
     focus-ring: "#7d9df0"
   light:
-    ground: "#f7f7f5"
+    ground: "#fcfcfc"
     panel: "#ffffff"
-    raised: "#eeedeb"
-    ink: "#0b0b0b"
-    muted-ink: "#565656"
-    faint: "#6e6e6e"
-    hairline: "#e2e1dd"
-    hairline-strong: "#c8c7c2"
+    raised: "#f6f6f7"
+    ink: "#1d1d1f"
+    muted-ink: "#6b6b70"
+    faint: "#8e8e93"
+    hairline: "#ededee"
+    hairline-strong: "#e1e1e3"
     live: "#0f7a45"
     brand: "#2f6cec"
     brand-pressed: "#1f5cd8"
+    brand-ink: "#1f5cd8"
     on-brand: "#ffffff"
-    link: "#0b0b0b"
+    link: "#1d1d1f"
     danger: "#d92d20"
     focus-ring: "#1f5cd8"
 typography:
   h1:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(2.9rem, 6.8vw, 4.75rem)"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 6vw, 4rem)"
     fontWeight: 500
-    lineHeight: 1.02
+    lineHeight: 1.03
   h2:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(2.1rem, 4.2vw, 3.25rem)"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.125rem, 3.6vw, 2.625rem)"
     fontWeight: 500
-    lineHeight: 1.04
+    lineHeight: 1.08
   h3:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: 1.1875rem
     fontWeight: 500
     lineHeight: 1.3
   body:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.9375rem
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.8125rem
     fontWeight: 500
     lineHeight: 1.5
   eyebrow:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.6875rem
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: 0.08em
   serif:
-    fontFamily: "Iowan Old Style, Palatino Linotype, Palatino, Book Antiqua, Georgia, serif"
+    fontFamily: "Source Serif 4 Variable, Source Serif 4, Georgia, serif"
   mono:
-    fontFamily: "ui-monospace, SF Mono, SFMono-Regular, Menlo, Consolas, monospace"
+    fontFamily: "Geist Mono Variable, Geist Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
 rounded:
   sm: 0.25rem
   md: 0.375rem
@@ -84,15 +86,11 @@ spacing:
 
 ## Overview
 
-A dark, editorial ledger. White ink on one near-black ground, hairline rules instead of shadows, and a single blue action colour: primary blue. The page is quiet and technical rather than decorative — small mono labels, generous negative space, a slow Three.js point-globe under the hero, and a dotted 1-bit horizon under the closing call to action. There is one visual idea per section, and the copy does the rest.
-
-Near-black ground, white ink, a grey second line on every heading, and hairline ledgers. The Orso palette is monochrome apart from one blue primary, which is reserved for actions, and the voice stays plain and ownership-led.
-
-The site ships in **two themes**. Dark is the signature ledger: near-black ground, white ink. Light is the same ledger in daylight: off-white ground, near-black ink, the same hairlines, the same blue, and the same dotted horizons drawn in dark ink. Neither is a filter of the other — each palette is tuned on its own, so the light theme keeps contrast without looking like an inverted screenshot.
+A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Headlines are left-aligned Inter at medium weight with one Source Serif accent phrase; small mono labels (Geist Mono) carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
 
 ## Themes
 
-The theme is a class on `<html>`: `.dark` for the ledger, no class for daylight. The server renders `.dark` as the default, so a reader with JavaScript disabled keeps the signature dark page. An inline script in `src/layouts/Base.astro` then resolves the theme before first paint — a stored choice in `localStorage` (`orso-theme`, `light` or `dark`) wins, otherwise the OS `prefers-color-scheme` decides — and removes or keeps the class accordingly, then sets `color-scheme` and the `theme-color` meta so scrollbars and browser chrome match. The header toggle flips the class, writes the choice back, swaps its sun/moon icon and updates its label. It is the only JavaScript the layout ships.
+Light is the default. The theme is a class on `<html>`: no class for light, `.dark` for the night variant. An inline script in `src/layouts/Base.astro` resolves it before first paint — a stored choice in `localStorage` (`orso-theme`) wins, otherwise light — then sets `color-scheme` and the `theme-color` meta. The header toggle flips the class and writes the choice back.
 
 Tokens are runtime custom properties, not build-time constants:
 
@@ -176,7 +174,13 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 
 ## Page frame
 
-The landing page is one framed column (`max-w-6xl`) with vertical hairline rails; sections sit edge to edge inside it, separated by hairline rules, with `px-6 sm:px-10` gutters. Headlines are left-aligned sans with one serif accent phrase (`font-serif font-normal`). Each section opens with a small tag (`bg-brand/10 text-brand`, `rounded-sm`). The hero headline frames one word in a Figma-style selection box (brand outline, corner handles, mono label). Feature cells are divided by dashed `hairline-strong` rules rather than cards.
+- **Rails and dividers:** `.rails` draws an 8px double hairline down each side of the column (header, landing page and footer all use it). `components/landing/Divider.astro` is the section rule with its two ringed dots.
+- **Section intro:** `components/landing/SectionIntro.astro` — a tag (`Tag.astro`: `bg-brand/[0.08] text-brand-ink`, `rounded-md`, 12.5px), an `h2` (`text-h2`, medium, balanced) and an optional 15.5px lead. Accent phrases use `Serif.astro`.
+- **Selection box:** `components/landing/Selection.astro` frames a word with a brand outline, four 7px corner handles and a mono label (top or bottom). Used once in the hero and once in the closing CTA.
+- **Surfaces:** `.frame` + `.frame-inner` (22px tray, 16px inner) for product windows, code and pricing cards; `.dot-well` for illustration wells; `.float-card` for the small UI pieces inside them.
+- **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
+- **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
+- **Order:** Hero (pill, headline with selection box, CTAs, product window) → stack strip → Studio features (3×2) → Repo before/after → Workflow steps + agent window → statement + stats → Pricing → Compare → FAQ → CTA → footer.
 
 ## Do's and Don'ts
 

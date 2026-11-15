@@ -1,97 +1,139 @@
 ---
-const visual = "flex h-40 items-center justify-center overflow-hidden rounded-md border border-hairline bg-panel";
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Serif from "@/components/landing/Serif.astro";
+
 const features = [
-  { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and copy get friendly fields. Markdown is still there when you want it." },
-  { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex writes the code and the styles." },
-  { id: "preview", title: "Every draft, previewed", body: "Each edit lives in its own draft with a live desktop and mobile preview, so nothing leaks early." },
-  { id: "publish", title: "Static files, any host", body: "Ship plain static output to the host you already use. No runtime, no lock-in." },
-  { id: "history", title: "Branch it like code", body: "A checkpoint of every save in a git repo you own. Roll back whenever you like." },
-  { id: "repo", title: "No migration", body: "Orso opens the Astro project you already have. Your content stays Markdown in your repo." },
+  { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and page copy get real fields. Markdown is still one click away." },
+  { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex edits the repo, never the live site." },
+  { id: "preview", title: "Every draft, previewed", body: "Each change gets its own draft with a live desktop and mobile preview, so nothing ships early." },
+  { id: "publish", title: "Static files, any host", body: "Publish plain static output through the workflow you already have. No runtime, no lock-in." },
+  { id: "history", title: "Branch it like code", body: "Every save is a checkpoint in git. Try a direction on a draft, then merge it or throw it away." },
+  { id: "repo", title: "Nothing to migrate", body: "Orso opens the Astro project you already have. Content stays Markdown in the repo you own." },
 ];
+
+// Dashed grid rules: 1 column → 2 (md) → 3 (xl), with the outer gutters trimmed.
+const cell = [
+  "md:border-t-0 md:border-l-0 md:pl-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-t-0 md:border-l md:pr-0 xl:border-l xl:px-8",
+  "border-t md:border-l-0 md:pl-0 xl:border-t-0 xl:border-l xl:pr-0 xl:pl-8",
+  "border-t md:border-l md:pr-0 xl:border-l-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-l-0 md:pl-0 xl:border-l xl:px-8",
+  "border-t md:border-l md:pr-0 xl:border-l xl:pr-0 xl:pl-8",
+];
+const mono = "font-mono text-[10px] text-faint";
 ---
 
-<section class="pt-16 sm:pt-24" id="features">
-  <div class="px-6 sm:px-10" data-reveal>
-    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Studio</span>
-    <h2 class="mt-5 max-w-2xl text-h2">
-      Stop rebuilding what <span class="font-serif font-normal tracking-[-0.02em]">already exists.</span>
-    </h2>
-    <p class="mt-5 max-w-lg text-body text-muted-ink">
-      Your site is already written in Astro. Orso puts a studio on top of it, so the page you edit is the page that ships.
-    </p>
+<section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Studio">
+      Stop rebuilding what <Serif>already exists</Serif>.
+      <Fragment slot="lead">
+        Your site is already written in Astro. Orso puts a studio on top of it, so the page you edit is the page that
+        ships.
+      </Fragment>
+    </SectionIntro>
   </div>
 
-  <ul class="mt-12 grid border-t border-dashed border-hairline-strong sm:mt-16 md:grid-cols-2 lg:grid-cols-3">
+  <div class="grid md:grid-cols-2 xl:grid-cols-3">
     {
       features.map((f, i) => (
-        <li
-          class="group list-none border-b border-dashed border-hairline-strong p-6 sm:p-8 md:[&:nth-child(2n+1)]:border-r md:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-child(2n+1)]:border-r-0 lg:[&:not(:nth-child(3n))]:border-r lg:[&:nth-last-child(-n+3)]:border-b-0"
+        <div
+          class:list={["flex flex-col gap-6 border-dashed border-hairline-strong py-8 md:px-8", cell[i]]}
           data-reveal
-          style={`--d: ${(i % 3) * 100}ms`}
+          style={`--d: ${(i % 3) * 90}ms`}
         >
-          <div class="flex h-full flex-col">
-            <div class={visual} aria-hidden="true">
-              {f.id === "write" && (
-                <div class="w-48 space-y-2.5 text-[0.65rem]">
-                  <div class="rounded-md border border-hairline-strong bg-panel px-2.5 py-1.5 text-ink">Product launch</div>
-                  <div class="flex gap-2">
-                    <div class="flex-1 rounded-md border border-hairline bg-panel px-2.5 py-1.5 text-faint">2026-11-15</div>
-                    <div class="rounded-md border border-hairline bg-panel px-2.5 py-1.5 text-brand">news</div>
-                  </div>
-                  <div class="h-1.5 w-full rounded-full bg-hairline" />
-                  <div class="h-1.5 w-2/3 rounded-full bg-hairline" />
+          <div class="dot-well relative grid h-60 place-items-center overflow-hidden rounded-[14px]" aria-hidden="true">
+            {f.id === "write" && (
+              <div class="float-card w-[244px] rounded-xl px-2.5 py-1.5">
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>title</span>
+                  <span class="relative rounded-md bg-ink/[0.04] px-2 py-1 text-[11px] outline-[1.5px] outline-brand outline-solid">
+                    Product launch
+                  </span>
                 </div>
-              )}
-              {f.id === "ask" && (
-                <div class="w-48 space-y-2 text-[0.65rem]">
-                  <p class="ml-auto w-fit rounded-xl rounded-br-sm border border-hairline bg-raised px-2.5 py-1.5 text-ink">Make the hero bolder</p>
-                  <p class="w-fit rounded-xl rounded-bl-sm border border-brand/40 bg-brand/10 px-2.5 py-1.5 text-muted-ink">
-                    Updated Hero.astro<span class="ml-0.5 inline-block h-2.5 w-px translate-y-0.5 bg-brand motion-safe:animate-caret" />
+                <div class="border-t border-dashed border-hairline-strong" />
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>pubDate</span>
+                  <span class="rounded-md bg-ink/[0.04] px-2 py-1 font-mono text-[10px]">2026-11-15</span>
+                </div>
+                <div class="border-t border-dashed border-hairline-strong" />
+                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
+                  <span class={mono}>tags</span>
+                  <span class="flex gap-1">
+                    <span class="rounded-[5px] bg-brand/10 px-1.5 py-0.5 font-mono text-[10px] text-brand-ink">news</span>
+                    <span class="rounded-[5px] bg-ink/[0.05] px-1.5 py-0.5 font-mono text-[10px] text-muted-ink">product</span>
+                  </span>
+                </div>
+              </div>
+            )}
+            {f.id === "ask" && (
+              <div class="flex w-[250px] flex-col gap-2">
+                <p class="ml-auto w-fit rounded-xl rounded-br-sm bg-ink px-3 py-2 text-[11.5px] text-ground">Make the hero headline bolder</p>
+                <div class="float-card w-fit rounded-xl rounded-bl-sm px-3 py-2">
+                  <p class="flex items-center gap-1.5 text-[11.5px]"><span class="size-1.5 rounded-full bg-live" />Updated in a draft</p>
+                  <p class="mt-1.5 font-mono text-[10px] text-faint"><span class="text-brand">~</span> sections/Hero.astro</p>
+                </div>
+              </div>
+            )}
+            {f.id === "preview" && (
+              <div class="flex items-end gap-3">
+                <div class="float-card h-32 w-48 rounded-lg p-3">
+                  <div class="h-1.5 w-1/3 rounded-full bg-ink/15" />
+                  <div class="mt-2.5 h-12 rounded-md bg-brand/15" />
+                  <div class="mt-2.5 h-1.5 w-4/5 rounded-full bg-ink/[0.07]" />
+                  <div class="mt-1.5 h-1.5 w-3/5 rounded-full bg-ink/[0.07]" />
+                </div>
+                <div class="float-card h-28 w-14 rounded-lg p-1.5">
+                  <div class="h-7 rounded-sm bg-brand/15" />
+                  <div class="mt-1.5 h-1 w-full rounded-full bg-ink/[0.07]" />
+                  <div class="mt-1 h-1 w-2/3 rounded-full bg-ink/[0.07]" />
+                </div>
+              </div>
+            )}
+            {f.id === "publish" && (
+              <div class="float-card w-[230px] rounded-xl px-3 py-2 font-mono text-[10.5px]">
+                {[
+                  ["build", "4.1s"],
+                  ["upload", "38 files"],
+                ].map(([k, v]) => (
+                  <p class="flex justify-between border-b border-dashed border-hairline-strong py-1.5 text-muted-ink">
+                    <span>{k}</span>
+                    <span class="text-live">✓ {v}</span>
                   </p>
-                </div>
-              )}
-              {f.id === "preview" && (
-                <div class="flex items-end gap-3">
-                  <div class="h-24 w-40 rounded-md border border-hairline-strong bg-panel p-2.5">
-                    <div class="h-1.5 w-1/3 rounded-full bg-hairline-strong" />
-                    <div class="mt-2 h-9 rounded-sm bg-brand/20" />
-                    <div class="mt-2 h-1.5 w-4/5 rounded-full bg-hairline" />
-                  </div>
-                  <div class="h-20 w-11 rounded-md border border-hairline-strong bg-panel p-1.5">
-                    <div class="h-6 rounded-sm bg-brand/20" />
-                    <div class="mt-1.5 h-1 w-full rounded-full bg-hairline" />
-                  </div>
-                </div>
-              )}
-              {f.id === "publish" && (
-                <ul class="w-48 space-y-2 font-mono text-[0.65rem] text-muted-ink">
-                  <li class="flex justify-between"><span>build</span><span class="text-live">✓ 4.1s</span></li>
-                  <li class="flex justify-between"><span>upload</span><span class="text-live">✓ 38 files</span></li>
-                  <li class="flex justify-between text-ink"><span>live</span><span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />your-site.com</span></li>
-                </ul>
-              )}
-              {f.id === "history" && (
-                <ul class="relative w-48 space-y-3 pl-5 font-mono text-[0.65rem] text-muted-ink before:absolute before:bottom-1.5 before:left-[3px] before:top-1.5 before:w-px before:bg-hairline-strong">
-                  <li class="relative text-ink"><span class="absolute -left-5 top-1 size-[7px] rounded-full bg-brand" />Add pricing page</li>
-                  <li class="relative"><span class="absolute -left-5 top-1 size-[7px] rounded-full bg-hairline-strong" />Tweak hero copy</li>
-                  <li class="relative"><span class="absolute -left-5 top-1 size-[7px] rounded-full bg-hairline-strong" />Publish v1</li>
-                </ul>
-              )}
-              {f.id === "repo" && (
-                <ul class="w-48 space-y-1.5 font-mono text-[0.65rem] text-muted-ink">
-                  <li>▾ src/</li>
-                  <li class="pl-4">▾ content/blog/en/</li>
-                  <li class="pl-8 text-ink">launch.md</li>
-                  <li class="pl-4">▸ pages/</li>
-                  <li>astro.config.mjs</li>
-                </ul>
-              )}
-            </div>
-            <h3 class="mt-6 text-[0.95rem] font-medium tracking-tight">{f.title}</h3>
-            <p class="mt-1.5 text-[0.85rem] leading-relaxed text-muted-ink">{f.body}</p>
+                ))}
+                <p class="flex justify-between py-1.5">
+                  <span>live</span>
+                  <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />your-site.com</span>
+                </p>
+              </div>
+            )}
+            {f.id === "history" && (
+              <svg class="w-[250px] overflow-visible" viewBox="0 0 250 110" fill="none">
+                <path d="M10 70H240" class="stroke-ink/20" stroke-width="1.5" />
+                <path d="M70 70C95 70 95 30 120 30H160C185 30 185 70 210 70" class="stroke-brand" stroke-width="1.5" />
+                {[10, 70, 210, 240].map((x) => <circle cx={x} cy="70" r="4" class="fill-panel stroke-ink/40" stroke-width="1.5" />)}
+                {[120, 160].map((x) => <circle cx={x} cy="30" r="4" class="fill-panel stroke-brand" stroke-width="1.5" />)}
+                <text x="120" y="16" class="fill-brand font-mono" font-size="9">draft/pricing</text>
+                <text x="10" y="92" class="fill-faint font-mono" font-size="9">main</text>
+                <text x="196" y="92" class="fill-faint font-mono" font-size="9">merged</text>
+              </svg>
+            )}
+            {f.id === "repo" && (
+              <div class="float-card w-[230px] rounded-xl px-3 py-2.5 font-mono text-[10.5px] leading-[1.9] text-muted-ink">
+                <p>▾ src/</p>
+                <p class="pl-3">▾ content/blog/en/</p>
+                <p class="-mx-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">launch.md</p>
+                <p class="pl-3">▸ pages/</p>
+                <p>astro.config.mjs</p>
+              </div>
+            )}
           </div>
-        </li>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-[17px] font-medium tracking-[-0.02em]">{f.title}</h3>
+            <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{f.body}</p>
+          </div>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </section>

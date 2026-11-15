@@ -1,36 +1,38 @@
 ---
+import Selection from "@/components/landing/Selection.astro";
+import Serif from "@/components/landing/Serif.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
+
+const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
+// Faint Markdown "paper" behind the closing headline.
+const lines = [
+  "---", 'title: "Introducing Orso 1.0"', "pubDate: 2026-11-15", "categories: [product]", "---", "",
+  "# A studio for the site you already own", "", "Edit it here, or ask your agent.", "Preview every draft.",
+  "Publish static files anywhere.", "", "## What changed", "- Forms for every collection", "- Drafts with live preview",
+  "- Checkpoints in git", "",
+];
 ---
 
-<section class="relative" id="cta">
-  <div class="px-6 py-20 sm:px-10 sm:py-28">
-    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Get started</span>
-    <h2 class="mt-6 max-w-4xl text-h1">
-      Free, open, and yours — <span class="font-serif font-normal tracking-[-0.02em]">all the way down.</span>
+<section id="get-started" class="relative scroll-mt-14 overflow-hidden px-6 py-28 sm:px-10">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 select-none overflow-hidden whitespace-pre px-10 py-6 font-mono text-[13px] leading-[1.9] text-ink/[0.07] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_100%)]"
+  >
+    {[...lines, ...lines].join("\n")}
+  </div>
+
+  <div class="relative flex flex-col items-center gap-7 text-center" data-reveal>
+    <h2 class="max-w-3xl text-[40px] font-medium leading-[1.04] tracking-[-0.04em] text-balance sm:text-[56px]">
+      Edit the site you <Serif>already</Serif> <Selection label="main · your-repo">own</Selection>.
     </h2>
-    <p class="mt-6 max-w-md text-body text-muted-ink">
-      Bring the agent you already pay for. Keep the Astro site you already own. macOS app first.
+    <p class="max-w-md pt-2 text-[15.5px] leading-relaxed text-pretty text-muted-ink">
+      Bring the agent you already pay for. Keep the Astro site you already have. Free and open source.
     </p>
-    <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-      <a
-        class={buttonVariants({
-          size: "lg",
-          className: "btn-gloss h-10 rounded-full px-5 text-[0.82rem]",
-        })}
-        href={href("/download/")}
-      >
-        Get Orso
-      </a>
-      <a
-        class="group inline-flex items-center gap-2 text-label text-ink/80 transition-colors hover:text-ink"
-        href={site.repo}
-        rel="noopener"
-      >
-        Read the code
-        <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
-      </a>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>
+      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={site.repo} rel="noopener">Read the code</a>
     </div>
   </div>
 </section>

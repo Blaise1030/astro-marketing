@@ -1,27 +1,20 @@
 ---
 import { FaqList } from "@/components/faq-list";
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Serif from "@/components/landing/Serif.astro";
 import { faqs } from "@/lib/faqs";
 import { href } from "@/lib/href";
 ---
 
-<section class="px-6 py-16 sm:px-10 sm:py-24" id="faq">
-  <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-    <div class="lg:sticky lg:top-24 lg:self-start">
-      <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">FAQ</span>
-      <h2 class="mt-5 text-h2">
-        Questions, <span class="font-serif font-normal tracking-[-0.02em]">answered.</span>
-      </h2>
-      <p class="mt-5 max-w-xs text-body text-muted-ink">
-        Anything else, write to the team. A person replies, not a ticket bot.
-      </p>
-      <a
-        class="mt-7 inline-flex items-center gap-2 text-label text-muted-ink transition-colors hover:text-ink"
-        href={href("/help/")}
-      >
-        Read the help docs
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-    <FaqList faqs={[...faqs]} client:idle />
+<section id="faq" class="grid scroll-mt-14 gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+  <div class="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
+    <SectionIntro tag="FAQ">
+      Questions, <Serif>answered</Serif>.
+      <Fragment slot="lead">Anything else, write to the team. A person replies, not a ticket bot.</Fragment>
+    </SectionIntro>
+    <a class="group inline-flex w-fit items-center gap-2 text-[13.5px] font-medium text-muted-ink transition-colors hover:text-ink" href={href("/help/")}>
+      Read the help docs <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+    </a>
   </div>
+  <FaqList faqs={[...faqs]} client:idle />
 </section>

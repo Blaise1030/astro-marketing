@@ -1,33 +1,44 @@
 ---
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Serif from "@/components/landing/Serif.astro";
+
 const before = [
-  "Export everything out of a hosted CMS",
-  "Rebuild the site in a per-seat page builder",
-  "Wait on a developer to change a headline",
-  "Lose the site when the subscription ends",
+  "Content exported out of a hosted CMS",
+  "The site rebuilt in a per-seat page builder",
+  "“Can someone change this headline?”",
+  "A site that leaves when the subscription does",
 ];
+const badge = "grid size-5 place-items-center rounded-full text-white";
 ---
 
-<section class="py-16 sm:py-24" id="stack">
-  <div class="px-6 sm:px-10" data-reveal>
-    <span class="rounded-sm bg-brand/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand">Repo</span>
-    <h2 class="mt-5 max-w-2xl text-h2">
-      Your content is a <span class="font-serif font-normal tracking-[-0.02em]">file,</span> not a subscription.
-    </h2>
-    <p class="mt-5 max-w-lg text-body text-muted-ink">
-      Every edit — yours or your agent's — lands as Markdown in the Astro repo you already own. No new CMS account, no
-      export button, nothing to migrate.
-    </p>
+<section id="handoff" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Repo">
+      Your content is a <Serif>file</Serif>, not a subscription.
+      <Fragment slot="lead">
+        Every edit — yours or your agent's — lands as Markdown in the Astro repo you already own. Nothing to export,
+        nothing to migrate.
+      </Fragment>
+    </SectionIntro>
   </div>
 
-  <div class="mt-12 grid border-y border-hairline md:grid-cols-2" data-reveal style="--d: 120ms">
-    <div class="border-hairline p-6 sm:p-10 md:border-r">
-      <p class="flex items-center gap-2 text-[0.7rem] uppercase tracking-widest text-faint">
-        <span class="size-1.5 rounded-full bg-hairline-strong"></span>Before
-      </p>
-      <ul class="mt-6">
+  <div class="grid md:grid-cols-2" data-reveal style="--d: 100ms">
+    <div class="flex flex-col gap-5 pb-10 md:pb-0 md:pr-10">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-ink/20 shadow-[0_0_0_3px_color-mix(in_oklab,var(--palette-ink)_4%,transparent)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">before</span>
+      </span>
+      <ul class="flex flex-col">
         {
-          before.map((item) => (
-            <li class="border-t border-dashed border-hairline-strong py-3.5 text-[0.85rem] text-faint line-through decoration-faint/50 last:border-b">
+          before.map((item, i) => (
+            <li
+              class:list={[
+                "py-3.5 text-[15.5px] font-medium tracking-[-0.015em] text-faint line-through decoration-ink/20",
+                i > 0 && "border-t border-dashed border-hairline-strong",
+              ]}
+            >
               {item}
             </li>
           ))
@@ -35,25 +46,29 @@ const before = [
       </ul>
     </div>
 
-    <div class="p-6 sm:p-10">
-      <p class="flex items-center gap-2 text-[0.7rem] uppercase tracking-widest text-brand">
-        <span class="size-1.5 rounded-full bg-brand"></span>With Orso
-      </p>
-      <div class="mt-6 overflow-hidden rounded-lg border border-hairline-strong bg-panel">
-        <div class="flex items-center justify-between border-b border-hairline px-4 py-2 font-mono text-[0.68rem] text-faint">
-          <span>src/content/blog/en/launch.md</span>
-          <span aria-hidden="true">⧉</span>
-        </div>
-        <pre class="overflow-x-auto p-4 font-mono text-[0.75rem] leading-relaxed text-muted-ink"><code><span class="text-faint">---</span>
-<span class="text-brand">title</span>: <span class="text-ink">"Introducing Orso 1.0"</span>
-<span class="text-brand">pubDate</span>: <span class="text-ink">2026-11-15</span>
-<span class="text-brand">categories</span>: [<span class="text-ink">product</span>]
+    <div class="flex flex-col gap-5 border-t border-dashed border-hairline-strong pt-10 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-brand shadow-[0_0_0_3px_rgb(47_108_236/0.14)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">with orso</span>
+      </span>
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="flex h-10 items-center justify-between border-b border-hairline px-4">
+            <span class="font-mono text-[11.5px] text-muted-ink">src/content/blog/en/launch.md</span>
+            <span class="rounded-md px-1.5 py-0.5 font-mono text-[10.5px] text-faint shadow-[0_0_0_1px_color-mix(in_oklab,var(--palette-ink)_8%,transparent)]">copy</span>
+          </div>
+          <pre class="overflow-x-auto p-4 font-mono text-[12.5px] leading-[1.75] text-muted-ink"><code><span class="text-faint">---</span>
+<span class="text-brand-ink">title</span>: <span class="text-ink">"Introducing Orso 1.0"</span>
+<span class="text-brand-ink">pubDate</span>: <span class="text-ink">2026-11-15</span>
+<span class="text-brand-ink">categories</span>: [<span class="text-ink">product</span>]
 <span class="text-faint">---</span>
 
 <span class="text-ink">A studio for the site you already own.</span>
 Edit it here, or ask your agent.</code></pre>
+        </div>
       </div>
-      <p class="mt-4 text-[0.8rem] text-muted-ink">Plain Markdown. Diff it, review it, keep it forever.</p>
     </div>
   </div>
 </section>

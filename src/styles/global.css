@@ -19,21 +19,22 @@
   color-scheme: light;
 
   /* Ground, ink and rules */
-  --palette-ground: #f7f7f5;
+  --palette-ground: #fcfcfc;
   --palette-panel: #ffffff;
-  --palette-raised: #eeedeb;
-  --palette-ink: #0b0b0b;
-  --palette-muted-ink: #565656;
-  --palette-faint: #6e6e6e;
-  --palette-hairline: #e2e1dd;
-  --palette-hairline-strong: #c8c7c2;
+  --palette-raised: #f6f6f7;
+  --palette-ink: #1d1d1f;
+  --palette-muted-ink: #6b6b70;
+  --palette-faint: #8e8e93;
+  --palette-hairline: #ededee;
+  --palette-hairline-strong: #e1e1e3;
 
   /* Signals */
   --palette-live: #0f7a45;
   --palette-brand: #2f6cec;
   --palette-brand-pressed: #1f5cd8;
+  --palette-brand-ink: #1f5cd8;
   --palette-on-brand: #ffffff;
-  --palette-link: #0b0b0b;
+  --palette-link: #1d1d1f;
   --palette-danger: #d92d20;
   --palette-focus-ring: #1f5cd8;
 
@@ -60,20 +61,21 @@
 .dark {
   color-scheme: dark;
 
-  --palette-ground: #080808;
-  --palette-panel: #0c0c0c;
-  --palette-raised: #121212;
-  --palette-ink: #f5f5f5;
-  --palette-muted-ink: #9a9a9a;
-  --palette-faint: #7a7a7a;
-  --palette-hairline: #232323;
-  --palette-hairline-strong: #383838;
+  --palette-ground: #0b0b0c;
+  --palette-panel: #161618;
+  --palette-raised: #101012;
+  --palette-ink: #ededee;
+  --palette-muted-ink: #a1a1a6;
+  --palette-faint: #76767b;
+  --palette-hairline: #1b1b1d;
+  --palette-hairline-strong: #29292c;
 
   --palette-live: #86e7b0;
   --palette-brand: #2f6cec;
   --palette-brand-pressed: #1f5cd8;
+  --palette-brand-ink: #8fb0ff;
   --palette-on-brand: #ffffff;
-  --palette-link: #f5f5f5;
+  --palette-link: #ededee;
   --palette-danger: #ff6467;
   --palette-focus-ring: #7d9df0;
 
@@ -113,20 +115,20 @@
   }
 
   /* Fonts — must mirror the fontFamily stack in DESIGN.md */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+  --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-heading: var(--font-sans);
 
   /* Type scale */
-  --text-h1: clamp(2.9rem, 6.8vw, 4.75rem);
-  --text-h1--line-height: 1.02;
-  --text-h1--letter-spacing: -0.045em;
+  --text-h1: clamp(2.75rem, 6vw, 4rem);
+  --text-h1--line-height: 1.03;
+  --text-h1--letter-spacing: -0.04em;
   --text-h1--font-weight: 500;
 
-  --text-h2: clamp(2.1rem, 4.2vw, 3.25rem);
-  --text-h2--line-height: 1.04;
-  --text-h2--letter-spacing: -0.04em;
+  --text-h2: clamp(2.125rem, 3.6vw, 2.625rem);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.035em;
   --text-h2--font-weight: 500;
 
   --text-h3: 1.1875rem;
@@ -183,6 +185,7 @@
   --color-live: var(--palette-live);
   --color-brand: var(--palette-brand);
   --color-brand-pressed: var(--palette-brand-pressed);
+  --color-brand-ink: var(--palette-brand-ink);
   --color-on-brand: var(--palette-on-brand);
   --color-link: var(--palette-link);
   --color-danger: var(--palette-danger);
@@ -310,22 +313,92 @@
    * near-black ground. The only gradient on the site outside the horizon washes.
    */
   .btn-gloss {
-    background-image: linear-gradient(to bottom, #4576ee 0%, #2f6cec 50%, #2160e2 100%);
+    background-image: linear-gradient(#4a80f0, #2763e6);
+    color: #fff;
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.28),
-      inset 0 -1px 0 rgb(0 0 0 / 0.18),
-      var(--btn-lift);
+      0 0 0 1px #1b4fc4,
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 -3px 6px -3px rgb(10 30 90 / 0.18),
+      0 1px 1px rgb(20 60 160 / 0.12),
+      0 2px 4px rgb(20 60 160 / 0.16);
+    transition:
+      filter 150ms ease-out,
+      scale 150ms ease-out;
   }
-
   .btn-gloss:hover {
-    background-image: linear-gradient(to bottom, #5384f1 0%, #3a76ee 50%, #2a68e8 100%);
+    filter: brightness(1.06);
   }
 
-  .btn-gloss:active {
-    background-image: linear-gradient(to bottom, #1f5cd8 0%, #2663e6 54%, #3a75ee 100%);
+  /* The quiet companion: a surface key with a hairline ring */
+  .btn-quiet {
+    background-image: linear-gradient(var(--palette-panel), color-mix(in oklab, var(--palette-panel), var(--palette-ink) 3%));
+    color: var(--palette-ink);
     box-shadow:
-      inset 0 1px 2px rgb(0 0 0 / 0.25),
-      inset 0 -1px 0 rgb(255 255 255 / 0.18);
+      0 0 0 1px color-mix(in oklab, var(--palette-ink) 9%, transparent),
+      0 1px 1px rgb(0 0 0 / 0.03),
+      0 2px 4px rgb(0 0 0 / 0.04);
+    transition:
+      filter 150ms ease-out,
+      scale 150ms ease-out;
+  }
+  .btn-quiet:hover {
+    filter: brightness(0.97);
+  }
+  .btn-gloss:active,
+  .btn-quiet:active {
+    scale: 0.97;
+  }
+
+  /* Frame: an outer tray with a hairline ring holding an inner surface */
+  .frame {
+    border-radius: 22px;
+    padding: 6px;
+    background: color-mix(in oklab, var(--palette-panel) 50%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--palette-ink) 7%, transparent);
+  }
+  .frame-inner {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--palette-panel);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--palette-ink) 6%, transparent),
+      0 1px 2px -1px rgb(0 0 0 / 0.06),
+      0 2px 4px 0 rgb(0 0 0 / 0.04);
+  }
+
+  /* Dotted well behind feature illustrations */
+  .dot-well {
+    background-color: var(--palette-raised);
+    background-image: radial-gradient(circle, color-mix(in oklab, var(--palette-ink) 7%, transparent) 1px, transparent 1px);
+    background-size: 14px 14px;
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--palette-ink) 4%, transparent);
+  }
+
+  /* A floating surface inside a well */
+  .float-card {
+    background: var(--palette-panel);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--palette-ink) 6%, transparent),
+      0 1px 2px rgb(0 0 0 / 0.04),
+      0 8px 20px -10px rgb(0 0 0 / 0.15);
+  }
+
+  /* Rails: the double hairline down each side of the framed column */
+  .rails::before,
+  .rails::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.5rem;
+    border-inline: 1px solid var(--palette-hairline);
+    pointer-events: none;
+  }
+  .rails::before {
+    left: 0;
+  }
+  .rails::after {
+    right: 0;
   }
 }
 
