@@ -39,32 +39,32 @@ themes:
     focus-ring: "#1f5cd8"
 typography:
   h1:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2.75rem, 6vw, 4rem)"
     fontWeight: 500
     lineHeight: 1.03
   h2:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2.125rem, 3.6vw, 2.625rem)"
     fontWeight: 500
     lineHeight: 1.08
   h3:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 1.1875rem
     fontWeight: 500
     lineHeight: 1.3
   body:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.9375rem
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.8125rem
     fontWeight: 500
     lineHeight: 1.5
   eyebrow:
-    fontFamily: "Inter Variable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist Variable, Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: 0.6875rem
     fontWeight: 500
     lineHeight: 1.4
@@ -86,7 +86,7 @@ spacing:
 
 ## Overview
 
-A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Headlines are left-aligned Inter at medium weight with one Source Serif accent phrase; small mono labels (Geist Mono) carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
+A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Headlines are left-aligned Geist at medium weight with one Source Serif accent phrase; small mono labels (Geist Mono) carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
 
 ## Themes
 

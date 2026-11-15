@@ -36,7 +36,7 @@ const canonical = canonicalUrl(Astro.url);
 const ogImage = absoluteUrl(image ?? "/og.png");
 const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const structuredData = [organizationJsonLd(Astro.url), ...extraLd];
-import "@fontsource-variable/inter";
+import "@fontsource-variable/geist";
 import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/geist-mono";
 ---
