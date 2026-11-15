@@ -1,0 +1,90 @@
+---
+import Accent from "@/components/landing/Accent.astro";
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import { Bot, GitPullRequest, Globe, History, KeyRound, Workflow } from "lucide-react";
+
+// Why content is better off as files in a GitHub repo than behind a CMS API.
+const reasons = [
+  {
+    Icon: Bot,
+    title: "Agents can actually work on it",
+    body: "Content in files can be searched, read and edited by any coding agent. Behind a CMS API, the agent can't see it, so every change needs a person to copy it across.",
+    on: "plain files",
+  },
+  {
+    Icon: History,
+    title: "Every change has a history",
+    body: "Who changed what, when and why — for every word, image and page. Any earlier version is one step away, with nothing extra to set up.",
+    on: "commits",
+  },
+  {
+    Icon: GitPullRequest,
+    title: "Review built in",
+    body: "Changes go through the same review your developers already trust: comments, approvals, and rules about who can publish.",
+    on: "pull requests",
+  },
+  {
+    Icon: Globe,
+    title: "A preview for every change",
+    body: "Each draft gets its own link that anyone can open, so feedback happens on the real page before it goes live.",
+    on: "preview deploys",
+  },
+  {
+    Icon: Workflow,
+    title: "Checks that run themselves",
+    body: "Broken links, missing images or off-brand copy can be caught automatically on every change, before a reviewer even looks.",
+    on: "actions",
+  },
+  {
+    Icon: KeyRound,
+    title: "Yours, for good",
+    body: "One account system, one bill, one place for code and content. Markdown in your own repo outlives any tool — including Orso.",
+    on: "your repo",
+  },
+];
+
+// Dashed grid rules: 1 column → 2 (md) → 3 (xl), with the outer gutters trimmed.
+const cell = [
+  "md:border-t-0 md:border-l-0 md:pl-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-t-0 md:border-l md:pr-0 xl:border-l xl:px-8",
+  "border-t md:border-l-0 md:pl-0 xl:border-t-0 xl:border-l xl:pr-0 xl:pl-8",
+  "border-t md:border-l md:pr-0 xl:border-l-0 xl:pr-8 xl:pl-0",
+  "border-t md:border-l-0 md:pl-0 xl:border-l xl:px-8",
+  "border-t md:border-l md:pr-0 xl:border-l xl:pr-0 xl:pl-8",
+];
+---
+
+<section id="why-github" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
+    <SectionIntro tag="Why GitHub">
+      Content belongs <Accent>in the repo</Accent>.
+      <Fragment slot="lead">
+        Once your content is files in GitHub, it gets everything your code already has — and your team gets it without
+        ever opening GitHub.
+      </Fragment>
+    </SectionIntro>
+  </div>
+
+  <div class="grid md:grid-cols-2 xl:grid-cols-3">
+    {
+      reasons.map(({ Icon, title, body, on }, i) => (
+        <div
+          class:list={["flex flex-col gap-4 border-dashed border-hairline-strong py-8 md:px-8", cell[i]]}
+          data-reveal
+          style={`--d: ${(i % 3) * 90}ms`}
+        >
+          <div class="flex items-center justify-between">
+            <span class="float-card grid size-9 place-items-center rounded-[10px]">
+              <Icon className="size-4 text-brand" strokeWidth={1.75} aria-hidden="true" />
+            </span>
+            <span class="font-mono text-[10.5px] text-faint">on github: {on}</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-[17px] font-medium tracking-[-0.02em]">{title}</h3>
+            <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{body}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
