@@ -151,7 +151,7 @@ Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rou
 
 ## Logo
 
-A bear head in profile: a solid round head, two round ears, a short pointed snout facing right, and two tilted pill eyes cut out of the head. The mark is monochrome only, one path in `currentColor` (`src/components/landing/Logo.astro`), with the eyes drawn as holes so it works on any background. Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path and switches between near-black and near-white with `prefers-color-scheme`.
+A front-facing bear head: a broad, heavy head that tapers to a pointed muzzle, two round ears with inner-ear cut-outs, two slanted brow-like eyes angled inward, and a small triangular nose cut out above the muzzle tip. The mark is monochrome only, one path in `currentColor` (`src/components/landing/Logo.astro`), with the eyes drawn as holes so it works on any background. Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path and switches between near-black and near-white with `prefers-color-scheme`.
 
 ## Components
 
