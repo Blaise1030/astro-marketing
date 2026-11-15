@@ -25,7 +25,39 @@ On Linux (or a Mac without Homebrew), use the installer script from the [Orso RE
 
 Choose **New project**, then start from the Astro marketing template or pick a repository from GitHub. Sign in to GitHub when asked. Orso installs what the site needs and starts a live preview.
 
-A site that wasn't made from the template needs a little setup first — see [Use Orso with an existing site](/help/use-orso-with-an-existing-site/).
+## Set up an existing Astro site
+
+Sites made from the template are ready to go. For your own Astro site, add Orso to `astro.config.mjs` so the preview works inside Orso and your content shows up under **Content**:
+
+```js
+import { defineConfig } from "astro/config";
+import { orso } from "./integrations/orso/index.js";
+
+// Orso serves the live preview under /preview/{project}/.
+const base = process.env.PUBLIC_BASE ?? "/";
+const hmrPort = Number(process.env.ORSO_DEV_PORT || process.env.ORSO_PROXY_PORT || 0);
+
+export default defineConfig({
+  base,
+  integrations: [/* your integrations */, orso()],
+  vite: {
+    server: {
+      hmr: {
+        path: `${base}vite-hmr`.replace(/\/{2,}/g, "/"),
+        ...(hmrPort > 0 ? { clientPort: hmrPort } : {}),
+      },
+    },
+  },
+});
+```
+
+That also needs Orso's integration copied into `integrations/orso/`, its packages installed, links that respect the base path, and content collections loaded with `orsoGlob`. You don't have to do this by hand — let your coding assistant do it with the Orso setup skill:
+
+```sh
+npx skills add Blaise1030/cms --skill setup-orso
+```
+
+Then ask your assistant (Claude Code, Codex, Cursor or OpenCode) to "set up this site for Orso". It checks your site, makes the changes on a separate branch for you to review, and confirms the preview and content work. [Use Orso with an existing site](/help/use-orso-with-an-existing-site/) lists everything it sets up.
 
 ## Edit content
 
