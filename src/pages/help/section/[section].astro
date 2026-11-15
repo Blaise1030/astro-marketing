@@ -1,32 +1,44 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/href";
+import DocRows from "../../../components/landing/DocRows.astro";
+import Divider from "../../../components/landing/Divider.astro";
+import PageHeader from "../../../components/landing/PageHeader.astro";
+import Rails from "../../../components/landing/Rails.astro";
+import Tag from "../../../components/landing/Tag.astro";
 import { loadHelp } from "../../../lib/help";
 export async function getStaticPaths() {
   const { categories } = await loadHelp(getCollection);
   return categories.map((category) => ({ params: { section: category.slug }, props: { category } }));
 }
 const { category } = Astro.props;
-const linkClass = "transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent";
+const rows = (docs: typeof category.loose) => docs.map((doc) => ({ href: `/help/${doc.id}/`, title: doc.data.title, description: doc.data.description }));
 ---
 <Base title={`${category.name} · Orso Help`} description={category.description} image="/og-help.png">
-  <section class="mx-auto max-w-7xl px-6 pt-8 pb-section sm:px-8 sm:py-section-wide" data-pagefind-ignore>
-    <a class="text-xs text-brand-muted transition-colors hover:text-brand-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent" href={href("/help/")}>← Help Center</a>
-    <h1 class="mt-8 font-semibold text-4xl tracking-tight text-balance sm:text-5xl">{category.name}</h1>
-    <p class="mt-4 text-lg leading-relaxed text-brand-muted">{category.description}</p>
-    {category.loose.length > 0 && (
-      <ul class="mt-10 divide-y divide-section-line border-y border-section-line">{category.loose.map((doc) => (
-        <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
-      ))}</ul>
-    )}
-    {category.subcategories.map((sub) => (
-      <section class="mt-12">
-        <h2 class="text-xs font-medium uppercase tracking-wide text-brand-muted">{sub.name}</h2>
-        <ul class="mt-4 divide-y divide-section-line border-y border-section-line">{sub.docs.map((doc) => (
-          <li><a class={`block py-4 ${linkClass}`} href={href(`/help/${doc.id}/`)}><span class="font-medium">{doc.data.title}</span><span class="mt-1 block text-sm text-brand-muted">{doc.data.description}</span></a></li>
-        ))}</ul>
-      </section>
-    ))}
-  </section>
+  <Rails>
+    <div data-pagefind-ignore>
+      <PageHeader tag="Help section" back={{ href: "/help/", label: "Help center" }} lead={category.description}>
+        {category.name}
+      </PageHeader>
+      {category.loose.length > 0 && (
+        <>
+          <Divider />
+          <section class="px-6 py-12 sm:px-10"><DocRows items={rows(category.loose)} /></section>
+        </>
+      )}
+      {category.subcategories.map((sub) => (
+        <>
+          <Divider />
+          <section class="grid gap-8 px-6 py-12 sm:px-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+            <div class="flex flex-col gap-3 lg:sticky lg:top-24 lg:self-start">
+              <Tag>{sub.name}</Tag>
+              <p class="font-mono text-[12px] text-faint">{sub.docs.length} {sub.docs.length === 1 ? "article" : "articles"}</p>
+            </div>
+            <DocRows items={rows(sub.docs)} />
+          </section>
+        </>
+      ))}
+      <Divider />
+    </div>
+  </Rails>
 </Base>

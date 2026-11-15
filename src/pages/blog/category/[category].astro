@@ -3,6 +3,10 @@ import { getCollection } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import BlogCard from "../../../components/BlogCard.astro";
 import BlogFilters from "../../../components/BlogFilters.astro";
+import Divider from "../../../components/landing/Divider.astro";
+import PageHeader from "../../../components/landing/PageHeader.astro";
+import Rails from "../../../components/landing/Rails.astro";
+import Serif from "../../../components/landing/Serif.astro";
 import { categoriesOf, categoryOf, slugify, sortPosts } from "../../../lib/blog";
 export async function getStaticPaths() {
   const posts = sortPosts(await getCollection("blog"));
@@ -15,9 +19,16 @@ export async function getStaticPaths() {
 const { category, categories, posts } = Astro.props;
 ---
 <Base title={`${category} · Orso Blog`} description={`Orso blog posts about ${category}.`} image="/og-blog.png">
-  <section class="mx-auto max-w-7xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <h1 class="sr-only">{category}</h1>
+  <Rails>
+    <PageHeader tag="Blog" back={{ href: "/blog/", label: "All posts" }}>
+      <span class="capitalize">{category}</span> <Serif>notes</Serif>.
+    </PageHeader>
+    <Divider />
     <BlogFilters categories={categories} active={category} />
-    <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <BlogCard post={post} />)}</div>
-  </section>
+    <Divider />
+    <section class="px-6 py-14 sm:px-10">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <BlogCard post={post} />)}</div>
+    </section>
+    <Divider />
+  </Rails>
 </Base>

@@ -19,7 +19,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 - `src/components/sections/*.astro` — one component per landing-page section (`Hero`, `ProductShot`, `Stack`, `HowItWorks`, `Features`, `Faq`, `Cta`). Each holds its own copy; its root `<section id>` is the anchor used by nav links (`#how-it-works`, `#features`, …).
 - `src/components/ui/*` — stock shadcn/ui primitives (Base UI + React), themed only through the token layer. `src/components/faq-list.tsx` composes the FAQ accordion into one island, `src/components/product-shot.tsx` builds the hero mock from Card/Skeleton/Badge/Bubble, and `src/lib/utils.ts` re-exports `cn`.
 - `components.json`, `tsconfig.json` — shadcn/ui configuration and the `@/*` → `src/*` import alias. The React integration is registered in `astro.config.mjs`.
-- `src/pages/blog/`, `src/pages/help/` — index and article routes for the collections.
+- `src/pages/blog/`, `src/pages/help/` — index and article routes for the collections. They share the landing page frame: `src/components/landing/` (`Rails`, `Divider`, `PageHeader`, `SectionIntro`, `TopicCard`, `DocRows`) and `proseClass` in `src/lib/prose.ts` for Markdown bodies.
 - `src/layouts/Base.astro` — header and footer (from `src/site.ts`); imports `src/styles/global.css`.
 - `src/styles/global.css` — Tailwind CSS v4 entry (`@import "tailwindcss"`, `shadcn/tailwind.css`, the typography plugin). Theme tokens go in an `@theme` block here; there is no `tailwind.config.js`. `@theme inline` maps shadcn/ui's semantic names onto the Orso palette.
 - `src/lib/href.ts` — base-aware link helper.
