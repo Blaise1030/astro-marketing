@@ -113,9 +113,9 @@ async function card({ eyebrow, lines, highlight, label, subtitle, filename }) {
 
 await card({
   eyebrow: "Open source project",
-  lines: ["Developer tools for", "the whole team."],
+  lines: ["Developer tools for", "content teams."],
   highlight: 1,
-  label: "team / marketing",
+  label: "team / content",
   subtitle: ["Drafts, previews and a Publish button over your repo,", "plus an AI agent anyone on the team can ask."],
   filename: "og.png",
 });

@@ -7,7 +7,7 @@ const features = [
   { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex edits the repo, never the live site." },
   { id: "preview", title: "Every draft, previewed", body: "Each change gets its own draft with a live desktop and mobile preview, so nothing ships early." },
   { id: "publish", title: "Static files, any host", body: "Publish plain static output through the workflow you already have. No runtime, no lock-in." },
-  { id: "history", title: "Content ops on GitHub", body: "Drafts are branches, reviews are pull requests, publishing is a merge. GitHub handles who can publish — no second login." },
+  { id: "history", title: "Review before it's live", body: "Drafts wait for a yes. Your team approves, then publishes, and every earlier version stays one click away." },
   { id: "repo", title: "Images are just files", body: "Upload an image and it lands in the repo next to the post. No media library, no CDN bill, nothing to migrate." },
 ];
 
@@ -26,10 +26,10 @@ const mono = "font-mono text-[10px] text-faint";
 <section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
     <SectionIntro tag="Studio">
-      Powerful underneath. <Accent>Plain</Accent> on top.
+      Everything your team needs to <Accent>run the site</Accent>.
       <Fragment slot="lead">
-        Each part of the studio is a developer tool your team never has to see: forms over Markdown, drafts over
-        branches, Publish over a merge. The page they edit is still the page that ships.
+        And nothing they have to learn first. Fields that match the page, an agent for the bigger changes, and a
+        preview of every draft. The page they edit is the page that ships.
       </Fragment>
     </SectionIntro>
   </div>
@@ -48,7 +48,7 @@ const mono = "font-mono text-[10px] text-faint";
                 <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
                   <span class={mono}>title</span>
                   <span class="relative rounded-md bg-ink/[0.04] px-2 py-1 text-[11px] outline-[1.5px] outline-brand outline-solid">
-                    Product launch
+                    Group bookings are here
                   </span>
                 </div>
                 <div class="border-t border-dashed border-hairline-strong" />
@@ -68,10 +68,10 @@ const mono = "font-mono text-[10px] text-faint";
             )}
             {f.id === "ask" && (
               <div class="flex w-[250px] flex-col gap-2">
-                <p class="ml-auto w-fit rounded-xl rounded-br-sm bg-ink px-3 py-2 text-[11.5px] text-ground">Make the hero headline bolder</p>
+                <p class="ml-auto w-fit rounded-xl rounded-br-sm bg-ink px-3 py-2 text-[11.5px] text-ground">Add group pricing to the pricing page</p>
                 <div class="float-card w-fit rounded-xl rounded-bl-sm px-3 py-2">
                   <p class="flex items-center gap-1.5 text-[11.5px]"><span class="size-1.5 rounded-full bg-live" />Updated in a draft</p>
-                  <p class="mt-1.5 font-mono text-[10px] text-faint"><span class="text-brand">~</span> sections/Hero.astro</p>
+                  <p class="mt-1.5 font-mono text-[10px] text-faint"><span class="text-brand">~</span> src/pages/pricing.astro</p>
                 </div>
               </div>
             )}
@@ -103,7 +103,7 @@ const mono = "font-mono text-[10px] text-faint";
                 ))}
                 <p class="flex justify-between py-1.5">
                   <span>live</span>
-                  <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />your-site.com</span>
+                  <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />fernway.com</span>
                 </p>
               </div>
             )}
@@ -122,10 +122,10 @@ const mono = "font-mono text-[10px] text-faint";
               <div class="float-card w-[230px] rounded-xl px-3 py-2.5 font-mono text-[10.5px] leading-[1.9] text-muted-ink">
                 <p>▾ src/</p>
                 <p class="pl-3">▾ content/blog/en/</p>
-                <p class="pl-6">launch.md</p>
+                <p class="pl-6">group-bookings.md</p>
                 <p class="pl-3">▾ assets/blog/</p>
                 <p class="-mx-1.5 flex items-center gap-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">
-                  launch-cover.png
+                  group-bookings.png
                   <span class="ml-auto mr-1.5 text-[9px] text-live">+ added</span>
                 </p>
                 <p>astro.config.mjs</p>

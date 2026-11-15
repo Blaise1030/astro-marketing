@@ -17,16 +17,16 @@ const layers = [
 
 const reasons = [
   {
-    title: "Speed shouldn't stop at engineering",
-    body: "Agents made changing a site in the repo fast. If only engineers can use them, everyone else files a ticket and waits, and the bottleneck is back.",
+    title: "No more tickets for a typo",
+    body: "If only engineers can change the site, everyone else files a ticket and waits. With Orso, the person who owns the words ships them.",
   },
   {
-    title: "On top, not in between",
-    body: "The usual fix, a CMS, sits between the agent and the content. Orso is a view over the same files, so the agent, the developer and the marketer all edit one source of truth.",
+    title: "People and agents, same rules",
+    body: "Whoever starts the change, a teammate or an agent, it ends the same way: a draft, a preview, and a person who hits Publish.",
   },
   {
-    title: "One stack for the whole team",
-    body: "No second login, no separate system to keep in sync, no content to migrate later. One repo, one review process, one history — with the people who own the words able to ship them.",
+    title: "One place for the content",
+    body: "No second system to keep in sync and nothing to migrate later. The agent, the developer and the marketer all edit the same files.",
   },
 ];
 ---
@@ -35,11 +35,11 @@ const reasons = [
   <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
     <div class="flex flex-col gap-6" data-reveal>
       <SectionIntro tag="The project">
-        Developer tools, <Accent>without the developer workflow</Accent>.
+        Your site runs on developer tools. <Accent>Your team never sees them</Accent>.
         <Fragment slot="lead">
-          Project Orso is an attempt to give the rest of the team the tools developers already have. Git, branches, pull
-          requests, preview deploys and coding agents do the work underneath; marketers, writers and founders see
-          drafts, previews and a Publish button. Nobody has to learn GitHub to run their content on it.
+          Agents made changing a site cheap. Handing it to the people who own the words still isn't. Orso gives
+          marketers, writers and founders drafts, previews and a Publish button. Each one needs a GitHub account, and
+          that's the last they'll see of GitHub.
         </Fragment>
       </SectionIntro>
       <p class="flex w-fit items-center gap-2.5 rounded-full bg-ink/[0.04] py-1.5 pl-2 pr-3.5 text-[13px] text-muted-ink">
@@ -57,10 +57,10 @@ const reasons = [
             <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d={toolLogos.github.path} />
             </svg>
-            underneath
+            in your repo
           </span>
           <span></span>
-          <span>what your team sees</span>
+          <span>in Orso</span>
         </div>
         <ul>
           {

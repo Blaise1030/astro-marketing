@@ -26,18 +26,18 @@ export function CopyCommand({ command, label = "Install with curl" }: Props) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-section-line bg-section-panel text-left shadow-action-secondary">
-      <div className="flex items-center justify-between gap-3 border-b border-section-line px-4 py-2.5">
-        <p className="text-xs font-medium text-brand-muted">{label}</p>
+    <div className="overflow-hidden bg-panel text-left">
+      <div className="flex items-center justify-between gap-3 border-b border-hairline px-5 py-3">
+        <p className="font-mono text-[11px] text-faint">{label}</p>
         <button
           type="button"
           onClick={copy}
-          className="rounded-full border border-section-line bg-linear-to-b from-secondary-top to-material px-2.5 py-1 text-xs font-medium text-brand-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+          className="btn-quiet rounded-[8px] px-2.5 py-1 text-[12px] font-medium text-ink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto bg-ground px-4 py-4 font-mono text-[0.8125rem] leading-relaxed text-brand-foreground sm:text-sm">
+      <pre className="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-relaxed text-ink sm:text-[14px]">
         <code ref={codeRef}>{command}</code>
       </pre>
     </div>

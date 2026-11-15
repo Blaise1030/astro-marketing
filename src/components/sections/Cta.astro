@@ -9,10 +9,10 @@ import { site } from "@/site";
 const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
 // Faint Markdown "paper" behind the closing headline.
 const lines = [
-  "---", 'title: "Introducing Orso 1.0"', "pubDate: 2026-11-15", "categories: [product]", "---", "",
-  "# A studio for the site you already own", "", "Edit it here, or ask your agent.", "Preview every draft.",
-  "Publish static files anywhere.", "", "## What changed", "- Forms for every collection", "- Drafts with live preview",
-  "- Checkpoints in git", "",
+  "---", 'title: "Group bookings are here"', "pubDate: 2026-11-15", "categories: [product]", "---", "",
+  "# Book the whole team in one link", "", "Share one page.", "Everyone picks a slot.",
+  "Fernway handles the rest.", "", "## What's new", "- Group links for up to 20 people", "- Shared calendars",
+  "- Reminders by email and SMS", "",
 ];
 ---
 
@@ -29,10 +29,10 @@ const lines = [
 
   <div class="relative flex flex-col items-center gap-7 text-center" data-reveal>
     <h2 class="max-w-3xl text-[40px] font-medium leading-[1.04] tracking-[-0.04em] text-balance sm:text-[56px]">
-      Give your team the tools. <Accent>Keep</Accent> the{" "}<Selection label="main · your-repo">repo</Selection>.
+      Let your team run the site. The <Selection label="main · your-repo">repo</Selection> stays <Accent>yours</Accent>.
     </h2>
     <p class="max-w-md pt-2 text-[15.5px] leading-relaxed text-pretty text-muted-ink">
-      Free and open source. Your developer sets it up once; everyone else just edits.
+      Free and open source. Your developer connects the repo once, and everyone else is editing in minutes.
     </p>
     <div class="flex flex-wrap justify-center gap-3">
       <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>

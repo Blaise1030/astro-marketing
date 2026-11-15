@@ -2,7 +2,7 @@
 export const site = {
   name: "Project Orso",
   description:
-    "Project Orso gives marketers, writers and founders the tools developers have — drafts, previews, pull requests and coding agents — behind forms and plain English. Free and open source.",
+    "Developer tools for content teams: drafts, previews, pull requests and coding agents behind forms and plain English. Free and open source.",
   nav: [
     { label: "Features", href: "/#features" },
     { label: "Workflow", href: "/#how-it-works" },
@@ -28,7 +28,7 @@ export const site = {
   footer: {
     text: "© 2026 Project Orso. Free and open source.",
     tagline:
-      "Developer tools for the whole team. Your content stays Markdown in a repo you own.",
+      "Developer tools for content teams. Your content stays Markdown in a repo you own.",
     columns: [
       {
         title: "Project",
