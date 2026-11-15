@@ -4,7 +4,7 @@ import Base from "../../../layouts/Base.astro";
 import Divider from "../../../components/landing/Divider.astro";
 import PageHeader from "../../../components/landing/PageHeader.astro";
 import Rails from "../../../components/landing/Rails.astro";
-import Serif from "../../../components/landing/Serif.astro";
+import Accent from "../../../components/landing/Accent.astro";
 import TopicCard from "../../../components/landing/TopicCard.astro";
 
 const categories = (await getCollection("helpDocsCategories")).sort(
@@ -16,7 +16,7 @@ const docsIn = (id: string) => docs.filter((doc) => doc.data.category === id);
 <Base title="Help categories" description="Browse Orso help guides by topic — getting started, editing, publishing, and troubleshooting." image="/og-help.png">
   <Rails>
     <PageHeader tag="Help" back={{ href: "/help/", label: "Help center" }}>
-      Guides by <Serif>topic</Serif>.
+      Guides by <Accent>topic</Accent>.
     </PageHeader>
     <Divider />
     <section class="px-6 py-14 sm:px-10">

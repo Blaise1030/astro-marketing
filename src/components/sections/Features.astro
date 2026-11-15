@@ -1,6 +1,6 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
-import Serif from "@/components/landing/Serif.astro";
+import Accent from "@/components/landing/Accent.astro";
 
 const features = [
   { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and page copy get real fields. Markdown is still one click away." },
@@ -26,7 +26,7 @@ const mono = "font-mono text-[10px] text-faint";
 <section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
     <SectionIntro tag="Studio">
-      Stop rebuilding what <Serif>already exists</Serif>.
+      Stop rebuilding what <Accent>already exists</Accent>.
       <Fragment slot="lead">
         Your site is already written in Astro. Orso puts a studio on top of it, so the page you edit is the page that
         ships.

@@ -1,7 +1,7 @@
 ---
 import { FaqList } from "@/components/faq-list";
 import SectionIntro from "@/components/landing/SectionIntro.astro";
-import Serif from "@/components/landing/Serif.astro";
+import Accent from "@/components/landing/Accent.astro";
 import { faqs } from "@/lib/faqs";
 import { href } from "@/lib/href";
 ---
@@ -9,7 +9,7 @@ import { href } from "@/lib/href";
 <section id="faq" class="grid scroll-mt-14 gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
   <div class="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
     <SectionIntro tag="FAQ">
-      Questions, <Serif>answered</Serif>.
+      Questions, <Accent>answered</Accent>.
       <Fragment slot="lead">Anything else, write to the team. A person replies, not a ticket bot.</Fragment>
     </SectionIntro>
     <a class="group inline-flex w-fit items-center gap-2 text-[13.5px] font-medium text-muted-ink transition-colors hover:text-ink" href={href("/help/")}>

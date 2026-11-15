@@ -69,8 +69,6 @@ typography:
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: 0.08em
-  serif:
-    fontFamily: "Source Serif 4 Variable, Source Serif 4, Georgia, serif"
   mono:
     fontFamily: "Geist Mono Variable, Geist Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
 rounded:
@@ -86,7 +84,7 @@ spacing:
 
 ## Overview
 
-A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Headlines are left-aligned Geist at medium weight with one Source Serif accent phrase; small mono labels (Geist Mono) carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
+A bright, framed product page in the manner of Aceternity's product landing template. One centred column (`max-w-6xl`) runs between double hairline rails; sections stack edge to edge inside it, separated by a hairline with a ringed dot pinned to each rail. Everything is set in Geist: headlines are left-aligned at medium weight (an accent phrase is marked with `Accent.astro` but shares the same face), and small mono labels in Geist Mono carry metadata. Product UI is shown in framed trays — an outer translucent tray with a hairline ring holding an inner surface — and illustrations float as small white cards on a dotted well. One blue action colour (`brand`), used for buttons, tags, selection boxes and nothing decorative.
 
 ## Themes
 
@@ -129,7 +127,7 @@ Roles are explicit; values are given dark / light and both live in the frontmatt
 
 ## Typography
 
-The system sans-serif stack throughout, at weight 500 for headings and 400 for body. Headings are large, tight and quiet (`-0.045em` on the hero, `-0.04em` on section headings) and use a clamped size: `text-h1` runs from 2.9rem to 4.75rem, `text-h2` from 2.1rem to 3.25rem. The signature headline pattern is two lines where the first line is `ink` and the second is `muted-ink`.
+Geist throughout (self-hosted via `@fontsource-variable/geist`), Geist Mono for labels, dates and code — no other faces. Headings are weight 500, body 400. `text-h1` runs from 2.75rem to 4rem (`-0.04em`), `text-h2` from 2.125rem to 2.625rem (`-0.035em`); both are left-aligned and balanced. A headline may mark one accent phrase with `Accent.astro`, which renders in the same face.
 
 Body copy is `text-body` (0.9375rem) at 1.65 line height, usually capped at 28–32rem. Labels and navigation are `text-label` (0.8125rem), and eyebrows are `text-eyebrow`: 0.6875rem, uppercase, lightly tracked, `faint`.
 
@@ -175,12 +173,12 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 ## Page frame
 
 - **Rails and dividers:** `.rails` draws an 8px double hairline down each side of the column (header, landing page and footer all use it). `components/landing/Divider.astro` is the section rule with its two ringed dots.
-- **Section intro:** `components/landing/SectionIntro.astro` — a tag (`Tag.astro`: `bg-brand/[0.08] text-brand-ink`, `rounded-md`, 12.5px), an `h2` (`text-h2`, medium, balanced) and an optional 15.5px lead. Accent phrases use `Serif.astro`.
+- **Section intro:** `components/landing/SectionIntro.astro` — a tag (`Tag.astro`: `bg-brand/[0.08] text-brand-ink`, `rounded-md`, 12.5px), an `h2` (`text-h2`, medium, balanced) and an optional 15.5px lead. Accent phrases use `Accent.astro` (Geist, same as the headline).
 - **Selection box:** `components/landing/Selection.astro` frames a word with a brand outline, four 7px corner handles and a mono label (top or bottom). Used once in the hero and once in the closing CTA.
 - **Surfaces:** `.frame` + `.frame-inner` (22px tray, 16px inner) for product windows, code and pricing cards; `.dot-well` for illustration wells; `.float-card` for the small UI pieces inside them.
 - **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
 - **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
-- **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional serif accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
+- **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
 - **Order:** Hero (pill, headline with selection box, CTAs, product window) → stack strip → Studio features (3×2) → Repo before/after → Workflow steps + agent window → statement + stats → Pricing → Compare → FAQ → CTA → footer.
 
 ## Do's and Don'ts

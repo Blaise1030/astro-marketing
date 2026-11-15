@@ -1,6 +1,6 @@
 ---
 import Selection from "@/components/landing/Selection.astro";
-import Serif from "@/components/landing/Serif.astro";
+import Accent from "@/components/landing/Accent.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
@@ -25,7 +25,7 @@ const lines = [
 
   <div class="relative flex flex-col items-center gap-7 text-center" data-reveal>
     <h2 class="max-w-3xl text-[40px] font-medium leading-[1.04] tracking-[-0.04em] text-balance sm:text-[56px]">
-      Edit the site you <Serif>already</Serif>{" "}<Selection label="main · your-repo">own</Selection>.
+      Edit the site you <Accent>already</Accent>{" "}<Selection label="main · your-repo">own</Selection>.
     </h2>
     <p class="max-w-md pt-2 text-[15.5px] leading-relaxed text-pretty text-muted-ink">
       Bring the agent you already pay for. Keep the Astro site you already have. Free and open source.

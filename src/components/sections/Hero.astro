@@ -1,6 +1,6 @@
 ---
 import Selection from "@/components/landing/Selection.astro";
-import Serif from "@/components/landing/Serif.astro";
+import Accent from "@/components/landing/Accent.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
@@ -24,7 +24,7 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
       Edit your site with the{" "}
       <Selection label="agent / claude" cycle={["agent / claude", "agent / cursor", "agent / codex"]}>agent</Selection>{" "}
-      you <Serif>already pay for</Serif>.
+      you <Accent>already pay for</Accent>.
     </h1>
 
     <p

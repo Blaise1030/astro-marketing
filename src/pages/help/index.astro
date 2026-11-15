@@ -7,7 +7,7 @@ import Divider from "../../components/landing/Divider.astro";
 import PageHeader from "../../components/landing/PageHeader.astro";
 import Rails from "../../components/landing/Rails.astro";
 import SectionIntro from "../../components/landing/SectionIntro.astro";
-import Serif from "../../components/landing/Serif.astro";
+import Accent from "../../components/landing/Accent.astro";
 import TopicCard from "../../components/landing/TopicCard.astro";
 import { href } from "../../lib/href";
 import { loadHelp } from "../../lib/help";
@@ -31,14 +31,14 @@ const { categories } = await loadHelp(getCollection);
 <Base title="Orso Help" description="Guides for editing content, previewing changes, and publishing your Astro site with Orso." image="/og-help.png">
   <Rails>
     <PageHeader tag="Help center" lead="Guides for editing content, previewing drafts and publishing your Astro site with Orso.">
-      How can we <Serif>help</Serif>?
+      How can we <Accent>help</Accent>?
       <div slot="after" class="max-w-xl pt-2"><HelpSearch /></div>
     </PageHeader>
     <Divider />
 
     {categories.length === 0 ? <p class="px-6 py-14 text-muted-ink sm:px-10">No help docs yet. Check back soon for guides and answers.</p> : (
       <section class="flex flex-col gap-12 px-6 py-16 sm:px-10">
-        <SectionIntro tag="Sections">Start with a <Serif>topic</Serif>.</SectionIntro>
+        <SectionIntro tag="Sections">Start with a <Accent>topic</Accent>.</SectionIntro>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <TopicCard

@@ -10,7 +10,7 @@ import Divider from "../../components/landing/Divider.astro";
 import PageHeader from "../../components/landing/PageHeader.astro";
 import Rails from "../../components/landing/Rails.astro";
 import SectionIntro from "../../components/landing/SectionIntro.astro";
-import Serif from "../../components/landing/Serif.astro";
+import Accent from "../../components/landing/Accent.astro";
 import { proseClass } from "../../lib/prose";
 export async function getStaticPaths() {
   const posts = sortPosts(await getCollection("blog"));
@@ -95,7 +95,7 @@ const jsonLd = blogPostingJsonLd({
         <Divider />
         <section class="flex flex-col gap-12 px-6 py-20 sm:px-10" aria-labelledby="keep-reading">
           <div class="flex flex-wrap items-end justify-between gap-4">
-            <SectionIntro tag="Keep reading"><span id="keep-reading">More from <Serif>Orso</Serif>.</span></SectionIntro>
+            <SectionIntro tag="Keep reading"><span id="keep-reading">More from <Accent>Orso</Accent>.</span></SectionIntro>
             <a class={`font-mono text-[12px] text-faint ${linkClass}`} href={href("/blog/")}>view all posts →</a>
           </div>
           <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{more.map((post) => <BlogCard post={post} />)}</div>

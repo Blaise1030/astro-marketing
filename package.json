@@ -19,7 +19,6 @@
     "@casoon/astro-site-files": "^0.7.2",
     "@fontsource-variable/geist": "^5.3.0",
     "@fontsource-variable/geist-mono": "^5.3.0",
-    "@fontsource-variable/source-serif-4": "^5.3.1",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",

@@ -4,7 +4,7 @@ import Base from "../../../layouts/Base.astro";
 import Divider from "../../../components/landing/Divider.astro";
 import PageHeader from "../../../components/landing/PageHeader.astro";
 import Rails from "../../../components/landing/Rails.astro";
-import Serif from "../../../components/landing/Serif.astro";
+import Accent from "../../../components/landing/Accent.astro";
 import TopicCard from "../../../components/landing/TopicCard.astro";
 
 const categories = (await getCollection("blogCategories")).sort(
@@ -16,7 +16,7 @@ const postsIn = (id: string) => posts.filter((post) => post.data.categories.incl
 <Base title="Blog categories" description="Browse Orso blog posts by topic — product updates, guides, company notes, and more." image="/og-blog.png">
   <Rails>
     <PageHeader tag="Blog" back={{ href: "/blog/", label: "Back to blog" }}>
-      Browse by <Serif>topic</Serif>.
+      Browse by <Accent>topic</Accent>.
     </PageHeader>
     <Divider />
     <section class="px-6 py-14 sm:px-10">
