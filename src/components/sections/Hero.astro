@@ -4,7 +4,7 @@ import Accent from "@/components/landing/Accent.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
 import { site } from "@/site";
-import ProductMockup from "./ProductMockup.astro";
+import HeroVideo from "./HeroVideo.astro";
 
 const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium tracking-[-0.01em]";
 ---
@@ -47,8 +47,9 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
   </div>
 
   <div class="frame motion-safe:animate-hero-in" style="animation-delay:320ms">
-    <div class="frame-inner h-[28rem] md:h-[36rem]">
-      <ProductMockup />
+    <!-- Same ratio as the recording (1920x1044), so it is never cropped -->
+    <div class="frame-inner aspect-[1920/1044]">
+      <HeroVideo />
     </div>
   </div>
 </section>

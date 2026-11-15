@@ -1,6 +1,7 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
+import { href } from "@/lib/href";
 
 const features = [
   { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and page copy get real fields. Markdown is still one click away." },
@@ -20,7 +21,18 @@ const cell = [
   "border-t md:border-l-0 md:pl-0 xl:border-l xl:px-8",
   "border-t md:border-l md:pr-0 xl:border-l xl:pr-0 xl:pl-8",
 ];
-const mono = "font-mono text-[10px] text-faint";
+// Real Orso screenshots per card, light + dark (`-dark`), captured at 2x from a demo project.
+const shots: Record<string, { src: string; w: number; h: number }[]> = {
+  write: [{ src: "write", w: 574, h: 400 }],
+  ask: [{ src: "ask", w: 872, h: 430 }],
+  preview: [{ src: "preview", w: 920, h: 396 }],
+  publish: [
+    { src: "publish-a", w: 446, h: 90 },
+    { src: "publish-b", w: 746, h: 140 },
+  ],
+  history: [{ src: "history", w: 574, h: 460 }],
+  repo: [{ src: "repo", w: 574, h: 512 }],
+};
 ---
 
 <section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
@@ -42,95 +54,29 @@ const mono = "font-mono text-[10px] text-faint";
           data-reveal
           style={`--d: ${(i % 3) * 90}ms`}
         >
-          <div class="dot-well relative grid h-60 place-items-center overflow-hidden rounded-[14px]" aria-hidden="true">
-            {f.id === "write" && (
-              <div class="float-card w-[244px] rounded-xl px-2.5 py-1.5">
-                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
-                  <span class={mono}>title</span>
-                  <span class="relative rounded-md bg-ink/[0.04] px-2 py-1 text-[11px] outline-[1.5px] outline-brand outline-solid">
-                    Group bookings are here
-                  </span>
-                </div>
-                <div class="border-t border-dashed border-hairline-strong" />
-                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
-                  <span class={mono}>pubDate</span>
-                  <span class="rounded-md bg-ink/[0.04] px-2 py-1 font-mono text-[10px]">2026-11-15</span>
-                </div>
-                <div class="border-t border-dashed border-hairline-strong" />
-                <div class="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 py-1.5">
-                  <span class={mono}>tags</span>
-                  <span class="flex gap-1">
-                    <span class="rounded-[5px] bg-brand/10 px-1.5 py-0.5 font-mono text-[10px] text-brand-ink">news</span>
-                    <span class="rounded-[5px] bg-ink/[0.05] px-1.5 py-0.5 font-mono text-[10px] text-muted-ink">product</span>
-                  </span>
-                </div>
+          <div class="dot-well relative flex h-60 flex-col items-center justify-center gap-3 overflow-hidden rounded-[14px] px-5" aria-hidden="true">
+            {shots[f.id].map((s) => (
+              <div class="float-card max-w-full overflow-hidden rounded-xl">
+                <img
+                  src={href(`/product/features/${s.src}.webp`)}
+                  width={s.w / 2}
+                  height={s.h / 2}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="block h-auto max-h-[200px] w-auto max-w-full dark:hidden"
+                />
+                <img
+                  src={href(`/product/features/${s.src}-dark.webp`)}
+                  width={s.w / 2}
+                  height={s.h / 2}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="hidden h-auto max-h-[200px] w-auto max-w-full dark:block"
+                />
               </div>
-            )}
-            {f.id === "ask" && (
-              <div class="flex w-[250px] flex-col gap-2">
-                <p class="ml-auto w-fit rounded-xl rounded-br-sm bg-ink px-3 py-2 text-[11.5px] text-ground">Add group pricing to the pricing page</p>
-                <div class="float-card w-fit rounded-xl rounded-bl-sm px-3 py-2">
-                  <p class="flex items-center gap-1.5 text-[11.5px]"><span class="size-1.5 rounded-full bg-live" />Updated in a draft</p>
-                  <p class="mt-1.5 font-mono text-[10px] text-faint"><span class="text-brand">~</span> src/pages/pricing.astro</p>
-                </div>
-              </div>
-            )}
-            {f.id === "preview" && (
-              <div class="flex items-end gap-3">
-                <div class="float-card h-32 w-48 rounded-lg p-3">
-                  <div class="h-1.5 w-1/3 rounded-full bg-ink/15" />
-                  <div class="mt-2.5 h-12 rounded-md bg-brand/15" />
-                  <div class="mt-2.5 h-1.5 w-4/5 rounded-full bg-ink/[0.07]" />
-                  <div class="mt-1.5 h-1.5 w-3/5 rounded-full bg-ink/[0.07]" />
-                </div>
-                <div class="float-card h-28 w-14 rounded-lg p-1.5">
-                  <div class="h-7 rounded-sm bg-brand/15" />
-                  <div class="mt-1.5 h-1 w-full rounded-full bg-ink/[0.07]" />
-                  <div class="mt-1 h-1 w-2/3 rounded-full bg-ink/[0.07]" />
-                </div>
-              </div>
-            )}
-            {f.id === "publish" && (
-              <div class="float-card w-[230px] rounded-xl px-3 py-2 font-mono text-[10.5px]">
-                {[
-                  ["build", "4.1s"],
-                  ["upload", "38 files"],
-                ].map(([k, v]) => (
-                  <p class="flex justify-between border-b border-dashed border-hairline-strong py-1.5 text-muted-ink">
-                    <span>{k}</span>
-                    <span class="text-live">✓ {v}</span>
-                  </p>
-                ))}
-                <p class="flex justify-between py-1.5">
-                  <span>live</span>
-                  <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-live" />fernway.com</span>
-                </p>
-              </div>
-            )}
-            {f.id === "history" && (
-              <svg class="w-[250px] overflow-visible" viewBox="0 0 250 110" fill="none">
-                <path d="M10 70H240" class="stroke-ink/20" stroke-width="1.5" />
-                <path d="M70 70C95 70 95 30 120 30H160C185 30 185 70 210 70" class="stroke-brand" stroke-width="1.5" />
-                {[10, 70, 210, 240].map((x) => <circle cx={x} cy="70" r="4" class="fill-panel stroke-ink/40" stroke-width="1.5" />)}
-                {[120, 160].map((x) => <circle cx={x} cy="30" r="4" class="fill-panel stroke-brand" stroke-width="1.5" />)}
-                <text x="120" y="16" class="fill-brand font-mono" font-size="9">draft/pricing</text>
-                <text x="10" y="92" class="fill-faint font-mono" font-size="9">main</text>
-                <text x="196" y="92" class="fill-faint font-mono" font-size="9">merged</text>
-              </svg>
-            )}
-            {f.id === "repo" && (
-              <div class="float-card w-[230px] rounded-xl px-3 py-2.5 font-mono text-[10.5px] leading-[1.9] text-muted-ink">
-                <p>▾ src/</p>
-                <p class="pl-3">▾ content/blog/en/</p>
-                <p class="pl-6">group-bookings.md</p>
-                <p class="pl-3">▾ assets/blog/</p>
-                <p class="-mx-1.5 flex items-center gap-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">
-                  group-bookings.png
-                  <span class="ml-auto mr-1.5 text-[9px] text-live">+ added</span>
-                </p>
-                <p>astro.config.mjs</p>
-              </div>
-            )}
+            ))}
           </div>
           <div class="flex flex-col gap-2">
             <h3 class="text-[17px] font-medium tracking-[-0.02em]">{f.title}</h3>
