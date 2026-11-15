@@ -178,24 +178,28 @@ import "@fontsource-variable/geist-mono";
             <button
               type="button"
               id="mobile-nav-toggle"
-              class="flex size-8 cursor-pointer items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink"
+              class="group flex size-8 cursor-pointer items-center justify-center rounded-[10px] btn-quiet text-muted-ink transition-colors hover:text-ink aria-expanded:text-ink"
               aria-label="Open menu"
               aria-expanded="false"
               aria-controls="mobile-nav"
             >
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-                <path d="M2 4h11M2 7.5h11M2 11h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <!-- Three bars that fold into an X while the menu is open -->
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+                <path class="origin-center transition-transform duration-300 ease-out [transform-box:fill-box] group-aria-expanded:translate-y-[3.5px] group-aria-expanded:rotate-45 motion-reduce:transition-none" d="M2 4h11" />
+                <path class="origin-center transition-[opacity,scale] duration-200 ease-out [transform-box:fill-box] group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0 motion-reduce:transition-none" d="M2 7.5h11" />
+                <path class="origin-center transition-transform duration-300 ease-out [transform-box:fill-box] group-aria-expanded:-translate-y-[3.5px] group-aria-expanded:-rotate-45 motion-reduce:transition-none" d="M2 11h11" />
               </svg>
             </button>
             <nav
               id="mobile-nav"
-              class="absolute right-0 top-[calc(100%+0.75rem)] hidden w-56 rounded-xl border border-hairline bg-panel p-2 shadow-2xl shadow-black/10 dark:shadow-black/60"
+              class="group/menu float-card invisible absolute right-0 top-[calc(100%+0.75rem)] w-56 origin-top-right -translate-y-1 scale-95 rounded-xl p-1.5 opacity-0 transition-[opacity,scale,translate,visibility] duration-200 ease-out data-open:visible data-open:translate-y-0 data-open:scale-100 data-open:opacity-100 motion-reduce:transition-none"
               aria-label="Mobile"
             >
               {
-                site.nav.map((l) => (
+                site.nav.map((l, i) => (
                   <a
-                    class="block rounded-md px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                    class="block -translate-y-1 rounded-[8px] px-3 py-2 text-[13.5px] font-medium text-muted-ink opacity-0 transition-[opacity,translate,color,background-color] duration-200 ease-out hover:bg-ink/[0.04] hover:text-ink group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                    style={`transition-delay: ${40 + i * 30}ms`}
                     href={href(l.href)}
                   >
                     {l.label}
@@ -203,7 +207,8 @@ import "@fontsource-variable/geist-mono";
                 ))
               }
               <a
-                class="mt-1 block rounded-md border-t border-hairline px-3 py-2.5 text-label text-muted-ink transition-colors hover:bg-raised hover:text-ink"
+                class="mt-1 block -translate-y-1 rounded-[8px] border-t border-dashed border-hairline-strong px-3 py-2 text-[13.5px] font-medium text-muted-ink opacity-0 transition-[opacity,translate,color,background-color] duration-200 ease-out hover:bg-ink/[0.04] hover:text-ink group-data-open/menu:translate-y-0 group-data-open/menu:opacity-100 motion-reduce:transition-none"
+                style={`transition-delay: ${40 + site.nav.length * 30}ms`}
                 href={site.repo}
                 rel="noopener"
               >
@@ -292,18 +297,19 @@ import "@fontsource-variable/geist-mono";
         const navToggle = document.getElementById("mobile-nav-toggle");
         const nav = document.getElementById("mobile-nav");
         if (navToggle && nav) {
+          const isOpen = () => nav.hasAttribute("data-open");
           const setOpen = (open) => {
-            nav.classList.toggle("hidden", !open);
+            nav.toggleAttribute("data-open", open);
             navToggle.setAttribute("aria-expanded", open ? "true" : "false");
             navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
           };
 
           navToggle.addEventListener("click", () => {
-            setOpen(nav.classList.contains("hidden"));
+            setOpen(!isOpen());
           });
 
           document.addEventListener("click", (event) => {
-            if (!nav.classList.contains("hidden") && !navToggle.contains(event.target) && !nav.contains(event.target)) {
+            if (isOpen() && !navToggle.contains(event.target) && !nav.contains(event.target)) {
               setOpen(false);
             }
           });
