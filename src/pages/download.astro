@@ -1,30 +1,44 @@
 ---
 import Base from "../layouts/Base.astro";
 import { CopyCommand } from "../components/copy-command";
+import Accent from "../components/landing/Accent.astro";
+import Divider from "../components/landing/Divider.astro";
+import PageHeader from "../components/landing/PageHeader.astro";
+import Rails from "../components/landing/Rails.astro";
 import { site } from "../site";
 
 const { installCommand, runCommand, platforms } = site.download;
 ---
 <Base title="Download Orso" description="Install Orso with a one-line bash script on macOS or Linux — edit Markdown, ask your coding agent, and preview your Astro site locally.">
-  <section class="mx-auto max-w-3xl px-6 py-section sm:px-8 sm:py-section-wide">
-    <div class="text-center">
-      <h1 class="font-semibold text-5xl tracking-tight text-balance sm:text-6xl">Install Orso</h1>
-      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-brand-muted">
-        A free desktop studio for Astro sites. One command installs the CLI on {platforms}.
+  <Rails>
+    <PageHeader tag="Download" lead={`A free desktop studio for Astro sites. One command installs the CLI on ${platforms}.`}>
+      Install <Accent>Orso</Accent>.
+    </PageHeader>
+    <Divider />
+    <section class="flex flex-col gap-8 px-6 py-14 sm:px-10">
+      <div class="frame max-w-3xl">
+        <div class="frame-inner">
+          <CopyCommand client:load command={installCommand} />
+        </div>
+      </div>
+      <ol class="flex max-w-3xl flex-col">
+        <li class="flex items-center gap-6 py-4">
+          <span class="w-6 font-mono text-[12px] text-faint">01</span>
+          <span class="text-[15.5px] text-muted-ink">Run the install command in your terminal.</span>
+        </li>
+        <li class="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-dashed border-hairline-strong py-4">
+          <span class="w-6 font-mono text-[12px] text-faint">02</span>
+          <span class="text-[15.5px] text-muted-ink">
+            Start it with
+            <code class="ml-1 rounded-md bg-ink/[0.04] px-1.5 py-0.5 font-mono text-[13px] text-ink">{runCommand}</code>
+          </span>
+        </li>
+      </ol>
+      <p class="font-mono text-[12px] text-faint">
+        Available for {platforms} ·{" "}
+        <a class="underline-offset-4 hover:text-ink hover:underline" href={site.repo} rel="noopener">Source on GitHub</a>
       </p>
-    </div>
-
-    <div class="mx-auto mt-10 max-w-2xl">
-      <CopyCommand client:load command={installCommand} />
-      <p class="mt-4 text-center text-sm text-brand-muted">
-        Then start it with{" "}
-        <code class="rounded-md border border-section-line bg-section-panel px-1.5 py-0.5 font-mono text-[0.8125rem] text-brand-foreground">{runCommand}</code>
-      </p>
-    </div>
-
-    <p class="mt-8 text-center text-xs text-brand-muted">
-      Available for {platforms}.{" "}
-      <a class="underline underline-offset-4 hover:text-brand-foreground" href={site.repo}>Source on GitHub</a>
-    </p>
-  </section>
+    </section>
+    <Divider />
+  </Rails>
 </Base>
