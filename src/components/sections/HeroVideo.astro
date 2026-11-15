@@ -1,0 +1,73 @@
+---
+// Hero demo: a thumbnail (light or dark, following the site theme) that plays the recording on
+// click. The recording is a real Orso session: a visual edit by the agent, a blog post edit, the
+// preview with page meta, then Publish to main.
+import { href } from "@/lib/href";
+
+const size = { width: 1920, height: 1044 };
+---
+
+<div class="relative size-full bg-panel" data-hero-demo data-base={href("/")}>
+  <button
+    type="button"
+    class="group absolute inset-0 size-full cursor-pointer"
+    aria-label="Play the Orso demo, 35 seconds"
+    data-hero-play
+  >
+    <img
+      src={href("/hero-demo-poster.webp")}
+      alt=""
+      {...size}
+      fetchpriority="high"
+      decoding="async"
+      class="size-full object-cover dark:hidden"
+    />
+    <img
+      src={href("/hero-demo-dark-poster.webp")}
+      alt=""
+      {...size}
+      decoding="async"
+      class="hidden size-full object-cover dark:block"
+    />
+    <span class="absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/[0.04]"></span>
+    <span
+      class="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2.5 rounded-full bg-panel/90 py-1.5 pr-4 pl-1.5 text-[14px] font-medium text-ink shadow-lg ring-1 ring-ink/10 backdrop-blur transition-transform duration-300 group-hover:scale-105 group-focus-visible:ring-2 group-focus-visible:ring-brand"
+    >
+      <span class="grid size-9 place-items-center rounded-full bg-brand text-white">
+        <svg class="ml-0.5 size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
+        </svg>
+      </span>
+      Watch the demo
+      <span class="font-mono text-[12px] text-faint">0:35</span>
+    </span>
+  </button>
+</div>
+
+<script>
+  // Swap the thumbnail for the recording that matches the current theme, then play it.
+  const root = document.querySelector<HTMLElement>("[data-hero-demo]");
+  root?.querySelector("[data-hero-play]")?.addEventListener("click", (event) => {
+    const button = event.currentTarget as HTMLButtonElement;
+    const name = document.documentElement.classList.contains("dark") ? "hero-demo-dark" : "hero-demo";
+    const base = root.dataset.base ?? "/";
+    const video = document.createElement("video");
+    video.className = "absolute inset-0 size-full bg-panel object-cover";
+    video.controls = true;
+    video.playsInline = true;
+    video.poster = `${base}${name}-poster.webp`;
+    video.setAttribute("aria-label", "Orso demo");
+    for (const [ext, type] of [
+      ["webm", "video/webm"],
+      ["mp4", "video/mp4"],
+    ]) {
+      const source = document.createElement("source");
+      source.src = `${base}${name}.${ext}`;
+      source.type = type;
+      video.append(source);
+    }
+    button.replaceWith(video);
+    video.focus();
+    video.play().catch(() => {});
+  });
+</script>
