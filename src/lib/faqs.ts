@@ -3,7 +3,7 @@ export const faqs = [
   {
     question: "How is this free?",
     answer:
-      "The Orso studio is open source and free to use — read it, fork it, run it locally. A paid tier, if we add one, would only cover hosted extras like shared editing for teammates who don't want to run the app. The studio itself does not go behind a paywall.",
+      "Orso is an open-source project, not a product with plans. Read it, fork it, run it locally — there's no paid tier and nothing behind a paywall.",
   },
   {
     question: "Do I need to know how to code?",

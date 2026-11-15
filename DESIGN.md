@@ -175,11 +175,11 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 - **Rails and dividers:** `.rails` draws an 8px double hairline down each side of the column (header, landing page and footer all use it). `components/landing/Divider.astro` is the section rule with its two ringed dots.
 - **Section intro:** `components/landing/SectionIntro.astro` — a tag (`Tag.astro`: `bg-brand/[0.08] text-brand-ink`, `rounded-md`, 12.5px), an `h2` (`text-h2`, medium, balanced) and an optional 15.5px lead. Accent phrases use `Accent.astro` (Geist, same as the headline).
 - **Selection box:** `components/landing/Selection.astro` frames a word with a brand outline, four 7px corner handles and a mono label (top or bottom). Used once in the hero and once in the closing CTA.
-- **Surfaces:** `.frame` + `.frame-inner` (22px tray, 16px inner) for product windows, code and pricing cards; `.dot-well` for illustration wells; `.float-card` for the small UI pieces inside them.
+- **Surfaces:** `.frame` + `.frame-inner` (22px tray, 16px inner) for product windows and code; `.dot-well` for illustration wells; `.float-card` for the small UI pieces inside them.
 - **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
 - **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
 - **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
-- **Order:** Hero (pill, headline with selection box, CTAs, product window) → stack strip → Studio features (3×2) → Repo before/after → Workflow steps + agent window → statement + stats → Pricing → Compare → FAQ → CTA → footer.
+- **Order:** Hero (pill, headline with selection box, CTAs, product window) → stack strip → Studio features (3×2) → Repo before/after → Workflow steps + agent window → statement + stats → Compare → FAQ → CTA → footer.
 
 ## Do's and Don'ts
 

@@ -6,7 +6,6 @@ export const site = {
   nav: [
     { label: "Features", href: "/#features" },
     { label: "Workflow", href: "/#how-it-works" },
-    { label: "Pricing", href: "/#pricing" },
     { label: "Blog", href: "/blog/" },
     { label: "Help", href: "/help/" },
   ],
@@ -29,11 +28,10 @@ export const site = {
       "A free studio for Astro sites, running on the agent you already pay for. Your content stays Markdown in a repo you own.",
     columns: [
       {
-        title: "Product",
+        title: "Project",
         links: [
           { label: "Features", href: "/#features" },
           { label: "Workflow", href: "/#how-it-works" },
-          { label: "Pricing", href: "/#pricing" },
           { label: "FAQ", href: "/#faq" },
         ],
       },
@@ -46,7 +44,7 @@ export const site = {
         ],
       },
       {
-        title: "Project",
+        title: "Open source",
         links: [
           { label: "Source", href: "https://github.com/Blaise1030/cms", external: true },
           { label: "Issues", href: "https://github.com/Blaise1030/cms/issues", external: true },
