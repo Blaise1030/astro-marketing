@@ -1,18 +1,33 @@
 ---
 import Accent from "@/components/landing/Accent.astro";
+import Tag from "@/components/landing/Tag.astro";
 
 const stats = [
+  ["1", "repo for pages, posts and images"],
+  ["0", "CMS logins — GitHub is the account"],
   ["$0", "for Orso, forever"],
-  ["0", "new accounts or CMS migrations"],
-  ["100%", "static output you can host anywhere"],
 ];
 ---
 
 <section id="why" class="flex scroll-mt-14 flex-col gap-14 px-6 py-24 sm:px-10">
-  <p class="max-w-4xl text-[30px] font-medium leading-[1.18] tracking-[-0.03em] text-balance sm:text-[40px]" data-reveal>
-    Your agent already knows how to edit Astro. Orso gives <Accent>everyone else</Accent> a way in — without a new
-    subscription.
-  </p>
+  <div class="flex flex-col gap-8" data-reveal>
+    <Tag>Why now</Tag>
+    <p class="max-w-4xl text-[30px] font-medium leading-[1.18] tracking-[-0.03em] text-balance sm:text-[40px]">
+      Teams are deleting their CMS. Orso brings <Accent>everyone else</Accent> along.
+    </p>
+    <div class="grid max-w-4xl gap-6 text-[15.5px] leading-relaxed text-pretty text-muted-ink md:grid-cols-2 md:gap-10">
+      <p>
+        Engineering-led teams like Cursor and Prefect have moved their websites out of the headless CMS and into the
+        repo. Content sits next to the code as Markdown, images are plain files, and an agent can change anything in
+        minutes instead of weeks.
+      </p>
+      <p>
+        That works when everyone on the team is a developer. Orso gives marketers, writers and founders the same
+        tools — branches, previews, pull requests, a coding agent — behind forms and plain English. Content ops run on
+        GitHub; nobody has to learn it.
+      </p>
+    </div>
+  </div>
   <dl class="grid sm:grid-cols-3" data-reveal style="--d: 120ms">
     {
       stats.map(([value, label], i) => (

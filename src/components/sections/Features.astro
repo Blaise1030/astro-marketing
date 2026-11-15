@@ -7,8 +7,8 @@ const features = [
   { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex edits the repo, never the live site." },
   { id: "preview", title: "Every draft, previewed", body: "Each change gets its own draft with a live desktop and mobile preview, so nothing ships early." },
   { id: "publish", title: "Static files, any host", body: "Publish plain static output through the workflow you already have. No runtime, no lock-in." },
-  { id: "history", title: "Branch it like code", body: "Every save is a checkpoint in git. Try a direction on a draft, then merge it or throw it away." },
-  { id: "repo", title: "Nothing to migrate", body: "Orso opens the Astro project you already have. Content stays Markdown in the repo you own." },
+  { id: "history", title: "Content ops on GitHub", body: "Drafts are branches, reviews are pull requests, publishing is a merge. GitHub handles who can publish — no second login." },
+  { id: "repo", title: "Images are just files", body: "Upload an image and it lands in the repo next to the post. No media library, no CDN bill, nothing to migrate." },
 ];
 
 // Dashed grid rules: 1 column → 2 (md) → 3 (xl), with the outer gutters trimmed.
@@ -122,8 +122,12 @@ const mono = "font-mono text-[10px] text-faint";
               <div class="float-card w-[230px] rounded-xl px-3 py-2.5 font-mono text-[10.5px] leading-[1.9] text-muted-ink">
                 <p>▾ src/</p>
                 <p class="pl-3">▾ content/blog/en/</p>
-                <p class="-mx-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">launch.md</p>
-                <p class="pl-3">▸ pages/</p>
+                <p class="pl-6">launch.md</p>
+                <p class="pl-3">▾ assets/blog/</p>
+                <p class="-mx-1.5 flex items-center gap-1.5 rounded-md bg-brand/[0.08] pl-[1.875rem] text-brand-ink">
+                  launch-cover.png
+                  <span class="ml-auto mr-1.5 text-[9px] text-live">+ added</span>
+                </p>
                 <p>astro.config.mjs</p>
               </div>
             )}

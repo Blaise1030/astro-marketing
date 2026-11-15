@@ -26,6 +26,16 @@ export const faqs = [
       "Yes. Copy, posts and help articles have their own forms, and every change is previewed before it goes live. Bigger changes go through the agent, with the developer in the loop.",
   },
   {
+    question: "Do my teammates need to learn GitHub?",
+    answer:
+      "No. Content ops run on GitHub — drafts are branches, reviews are pull requests, publishing is a merge — but Orso shows them as drafts, previews and a Publish button. Access is your GitHub team, so there's no separate CMS login to manage.",
+  },
+  {
+    question: "Where do images go?",
+    answer:
+      "Into the repo, next to your content. An uploaded image is a plain file committed with the change, so there's no media library to migrate and no separate CDN bill.",
+  },
+  {
     question: "Is there lock-in?",
     answer:
       "None. Your site is Markdown in a Git repo you own, the output is static, and the source of the tool is public. Nothing here stops working if Orso disappears.",
