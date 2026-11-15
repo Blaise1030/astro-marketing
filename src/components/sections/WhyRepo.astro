@@ -9,37 +9,31 @@ const reasons = [
     Icon: Bot,
     title: "Agents can actually work on it",
     body: "Content in files can be searched, read and edited by any coding agent. Behind a CMS API, the agent can't see it, so every change needs a person to copy it across.",
-    on: "plain files",
   },
   {
     Icon: History,
     title: "Every change has a history",
     body: "Who changed what, when and why — for every word, image and page. Any earlier version is one step away, with nothing extra to set up.",
-    on: "commits",
   },
   {
     Icon: GitPullRequest,
     title: "Review built in",
     body: "Changes go through the same review your developers already trust: comments, approvals, and rules about who can publish.",
-    on: "pull requests",
   },
   {
     Icon: Globe,
     title: "A preview for every change",
     body: "Each draft gets its own link that anyone can open, so feedback happens on the real page before it goes live.",
-    on: "preview deploys",
   },
   {
     Icon: Workflow,
     title: "Checks that run themselves",
     body: "Broken links, missing images or off-brand copy can be caught automatically on every change, before a reviewer even looks.",
-    on: "actions",
   },
   {
     Icon: KeyRound,
     title: "Yours, for good",
     body: "One account system, one bill, one place for code and content. Markdown in your own repo outlives any tool — including Orso.",
-    on: "your repo",
   },
 ];
 
@@ -67,18 +61,15 @@ const cell = [
 
   <div class="grid md:grid-cols-2 xl:grid-cols-3">
     {
-      reasons.map(({ Icon, title, body, on }, i) => (
+      reasons.map(({ Icon, title, body }, i) => (
         <div
           class:list={["flex flex-col gap-4 border-dashed border-hairline-strong py-8 md:px-8", cell[i]]}
           data-reveal
           style={`--d: ${(i % 3) * 90}ms`}
         >
-          <div class="flex items-center justify-between">
-            <span class="float-card grid size-9 place-items-center rounded-[10px]">
-              <Icon className="size-4 text-brand" strokeWidth={1.75} aria-hidden="true" />
-            </span>
-            <span class="font-mono text-[10.5px] text-faint">on github: {on}</span>
-          </div>
+          <span class="float-card grid size-9 place-items-center rounded-[10px]">
+            <Icon className="size-4 text-brand" strokeWidth={1.75} aria-hidden="true" />
+          </span>
           <div class="flex flex-col gap-2">
             <h3 class="text-[17px] font-medium tracking-[-0.02em]">{title}</h3>
             <p class="text-[14.5px] leading-relaxed text-pretty text-muted-ink">{body}</p>

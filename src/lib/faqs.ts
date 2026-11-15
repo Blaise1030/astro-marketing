@@ -8,7 +8,17 @@ export const faqs = [
   {
     question: "Does my team need to know Git or code?",
     answer:
-      "No. Copy, posts and help articles have forms, and anything bigger can go to the agent in plain English. Underneath, drafts are branches, reviews are pull requests and Publish is a merge, but nobody has to see that. Access is your GitHub team, so there's no separate CMS login to manage.",
+      "No. Copy, posts and help articles have forms, and anything bigger can go to the agent in plain English. They see drafts, previews and a Publish button, never branches or commits.",
+  },
+  {
+    question: "Does everyone need a GitHub account?",
+    answer:
+      "Yes, and that's the only GitHub they'll touch. Access is your GitHub team, so there's no second login to manage and no separate list of who can publish.",
+  },
+  {
+    question: "Do I have to migrate my content?",
+    answer:
+      "No. Orso reads the Markdown already in your repo. Open the repo and your posts and docs show up as collections.",
   },
   {
     question: "Who sets it up?",
@@ -35,9 +45,9 @@ export const faqs = [
       "Project Orso is an open-source project, not a product with plans. Read it, fork it, run it locally — there's no paid tier and nothing behind a paywall.",
   },
   {
-    question: "Is there lock-in?",
+    question: "What happens if we stop using Orso?",
     answer:
-      "None. Your site is Markdown in a Git repo you own, the output is static, and the source of the tool is public. Nothing here stops working if Orso disappears.",
+      "Nothing changes. Your content was always Markdown in your own repo, every change is already in its history, and the site is plain static files.",
   },
   {
     question: "Where does my site live?",

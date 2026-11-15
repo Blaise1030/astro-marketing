@@ -6,20 +6,20 @@ import Accent from "@/components/landing/Accent.astro";
 <section id="how-it-works" class="grid scroll-mt-14 gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
   <div class="flex flex-col gap-10" data-reveal>
     <SectionIntro tag="Workflow">
-      Plain English in. A <Accent>live site</Accent> out.
+      Whoever makes the change, it goes live <Accent>the same way</Accent>.
     </SectionIntro>
     <ol class="flex flex-col">
       <li class="flex items-center gap-6 py-4">
         <span class="w-6 font-mono text-[12px] text-faint">01</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Ask your agent, or just fill in the form.</span>
+        <span class="text-[16px] font-medium tracking-[-0.015em]">Fill in the form, or ask the agent.</span>
       </li>
       <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
         <span class="w-6 font-mono text-[12px] text-faint">02</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Every change lands in a <Accent>draft</Accent> with a live preview.</span>
+        <span class="text-[16px] font-medium tracking-[-0.015em]">Check the <Accent>draft</Accent> on desktop and mobile.</span>
       </li>
       <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
         <span class="w-6 font-mono text-[12px] text-faint">03</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Hit Publish. GitHub does the rest.</span>
+        <span class="text-[16px] font-medium tracking-[-0.015em]">Publish when it looks right.</span>
       </li>
     </ol>
   </div>
@@ -29,17 +29,17 @@ import Accent from "@/components/landing/Accent.astro";
       <div class="float-card absolute inset-6 flex flex-col overflow-hidden rounded-xl sm:inset-8">
         <div class="flex h-10 shrink-0 items-center gap-2 border-b border-hairline px-4">
           <span class="rounded-full bg-ink/[0.05] px-2 py-0.5 font-mono text-[10.5px]">claude</span>
-          <span class="font-mono text-[10.5px] text-faint">your-site · draft/headline</span>
+          <span class="font-mono text-[10.5px] text-faint">fernway.com · draft/homepage-headline</span>
           <span class="ml-auto flex items-center gap-1.5 font-mono text-[10.5px] text-faint"><span class="size-1.5 rounded-full bg-live"></span>ready</span>
         </div>
         <div class="flex flex-1 flex-col gap-4 p-4 font-mono text-[11.5px] leading-relaxed">
           <p class="ml-auto w-fit max-w-[85%] rounded-xl rounded-br-sm bg-ink px-3 py-2 font-sans text-[12.5px] text-ground">
-            Change the headline to “Built for the whole team.”
+            Change the homepage headline to “Book the whole team in one link.”
           </p>
           <div class="flex flex-col gap-1">
             <p class="text-faint">src/pages/index.astro</p>
-            <p class="flex gap-2 text-faint line-through decoration-ink/20"><span>−</span>Your site. Your repo. Your agent.</p>
-            <p class="flex gap-2 text-live"><span>+</span>Built for the whole team.</p>
+            <p class="flex gap-2 text-faint line-through decoration-ink/20"><span>−</span>Scheduling that works.</p>
+            <p class="flex gap-2 text-live"><span>+</span>Book the whole team in one link.</p>
           </div>
           <p class="mt-auto rounded-lg bg-ink/[0.035] px-3 py-2.5 text-muted-ink">
             <span class="text-ink">Done.</span> Preview rebuilt in 0.8s — review it before you publish.
