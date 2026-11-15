@@ -179,7 +179,7 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 - **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
 - **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
 - **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
-- **Order:** Hero (pill, headline with selection box, CTAs, product window) → stack strip → Studio features (3×2) → Repo before/after → Workflow steps + agent window → Why now (quote, reasons, results, the catch) → About (dev tool → what the team sees, why it matters) → Compare → FAQ → CTA → footer.
+- **Order:** Hero (pill, headline with selection box, CTAs, product window) → tools strip ("Underneath…") → About (dev tool → what the team sees, why it matters) → Before/after (team pain vs Markdown in the repo) → Studio features (3×2) → Workflow steps + agent window → Why now (quote, reasons, results, the catch) → Compare → FAQ → CTA → footer.
 
 ## Do's and Don'ts
 

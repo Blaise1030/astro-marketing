@@ -3,10 +3,10 @@ import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
 
 const before = [
-  "Content exported out of a hosted CMS",
-  "The site rebuilt in a per-seat page builder",
-  "“Can someone change this headline?”",
-  "A site that leaves when the subscription does",
+  "“Can someone change this headline?” — a ticket, then a wait",
+  "A developer has to run the preview before anyone sees it",
+  "A second login for a CMS nobody else uses",
+  "Content locked in a CMS the agent can't see",
 ];
 const badge = "grid size-5 place-items-center rounded-full text-white";
 ---
@@ -14,10 +14,10 @@ const badge = "grid size-5 place-items-center rounded-full text-white";
 <section id="handoff" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
     <SectionIntro tag="Repo">
-      Your content is a <Accent>file</Accent>, not a subscription.
+      A headline change shouldn't need a <Accent>ticket</Accent>.
       <Fragment slot="lead">
-        Every edit — yours or your agent's — lands as Markdown in the Astro repo you already own. Nothing to export,
-        nothing to migrate.
+        Your teammate makes the edit, or asks the agent to. Either way it lands as Markdown in the repo, right where
+        your developers and their agents work.
       </Fragment>
     </SectionIntro>
   </div>

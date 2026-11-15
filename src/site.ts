@@ -2,7 +2,7 @@
 export const site = {
   name: "Project Orso",
   description:
-    "Project Orso is a free, open-source studio for Astro sites that runs on the coding agent you already have. Edit content, preview every change, publish static files to the host you choose — no lock-in.",
+    "Project Orso gives marketers, writers and founders the tools developers have — drafts, previews, pull requests and coding agents — behind forms and plain English. Free and open source.",
   nav: [
     { label: "Features", href: "/#features" },
     { label: "Workflow", href: "/#how-it-works" },
@@ -26,7 +26,7 @@ export const site = {
   footer: {
     text: "© 2026 Project Orso. Free and open source.",
     tagline:
-      "A free studio for Astro sites, running on the agent you already pay for. Your content stays Markdown in a repo you own.",
+      "Developer tools for the whole team. Your content stays Markdown in a repo you own.",
     columns: [
       {
         title: "Project",
