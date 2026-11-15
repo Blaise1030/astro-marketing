@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { orsoGlob } from "orso-astro";
+import { orsoGlob } from "../integrations/orso/index.js";
 
 const require = createRequire(import.meta.url);
 const getZod = () => require("astro/zod").z;

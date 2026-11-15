@@ -1,6 +1,6 @@
 ---
 title: Getting started with Orso
-description: Open an Astro site in the Orso studio, edit Markdown, preview a change, and get ready to publish.
+description: Install Orso, open an Astro site in your browser, edit content, and get a change ready to publish.
 category: getting-started
 section: getting-started
 order: 1
@@ -8,18 +8,31 @@ order: 1
 
 ## What Orso is
 
-Orso is a free desktop studio for Astro sites (macOS first). Edit Markdown in forms, or ask Claude, Cursor or Codex for bigger changes. Preview every draft locally — content stays in a Git repo you own.
+Orso is a free, open-source site builder for Astro sites. It runs on your own computer (macOS or Linux) and opens in your browser. Edit content in forms, or ask a coding assistant for bigger changes, and preview every change before it goes live. Your site stays in a GitHub repository you own.
+
+## Install
+
+On a Mac, install with Homebrew, then start Orso:
+
+```sh
+brew install blaise1030/tap/orso
+orso serve --open
+```
+
+On Linux (or a Mac without Homebrew), use the installer script from the [Orso README](https://github.com/Blaise1030/cms#install). Orso opens in your browser; keep the terminal open while you work.
 
 ## Open a project
 
-Create a site from the Astro marketing template, or open a repository from GitHub. Orso starts a local preview of the project.
+Choose **New project**, then start from the Astro marketing template or pick a repository from GitHub. Sign in to GitHub when asked. Orso installs what the site needs and starts a live preview.
 
-An existing Astro site needs the Orso Astro integration and supported collection loaders before its entries appear under **Content**.
+A site that wasn't made from the template needs a little setup first — see [Use Orso with an existing site](/help/use-orso-with-an-existing-site/).
 
 ## Edit content
 
-Open **Content** to browse the site's supported Astro collections. Select a post or help article, edit its body or fields, and save. Orso updates the Markdown file in the project.
+Open **Content** to browse the site's collections. Select a post or help article, edit its fields and body, and save. Orso updates the Markdown file in the project.
 
 ## Make a larger change
 
-Open the agent panel and describe what you want in plain English. Review the result in **Preview**. Create a **change** before editing when the project is linked to GitHub, then use **Share preview**, get a **greenlight**, and **Publish** when it is ready to go live.
+Every edit happens on a **change**, never directly on the live site. Give it a title and, if you like, a short description of what it's for — whoever greenlights it sees both.
+
+Open the assistant and describe what you want in plain English, then check the result in **Preview**. When it's ready, use **Share preview**, get a **greenlight**, and **Publish**.

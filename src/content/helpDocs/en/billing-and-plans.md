@@ -8,13 +8,13 @@ order: 3
 
 ## Orso is free
 
-There is no Orso subscription, seat count, or usage meter for the desktop studio. Download the app, open your site, and edit. The studio stays free and open source.
+There is no Orso subscription, seat count, or usage meter. Install Orso, open your site, and edit. Orso is open source under the MIT licence and stays free.
 
-If we add a paid tier later, it would only cover hosted extras — for example shared editing for teammates who do not want to run the app locally. The studio itself does not go behind a paywall.
+If we add a paid tier later, it would only cover hosted extras — for example shared editing for teammates who do not want to run Orso on their own computer. Orso itself does not go behind a paywall.
 
 ## What you might still pay for
 
-Hosting (for example GitHub Pages or Cloudflare), your coding agent, and any paid GitHub plan stay with those providers. Orso does not bill you for them.
+Hosting (for example GitHub Pages or Cloudflare), your coding assistant (OpenCode's free models cost nothing), and any paid GitHub plan stay with those providers. Orso does not bill you for them.
 
 ## Self-host and export
 
