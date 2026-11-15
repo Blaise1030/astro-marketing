@@ -3,30 +3,31 @@ import { HeroGlobe } from "@/components/hero-globe";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
+import HeroDemo from "./HeroDemo.astro";
 ---
 
-<section class="relative isolate overflow-hidden pt-24 sm:pt-36" id="hero">
+<section class="relative isolate overflow-hidden pb-20 pt-24 sm:pb-32 sm:pt-36" id="hero">
   <div class="shell relative z-10 text-center">
     <Badge
       variant="outline"
-      className="h-7 gap-2 rounded-full border-hairline bg-wash px-3 text-[0.7rem] font-normal tracking-wide text-muted-ink"
+      className="motion-safe:animate-hero-in h-7 gap-2 rounded-full border-hairline bg-wash px-3 text-[0.7rem] font-normal tracking-wide text-muted-ink"
     >
       <span class="size-1.5 rounded-full bg-live"></span>
       Free &amp; open source
     </Badge>
 
     <h1 class="mx-auto mt-8 max-w-5xl text-h1">
-      <span>Your site.</span>{" "}
-      <span class="block sm:inline">Your repo.</span><br class="hidden sm:inline" />
-      <span class="text-muted-ink">Your agent.</span>
+      <span class="inline-block motion-safe:animate-hero-in" style="animation-delay:120ms">Your site.</span>{" "}
+      <span class="block motion-safe:animate-hero-in sm:inline-block" style="animation-delay:240ms">Your repo.</span><br class="hidden sm:inline" />
+      <span class="inline-block text-muted-ink motion-safe:animate-hero-in" style="animation-delay:360ms">Your agent.</span>
     </h1>
 
-    <p class="mx-auto mt-6 max-w-lg text-body text-muted-ink">
+    <p class="mx-auto mt-6 max-w-lg text-body text-muted-ink motion-safe:animate-hero-in" style="animation-delay:480ms">
       A free desktop studio for Astro sites. Edit Markdown in a real UI, or ask Claude, Cursor or Codex. Preview every
       draft locally, publish static files to the host you choose — and keep everything in a repo you own.
     </p>
 
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4 motion-safe:animate-hero-in" style="animation-delay:560ms">
       <a
         class={buttonVariants({
           size: "lg",
@@ -46,14 +47,12 @@ import { href } from "@/lib/href";
     </div>
   </div>
 
-  <div class="pointer-events-none relative z-0 -mt-24 sm:-mt-32" aria-hidden="true">
-    <div
-      class="absolute left-1/2 top-0 h-24 w-[52rem] -translate-x-1/2 -translate-y-20 rounded-full bg-glow opacity-50 blur-3xl"
-    >
-    </div>
-    <div class="relative h-[260px] overflow-hidden sm:h-[360px]">
-      <HeroGlobe client:visible />
-      <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
-    </div>
+  <div class="shell relative z-10 mt-14 sm:mt-20">
+    <HeroDemo />
+  </div>
+
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[260px] overflow-hidden sm:h-[360px]" aria-hidden="true">
+    <HeroGlobe client:visible />
+    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ground via-ground/80 to-transparent"></div>
   </div>
 </section>

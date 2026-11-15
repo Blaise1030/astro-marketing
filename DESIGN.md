@@ -170,7 +170,7 @@ Compound Base UI components must be composed inside a single React component and
 
 ## Motion
 
-Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. The hero point globe drifts on a slow idle rotation and freezes when `prefers-reduced-motion: reduce` is set. There is no parallax, no scroll animation and no auto-advancing content. `prefers-reduced-motion` also disables smooth scrolling, and the CTA dotted terrain stays static CSS.
+Almost none. The accordion animates open and closed over 200ms; links transition colour; the hero arrow nudges on hover. The hero point globe drifts on a slow idle rotation and freezes when `prefers-reduced-motion: reduce` is set. The hero is the one choreographed moment: badge, headline lines, copy and CTAs rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, 120ms stagger), then the framed product demo lifts into place (`animate-hero-rise`, 1.4s) and carries a cursor-following blue spotlight. The demo is a muted, looping screen recording (`public/hero-demo.webm` / `.mp4`) that pauses offscreen. All of it is wrapped in `motion-safe` and the video stays on its poster under `prefers-reduced-motion`. There is no parallax, no scroll-linked animation and no auto-advancing content. `prefers-reduced-motion` also disables smooth scrolling, and the CTA dotted terrain stays static CSS.
 
 ## Do's and Don'ts
 

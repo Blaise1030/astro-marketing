@@ -95,6 +95,23 @@
 }
 
 @theme {
+  /* Hero motion — one expo-out curve shared by every entrance */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-hero-in: hero-in 900ms var(--ease-out-expo) both;
+  --animate-hero-rise: hero-rise 1400ms var(--ease-out-expo) both;
+  --animate-caret: caret 1s steps(1) infinite;
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(18px); filter: blur(8px); }
+    to { opacity: 1; transform: none; filter: blur(0); }
+  }
+  @keyframes hero-rise {
+    from { opacity: 0; transform: perspective(1400px) translateY(64px) rotateX(10deg) scale(0.95); filter: blur(10px); }
+    to { opacity: 1; transform: none; filter: blur(0); }
+  }
+  @keyframes caret {
+    50% { opacity: 0; }
+  }
+
   /* Fonts — must mirror the fontFamily stack in DESIGN.md */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
