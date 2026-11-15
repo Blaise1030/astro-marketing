@@ -151,7 +151,7 @@ Buttons are full pills (`rounded-full`) at every size. Cards and panels use `rou
 
 ## Logo
 
-A front-facing bear head: a broad, heavy head that tapers to a pointed muzzle, two round ears with inner-ear cut-outs, two slanted brow-like eyes angled inward, and a small triangular nose cut out above the muzzle tip. The mark is monochrome only, one path in `currentColor` (`src/components/landing/Logo.astro`), with the eyes drawn as holes so it works on any background. Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path and switches between near-black and near-white with `prefers-color-scheme`.
+A walking bear in silhouette, facing right: a pronounced shoulder hump, a back that slopes down to a low rump, a low-carried head with a small round ear and a pointed snout, and four thick legs with broad paws. The mark is monochrome only, one solid path in `currentColor` (`src/components/landing/Logo.astro`, viewBox about 41:24), so it is sized by height (`h-5 w-auto`). Use `text-ink` next to the wordmark "<span faint>project</span> orso"; never fill it with `brand` or put it on a coloured tile. `public/favicon.svg` uses the same path centred in a square and switches between near-black and near-white with `prefers-color-scheme`.
 
 ## Components
 
