@@ -4,7 +4,7 @@ Static Astro site. The landing page, navigation and footer are written directly 
 
 ## Content model
 
-- Collection schemas, loaders, and `previewPath` helpers live in `src/orso.collections.mjs` as `siteCollections`. `astro.config.mjs` passes them to `orso({ collections: siteCollections })` from `orso-astro` (`file:packages/astro`). `src/content.config.ts` only re-exports `collections` from `virtual:orso/collections`.
+- Collection schemas, loaders, and `previewPath` helpers live in `src/orso.collections.mjs` as `siteCollections`. `astro.config.mjs` passes them to `orso({ collections: siteCollections })` from `./integrations/orso/` (a copy of orso's integration; do not edit it — an orso update replaces the folder). `src/content.config.ts` only re-exports `collections` from `virtual:orso/collections`.
   - `blogCategories` ← `src/content/blogCategories/en/*.md`: `title`, `slug`, optional `description`. Preview: `/blog/categories/{id}/`.
   - `helpDocsCategories` ← `src/content/helpDocsCategories/en/*.md`: `title`, `slug`, optional `description`, `order`. Preview: `/help/categories/{id}/`.
   - `blog` ← `src/content/blog/en/*.md`: `title`, `description`, `pubDate` (`YYYY-MM-DD`), optional `coverImage` + `coverAlt`, `categories[]` (refs to `blogCategories`), `tags[]`, `relatedPosts[]`. Preview: `/blog/{id}/`.

@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import siteFiles from "@casoon/astro-site-files";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import { orso } from "orso-astro";
+import { orso } from "./integrations/orso/index.js";
 import { siteCollections } from "./src/orso.collections.mjs";
 
 // The orso dev server proxies the site under /preview/{id}/.

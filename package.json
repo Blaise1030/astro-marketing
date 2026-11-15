@@ -8,8 +8,6 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "og": "node scripts/generate-og.mjs",
-    "sync:orso-astro": "rm -rf node_modules/orso-astro && mkdir -p node_modules && cp -R packages/astro node_modules/orso-astro",
-    "postinstall": "npm run sync:orso-astro",
     "test": "npm run build && node --test --test-concurrency=1 scripts/*.test.mjs"
   },
   "dependencies": {
@@ -28,7 +26,6 @@
     "jsonc-parser": "^3.3.1",
     "linkedom": "^0.18.15",
     "lucide-react": "1.61.0",
-    "orso-astro": "file:packages/astro",
     "pagefind": "^1.5.2",
     "react": "19.3.1",
     "react-dom": "19.3.1",
