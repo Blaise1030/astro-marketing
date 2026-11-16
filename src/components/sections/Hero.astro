@@ -21,33 +21,39 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     </a>
 
     <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
-      Your <Accent>content team</Accent> can ship the next update.
+      A shared workspace for <Accent>everyone who builds</Accent> your website.
     </h1>
 
     <p
       class="max-w-xl text-[16.5px] leading-relaxed text-pretty text-muted-ink motion-safe:animate-hero-in"
       style="animation-delay:160ms"
     >
-      Edit copy, publish articles, or ask an agent to build a new page. Orso gives your team forms and drafts they can
-      preview before publishing—all in the Astro repo your developers already use.
+      Bring code, content and AI agents into one Git-based project. Give writers and marketers the freedom to create
+      pages and make changes, with shared previews and review before publishing. From first idea to live site, with fewer handoffs.
     </p>
 
     <div class="flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:240ms">
       <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Download Orso</a>
-      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={href("#how-it-works")}>
+      <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href="#demo" data-watch-demo>
         <svg class="size-3 text-faint" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
         </svg>
-        See how it works
+        Watch the 35-second demo
       </a>
-      <span class="ml-1 font-mono text-[12px] text-faint">free &amp; open source · for Astro sites</span>
+      <span class="ml-1 font-mono text-[12px] text-faint">for Astro sites · free &amp; open source</span>
     </div>
   </div>
 
-  <div class="frame motion-safe:animate-hero-in" style="animation-delay:320ms">
+  <div id="demo" class="frame scroll-mt-20 motion-safe:animate-hero-in" style="animation-delay:320ms">
     <!-- Same ratio as the recording (1920x1044), so it is never cropped -->
     <div class="frame-inner aspect-[1920/1044]">
       <HeroVideo />
     </div>
   </div>
+  <p class="-mt-9 text-[13px] text-muted-ink">See Orso in action: ask for a change, edit content, preview, then publish.</p>
 </section>
+<script>
+  document.querySelector("[data-watch-demo]")?.addEventListener("click", () => {
+    document.querySelector<HTMLButtonElement>("[data-hero-play]")?.click();
+  });
+</script>

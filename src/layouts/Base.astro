@@ -332,6 +332,10 @@ import "@fontsource-variable/geist-mono";
             setOpen(!isOpen());
           });
 
+          nav.addEventListener("click", (event) => {
+            if (event.target.closest("a")) setOpen(false);
+          });
+
           document.addEventListener("click", (event) => {
             if (isOpen() && !navToggle.contains(event.target) && !nav.contains(event.target)) {
               setOpen(false);

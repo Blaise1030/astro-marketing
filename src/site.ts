@@ -2,11 +2,10 @@
 export const site = {
   name: "Project Orso",
   description:
-    "Developer tools for content teams: drafts, previews, pull requests and coding agents behind forms and plain English. Free and open source.",
+    "Bring code, content and AI agents into one Git-based workspace for your Astro website. Create pages, preview changes and review before publishing. Free and open source.",
   nav: [
-    { label: "Features", href: "/#features" },
-    { label: "Workflow", href: "/#how-it-works" },
-    { label: "About", href: "/#about" },
+    { label: "How it works", href: "/#how-it-works" },
+    { label: "For developers", href: "/#setup" },
     { label: "Blog", href: "/blog/" },
     { label: "Help", href: "/help/" },
   ],
@@ -28,13 +27,13 @@ export const site = {
   footer: {
     text: "© 2026 Project Orso. Free and open source.",
     tagline:
-      "Developer tools for content teams. Your content stays Markdown in a repo you own.",
+      "A shared workspace for your website. Code, content and AI agents in a Git-based project you own.",
     columns: [
       {
         title: "Project",
         links: [
-          { label: "Features", href: "/#features" },
-          { label: "Workflow", href: "/#how-it-works" },
+          { label: "What you can build", href: "/#handoff" },
+          { label: "How it works", href: "/#how-it-works" },
           { label: "FAQ", href: "/#faq" },
         ],
       },
@@ -43,6 +42,7 @@ export const site = {
         links: [
           { label: "Blog", href: "/blog/" },
           { label: "Help", href: "/help/" },
+          { label: "Setup guide", href: "/help/getting-started/" },
           { label: "GitHub", href: "https://github.com/Blaise1030/cms", external: true },
         ],
       },

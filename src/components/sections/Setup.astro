@@ -1,0 +1,18 @@
+---
+import SectionIntro from "@/components/landing/SectionIntro.astro";
+import Accent from "@/components/landing/Accent.astro";
+import Tools from "./Tools.astro";
+import { href } from "@/lib/href";
+---
+<section id="setup" class="flex scroll-mt-14 flex-col gap-12 px-6 py-20 sm:px-10">
+  <div data-reveal><SectionIntro tag="For developers">
+    Start with an Astro site. <Accent>Bring your agent</Accent>.
+    <Fragment slot="lead">Orso runs on your computer and opens in your browser. Connect a GitHub project, use your existing agent setup, and publish through your site's hosting workflow.</Fragment>
+  </SectionIntro></div>
+  <div class="grid gap-8 md:grid-cols-2" data-reveal>
+    <div class="flex flex-col gap-4 border-t border-dashed border-hairline-strong pt-6"><h3 class="text-[20px] font-medium">Start with the template</h3><p class="text-[15px] leading-relaxed text-muted-ink">Open Orso and create a project from the Astro marketing template. Content editing and the local preview are ready to use.</p><a href={href("/help/getting-started/")} class="w-fit text-[13.5px] font-medium text-link underline underline-offset-4">Get started with Orso</a></div>
+    <div class="flex flex-col gap-4 border-t border-dashed border-hairline-strong pt-6"><h3 class="text-[20px] font-medium">Connect an existing site</h3><p class="text-[15px] leading-relaxed text-muted-ink">Have a developer or coding agent prepare your Astro project for Orso. Keep your repository and hosting, then invite your team through GitHub.</p><a href={href("/help/use-orso-with-an-existing-site/")} class="w-fit text-[13.5px] font-medium text-link underline underline-offset-4">Prepare your Astro site</a></div>
+  </div>
+  <div data-reveal><Tools /></div>
+  <p class="text-[13px] leading-relaxed text-muted-ink">Local app for macOS and Linux. Each teammate needs GitHub access to the repository. Agent subscriptions and usage are separate from Orso.</p>
+</section>

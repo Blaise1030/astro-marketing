@@ -1,62 +1,27 @@
-/** Home-page FAQ copy — shared by the accordion UI and FAQPage JSON-LD. */
+/** Homepage questions, shared by the accordion and FAQPage structured data. */
 export const faqs = [
   {
-    question: "Who is Project Orso for?",
-    answer:
-      "Teams where developers own the repo but marketers, writers and founders own the words. It gives the second group the tools the first already uses — drafts, previews, reviews and a coding agent — without asking them to learn Git commands.",
+    question: "Which websites does Orso work with?",
+    answer: "Orso is built for Astro sites. Start with its marketing template, or have a developer or coding agent prepare an existing Astro project. Orso runs locally on macOS and Linux and opens in your browser.",
   },
   {
     question: "Does my team need to know Git or code?",
-    answer:
-      "No. Copy, posts and help articles have forms, and anything bigger can go to the agent in plain English. They see drafts, previews and a Publish button, never branches or commits.",
+    answer: "Writers and marketers can edit content in forms and describe bigger changes to an agent in plain English. Developers prepare the project and maintain its foundations. Everyday editing uses drafts, previews and publishing controls rather than Git commands.",
   },
   {
-    question: "Does everyone need a GitHub account?",
-    answer:
-      "Yes, and that's the only GitHub they'll touch. Access is your GitHub team, so there's no second login to manage and no separate list of who can publish.",
+    question: "Who sets up the project and the agent?",
+    answer: "A developer or technical teammate connects the Astro project, GitHub and the publishing workflow. Each person using an agent needs their own supported agent setup, such as Claude, Cursor or Codex. Existing sites need the Orso integration; the setup guide walks through it.",
   },
   {
-    question: "Do I have to migrate my content?",
-    answer:
-      "No. Orso reads the Markdown already in your repo. Open the repo and your posts and docs show up as collections.",
+    question: "How do teammates work on the same project?",
+    answer: "Each teammate installs Orso and opens the same GitHub repository on their own computer. Everyone needs GitHub access to that repository. Changes are shared through GitHub; preview links let reviewers check the result. Use Get latest to bring published changes into your work.",
   },
   {
-    question: "Who sets it up?",
-    answer:
-      "A developer, once: install Orso, open the Astro repo and connect GitHub. After that, everyone else just edits — and developers keep working in the same repo with their usual tools.",
+    question: "How do review and publishing work?",
+    answer: "Work stays in a draft until you publish. Check it locally, share a deployed preview for feedback, then get a greenlight before publishing. Shared previews update when you send your changes. The project keeps a history so you can return to an earlier version if needed.",
   },
   {
-    question: "Can someone break the live site?",
-    answer:
-      "Changes stay in a draft until you publish. Preview them first, and restore an earlier version if needed.",
-  },
-  {
-    question: "Which AI agent do I need?",
-    answer: "Claude, Cursor or Codex. Use your existing agent setup; any agent subscription or usage charges are separate from Orso.",
-  },
-  {
-    question: "Where do images go?",
-    answer:
-      "Into the repo, next to your content. Images are saved with the change and published with your site.",
-  },
-  {
-    question: "How is this free?",
-    answer:
-      "Project Orso is an open-source project, not a product with plans. Read it, fork it, run it locally — there's no paid tier and nothing behind a paywall.",
-  },
-  {
-    question: "What happens if we stop using Orso?",
-    answer:
-      "Nothing changes. Your content was always Markdown in your own repo, every change is already in its history, and the site is plain static files.",
-  },
-  {
-    question: "Where does my site live?",
-    answer:
-      "In a Git repository you own. Orso publishes through your GitHub workflow; the starter deploys on Cloudflare Workers, or whatever host your repo already uses.",
-  },
-  {
-    question: "What platforms does Orso run on?",
-    answer:
-      "The desktop app ships for macOS first. The studio is open source, so you can also run it from source on other platforms as support lands.",
+    question: "What does Orso cost?",
+    answer: "Orso is free and open source, with no paid tier or editor seats to buy. Agent subscriptions, usage and hosting are separate. Your code, Markdown content and images stay in your own repository and remain usable if you stop using Orso.",
   },
 ] as const;

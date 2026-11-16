@@ -172,7 +172,7 @@ Compound Base UI components must be composed inside a single React component and
 
 ## Motion
 
-Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered). The headline's selection-box label cycles agent / claude → cursor → codex with a 200ms blur swap. The label is drawn with CSS (`content: attr(data-label)`) and rotated by a small script at the end of `Hero.astro`, so no island or script sits inside the `<h1>` and the heading text stays clean. Below the hero, sections reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, optional `--d` stagger). If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the product mockup. The accordion animates over 200ms; links transition colour; arrows nudge on hover. CSS motion is disabled under `prefers-reduced-motion`. No parallax, no scroll-linked transforms, no glow effects.
+Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-sharp entrance (`animate-hero-in`, 900ms, expo-out, staggered). The hero uses a plain shared-workspace headline and a demo action that starts the existing recording. Below the hero, sections reveal once on scroll (`data-reveal` + `IntersectionObserver` in `Base.astro`, optional `--d` stagger). If `public/hero-demo.webm` / `.mp4` exist, the recording plays over the product mockup. The accordion animates over 200ms; links transition colour; arrows nudge on hover. CSS motion is disabled under `prefers-reduced-motion`. No parallax, no scroll-linked transforms, no glow effects.
 
 ## Page frame
 
@@ -183,7 +183,7 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 - **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
 - **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
 - **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
-- **Order:** Hero (pill, headline with selection box, CTAs, product window) → tools strip ("Underneath…") → About (dev tool → what the team sees, why it matters) → Possibilities (CMS limits vs what the team can ask an agent for) → Studio features (3×2) → Workflow steps + agent window → Why GitHub (6 reasons, each tagged with the GitHub feature behind it) → Why now (quote, reasons, results, the catch) → Compare → FAQ → CTA → footer.
+- **Order:** Hero (shared-workspace headline, CTAs, real demo) → Possibilities (three concrete requests and product screenshots) → Workflow (make a change, preview/share, greenlight/publish) → Shared project (content/code/assets diagram, history and ownership) → Setup (template or existing Astro site, compatibility logos) → FAQ (six adoption questions) → CTA → footer. Existing Geist typography, palette and frame tokens remain in use.
 
 ## Do's and Don'ts
 
@@ -202,3 +202,7 @@ Small mono labels can be technical ("src/pages/index.astro", "Preview rebuilt in
 - **Format** — the frontmatter token block plus prose sections follows the convention published by [DesignMD](https://www.designmd.co).
 - **Components** — [shadcn/ui for Astro](https://ui.shadcn.com/docs/installation/astro), Base UI flavour. Primitives live in `src/components/ui`, configuration in `components.json`, and the semantic mapping in `src/styles/global.css`.
 - **Product** — copy and positioning live on the landing page (`src/components/sections/`); this file governs appearance, not message.
+
+## Shared workspace page composition
+
+The homepage pairs concrete requests with existing product screenshots, then uses a three-step workflow and a simple project diagram. Screenshots have light/dark variants and informative alt text. Setup identifies local operation and GitHub sharing. Feature grids, comparisons and founder commentary are not separate homepage sections. No new palette, spacing or typography tokens are required; the `@theme` mappings in `global.css` continue to govern the reused surfaces.

@@ -119,16 +119,20 @@ Footer: product/workflow links, setup/help, Blog, GitHub/license, legal. Align t
 
 ## Implementation sequence
 
-- [ ] Review this content structure and proposed wording.
-- [ ] Update Hero, Stack and HowItWorks first; check that the first three sections answer what it is, what users can do, and how changes reach publication.
-- [ ] Consolidate About/WhyRepo and repurpose screenshots from Features; preserve links/anchors or update their references.
-- [ ] Add the compact setup/compatibility section and shorten homepage FAQ; align local/team/platform explanations with actual behavior.
-- [ ] Update CTA, index composition, header/mobile navigation, footer and page/site metadata together.
-- [ ] Align Download and Help entry paths; keep Blog changes separate from the homepage launch.
-- [ ] Update DESIGN.md's section order and obsolete hero-motion description when the page is implemented. No token changes are needed for copy/order changes; any later visual styling changes must update DESIGN.md and global.css together.
-- [ ] Check the live preview status and rendered page, desktop/mobile layout, demo action, all anchors/download links and FAQ interaction. Verify light/dark themes if visuals change. Do not run a production build for these ordinary edits.
-- [ ] Refresh content and preview if articles are added or renamed.
+- [x] Review this content structure and proposed wording.
+- [x] Update Hero, Stack and HowItWorks first; check that the first three sections answer what it is, what users can do, and how changes reach publication.
+- [x] Consolidate About/WhyRepo and repurpose screenshots from Features; preserve links/anchors or update their references.
+- [x] Add the compact setup/compatibility section and shorten homepage FAQ; align local/team/platform explanations with actual behavior.
+- [x] Update CTA, index composition, header/mobile navigation, footer and page/site metadata together.
+- [x] Align Download and Help entry paths; keep Blog changes separate from the homepage launch.
+- [x] Update DESIGN.md's section order and obsolete hero-motion description when the page is implemented. No token changes are needed for copy/order changes; any later visual styling changes must update DESIGN.md and global.css together.
+- [x] Check the live preview status and rendered page, desktop/mobile layout, demo action, all anchors/download links and FAQ interaction. Verify light/dark themes if visuals change. Do not run a production build for these ordinary edits.
+- [x] Refresh content and preview if articles are added or renamed.
 
 ## Acceptance criteria
 
 A new visitor can identify that Orso is for Astro websites, who it helps, what they can do, how review/publishing works and how to get started. Every section introduces a distinct point. Product examples substantiate the headline. Shared workspace is explained as a common Git-based project, without implying hosted real-time co-editing. Setup/platform/agent-cost statements agree. Existing navigation, content routes, base-aware links and the externally managed preview remain functional.
+
+## Implementation verification
+
+Implemented the seven-section homepage, shared navigation, download guidance and Help entry path. Blog/founder content remains separate as planned. Verified rendered section order, anchor targets, six FAQ entries and Download/Help output. Browser checks passed at 1440px and 390px, including light/dark themes, mobile menu closure, FAQ expansion and demo loading. The preview reports ready. No production build was run.

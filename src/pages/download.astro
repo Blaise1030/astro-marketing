@@ -5,17 +5,22 @@ import Accent from "../components/landing/Accent.astro";
 import Divider from "../components/landing/Divider.astro";
 import PageHeader from "../components/landing/PageHeader.astro";
 import Rails from "../components/landing/Rails.astro";
+import { href } from "../lib/href";
 import { site } from "../site";
 
 const { installCommand, runCommand, platforms } = site.download;
 ---
-<Base title="Download Orso" description="Install Orso with a one-line bash script on macOS or Linux — edit Markdown, ask your coding agent, and preview your Astro site locally.">
+<Base title="Download Orso" description="Install Orso on macOS or Linux. Open an Astro project locally, edit content or work with an AI agent, and preview changes before publishing.">
   <Rails>
-    <PageHeader tag="Download" lead={`A free desktop studio for Astro sites. One command installs the CLI on ${platforms}.`}>
+    <PageHeader tag="Download" lead={`A free workspace for Astro sites. Runs on your computer (${platforms}) and opens in your browser.`}>
       Install <Accent>Orso</Accent>.
     </PageHeader>
     <Divider />
     <section class="flex flex-col gap-8 px-6 py-14 sm:px-10">
+      <div class="flex max-w-2xl flex-col gap-3">
+        <h2 class="text-[22px] font-medium">Before you start</h2>
+        <p class="text-[15px] leading-relaxed text-muted-ink">You’ll need a GitHub account with access to your site’s repository. To ask an agent for changes, set up Claude, Cursor or Codex on your computer. Agent usage and hosting are separate from Orso.</p>
+      </div>
       <div class="frame max-w-3xl">
         <div class="frame-inner">
           <CopyCommand client:load command={installCommand} />
@@ -38,6 +43,15 @@ const { installCommand, runCommand, platforms } = site.download;
         Available for {platforms} ·{" "}
         <a class="underline-offset-4 hover:text-ink hover:underline" href={site.repo} rel="noopener">Source on GitHub</a>
       </p>
+    </section>
+    <Divider />
+    <section class="flex flex-col gap-8 px-6 py-14 sm:px-10">
+      <h2 class="text-[26px] font-medium tracking-[-0.02em]">Open your first project.</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex flex-col gap-3"><h3 class="text-[19px] font-medium">Start from the template</h3><p class="text-[15px] leading-relaxed text-muted-ink">Choose New project and start with the Astro marketing template. Edit content and check the local preview before setting up publishing.</p><a class="text-[14px] text-link underline underline-offset-4" href={href("/help/getting-started/")}>Follow the getting-started guide</a></div>
+        <div class="flex flex-col gap-3"><h3 class="text-[19px] font-medium">Bring your Astro site</h3><p class="text-[15px] leading-relaxed text-muted-ink">Have a developer or coding agent add the Orso integration and prepare previews and publishing. Then open the repository in Orso.</p><a class="text-[14px] text-link underline underline-offset-4" href={href("/help/use-orso-with-an-existing-site/")}>Set up an existing site</a></div>
+      </div>
+      <p class="text-[14px] text-muted-ink">Working with others? <a class="text-link underline underline-offset-4" href={href("/help/work-with-your-team/")}>Connect your team through GitHub</a>.</p>
     </section>
     <Divider />
   </Rails>

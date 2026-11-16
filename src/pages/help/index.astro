@@ -13,6 +13,17 @@ import { href } from "../../lib/href";
 import { loadHelp } from "../../lib/help";
 
 const docs = await getCollection("helpDocs");
+const firstSteps = [
+  { id: "getting-started", title: "Install and open a project" },
+  { id: "write-a-blog-post", title: "Write and edit content" },
+  { id: "preview-a-change", title: "Check your draft" },
+  { id: "share-a-preview", title: "Share a preview for feedback" },
+  { id: "publish-your-site", title: "Get a greenlight and publish" },
+  { id: "work-with-your-team", title: "Work with your teammates" },
+].flatMap(step => {
+  const doc = docs.find(doc => doc.id === step.id);
+  return doc ? [{ href: `/help/${doc.id}/`, title: step.title, description: doc.data.description }] : [];
+});
 const docsCategories = (await getCollection("helpDocsCategories")).sort(
   (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title) || a.id.localeCompare(b.id),
 );
@@ -36,6 +47,11 @@ const { categories } = await loadHelp(getCollection);
     </PageHeader>
     <Divider />
 
+    <section class="grid gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+      <SectionIntro tag="Getting started">Your first change, <Accent>step by step</Accent>.<Fragment slot="lead">Follow the path from opening a project to publishing with your team.</Fragment></SectionIntro>
+      <DocRows items={firstSteps} />
+    </section>
+    <Divider />
     {categories.length === 0 ? <p class="px-6 py-14 text-muted-ink sm:px-10">No help docs yet. Check back soon for guides and answers.</p> : (
       <section class="flex flex-col gap-12 px-6 py-16 sm:px-10">
         <SectionIntro tag="Sections">Start with a <Accent>topic</Accent>.</SectionIntro>

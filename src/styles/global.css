@@ -172,6 +172,7 @@
  * through `--palette-*` (rather than through another `--color-*`) is what makes
  * every utility follow `.dark` at runtime.
  */
+/* Shared-workspace sections reuse these semantic tokens and existing frame surfaces. */
 @theme inline {
   --color-ground: var(--palette-ground);
   --color-panel: var(--palette-panel);

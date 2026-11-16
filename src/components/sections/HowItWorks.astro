@@ -1,51 +1,29 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
+import ProductImage from "@/components/landing/ProductImage.astro";
+import { href } from "@/lib/href";
+const steps = [
+  { title: "Make a change", body: "Ask an agent to build your campaign page, then refine the copy in Orso. Work in a draft while the live site stays as it is.", image: "ask", width: 872, height: 430, alt: "An agent working on a draft in Orso" },
+  { title: "Preview and share", body: "Check the page on desktop and mobile. Share a preview link for feedback, and send an update when your next edits are ready.", image: "preview", width: 920, height: 396, alt: "A draft page preview in Orso" },
+  { title: "Get a greenlight and publish", body: "Bring in a teammate to review the campaign page. Once it has a greenlight, publish through your project's existing workflow.", image: "publish-b", width: 746, height: 140, alt: "Publishing controls in Orso" },
+];
 ---
-
-<section id="how-it-works" class="grid scroll-mt-14 gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-  <div class="flex flex-col gap-10" data-reveal>
-    <SectionIntro tag="Workflow">
-      From first edit to <Accent>published page</Accent>.
-    </SectionIntro>
-    <ol class="flex flex-col">
-      <li class="flex items-center gap-6 py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">01</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Fill in the form, or ask the agent.</span>
-      </li>
-      <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">02</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Check the <Accent>draft</Accent> on desktop and mobile.</span>
-      </li>
-      <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">03</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Publish when it looks right.</span>
-      </li>
-    </ol>
-  </div>
-
-  <div class="frame" data-reveal style="--d: 120ms">
-    <div class="frame-inner dot-well relative h-[380px]" aria-hidden="true">
-      <div class="float-card absolute inset-6 flex flex-col overflow-hidden rounded-xl sm:inset-8">
-        <div class="flex h-10 shrink-0 items-center gap-2 border-b border-hairline px-4">
-          <span class="rounded-full bg-ink/[0.05] px-2 py-0.5 font-mono text-[10.5px]">claude</span>
-          <span class="font-mono text-[10.5px] text-faint">fernway.com · draft/homepage-headline</span>
-          <span class="ml-auto flex items-center gap-1.5 font-mono text-[10.5px] text-faint"><span class="size-1.5 rounded-full bg-live"></span>ready</span>
+<section id="how-it-works" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal><SectionIntro tag="Workflow">
+    More people can build. <Accent>Every change gets reviewed</Accent>.
+    <Fragment slot="lead">Take a campaign page from first draft to live site, with a chance to check the result at every step.</Fragment>
+  </SectionIntro></div>
+  <ol class="flex flex-col">
+    {steps.map((step, i) => (
+      <li class:list={["grid items-center gap-8 py-8 md:grid-cols-2 md:gap-12", i > 0 && "border-t border-dashed border-hairline-strong"]} data-reveal>
+        <div class="flex gap-5">
+          <span class="pt-1 font-mono text-[12px] text-faint">0{i + 1}</span>
+          <div class="flex flex-col gap-3"><h3 class="text-[21px] font-medium tracking-[-0.02em]">{step.title}</h3><p class="max-w-md text-[15px] leading-relaxed text-muted-ink">{step.body}</p></div>
         </div>
-        <div class="flex flex-1 flex-col gap-4 p-4 font-mono text-[11.5px] leading-relaxed">
-          <p class="ml-auto w-fit max-w-[85%] rounded-xl rounded-br-sm bg-ink px-3 py-2 font-sans text-[12.5px] text-ground">
-            Change the homepage headline to “Book the whole team in one link.”
-          </p>
-          <div class="flex flex-col gap-1">
-            <p class="text-faint">src/pages/index.astro</p>
-            <p class="flex gap-2 text-faint line-through decoration-ink/20"><span>−</span>Scheduling that works.</p>
-            <p class="flex gap-2 text-live"><span>+</span>Book the whole team in one link.</p>
-          </div>
-          <p class="mt-auto rounded-lg bg-ink/[0.035] px-3 py-2.5 text-muted-ink">
-            <span class="text-ink">Done.</span> Your draft is ready to preview. Review it before you publish.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="frame"><div class="frame-inner dot-well flex min-h-40 items-center p-5"><div class="float-card w-full overflow-hidden rounded-xl"><ProductImage name={step.image} width={step.width} height={step.height} alt={step.alt} /></div></div></div>
+      </li>
+    ))}
+  </ol>
+  <a href={href("/help/share-a-preview/")} class="w-fit text-[13.5px] font-medium text-link underline underline-offset-4">How shared previews work</a>
 </section>

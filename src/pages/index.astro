@@ -1,45 +1,34 @@
 ---
 import Divider from "../components/landing/Divider.astro";
 import About from "../components/sections/About.astro";
-import Comparison from "../components/sections/Comparison.astro";
 import Cta from "../components/sections/Cta.astro";
 import Faq from "../components/sections/Faq.astro";
-import Features from "../components/sections/Features.astro";
 import Hero from "../components/sections/Hero.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
 import Stack from "../components/sections/Stack.astro";
-import Statement from "../components/sections/Statement.astro";
-import Tools from "../components/sections/Tools.astro";
-import WhyRepo from "../components/sections/WhyRepo.astro";
+import Setup from "../components/sections/Setup.astro";
 import Base from "../layouts/Base.astro";
+import { site } from "../site";
 import { faqs } from "../lib/faqs";
 import { faqPageJsonLd } from "../lib/seo";
 ---
 
 <Base
-  title="Project Orso — Developer tools for content teams"
-  description="Developer tools for content teams: drafts, previews, pull requests and coding agents behind forms and plain English. Free and open source."
+  title="Project Orso — A shared workspace for your website"
+  description={site.description}
   jsonLd={faqPageJsonLd([...faqs])}
 >
   <!-- One framed column: double rails down each side, a dotted hairline between sections -->
   <div class="rails relative mx-auto max-w-6xl">
     <Hero />
     <Divider />
-    <Tools />
-    <Divider />
     <Stack />
-    <Divider />
-    <About />
     <Divider />
     <HowItWorks />
     <Divider />
-    <Features />
+    <About />
     <Divider />
-    <WhyRepo />
-    <Divider />
-    <Statement />
-    <Divider />
-    <Comparison />
+    <Setup />
     <Divider />
     <Faq />
     <Divider />
