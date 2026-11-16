@@ -349,20 +349,30 @@
   }
 
   /* Frame: an outer tray with a hairline ring holding an inner surface */
+  /* Tighter corners below 640px so the tray doesn't look bubbly on phones */
   .frame {
-    border-radius: 22px;
-    padding: 6px;
+    border-radius: 12px;
+    padding: 4px;
     background: color-mix(in oklab, var(--palette-panel) 50%, transparent);
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--palette-ink) 7%, transparent);
   }
   .frame-inner {
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
     background: var(--palette-panel);
     box-shadow:
       0 0 0 1px color-mix(in oklab, var(--palette-ink) 6%, transparent),
       0 1px 2px -1px rgb(0 0 0 / 0.06),
       0 2px 4px 0 rgb(0 0 0 / 0.04);
+  }
+  @media (width >= 40rem) {
+    .frame {
+      border-radius: 22px;
+      padding: 6px;
+    }
+    .frame-inner {
+      border-radius: 16px;
+    }
   }
 
   /* Dotted well behind feature illustrations */
