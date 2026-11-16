@@ -16,7 +16,7 @@ export const site = {
   /** Right side of the header on some pages; download page reads `download`. */
   actions: {
     link: { label: "Help", href: "/help/" },
-    cta: { label: "Download", href: "/download/" },
+    cta: { label: "Download Orso", href: "/download/" },
   },
   /** Install commands for the download page. */
   download: {

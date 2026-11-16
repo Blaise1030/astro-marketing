@@ -31,15 +31,11 @@ const size = { width: 1920, height: 1044 };
     />
     <span class="absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/[0.04]"></span>
     <span
-      class="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2.5 rounded-full bg-panel/90 py-1.5 pr-4 pl-1.5 text-[14px] font-medium text-ink shadow-lg ring-1 ring-ink/10 backdrop-blur transition-transform duration-300 group-hover:scale-105 group-focus-visible:ring-2 group-focus-visible:ring-brand"
+      class="absolute top-1/2 left-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand text-white shadow-lg ring-4 ring-panel/70 transition-transform sm:size-16 duration-300 group-hover:scale-105 group-focus-visible:ring-brand"
     >
-      <span class="grid size-9 place-items-center rounded-full bg-brand text-white">
-        <svg class="ml-0.5 size-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
-        </svg>
-      </span>
-      Watch the demo
-      <span class="font-mono text-[12px] text-faint">0:35</span>
+      <svg class="ml-0.5 size-5 sm:ml-1 sm:size-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
+      </svg>
     </span>
   </button>
 </div>
@@ -66,8 +62,19 @@ const size = { width: 1920, height: 1044 };
       source.type = type;
       video.append(source);
     }
+    // On phones the inline frame is too small to read, so play the demo full screen.
+    const isPhone = window.matchMedia("(max-width: 639px)").matches;
+    // iPhone Safari has no element fullscreen API; leaving playsInline off makes it play full screen.
+    if (isPhone) video.playsInline = false;
     button.replaceWith(video);
     video.focus();
     video.play().catch(() => {});
+    if (isPhone && video.requestFullscreen) {
+      video
+        .requestFullscreen()
+        // The recording is landscape; turn the phone sideways where the browser allows it.
+        .then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.("landscape"))
+        .catch(() => {});
+    }
   });
 </script>

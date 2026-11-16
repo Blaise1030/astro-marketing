@@ -4,12 +4,12 @@ import Accent from "@/components/landing/Accent.astro";
 import { href } from "@/lib/href";
 
 const features = [
-  { id: "write", title: "Forms, not frontmatter", body: "Blog posts, help docs and page copy get real fields. Markdown is still one click away." },
-  { id: "ask", title: "Your agent, in the loop", body: "Describe a change in plain English. Claude, Cursor or Codex edits the repo, never the live site." },
-  { id: "preview", title: "Every draft, previewed", body: "Each change gets its own draft with a live desktop and mobile preview, so nothing ships early." },
+  { id: "write", title: "Write and edit in familiar forms", body: "Edit titles, text and article details in fields that match your content. Open the Markdown whenever you need it." },
+  { id: "ask", title: "Ask for bigger changes", body: "Describe a new page or a batch of edits in plain English. Work with Claude, Cursor or Codex in your project." },
+  { id: "preview", title: "Every draft, previewed", body: "Check how your changes look on desktop and mobile before publishing." },
   { id: "publish", title: "Static files, any host", body: "Publish plain static output through the workflow you already have. No runtime, no lock-in." },
-  { id: "history", title: "Review before it's live", body: "Drafts wait for a yes. Your team approves, then publishes, and every earlier version stays one click away." },
-  { id: "repo", title: "Images are just files", body: "Upload an image and it lands in the repo next to the post. No media library, no CDN bill, nothing to migrate." },
+  { id: "history", title: "Go back to an earlier version", body: "See previous changes and restore an earlier version when you need to." },
+  { id: "repo", title: "Images are just files", body: "Upload an image alongside your content. It stays in the project and travels with the site." },
 ];
 
 // Dashed grid rules: 1 column → 2 (md) → 3 (xl), with the outer gutters trimmed.
@@ -38,10 +38,10 @@ const shots: Record<string, { src: string; w: number; h: number }[]> = {
 <section id="features" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
     <SectionIntro tag="Studio">
-      Everything your team needs to <Accent>run the site</Accent>.
+      The tools for your <Accent>next update</Accent>.
       <Fragment slot="lead">
-        And nothing they have to learn first. Fields that match the page, an agent for the bigger changes, and a
-        preview of every draft. The page they edit is the page that ships.
+        Write an article, upload an image, or update a page. Manage everyday changes in one place, with no Git
+        commands required.
       </Fragment>
     </SectionIntro>
   </div>

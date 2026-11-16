@@ -1,5 +1,4 @@
 ---
-import Selection from "@/components/landing/Selection.astro";
 import Accent from "@/components/landing/Accent.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { href } from "@/lib/href";
@@ -22,27 +21,26 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     </a>
 
     <h1 class="max-w-4xl text-h1 font-medium text-balance motion-safe:animate-hero-in" style="animation-delay:80ms">
-      Let your <Accent>content team</Accent> edit the site with an{" "}
-      <Selection label="agent / claude" cycle={["agent / claude", "agent / cursor", "agent / codex"]}>agent</Selection>.
+      Your <Accent>content team</Accent> can ship the next update.
     </h1>
 
     <p
       class="max-w-xl text-[16.5px] leading-relaxed text-pretty text-muted-ink motion-safe:animate-hero-in"
       style="animation-delay:160ms"
     >
-      Your developer set up the repo. Now marketing, writers and founders can change the site themselves: in a form,
-      or by asking an agent. Every change is a draft you preview before it goes live.
+      Edit copy, publish articles, or ask an agent to build a new page. Orso gives your team forms and drafts they can
+      preview before publishing—all in the Astro repo your developers already use.
     </p>
 
     <div class="flex flex-wrap items-center gap-3 motion-safe:animate-hero-in" style="animation-delay:240ms">
-      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Get Orso</a>
+      <a class={buttonVariants({ className: `btn-gloss ${btn}` })} href={href("/download/")}>Download Orso</a>
       <a class={buttonVariants({ variant: "ghost", className: `btn-quiet ${btn}` })} href={href("#how-it-works")}>
         <svg class="size-3 text-faint" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"></path>
         </svg>
         See how it works
       </a>
-      <span class="ml-1 font-mono text-[12px] text-faint">free &amp; open source · no migration · works with your repo</span>
+      <span class="ml-1 font-mono text-[12px] text-faint">free &amp; open source · for Astro sites</span>
     </div>
   </div>
 
@@ -53,22 +51,3 @@ const btn = "h-9 gap-1.5 rounded-[10px] px-3.5 text-[13.5px] font-medium trackin
     </div>
   </div>
 </section>
-<script>
-  // Rotate cycling labels with a short blur swap; skipped under reduced motion.
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll<HTMLElement>("[data-cycle]").forEach((el) => {
-      const labels = el.dataset.cycle!.split("|");
-      let i = Math.max(0, labels.indexOf(el.dataset.label ?? ""));
-      window.setInterval(() => {
-        el.style.opacity = "0";
-        el.style.filter = "blur(4px)";
-        window.setTimeout(() => {
-          i = (i + 1) % labels.length;
-          el.dataset.label = labels[i];
-          el.style.opacity = "";
-          el.style.filter = "";
-        }, 200);
-      }, 2400);
-    });
-  }
-</script>

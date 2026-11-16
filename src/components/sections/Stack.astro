@@ -3,10 +3,10 @@ import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
 
 const before = [
-  "Only the fields the CMS was set up to show",
-  "A new page means a ticket, then a sprint",
-  "Ideas wait on a developer's calendar",
-  "The campaign ships after the moment has passed",
+  "Edits are limited to the fields already set up",
+  "New page layouts need developer help",
+  "Changes wait in the development queue",
+  "Campaign deadlines depend on another team",
 ];
 
 // What teammates who don't code can now ask for, and what lands in the repo.
@@ -40,8 +40,8 @@ const badge = "grid size-5 place-items-center rounded-full text-white";
     <SectionIntro tag="Possibilities">
       Ask for <Accent>whole new pages</Accent>, not just edits.
       <Fragment slot="lead">
-        A CMS lets people fill in the fields someone built for them. With an agent on the repo, your team can ask for
-        things that used to take a sprint, and each one lands as a draft to review before it ships.
+        A campaign page, a comparison table, a batch of help articles. Describe what you need and let an agent work
+        with the pages and components already in your project.
       </Fragment>
     </SectionIntro>
   </div>
@@ -52,7 +52,7 @@ const badge = "grid size-5 place-items-center rounded-full text-white";
         <span class:list={[badge, "bg-ink/20 shadow-[0_0_0_3px_color-mix(in_oklab,var(--palette-ink)_4%,transparent)]"]}>
           <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
         </span>
-        <span class="font-mono text-[12px] text-muted-ink">with a cms</span>
+        <span class="font-mono text-[12px] text-muted-ink">when editing stops at forms</span>
       </span>
       <ul class="flex flex-col">
         {
