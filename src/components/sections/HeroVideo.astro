@@ -62,8 +62,19 @@ const size = { width: 1920, height: 1044 };
       source.type = type;
       video.append(source);
     }
+    // On phones the inline frame is too small to read, so play the demo full screen.
+    const isPhone = window.matchMedia("(max-width: 639px)").matches;
+    // iPhone Safari has no element fullscreen API; leaving playsInline off makes it play full screen.
+    if (isPhone) video.playsInline = false;
     button.replaceWith(video);
     video.focus();
     video.play().catch(() => {});
+    if (isPhone && video.requestFullscreen) {
+      video
+        .requestFullscreen()
+        // The recording is landscape; turn the phone sideways where the browser allows it.
+        .then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.("landscape"))
+        .catch(() => {});
+    }
   });
 </script>
