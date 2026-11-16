@@ -3,7 +3,7 @@ export const faqs = [
   {
     question: "Who is Project Orso for?",
     answer:
-      "Teams where developers own the repo but marketers, writers and founders own the words. It gives the second group the tools the first already uses — drafts, previews, reviews and a coding agent — without asking them to learn any of it.",
+      "Teams where developers own the repo but marketers, writers and founders own the words. It gives the second group the tools the first already uses — drafts, previews, reviews and a coding agent — without asking them to learn Git commands.",
   },
   {
     question: "Does my team need to know Git or code?",
@@ -28,16 +28,16 @@ export const faqs = [
   {
     question: "Can someone break the live site?",
     answer:
-      "Not by accident. Every change lands in a draft with its own preview, nothing goes live until someone hits Publish, and every save is a checkpoint you can roll back in one click.",
+      "Changes stay in a draft until you publish. Preview them first, and restore an earlier version if needed.",
   },
   {
     question: "Which AI agent do I need?",
-    answer: "Claude, Cursor or Codex. If your team already pays for one of them, that's everything Orso needs.",
+    answer: "Claude, Cursor or Codex. Use your existing agent setup; any agent subscription or usage charges are separate from Orso.",
   },
   {
     question: "Where do images go?",
     answer:
-      "Into the repo, next to your content. An uploaded image is a plain file committed with the change, so there's no media library to migrate and no separate CDN bill.",
+      "Into the repo, next to your content. Images are saved with the change and published with your site.",
   },
   {
     question: "How is this free?",
