@@ -1,31 +1,95 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
-import ProductImage from "@/components/landing/ProductImage.astro";
-const examples = [
-  { title: "Build the campaign page", ask: "Build a landing page for group bookings with our usual hero and FAQ.", result: "A new page using the components already in your project.", image: "ask", width: 872, height: 430, alt: "Ask an agent for a change in Orso" },
-  { title: "Turn questions into articles", ask: "Turn this week's top customer questions into help articles.", result: "Help articles you can refine in familiar content fields.", image: "write", width: 574, height: 400, alt: "Edit article details and content in Orso" },
-  { title: "Make the change everywhere", ask: "Link every post that mentions previews to the new guide.", result: "A batch of edits to check together before publishing.", image: "preview", width: 920, height: 396, alt: "Preview a draft before publishing in Orso" },
+
+const before = [
+  "Stay within preset fields",
+  "Request a new page",
+  "Wait in the development queue",
 ];
+
+// What teammates who don't code can now ask for, and what lands in the repo.
+const asks = [
+  {
+    who: "marketing",
+    ask: "Build a landing page for group bookings with our usual hero and FAQ.",
+    file: "a campaign page",
+  },
+  {
+    who: "support",
+    ask: "Turn this week's top customer questions into help articles.",
+    file: "a batch of help articles",
+  },
+  {
+    who: "writer",
+    ask: "Link every post that mentions previews to the new guide.",
+    file: "updated links across your posts",
+  },
+];
+const badge = "grid size-5 place-items-center rounded-full text-white";
 ---
+
 <section id="handoff" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
   <div data-reveal>
     <SectionIntro tag="Possibilities">
-      Take the idea <Accent>further yourself</Accent>.
-      <Fragment slot="lead">Update the words in a form. Ask an agent when the idea needs a new page, a different layout or changes across the site.</Fragment>
+      Ask for <Accent>whole new pages</Accent>, not just edits.
+      <Fragment slot="lead">
+        A campaign page, a comparison table, a batch of help articles. Describe what you need and let an agent work
+        with the pages and components already in your project.
+      </Fragment>
     </SectionIntro>
   </div>
-  <div class="grid gap-10 lg:grid-cols-3 lg:gap-8">
-    {examples.map((example) => (
-      <article class="flex min-w-0 flex-col gap-5" data-reveal>
-        <div class="frame"><div class="frame-inner dot-well flex h-52 items-center overflow-hidden p-4">
-          <div class="float-card w-full overflow-hidden rounded-xl"><ProductImage name={example.image} width={example.width} height={example.height} alt={example.alt} /></div>
-        </div></div>
-        <h3 class="text-[19px] font-medium tracking-[-0.02em]">{example.title}</h3>
-        <p class="text-[14.5px] leading-relaxed text-ink">“{example.ask}”</p>
-        <p class="text-[14px] leading-relaxed text-muted-ink">{example.result}</p>
-        <a href="#how-it-works" class="mt-auto text-[13px] font-medium text-link underline underline-offset-4">See how to preview and publish</a>
-      </article>
-    ))}
+
+  <div class="grid md:grid-cols-[0.8fr_1.2fr]" data-reveal style="--d: 100ms">
+    <div class="flex flex-col gap-5 pb-10 md:pb-0 md:pr-10">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-ink/20 shadow-[0_0_0_3px_color-mix(in_oklab,var(--palette-ink)_4%,transparent)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">when editing stops at forms</span>
+      </span>
+      <ul class="flex flex-col">
+        {
+          before.map((item, i) => (
+            <li
+              class:list={[
+                "py-3.5 text-[15.5px] font-medium tracking-[-0.015em] text-faint line-through decoration-ink/20",
+                i > 0 && "border-t border-dashed border-hairline-strong",
+              ]}
+            >
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="flex flex-col gap-5 border-t border-dashed border-hairline-strong pt-10 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+      <span class="flex items-center gap-2.5">
+        <span class:list={[badge, "bg-brand shadow-[0_0_0_3px_rgb(47_108_236/0.14)]"]}>
+          <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+        </span>
+        <span class="font-mono text-[12px] text-muted-ink">with orso and an agent</span>
+      </span>
+      <div class="frame">
+        <ul class="frame-inner">
+          {
+            asks.map((a, i) => (
+              <li class:list={["flex flex-col gap-2 px-4 py-3.5", i > 0 && "border-t border-dashed border-hairline-strong"]}>
+                <p class="flex items-start gap-3">
+                  <span class="mt-0.5 w-[4.5rem] shrink-0 font-mono text-[10.5px] text-faint">{a.who}</span>
+                  <span class="text-[14px] leading-snug text-ink">“{a.ask}”</span>
+                </p>
+                <p class="flex items-center gap-2 pl-[5.25rem] font-mono text-[10.5px] text-muted-ink">
+                  <span class="size-1.5 rounded-full bg-live" />
+                  <span>example draft</span>
+                  <span class="text-faint">· {a.file}</span>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </div>
 </section>

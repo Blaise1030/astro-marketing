@@ -183,7 +183,7 @@ Quiet. Pill, headline, copy, CTAs and the product window rise in with a blur-to-
 - **Grids:** feature cells, lists and stat rows are divided by dashed `hairline-strong` rules, not boxed.
 - **Buttons:** 36px tall, 10px radius, 13.5px medium. `.btn-gloss` is the blue key with a 1px darker ring; `.btn-quiet` is the surface key with a hairline ring.
 - **Blog and Help:** every page sits in `Rails.astro` and opens with `PageHeader.astro` (back link in mono, tag, 52px headline with an optional accent, lead). Posts are framed `BlogCard`s whose fallback cover is a floating Markdown card on a dotted well; topics use `TopicCard.astro`; doc lists use `DocRows.astro` (numbered, dashed rules). Blog filters are a sticky segmented control. Rendered Markdown uses `proseClass` from `src/lib/prose.ts`.
-- **Order:** Hero (shared-workspace headline, CTAs, real demo) → Possibilities (three concrete requests and product screenshots) → Workflow (make a change, preview/share, greenlight/publish) → Shared project (content/code/assets diagram, history and ownership) → Setup (template or existing Astro site, compatibility logos) → FAQ (six adoption questions) → CTA → footer. Existing Geist typography, palette and frame tokens remain in use.
+- **Order:** Hero (shared-workspace introduction and demo) → About (No more tickets for a typo, split tool-to-task table) → Possibilities (compact before/after list and agent requests) → Workflow (shared-project benefit, three steps beside a product tray) → Compare (fit table with compact setup and tool logos) → FAQ → CTA (team independence and repository ownership).
 
 ## Do's and Don'ts
 
@@ -205,4 +205,6 @@ Small mono labels can be technical ("src/pages/index.astro", "Preview rebuilt in
 
 ## Shared workspace page composition
 
-The homepage pairs concrete requests with existing product screenshots, then uses a three-step workflow and a simple project diagram. Screenshots have light/dark variants and informative alt text. Setup identifies local operation and GitHub sharing. Feature grids, comparisons and founder commentary are not separate homepage sections. No new palette, spacing or typography tokens are required; the `@theme` mappings in `global.css` continue to govern the reused surfaces.
+Use the earlier split-column layouts and dashed comparison rows. The introduction pairs concise benefit copy with the real demo. About translates developer tools into familiar actions. Possibilities pairs three limitations with concrete example requests, without repeating screenshot cards. The workflow combines shared files, previews, review and recovery in one compact section. Fit includes setup and compatibility; neither needs a separate section. Existing Geist typography, palette, frame surfaces and semantic tokens remain in use. Product screenshots have light/dark variants and informative alt text.
+
+On screens below 400px, the header hides the secondary “project” prefix and alpha badge and tightens its gap so the download action and menu fit. The hero still displays the alpha status.

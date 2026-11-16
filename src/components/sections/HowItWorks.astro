@@ -2,28 +2,34 @@
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
 import ProductImage from "@/components/landing/ProductImage.astro";
-import { href } from "@/lib/href";
 const steps = [
-  { title: "Make a change", body: "Ask an agent to build your campaign page, then refine the copy in Orso. Work in a draft while the live site stays as it is.", image: "ask", width: 872, height: 430, alt: "An agent working on a draft in Orso" },
-  { title: "Preview and share", body: "Check the page on desktop and mobile. Share a preview link for feedback, and send an update when your next edits are ready.", image: "preview", width: 920, height: 396, alt: "A draft page preview in Orso" },
-  { title: "Get a greenlight and publish", body: "Bring in a teammate to review the campaign page. Once it has a greenlight, publish through your project's existing workflow.", image: "publish-b", width: 746, height: 140, alt: "Publishing controls in Orso" },
+  { title: "Make a change.", body: "Edit content in a form or ask an agent for something bigger." },
+  { title: "Preview and review.", body: "Check the result, share a preview and get a teammate’s greenlight." },
+  { title: "Publish when ready.", body: "Send the update live, with a history you can return to." },
 ];
 ---
-<section id="how-it-works" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
-  <div data-reveal><SectionIntro tag="Workflow">
-    More people can build. <Accent>Every change gets reviewed</Accent>.
-    <Fragment slot="lead">Take a campaign page from first draft to live site, with a chance to check the result at every step.</Fragment>
-  </SectionIntro></div>
-  <ol class="flex flex-col">
-    {steps.map((step, i) => (
-      <li class:list={["grid items-center gap-8 py-8 md:grid-cols-2 md:gap-12", i > 0 && "border-t border-dashed border-hairline-strong"]} data-reveal>
-        <div class="flex gap-5">
+<section id="how-it-works" class="grid scroll-mt-14 items-start gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+  <div class="flex flex-col gap-8" data-reveal>
+    <SectionIntro tag="Workflow">
+      One shared project. <Accent>From first draft to live site</Accent>.
+      <Fragment slot="lead">Code, content and images stay together. Your team and agents work on the same website, with a clear path to publish.</Fragment>
+    </SectionIntro>
+    <ol class="flex flex-col">
+      {steps.map((step, i) => (
+        <li class:list={["flex gap-5 py-4", i > 0 && "border-t border-dashed border-hairline-strong"]}>
           <span class="pt-1 font-mono text-[12px] text-faint">0{i + 1}</span>
-          <div class="flex flex-col gap-3"><h3 class="text-[21px] font-medium tracking-[-0.02em]">{step.title}</h3><p class="max-w-md text-[15px] leading-relaxed text-muted-ink">{step.body}</p></div>
-        </div>
-        <div class="frame"><div class="frame-inner dot-well flex min-h-40 items-center p-5"><div class="float-card w-full overflow-hidden rounded-xl"><ProductImage name={step.image} width={step.width} height={step.height} alt={step.alt} /></div></div></div>
-      </li>
-    ))}
-  </ol>
-  <a href={href("/help/share-a-preview/")} class="w-fit text-[13.5px] font-medium text-link underline underline-offset-4">How shared previews work</a>
+          <div class="flex flex-col gap-1.5"><h3 class="text-[16px] font-medium tracking-[-0.015em]">{step.title}</h3><p class="text-[14px] leading-relaxed text-muted-ink">{step.body}</p></div>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] font-medium text-muted-ink">Your repo, your hosting, your site.</p>
+  </div>
+  <div class="frame" data-reveal style="--d: 120ms">
+    <div class="frame-inner dot-well flex flex-col gap-6 p-6 sm:p-8">
+      <p class="font-mono text-[11.5px] text-muted-ink">draft → preview → review → publish</p>
+      <div class="float-card overflow-hidden rounded-xl"><ProductImage name="preview" width={920} height={396} alt="Check a draft at different screen sizes in Orso" /></div>
+      <div class="float-card overflow-hidden rounded-xl"><ProductImage name="publish-b" width={746} height={140} alt="Publishing controls in Orso" /></div>
+      <p class="text-[13px] leading-relaxed text-muted-ink">Review the page your visitors will see before it goes live.</p>
+    </div>
+  </div>
 </section>

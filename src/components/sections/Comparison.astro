@@ -1,28 +1,14 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
+import { href } from "@/lib/href";
+import Tools from "./Tools.astro";
 
 const choices = [
-  {
-    name: "Headless CMS",
-    orso: "You want content in the repo where agents can edit it, without making your marketing team learn Git.",
-    other: "A headless CMS fits when you need structured content delivered to several websites or apps.",
-  },
-  {
-    name: "WordPress",
-    orso: "Your team wants easy editing without a plugin stack to maintain, and your developers want the site in Astro.",
-    other: "WordPress fits when you want its plugin ecosystem and a traditional CMS.",
-  },
-  {
-    name: "Wix, Framer, or Webflow",
-    orso: "Your developers maintain an Astro site, and your content team needs a simpler way to update it.",
-    other: "A visual builder fits when you want design and hosting managed in one place.",
-  },
-  {
-    name: "AI site builders",
-    orso: "You want an agent to edit your existing Astro project alongside your developers, using your own agent setup.",
-    other: "An AI site builder fits when you want to generate and manage a site within a hosted workspace.",
-  },
+  { name: "Headless CMS", orso: "Keep content beside your code, ready for your team and agents to edit.", other: "Deliver structured content to several websites or apps." },
+  { name: "WordPress", orso: "Give your team an editor while your developers keep building in Astro.", other: "Build around a traditional CMS and its plugin ecosystem." },
+  { name: "Visual builders", orso: "Let your team update an Astro site in a repository you own.", other: "Manage visual design and hosting in one platform." },
+  { name: "AI site builders", orso: "Bring your agent into a project your whole team can maintain.", other: "Generate and manage a site within a hosted workspace." },
 ];
 ---
 
@@ -30,7 +16,7 @@ const choices = [
   <div data-reveal>
     <SectionIntro tag="Compare">
       Find the right <Accent>fit for your team</Accent>.
-      <Fragment slot="lead">Orso edits content in your existing Astro project. Here's when that approach fits, and when another tool may suit you better.</Fragment>
+      <Fragment slot="lead">Choose Orso when you want your team and agents working on a site you own. Here’s how that fits alongside other approaches.</Fragment>
     </SectionIntro>
   </div>
 
@@ -44,10 +30,20 @@ const choices = [
       choices.map((choice) => (
         <article class="grid gap-2 border-t border-dashed border-hairline-strong py-5 md:grid-cols-[1fr_1.4fr_1.4fr] md:gap-8">
           <h3 class="text-[16px] font-medium tracking-[-0.015em]">{choice.name}</h3>
-          <p class="text-[14.5px] leading-relaxed text-muted-ink">{choice.orso}</p>
-          <p class="text-[14.5px] leading-relaxed text-faint">{choice.other}</p>
+          <p class="text-[14.5px] leading-relaxed text-muted-ink"><span class="font-medium text-ink md:hidden">Orso: </span>{choice.orso}</p>
+          <p class="text-[14.5px] leading-relaxed text-muted-ink"><span class="font-medium text-ink md:hidden">Choose {choice.name} to: </span>{choice.other}</p>
         </article>
       ))
     }
+  </div>
+  <div id="setup" class="flex scroll-mt-20 flex-col gap-6 border-t border-dashed border-hairline-strong pt-8" data-reveal>
+    <div class="grid gap-5 md:grid-cols-[1fr_2fr] md:gap-8">
+      <h3 class="text-[18px] font-medium tracking-[-0.02em]">Start with Astro. Bring your agent.</h3>
+      <div class="flex flex-col gap-4">
+        <p class="text-[14.5px] leading-relaxed text-muted-ink">Start from the template or have a developer prepare your existing site. Orso runs locally on macOS and Linux; your team shares the project through GitHub.</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-3 text-[13.5px] font-medium text-link"><a class="underline underline-offset-4" href={href("/help/getting-started/")}>Start with the template</a><a class="underline underline-offset-4" href={href("/help/use-orso-with-an-existing-site/")}>Connect your site</a></div>
+      </div>
+    </div>
+    <Tools />
   </div>
 </section>

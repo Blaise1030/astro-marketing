@@ -6,7 +6,7 @@ import Faq from "../components/sections/Faq.astro";
 import Hero from "../components/sections/Hero.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
 import Stack from "../components/sections/Stack.astro";
-import Setup from "../components/sections/Setup.astro";
+import Comparison from "../components/sections/Comparison.astro";
 import Base from "../layouts/Base.astro";
 import { site } from "../site";
 import { faqs } from "../lib/faqs";
@@ -22,13 +22,13 @@ import { faqPageJsonLd } from "../lib/seo";
   <div class="rails relative mx-auto max-w-6xl">
     <Hero />
     <Divider />
+    <About />
+    <Divider />
     <Stack />
     <Divider />
     <HowItWorks />
     <Divider />
-    <About />
-    <Divider />
-    <Setup />
+    <Comparison />
     <Divider />
     <Faq />
     <Divider />
