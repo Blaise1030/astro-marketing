@@ -1,51 +1,89 @@
 ---
 import SectionIntro from "@/components/landing/SectionIntro.astro";
 import Accent from "@/components/landing/Accent.astro";
+import { href } from "@/lib/href";
+
+// Real Orso screenshots, cropped from 2x captures of a demo project (public/product/workflow/).
+const img = (name: string) => href(`/product/workflow/${name}.webp`);
+const steps = [
+  {
+    n: "01",
+    title: "Write in the Markdown editor",
+    body: "Open a post or help doc and type. The body is plain Markdown, and the title, date, cover image and tags are fields on the right. No frontmatter to get wrong.",
+  },
+  {
+    n: "02",
+    title: "Or point at the page in the visual builder",
+    body: "Browse the live preview, click the part you want changed and tell the agent what to do. It edits the repo, the preview reloads, and you check it on desktop and mobile.",
+  },
+  {
+    n: "03",
+    title: "Publish to main",
+    body: "Happy with the draft? Press Publish. Orso merges the change into main, your host rebuilds, and the live site updates. Every earlier version stays in History.",
+  },
+];
 ---
 
-<section id="how-it-works" class="grid scroll-mt-14 gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-  <div class="flex flex-col gap-10" data-reveal>
+<section id="how-it-works" class="flex scroll-mt-14 flex-col gap-14 px-6 py-20 sm:px-10">
+  <div data-reveal>
     <SectionIntro tag="Workflow">
       Whoever makes the change, it goes live <Accent>the same way</Accent>.
+      <Fragment slot="lead">
+        Write it yourself or ask the agent. Either way you get a draft to check, and one button puts it on the live site.
+      </Fragment>
     </SectionIntro>
-    <ol class="flex flex-col">
-      <li class="flex items-center gap-6 py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">01</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Fill in the form, or ask the agent.</span>
-      </li>
-      <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">02</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Check the <Accent>draft</Accent> on desktop and mobile.</span>
-      </li>
-      <li class="flex items-center gap-6 border-t border-dashed border-hairline-strong py-4">
-        <span class="w-6 font-mono text-[12px] text-faint">03</span>
-        <span class="text-[16px] font-medium tracking-[-0.015em]">Publish when it looks right.</span>
-      </li>
-    </ol>
   </div>
 
-  <div class="frame" data-reveal style="--d: 120ms">
-    <div class="frame-inner dot-well relative h-[380px]" aria-hidden="true">
-      <div class="float-card absolute inset-6 flex flex-col overflow-hidden rounded-xl sm:inset-8">
-        <div class="flex h-10 shrink-0 items-center gap-2 border-b border-hairline px-4">
-          <span class="rounded-full bg-ink/[0.05] px-2 py-0.5 font-mono text-[10.5px]">claude</span>
-          <span class="font-mono text-[10.5px] text-faint">fernway.com · draft/homepage-headline</span>
-          <span class="ml-auto flex items-center gap-1.5 font-mono text-[10.5px] text-faint"><span class="size-1.5 rounded-full bg-live"></span>ready</span>
-        </div>
-        <div class="flex flex-1 flex-col gap-4 p-4 font-mono text-[11.5px] leading-relaxed">
-          <p class="ml-auto w-fit max-w-[85%] rounded-xl rounded-br-sm bg-ink px-3 py-2 font-sans text-[12.5px] text-ground">
-            Change the homepage headline to “Book the whole team in one link.”
-          </p>
-          <div class="flex flex-col gap-1">
-            <p class="text-faint">src/pages/index.astro</p>
-            <p class="flex gap-2 text-faint line-through decoration-ink/20"><span>−</span>Scheduling that works.</p>
-            <p class="flex gap-2 text-live"><span>+</span>Book the whole team in one link.</p>
+  <ol class="flex flex-col">
+    {
+      steps.map((s, i) => (
+        <li
+          class:list={[
+            "grid gap-8 py-10 lg:grid-cols-[1fr_1.7fr] lg:items-center lg:gap-14",
+            i > 0 && "border-t border-dashed border-hairline-strong",
+          ]}
+          data-reveal
+        >
+          <div class="flex max-w-md flex-col gap-3">
+            <span class="font-mono text-[12px] text-faint">{s.n}</span>
+            <h3 class="text-[22px] font-medium tracking-[-0.02em] text-balance">{s.title}</h3>
+            <p class="text-[15px] leading-relaxed text-muted-foreground">{s.body}</p>
           </div>
-          <p class="mt-auto rounded-lg bg-ink/[0.035] px-3 py-2.5 text-muted-ink">
-            <span class="text-ink">Done.</span> Preview rebuilt in 0.8s — review it before you publish.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
+          <div class="frame" style="--d: 120ms">
+            <div class="frame-inner dot-well relative p-4 sm:p-6">
+              {i === 0 && (
+                <div class="float-card overflow-hidden rounded-xl">
+                  <img src={img("editor")} width="800" height="607" alt="Orso's Markdown editor: the post body on the left, title, date, cover image and tag fields on the right." loading="lazy" decoding="async" class="block h-auto w-full dark:hidden" />
+                  <img src={img("editor-dark")} width="800" height="607" alt="" loading="lazy" decoding="async" class="hidden h-auto w-full dark:block" />
+                </div>
+              )}
+              {i === 1 && (
+                <div class="float-card overflow-hidden rounded-xl">
+                  <img src={img("builder")} width="900" height="500" alt="Orso's visual builder: the homepage headline is selected in the live preview and the agent explains the change in the chat beside it." loading="lazy" decoding="async" class="block h-auto w-full" />
+                </div>
+              )}
+              {i === 2 && (
+                <div class="relative">
+                  <div class="float-card overflow-hidden rounded-xl">
+                    <img src={img("history")} width="600" height="408" alt="Orso's History on main, with the merged change at the top marked Current." loading="lazy" decoding="async" class="block h-auto w-full" />
+                  </div>
+                  <div class="absolute -bottom-2 right-2 flex flex-col items-end gap-3 sm:-bottom-3 sm:right-4">
+                    <div class="float-card overflow-hidden rounded-xl">
+                      <img src={href("/product/features/publish-a.webp")} width="223" height="45" alt="The Publish button." loading="lazy" decoding="async" class="block h-auto w-[160px] sm:w-[223px] dark:hidden" />
+                      <img src={href("/product/features/publish-a-dark.webp")} width="223" height="45" alt="" loading="lazy" decoding="async" class="hidden h-auto w-[160px] sm:w-[223px] dark:block" />
+                    </div>
+                    <div class="float-card overflow-hidden rounded-xl">
+                      <img src={href("/product/features/publish-b.webp")} width="373" height="70" alt="Toast: Published. Waiting for the site to update." loading="lazy" decoding="async" class="block h-auto w-[240px] sm:w-[373px] dark:hidden" />
+                      <img src={href("/product/features/publish-b-dark.webp")} width="373" height="70" alt="" loading="lazy" decoding="async" class="hidden h-auto w-[240px] sm:w-[373px] dark:block" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
 </section>

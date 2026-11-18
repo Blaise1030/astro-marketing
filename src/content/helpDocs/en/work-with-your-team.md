@@ -14,6 +14,10 @@ Invite teammates on the GitHub repository. Everyone opens the same project in Or
 
 Create a **change** for anything that should go through review. Use **Share preview** so others can check the result, get a **greenlight**, then **Publish** when it is ready to go live. The **Share a preview link** and **Publish your site** articles walk through each step.
 
+## Stay up to date
+
+Use **Get latest** to bring what teammates have published into your change. If you both edited the same part of the site, see [When you and a teammate change the same thing](/help/resolve-overlapping-changes/).
+
 ## No extra seats to buy
 
 Orso is free and open source. Team access follows your GitHub permissions and the agent subscriptions you already pay for.
