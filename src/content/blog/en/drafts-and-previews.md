@@ -7,12 +7,15 @@ categories:
 tags: [workflow, product]
 relatedPosts: [welcome, content-in-markdown, bring-your-own-agent]
 ---
-
 ## Editing directly on live is a workflow, not a feature
 
 Most small sites are edited in place: open the page, change a sentence, hit save, hope. It works right up until the moment it does not — a half-finished rewrite goes public, a heading breaks on mobile, or someone saves over a colleague's work.
 
 Orso treats every change as a draft with its own preview. Nothing touches the published site until you say so.
+
+
+
+![test](../../../assets/blog/drafts-and-previews/screenshot-2026-11-11-at-4-59-57-pm.png)
 
 ## The four steps
 
